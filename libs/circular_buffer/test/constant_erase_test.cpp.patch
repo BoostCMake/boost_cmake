@@ -1,0 +1,33 @@
+8a9,10
+> #define BOOST_TEST_MAIN
+> #include <boost/test/unit_test.hpp>
+177,178c179
+< // test main
+< test_suite* init_unit_test_suite(int /*argc*/, char* /*argv*/[]) {
+---
+> BOOST_AUTO_TEST_SUITE(unit_tests_for_erase_begin_end_and_clear_methods_of_the_circular_buffer_suite)
+180c181,184
+<     test_suite* tests = BOOST_TEST_SUITE("Unit tests for erase_begin/end and clear methods of the circular_buffer.");
+---
+> BOOST_AUTO_TEST_CASE(erase_begin_test_case)
+> {
+>     erase_begin_test();
+> }
+182,184c186,189
+<     tests->add(BOOST_TEST_CASE(&erase_begin_test));
+<     tests->add(BOOST_TEST_CASE(&erase_end_test));
+<     tests->add(BOOST_TEST_CASE(&clear_test));
+---
+> BOOST_AUTO_TEST_CASE(erase_end_test_case)
+> {
+>     erase_end_test();
+> }
+186c191,193
+<     return tests;
+---
+> BOOST_AUTO_TEST_CASE(clear_test_case)
+> {
+>     clear_test();
+187a195,196
+> 
+> BOOST_AUTO_TEST_SUITE_END()

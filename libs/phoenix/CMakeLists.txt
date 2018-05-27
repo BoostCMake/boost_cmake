@@ -1,0 +1,48 @@
+cmake_minimum_required(VERSION 3.5)
+project(${CMAKE_WORKSPACE_NAME}_phoenix)
+
+find_package(BCM)
+include(BCMDeploy)
+include(BCMSetupVersion)
+
+find_package(${CMAKE_WORKSPACE_NAME}_function)
+find_package(${CMAKE_WORKSPACE_NAME}_core)
+find_package(${CMAKE_WORKSPACE_NAME}_predef)
+find_package(${CMAKE_WORKSPACE_NAME}_proto)
+find_package(${CMAKE_WORKSPACE_NAME}_bind)
+find_package(${CMAKE_WORKSPACE_NAME}_mpl)
+find_package(${CMAKE_WORKSPACE_NAME}_range)
+find_package(${CMAKE_WORKSPACE_NAME}_detail)
+find_package(${CMAKE_WORKSPACE_NAME}_assert)
+find_package(${CMAKE_WORKSPACE_NAME}_smart_ptr)
+find_package(${CMAKE_WORKSPACE_NAME}_fusion)
+find_package(${CMAKE_WORKSPACE_NAME}_type_traits)
+find_package(${CMAKE_WORKSPACE_NAME}_preprocessor)
+find_package(${CMAKE_WORKSPACE_NAME}_config)
+find_package(${CMAKE_WORKSPACE_NAME}_utility)
+
+bcm_setup_version(VERSION 1.58.0)
+
+add_library(${CMAKE_WORKSPACE_NAME}_phoenix INTERFACE)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_phoenix PROPERTY EXPORT_NAME phoenix)
+
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_phoenix INTERFACE boost::function)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_phoenix INTERFACE boost::core)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_phoenix INTERFACE boost::predef)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_phoenix INTERFACE boost::proto)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_phoenix INTERFACE boost::bind)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_phoenix INTERFACE boost::mpl)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_phoenix INTERFACE boost::range)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_phoenix INTERFACE boost::detail)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_phoenix INTERFACE boost::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_phoenix INTERFACE boost::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_phoenix INTERFACE boost::fusion)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_phoenix INTERFACE boost::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_phoenix INTERFACE boost::preprocessor)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_phoenix INTERFACE boost::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_phoenix INTERFACE boost::utility)
+
+
+bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_phoenix INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+
+add_subdirectory(test)

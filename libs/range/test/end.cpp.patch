@@ -1,0 +1,23 @@
+10a11
+> #define BOOST_TEST_MAIN
+107c108
+< using boost::unit_test::test_suite;
+---
+> BOOST_AUTO_TEST_SUITE(range_test_suite_end_adl_namespace_barrier_suite)
+109,110c110
+< boost::unit_test::test_suite*
+< init_unit_test_suite( int argc, char* argv[] )
+---
+> BOOST_AUTO_TEST_CASE(test_range_end_adl_avoidance_case)
+112,116c112
+<     boost::unit_test::test_suite* test = BOOST_TEST_SUITE( "Range Test Suite - end() ADL namespace barrier" );
+< 
+<     test->add( BOOST_TEST_CASE( &test_range_end_adl_avoidance ) );
+< 
+<     return test;
+---
+>     test_range_end_adl_avoidance();
+119c115
+< 
+---
+> BOOST_AUTO_TEST_SUITE_END()

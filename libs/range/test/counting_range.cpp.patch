@@ -1,0 +1,21 @@
+12a13
+> #define BOOST_TEST_MAIN
+81,87c82
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.adaptor.counting_range" );
+< 
+<     test->add( BOOST_TEST_CASE( &boost::counting_range_test ) );
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_adaptor_counting_range_suite)
+89c84,86
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_counting_range_test_case)
+> {
+>     boost::counting_range_test();
+90a88,89
+> 
+> BOOST_AUTO_TEST_SUITE_END()

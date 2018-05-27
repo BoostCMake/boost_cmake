@@ -1,0 +1,21 @@
+8a9
+> #define BOOST_TEST_MAIN
+94,100c95
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.algorithm.stable_sort" );
+< 
+<     test->add( BOOST_TEST_CASE( &boost::test_stable_sort ) );
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_algorithm_stable_sort_suite)
+102c97,99
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_test_stable_sort_case)
+> {
+>     boost::test_stable_sort();
+103a101,102
+> 
+> BOOST_AUTO_TEST_SUITE_END()

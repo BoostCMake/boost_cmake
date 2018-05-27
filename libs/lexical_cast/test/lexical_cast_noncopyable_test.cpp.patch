@@ -1,0 +1,26 @@
+12a13
+> #define BOOST_TEST_MAIN
+29,33c30
+< unit_test::test_suite *init_unit_test_suite(int, char *[])
+< {
+<     unit_test::test_suite *suite =
+<         BOOST_TEST_SUITE("lexical_cast unit test");
+<     suite->add(BOOST_TEST_CASE(&test_noncopyable));
+---
+> BOOST_AUTO_TEST_SUITE(lexical_cast_unit_test_suite)
+35c32,34
+<     return suite;
+---
+> BOOST_AUTO_TEST_CASE(test_noncopyable_case)
+> {
+>     test_noncopyable();
+37a37,39
+> BOOST_AUTO_TEST_SUITE_END()
+> 
+> 
+53,54c55
+< }
+< 
+---
+> }
+\ No newline at end of file

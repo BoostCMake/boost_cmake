@@ -1,0 +1,120 @@
+8c8,9
+< 
+---
+> #define BOOST_TEST_MAIN
+> #include <boost/test/unit_test.hpp>
+493a495
+> BOOST_AUTO_TEST_SUITE(quaternion_test_suit)
+495c497
+< BOOST_TEST_CASE_TEMPLATE_FUNCTION(multiplication_test, T)
+---
+> BOOST_AUTO_TEST_CASE_TEMPLATE(multiplication_test, T, test_types)
+566c568
+< BOOST_TEST_CASE_TEMPLATE_FUNCTION(exp_test, T)
+---
+> BOOST_AUTO_TEST_CASE_TEMPLATE(exp_test, T, near_eps_test_types)
+598c600
+< BOOST_TEST_CASE_TEMPLATE_FUNCTION(cos_test, T)
+---
+> BOOST_AUTO_TEST_CASE_TEMPLATE(cos_test, T, near_eps_test_types)
+630c632
+< BOOST_TEST_CASE_TEMPLATE_FUNCTION(sin_test, T)
+---
+> BOOST_AUTO_TEST_CASE_TEMPLATE(sin_test, T, near_eps_test_types)
+665c667
+< BOOST_TEST_CASE_TEMPLATE_FUNCTION(cosh_test, T)
+---
+> BOOST_AUTO_TEST_CASE_TEMPLATE(cosh_test, T, near_eps_test_types)
+699,700c701,702
+< 
+< BOOST_TEST_CASE_TEMPLATE_FUNCTION(sinh_test, T)
+---
+> #ifdef  BOOST_QUATERNION_TEST_VERBOSE
+> BOOST_AUTO_TEST_CASE (quaternion_manual_test_case)
+702,731c704
+< #if     BOOST_WORKAROUND(__GNUC__, < 3)
+< #else   /* BOOST_WORKAROUND(__GNUC__, < 3) */
+<     using ::std::numeric_limits;
+<     
+<     using ::std::atan;
+<     
+<     using ::boost::math::abs;
+< #endif  /* BOOST_WORKAROUND(__GNUC__, < 3) */
+<     
+<     
+<     BOOST_TEST_MESSAGE("Testing sinh for "
+<         << string_type_name<T>::_() << ".");
+<     
+<     BOOST_CHECK_PREDICATE(::std::less_equal<T>(),
+<         (abs(sinh(::boost::math::quaternion<T>
+<              (0,2*atan(static_cast<T>(1)),0,0))
+<              -::boost::math::quaternion<T>(0,1,0,0)))
+<         (4*numeric_limits<T>::epsilon()));
+<     
+<     BOOST_CHECK_PREDICATE(::std::less_equal<T>(),
+<         (abs(sinh(::boost::math::quaternion<T>
+<              (0,0,2*atan(static_cast<T>(1)),0))
+<              -::boost::math::quaternion<T>(0,0,1,0)))
+<         (4*numeric_limits<T>::epsilon()));
+<     
+<     BOOST_CHECK_PREDICATE(::std::less_equal<T>(),
+<         (abs(sinh(::boost::math::quaternion<T>
+<              (0,0,0,2*atan(static_cast<T>(1))))
+<              -::boost::math::quaternion<T>(0,0,0,1)))
+<         (4*numeric_limits<T>::epsilon()));
+---
+>     quaternion_manual_test();
+732a706
+> #endif
+734,782c708
+< 
+< boost::unit_test::test_suite *    init_unit_test_suite(int, char *[])
+< {
+<     ::boost::unit_test::unit_test_log.
+<         set_threshold_level(::boost::unit_test::log_messages);
+<     
+<     boost::unit_test::test_suite *    test =
+<         BOOST_TEST_SUITE("quaternion_test");
+<     
+<     BOOST_TEST_MESSAGE("Results of quaternion test.");
+<     BOOST_TEST_MESSAGE(" ");
+<     BOOST_TEST_MESSAGE("(C) Copyright Hubert Holin 2003-2005.");
+<     BOOST_TEST_MESSAGE("Distributed under the Boost Software License, Version 1.0.");
+<     BOOST_TEST_MESSAGE("(See accompanying file LICENSE_1_0.txt or copy at");
+<     BOOST_TEST_MESSAGE("http://www.boost.org/LICENSE_1_0.txt)");
+<     BOOST_TEST_MESSAGE(" ");
+<     
+< #define    BOOST_QUATERNION_COMMON_GENERATOR(fct)   \
+<     test->add(BOOST_TEST_CASE_TEMPLATE(fct##_test, test_types));
+< 
+< #define    BOOST_QUATERNION_COMMON_GENERATOR_NEAR_EPS(fct)   \
+<     test->add(BOOST_TEST_CASE_TEMPLATE(fct##_test, near_eps_test_types));
+<     
+<     
+< #define    BOOST_QUATERNION_TEST                      \
+<     BOOST_QUATERNION_COMMON_GENERATOR(multiplication) \
+<     BOOST_QUATERNION_COMMON_GENERATOR_NEAR_EPS(exp)            \
+<     BOOST_QUATERNION_COMMON_GENERATOR_NEAR_EPS(cos)            \
+<     BOOST_QUATERNION_COMMON_GENERATOR_NEAR_EPS(sin)            \
+<     BOOST_QUATERNION_COMMON_GENERATOR_NEAR_EPS(cosh)           \
+<     BOOST_QUATERNION_COMMON_GENERATOR_NEAR_EPS(sinh)
+<     
+<     
+<     BOOST_QUATERNION_TEST
+<     
+<     
+< #undef    BOOST_QUATERNION_TEST
+<     
+< #undef    BOOST_QUATERNION_COMMON_GENERATOR
+< #undef BOOST_QUATERNION_COMMON_GENERATOR_NEAR_EPS
+<     
+< #ifdef BOOST_QUATERNION_TEST_VERBOSE
+<     
+<     test->add(BOOST_TEST_CASE(quaternion_manual_test));
+<     
+< #endif    /* BOOST_QUATERNION_TEST_VERBOSE */
+<     
+<     return test;
+< }
+---
+> BOOST_AUTO_TEST_SUITE_END()

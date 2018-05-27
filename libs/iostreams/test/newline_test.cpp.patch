@@ -1,0 +1,35 @@
+7a8
+> #define BOOST_TEST_MAIN
+478c479,486
+< test_suite* init_unit_test_suite(int, char* [])
+---
+> BOOST_AUTO_TEST_SUITE(newline_filter_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(read_newline_filter_case)
+> {
+>     read_newline_filter();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(write_newline_filter_case)
+480,485c488
+<     test_suite* test = BOOST_TEST_SUITE("newline_filter test");
+<     test->add(BOOST_TEST_CASE(&read_newline_filter));
+<     test->add(BOOST_TEST_CASE(&write_newline_filter));
+<     test->add(BOOST_TEST_CASE(&read_newline_checker));
+<     test->add(BOOST_TEST_CASE(&write_newline_checker));
+<     return test;
+---
+>     write_newline_filter();
+486a490,501
+> 
+> BOOST_AUTO_TEST_CASE(read_newline_checker_case)
+> {
+>     read_newline_checker();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(write_newline_checker_case)
+> {
+>     write_newline_checker();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()

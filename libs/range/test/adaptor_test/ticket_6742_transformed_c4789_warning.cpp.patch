@@ -1,0 +1,21 @@
+10a11
+> #define BOOST_TEST_MAIN
+60,66c61
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "Range adaptors - transformed warning" );
+< 
+<     test->add(BOOST_TEST_CASE(&range_transformed_warning));
+---
+> BOOST_AUTO_TEST_SUITE(range_adaptors_transformed_warning_suite)
+68c63,65
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(range_transformed_warning_case)
+> {
+>     range_transformed_warning();
+69a67,68
+> 
+> BOOST_AUTO_TEST_SUITE_END()

@@ -1,0 +1,105 @@
+19a20
+> #define BOOST_TEST_MAIN
+81c82,119
+< unit_test::test_suite *init_unit_test_suite(int, char *[])
+---
+> BOOST_AUTO_TEST_SUITE(lexical_cast_unit_test_on_integral_types_suite)
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_from_to_short_case)
+> {
+>     test_conversion_from_to_short();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_from_to_ushort_case)
+> {
+>     test_conversion_from_to_ushort();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_from_to_int_case)
+> {
+>     test_conversion_from_to_int();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_from_to_uint_case)
+> {
+>     test_conversion_from_to_uint();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_from_to_long_case)
+> {
+>     test_conversion_from_to_long();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_from_to_ulong_case)
+> {
+>     test_conversion_from_to_ulong();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_from_to_intmax_t_case)
+> {
+>     test_conversion_from_to_intmax_t();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_from_to_uintmax_t_case)
+83,84c121,122
+<     unit_test::test_suite *suite =
+<         BOOST_TEST_SUITE("lexical_cast unit test on integral types");
+---
+>     test_conversion_from_to_uintmax_t();
+> }
+86,93d123
+<     suite->add(BOOST_TEST_CASE(&test_conversion_from_to_short));
+<     suite->add(BOOST_TEST_CASE(&test_conversion_from_to_ushort));
+<     suite->add(BOOST_TEST_CASE(&test_conversion_from_to_int));
+<     suite->add(BOOST_TEST_CASE(&test_conversion_from_to_uint));
+<     suite->add(BOOST_TEST_CASE(&test_conversion_from_to_long));
+<     suite->add(BOOST_TEST_CASE(&test_conversion_from_to_ulong));
+<     suite->add(BOOST_TEST_CASE(&test_conversion_from_to_intmax_t));
+<     suite->add(BOOST_TEST_CASE(&test_conversion_from_to_uintmax_t));
+95,96c125,128
+<     suite->add(BOOST_TEST_CASE(&test_conversion_from_to_longlong));
+<     suite->add(BOOST_TEST_CASE(&test_conversion_from_to_ulonglong));
+---
+> BOOST_AUTO_TEST_CASE(test_conversion_from_to_longlong_case)
+> {
+>     test_conversion_from_to_longlong();
+> }
+97a130,135
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_from_to_ulonglong_case)
+> {
+>     test_conversion_from_to_ulonglong();
+> }
+> 
+99,100c137,145
+<     suite->add(BOOST_TEST_CASE(&test_conversion_from_to_int128));
+<     suite->add(BOOST_TEST_CASE(&test_conversion_from_to_uint128));
+---
+> BOOST_AUTO_TEST_CASE(test_conversion_from_to_int128_case)
+> {
+>     test_conversion_from_to_int128();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_from_to_uint128_case)
+> {
+>     test_conversion_from_to_uint128();
+> }
+102d146
+<     suite->add(BOOST_TEST_CASE(&test_integral_conversions_on_min_max));
+104c148,150
+<     return suite;
+---
+> BOOST_AUTO_TEST_CASE(test_integral_conversions_on_min_max_case)
+> {
+>     test_integral_conversions_on_min_max();
+106a153,155
+> BOOST_AUTO_TEST_SUITE_END()
+> 
+> 
+651,653c700
+< }
+< 
+< 
+---
+> }
+\ No newline at end of file

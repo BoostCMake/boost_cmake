@@ -1,0 +1,4 @@
+29c29
+< under <a href="https://sourceforge.net/projects/cppcms/files/boost_locale/gettext_for_windows/">boost_locale/gettext_for_windows</a>.
+---
+> under <a href="https://sourceforge.net/projects/cppcms/files/${CMAKE_WORKSPACE_NAME}_locale/gettext_for_windows/">${CMAKE_WORKSPACE_NAME}_locale/gettext_for_windows</a>.

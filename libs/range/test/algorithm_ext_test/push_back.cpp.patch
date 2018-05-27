@@ -1,0 +1,21 @@
+10a11
+> #define BOOST_TEST_MAIN
+63,69c64
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.algorithm_ext.push_back" );
+< 
+<     test->add( BOOST_TEST_CASE( &test_push_back ) );
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_algorithm_ext_push_back_suite)
+71c66,68
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test_push_back_case)
+> {
+>     test_push_back();
+72a70,71
+> 
+> BOOST_AUTO_TEST_SUITE_END()

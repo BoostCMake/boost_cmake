@@ -1,0 +1,17 @@
+7a8
+> #define BOOST_TEST_MAIN
+106c107,109
+< test_suite* init_unit_test_suite(int, char* []) 
+---
+> BOOST_AUTO_TEST_SUITE(direct_adapter_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(direct_adapter_test_case)
+108,110c111
+<     test_suite* test = BOOST_TEST_SUITE("direct_adapter test");
+<     test->add(BOOST_TEST_CASE(&direct_adapter_test));
+<     return test;
+---
+>     direct_adapter_test();
+111a113,114
+> 
+> BOOST_AUTO_TEST_SUITE_END()

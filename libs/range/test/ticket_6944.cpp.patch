@@ -1,0 +1,21 @@
+10a11
+> #define BOOST_TEST_MAIN
+37,43c38
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.ticket_6944" );
+< 
+<     test->add( BOOST_TEST_CASE( &boost::test_ticket_6944 ) );
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_ticket_6944_suite)
+45c40,42
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_test_ticket_6944_case)
+> {
+>     boost::test_ticket_6944();
+46a44,45
+> 
+> BOOST_AUTO_TEST_SUITE_END()

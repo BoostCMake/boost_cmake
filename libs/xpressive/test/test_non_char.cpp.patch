@@ -1,0 +1,26 @@
+7a8,9
+> #define BOOST_TEST_MAIN
+> #include <boost/test/unit_test.hpp>
+91,94c93,100
+< ///////////////////////////////////////////////////////////////////////////////
+< // init_unit_test_suite
+< //
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+---
+> BOOST_AUTO_TEST_SUITE(test_non_char_suite)
+> 
+> BOOST_AUTO_TEST_CASE(test_static_case)
+> {
+>     test_static();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_dynamic_case)
+96,99c102
+<     test_suite *test = BOOST_TEST_SUITE("test_non_char");
+<     test->add(BOOST_TEST_CASE(&test_static));
+<     test->add(BOOST_TEST_CASE(&test_dynamic));
+<     return test;
+---
+>     test_dynamic();
+101a105
+> BOOST_AUTO_TEST_SUITE_END()

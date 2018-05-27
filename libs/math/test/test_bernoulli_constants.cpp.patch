@@ -1,0 +1,4 @@
+12c12
+< #include <libs/math/test/table_type.hpp>
+---
+> #include <table_type.hpp>

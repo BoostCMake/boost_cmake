@@ -1,0 +1,23 @@
+8a9
+> #define BOOST_TEST_MAIN
+131,139c132
+< using namespace boost::unit_test;
+< ///////////////////////////////////////////////////////////////////////////////
+< // init_unit_test_suite
+< //
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+< {
+<     test_suite *test = BOOST_TEST_SUITE("test deducing domains from sub-domains");
+< 
+<     test->add(BOOST_TEST_CASE(&test1));
+---
+> BOOST_AUTO_TEST_SUITE(test_deducing_domains_from_sub_domains_suite)
+141c134,136
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test1_case)
+> {
+>     test1();
+142a138,139
+> 
+> BOOST_AUTO_TEST_SUITE_END()

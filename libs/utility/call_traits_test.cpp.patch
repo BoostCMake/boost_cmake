@@ -1,0 +1,6 @@
+21,22c21,22
+< #include <libs/type_traits/test/test.hpp>
+< #include <libs/type_traits/test/check_type.hpp>
+---
+> #include <../../type_traits/test/test.hpp>
+> #include <../../type_traits/test/check_type.hpp>

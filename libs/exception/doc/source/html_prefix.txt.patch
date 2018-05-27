@@ -1,0 +1,4 @@
+14c14
+< <div id="boost_logo">
+---
+> <div id="${CMAKE_WORKSPACE_NAME}_logo">

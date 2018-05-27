@@ -1,0 +1,41 @@
+7a8
+> #define BOOST_TEST_MAIN
+77,81c78,80
+< using namespace boost::unit_test;
+< ///////////////////////////////////////////////////////////////////////////////
+< // init_unit_test_suite
+< //
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+---
+> BOOST_AUTO_TEST_SUITE(miscelaneous_tests_suite)
+> 
+> BOOST_AUTO_TEST_CASE(test_complement_case)
+83c82,83
+<     test_suite *test = BOOST_TEST_SUITE("miscelaneous tests");
+---
+>     test_complement();
+> }
+85,88c85,88
+<     test->add(BOOST_TEST_CASE(&test_complement));
+<     test->add(BOOST_TEST_CASE(&test_static_actions_in_dynamic_keep));
+<     test->add(BOOST_TEST_CASE(&test_static_actions_in_static_keep));
+<     test->add(BOOST_TEST_CASE(&test_replace_with_lambda));
+---
+> BOOST_AUTO_TEST_CASE(test_static_actions_in_dynamic_keep_case)
+> {
+>     test_static_actions_in_dynamic_keep();
+> }
+90c90,92
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test_static_actions_in_static_keep_case)
+> {
+>     test_static_actions_in_static_keep();
+91a94,100
+> 
+> BOOST_AUTO_TEST_CASE(test_replace_with_lambda_case)
+> {
+>     test_replace_with_lambda();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()

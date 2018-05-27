@@ -1,0 +1,33 @@
+14a15
+> #define BOOST_TEST_MAIN
+385,386c386,388
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_adaptor_joined_suite)
+> 
+> BOOST_AUTO_TEST_CASE(boost_join_test_case)
+388,389c390,391
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.adaptor.joined" );
+---
+>     boost::join_test();
+> }
+391,393c393,396
+<     test->add( BOOST_TEST_CASE( &boost::join_test ) );
+<     test->add( BOOST_TEST_CASE( &boost::test_join_iterator_reference_type_constness_ticket8483 ) );
+<     test->add( BOOST_TEST_CASE( &boost::trac7376::test_reference_types ) );
+---
+> BOOST_AUTO_TEST_CASE(boost_test_join_iterator_reference_type_constness_ticket8483_case)
+> {
+>     boost::test_join_iterator_reference_type_constness_ticket8483();
+> }
+395c398,400
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_trac7376_test_reference_types_case)
+> {
+>     boost::trac7376::test_reference_types();
+396a402,403
+> 
+> BOOST_AUTO_TEST_SUITE_END()

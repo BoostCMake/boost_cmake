@@ -1,0 +1,23 @@
+7a8
+> #define BOOST_TEST_MAIN
+38c39,41
+< test_suite* init_unit_test_suite(int, char* []) 
+---
+> BOOST_AUTO_TEST_SUITE(null_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(read_null_source_case)
+40,43c43
+<     test_suite* test = BOOST_TEST_SUITE("null test");
+<     test->add(BOOST_TEST_CASE(&read_null_source));
+<     test->add(BOOST_TEST_CASE(&write_null_sink));
+<     return test;
+---
+>     read_null_source();
+44a45,51
+> 
+> BOOST_AUTO_TEST_CASE(write_null_sink_case)
+> {
+>     write_null_sink();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()

@@ -1,0 +1,21 @@
+10a11
+> #define BOOST_TEST_MAIN
+74a76
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_algorithm_count_suite)
+76,77c78
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+---
+> BOOST_AUTO_TEST_CASE(boost_test_count_case)
+79,84c80
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.algorithm.count" );
+< 
+<     test->add( BOOST_TEST_CASE( &boost::test_count ) );
+< 
+<     return test;
+---
+>     boost::test_count();
+85a82,83
+> 
+> BOOST_AUTO_TEST_SUITE_END()

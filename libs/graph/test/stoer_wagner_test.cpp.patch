@@ -1,0 +1,4 @@
+5c5
+< 
+---
+> #define BOOST_TEST_MAIN

@@ -1,0 +1,39 @@
+7a8
+> #define BOOST_TEST_MAIN
+170c171,183
+< test_suite* init_unit_test_suite(int, char* []) 
+---
+> BOOST_AUTO_TEST_SUITE(symmetric_filter_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(read_symmetric_filter_case)
+> {
+>     read_symmetric_filter();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(write_symmetric_filter_case)
+> {
+>     write_symmetric_filter();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(close_symmetric_filter_case)
+172,175c185,187
+<     test_suite* test = BOOST_TEST_SUITE("symmetric_filter test");
+<     test->add(BOOST_TEST_CASE(&read_symmetric_filter));
+<     test->add(BOOST_TEST_CASE(&write_symmetric_filter));
+<     test->add(BOOST_TEST_CASE(&close_symmetric_filter));
+---
+>     close_symmetric_filter();
+> }
+> 
+177,179c189,191
+<     test->add(BOOST_TEST_CASE(&wide_symmetric_filter));
+< #endif
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(wide_symmetric_filter_case)
+> {
+>     wide_symmetric_filter();
+180a193,195
+> #endif
+> 
+> BOOST_AUTO_TEST_SUITE_END()

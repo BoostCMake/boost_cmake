@@ -1,0 +1,17 @@
+7a8
+> #define BOOST_TEST_MAIN
+93c94,96
+< test_suite* init_unit_test_suite(int, char* []) 
+---
+> BOOST_AUTO_TEST_SUITE(filter_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(filter_test_case)
+95,97c98
+<     test_suite* test = BOOST_TEST_SUITE("filter test");
+<     test->add(BOOST_TEST_CASE(&filter_test));
+<     return test;
+---
+>     filter_test();
+98a100,101
+> 
+> BOOST_AUTO_TEST_SUITE_END()

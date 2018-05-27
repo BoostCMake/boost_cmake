@@ -1,0 +1,23 @@
+7a8
+> #define BOOST_TEST_MAIN
+636c637,639
+< test_suite* init_unit_test_suite(int, char* []) 
+---
+> BOOST_AUTO_TEST_SUITE(file_descriptor_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(file_descriptor_test_case)
+638,641c641
+<     test_suite* test = BOOST_TEST_SUITE("file_descriptor test");
+<     test->add(BOOST_TEST_CASE(&file_descriptor_test));
+<     test->add(BOOST_TEST_CASE(&file_handle_test));
+<     return test;
+---
+>     file_descriptor_test();
+642a643,649
+> 
+> BOOST_AUTO_TEST_CASE(file_handle_test_case)
+> {
+>     file_handle_test();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()
