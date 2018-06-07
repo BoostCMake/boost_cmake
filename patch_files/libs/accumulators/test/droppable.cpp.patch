@@ -1,0 +1,37 @@
+5c5
+< 
+---
+> #define BOOST_TEST_MAIN
+130,133c130,132
+< ///////////////////////////////////////////////////////////////////////////////
+< // init_unit_test_suite
+< //
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+---
+> BOOST_AUTO_TEST_SUITE(droppable_test)
+> 
+> BOOST_AUTO_TEST_CASE(test_stat_case)
+135c134,135
+<     test_suite *test = BOOST_TEST_SUITE("droppable test");
+---
+>     test_stat();
+> }
+137,139c137,140
+<     test->add(BOOST_TEST_CASE(&test_stat));
+<     test->add(BOOST_TEST_CASE(&test_stat2));
+<     test->add(BOOST_TEST_CASE(&test_stat3));
+---
+> BOOST_AUTO_TEST_CASE(test_stat2_case)
+> {
+>     test_stat2();
+> }
+141c142,144
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test_stat3_case)
+> {
+>     test_stat3();
+142a146,147
+> 
+> BOOST_AUTO_TEST_SUITE_END()
+\ No newline at end of file

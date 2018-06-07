@@ -1,0 +1,23 @@
+7a8
+> #define BOOST_TEST_MAIN
+455,463c456
+< using namespace boost::unit_test;
+< ///////////////////////////////////////////////////////////////////////////////
+< // init_unit_test_suite
+< //
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+< {
+<     test_suite *test = BOOST_TEST_SUITE("test proto, grammars and tree transforms");
+< 
+<     test->add(BOOST_TEST_CASE(&test_toy_spirit3));
+---
+> BOOST_AUTO_TEST_SUITE(test_proto_grammars_and_tree_transforms_suite)
+465c458,460
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test_toy_spirit3_case)
+> {
+>     test_toy_spirit3();
+466a462,463
+> 
+> BOOST_AUTO_TEST_SUITE_END()

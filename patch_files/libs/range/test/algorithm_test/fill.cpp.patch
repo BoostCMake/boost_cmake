@@ -1,0 +1,21 @@
+10a11
+> #define BOOST_TEST_MAIN
+77,83c78
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.algorithm.fill" );
+< 
+<     test->add( BOOST_TEST_CASE( &boost::test_fill ) );
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_algorithm_fill_suite)
+85c80,82
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_test_fill_case)
+> {
+>     boost::test_fill();
+86a84,85
+> 
+> BOOST_AUTO_TEST_SUITE_END()

@@ -1,0 +1,4 @@
+20c20
+<    if(cat >= 0) catclose(cat);
+---
+>    if(cat != NULL) catclose(cat);

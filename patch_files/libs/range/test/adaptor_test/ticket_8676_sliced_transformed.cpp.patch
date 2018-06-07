@@ -1,0 +1,21 @@
+10a11
+> #define BOOST_TEST_MAIN
+47,53c48
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "Range adaptors - sliced and transformed" );
+< 
+<     test->add(BOOST_TEST_CASE(&sliced_and_transformed));
+---
+> BOOST_AUTO_TEST_SUITE(range_adaptors_sliced_and_transformed_suite)
+55c50,52
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(sliced_and_transformed_case)
+> {
+>     sliced_and_transformed();
+56a54,55
+> 
+> BOOST_AUTO_TEST_SUITE_END()

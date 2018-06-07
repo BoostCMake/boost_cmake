@@ -1,0 +1,17 @@
+10a11
+> #define BOOST_TEST_MAIN
+147c148,150
+< boost::unit_test::test_suite *init_unit_test_suite(int, char *[])
+---
+> BOOST_AUTO_TEST_SUITE(lexical_cast_traits_tests_suite)
+> 
+> BOOST_AUTO_TEST_CASE(test_metafunctions_case)
+149,152c152
+<     boost::unit_test::test_suite *suite =
+<         BOOST_TEST_SUITE("lexical_cast traits tests");
+<     suite->add(BOOST_TEST_CASE(&test_metafunctions));
+<     return suite;
+---
+>     test_metafunctions();
+154a155
+> BOOST_AUTO_TEST_SUITE_END()

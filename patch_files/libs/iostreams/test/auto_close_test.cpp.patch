@@ -1,0 +1,23 @@
+7a8
+> #define BOOST_TEST_MAIN
+178c179,181
+< test_suite* init_unit_test_suite(int, char* []) 
+---
+> BOOST_AUTO_TEST_SUITE(auto_close_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(auto_close_source_case)
+180,183c183
+<     test_suite* test = BOOST_TEST_SUITE("auto_close test");
+<     test->add(BOOST_TEST_CASE(&auto_close_source));
+<     test->add(BOOST_TEST_CASE(&auto_close_filter));
+<     return test;
+---
+>     auto_close_source();
+184a185,191
+> 
+> BOOST_AUTO_TEST_CASE(auto_close_filter_case)
+> {
+>     auto_close_filter();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()

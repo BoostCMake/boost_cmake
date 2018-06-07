@@ -1,0 +1,27 @@
+7a8
+> #define BOOST_TEST_MAIN
+321c322,324
+< test_suite* init_unit_test_suite(int, char* []) 
+---
+> BOOST_AUTO_TEST_SUITE(regex_filter_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(regex_filter_test_case)
+323,324c326,328
+<     test_suite* test = BOOST_TEST_SUITE("regex_filter test");
+<     test->add(BOOST_TEST_CASE(&regex_filter_test));
+---
+>     regex_filter_test();
+> }
+> 
+326,328c330,332
+<     test->add(BOOST_TEST_CASE(&wregex_filter_test));
+< #endif
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(wregex_filter_test_case)
+> {
+>     wregex_filter_test();
+329a334,336
+> #endif
+> 
+> BOOST_AUTO_TEST_SUITE_END()

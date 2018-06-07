@@ -1,0 +1,25 @@
+12a13,14
+> #define BOOST_TEST_MAIN
+> #include <boost/test/unit_test.hpp>
+609a612
+> BOOST_AUTO_TEST_SUITE(atl_range_test_suite_suite)
+611,616c614
+< #include <boost/test/unit_test.hpp>
+< using boost::unit_test::test_suite;
+< 
+< 
+< test_suite *
+< init_unit_test_suite(int argc, char* argv[])
+---
+> BOOST_AUTO_TEST_CASE(test_atl_case)
+618,622c616
+<     test_suite *test = BOOST_TEST_SUITE("ATL Range Test Suite");
+<     test->add(BOOST_TEST_CASE(&test_atl));
+< 
+<     (void)argc, (void)argv; // unused
+<     return test;
+---
+>     test_atl();
+623a618,619
+> 
+> BOOST_AUTO_TEST_SUITE_END()

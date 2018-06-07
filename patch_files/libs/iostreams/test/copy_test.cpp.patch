@@ -1,0 +1,17 @@
+7a8
+> #define BOOST_TEST_MAIN
+167c168,170
+< test_suite* init_unit_test_suite(int, char* []) 
+---
+> BOOST_AUTO_TEST_SUITE(copy_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(copy_test_case)
+169,171c172
+<     test_suite* test = BOOST_TEST_SUITE("copy test");
+<     test->add(BOOST_TEST_CASE(&copy_test));
+<     return test;
+---
+>     copy_test();
+172a174,175
+> 
+> BOOST_AUTO_TEST_SUITE_END()

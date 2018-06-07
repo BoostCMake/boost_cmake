@@ -1,0 +1,47 @@
+cmake_minimum_required(VERSION 3.5)
+project(${CMAKE_WORKSPACE_NAME}_iterator)
+workspace_src (${CMAKE_CURRENT_SOURCE_DIR} CMAKE_WORKSPACE_SOURCE)
+
+find_package(BCM)
+include(BCMDeploy)
+include(BCMSetupVersion)
+
+find_package(${CMAKE_WORKSPACE_NAME}_function_types)
+find_package(${CMAKE_WORKSPACE_NAME}_core)
+find_package(${CMAKE_WORKSPACE_NAME}_static_assert)
+find_package(${CMAKE_WORKSPACE_NAME}_optional)
+find_package(${CMAKE_WORKSPACE_NAME}_mpl)
+find_package(${CMAKE_WORKSPACE_NAME}_detail)
+find_package(${CMAKE_WORKSPACE_NAME}_assert)
+find_package(${CMAKE_WORKSPACE_NAME}_fusion)
+find_package(${CMAKE_WORKSPACE_NAME}_type_traits)
+find_package(${CMAKE_WORKSPACE_NAME}_concept_check)
+find_package(${CMAKE_WORKSPACE_NAME}_smart_ptr)
+find_package(${CMAKE_WORKSPACE_NAME}_utility)
+find_package(${CMAKE_WORKSPACE_NAME}_config)
+find_package(${CMAKE_WORKSPACE_NAME}_conversion)
+
+bcm_setup_version(VERSION 1.58.0)
+
+add_library(${CMAKE_WORKSPACE_NAME}_iterator INTERFACE)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_iterator PROPERTY EXPORT_NAME iterator)
+
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_iterator INTERFACE boost::function_types)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_iterator INTERFACE boost::core)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_iterator INTERFACE boost::static_assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_iterator INTERFACE boost::optional)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_iterator INTERFACE boost::mpl)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_iterator INTERFACE boost::detail)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_iterator INTERFACE boost::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_iterator INTERFACE boost::fusion)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_iterator INTERFACE boost::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_iterator INTERFACE boost::concept_check)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_iterator INTERFACE boost::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_iterator INTERFACE boost::utility)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_iterator INTERFACE boost::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_iterator INTERFACE boost::conversion)
+
+
+bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_iterator INCLUDE ${CMAKE_WORKSPACE_SOURCE}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+
+add_subdirectory(test)

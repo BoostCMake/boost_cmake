@@ -1,0 +1,20 @@
+10a11
+> #define BOOST_TEST_MAIN
+53,56d53
+< boost::unit_test::test_suite* init_unit_test_suite( int argc, char* argv[] )
+< {
+<     boost::unit_test::test_suite* test =
+<         BOOST_TEST_SUITE("Boost.Range range_mutable_iterator meta-function");
+58c55
+<     test->add(BOOST_TEST_CASE(&boost_range_test::test_mutable_iterator));
+---
+> BOOST_AUTO_TEST_SUITE(boost_range_range_mutable_iterator_meta_function_suite)
+60c57,59
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_range_test_test_mutable_iterator_case)
+> {
+>     boost_range_test::test_mutable_iterator();
+61a61,62
+> 
+> BOOST_AUTO_TEST_SUITE_END()

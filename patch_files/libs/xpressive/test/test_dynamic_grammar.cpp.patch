@@ -1,0 +1,29 @@
+15a16
+> #define BOOST_TEST_MAIN
+95,96c96
+< using namespace boost;
+< using namespace unit_test;
+---
+> BOOST_AUTO_TEST_SUITE(testing_dynamic_grammars_suite)
+98,101c98
+< ///////////////////////////////////////////////////////////////////////////////
+< // init_unit_test_suite
+< //
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+---
+> BOOST_AUTO_TEST_CASE(test_dynamic_grammar_case)
+103,106c100
+<     test_suite *test = BOOST_TEST_SUITE("testing dynamic grammars");
+<     test->add(BOOST_TEST_CASE(&test_dynamic_grammar));
+<     test->add(BOOST_TEST_CASE(&test_dynamic_grammar2));
+<     return test;
+---
+>     test_dynamic_grammar();
+107a102,108
+> 
+> BOOST_AUTO_TEST_CASE(test_dynamic_grammar2_case)
+> {
+>     test_dynamic_grammar2();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()

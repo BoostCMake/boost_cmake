@@ -1,0 +1,23 @@
+7a8
+> #define BOOST_TEST_MAIN
+69,77c70
+< using namespace boost::unit_test;
+< ///////////////////////////////////////////////////////////////////////////////
+< // init_unit_test_suite
+< //
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+< {
+<     test_suite *test = BOOST_TEST_SUITE("test for a problem reported on the cpp-next.com blog");
+< 
+<     test->add(BOOST_TEST_CASE(&test1));
+---
+> BOOST_AUTO_TEST_SUITE(test_for_a_problem_reported_on_the_cpp_next_com_blog_suite)
+79c72,74
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test1_case)
+> {
+>     test1();
+80a76,77
+> 
+> BOOST_AUTO_TEST_SUITE_END()

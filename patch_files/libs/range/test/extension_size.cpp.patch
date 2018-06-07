@@ -1,0 +1,27 @@
+11a12
+> #define BOOST_TEST_MAIN
+214c215
+< using boost::unit_test::test_suite;
+---
+> BOOST_AUTO_TEST_SUITE(range_test_suite_suite)
+216c217
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+---
+> BOOST_AUTO_TEST_CASE(check_size_works_with_random_access_case)
+218,221c219,220
+<     test_suite* test = BOOST_TEST_SUITE( "Range Test Suite" );
+< 
+<     test->add( BOOST_TEST_CASE( &check_size_works_with_random_access ));
+<     test->add( BOOST_TEST_CASE( &check_extension_size ) );
+---
+>     check_size_works_with_random_access();
+> }
+223c222,224
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(check_extension_size_case)
+> {
+>     check_extension_size();
+224a226,227
+> 
+> BOOST_AUTO_TEST_SUITE_END()

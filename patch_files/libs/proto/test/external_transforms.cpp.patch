@@ -1,0 +1,23 @@
+10a11
+> #define BOOST_TEST_MAIN
+174,182c175
+< using namespace boost::unit_test;
+< ///////////////////////////////////////////////////////////////////////////////
+< // init_unit_test_suite
+< //
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+< {
+<     test_suite *test = BOOST_TEST_SUITE("test for external transforms");
+< 
+<     test->add(BOOST_TEST_CASE(&test_external_transforms));
+---
+> BOOST_AUTO_TEST_SUITE(test_for_external_transforms_suite)
+184c177,179
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test_external_transforms_case)
+> {
+>     test_external_transforms();
+185a181,182
+> 
+> BOOST_AUTO_TEST_SUITE_END()

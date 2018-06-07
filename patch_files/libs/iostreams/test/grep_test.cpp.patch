@@ -1,0 +1,17 @@
+15a16
+> #define BOOST_TEST_MAIN
+277c278,280
+< test_suite* init_unit_test_suite(int, char* [])
+---
+> BOOST_AUTO_TEST_SUITE(grep_filter_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(grep_filter_test_case)
+279,281c282
+<     test_suite* test = BOOST_TEST_SUITE("grep_filter test");
+<     test->add(BOOST_TEST_CASE(&grep_filter_test));
+<     return test;
+---
+>     grep_filter_test();
+282a284,285
+> 
+> BOOST_AUTO_TEST_SUITE_END()

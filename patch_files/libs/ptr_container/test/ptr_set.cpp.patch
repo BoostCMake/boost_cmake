@@ -1,0 +1,26 @@
+11a12
+> #define BOOST_TEST_MAIN
+96c97
+< using boost::unit_test::test_suite;
+---
+> BOOST_AUTO_TEST_SUITE(pointer_container_test_suite_suite)
+98c99
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+---
+> BOOST_AUTO_TEST_CASE(test_set_case)
+100,104c101
+<     test_suite* test = BOOST_TEST_SUITE( "Pointer Container Test Suite" );
+< 
+<     test->add( BOOST_TEST_CASE( &test_set ) );
+< 
+<     return test;
+---
+>     test_set();
+107,111c104
+< 
+< 
+< 
+< 
+< 
+---
+> BOOST_AUTO_TEST_SUITE_END()

@@ -1,0 +1,22 @@
+7a8
+> #define BOOST_TEST_MAIN
+39,46c40
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test =
+<         BOOST_TEST_SUITE("RangeTestSuite.adaptor.type_erased_random_access");
+< 
+<     test->add(BOOST_TEST_CASE(
+<             &boost_range_adaptor_type_erased_test::test_random_access));
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_adaptor_type_type_erased_random_access_suite)
+48c42,44
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_range_adaptor_type_test_random_access_case)
+> {
+>     boost_range_adaptor_type_erased_test::test_random_access();
+50a47
+> BOOST_AUTO_TEST_SUITE_END()
+\ No newline at end of file

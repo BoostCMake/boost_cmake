@@ -1,0 +1,4 @@
+22c22
+< #include <boost/thread/detail/async_func.hpp>
+---
+> //#include <boost/thread/detail/async_func.hpp>

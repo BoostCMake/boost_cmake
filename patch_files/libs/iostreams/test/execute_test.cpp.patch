@@ -1,0 +1,41 @@
+16a17
+> #define BOOST_TEST_MAIN
+651c652,664
+< test_suite* init_unit_test_suite(int, char* []) 
+---
+> BOOST_AUTO_TEST_SUITE(execute_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(success_test_case)
+> {
+>     success_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(operation_throws_test_case)
+> {
+>     operation_throws_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(cleanup_throws_test_case)
+653,659c666
+<     test_suite* test = BOOST_TEST_SUITE("execute test");
+<     test->add(BOOST_TEST_CASE(&success_test));
+<     test->add(BOOST_TEST_CASE(&operation_throws_test));
+<     test->add(BOOST_TEST_CASE(&cleanup_throws_test));
+<     test->add(BOOST_TEST_CASE(&multiple_exceptions_test));
+<     test->add(BOOST_TEST_CASE(&foreach_test));
+<     return test;
+---
+>     cleanup_throws_test();
+660a668,679
+> 
+> BOOST_AUTO_TEST_CASE(multiple_exceptions_test_case)
+> {
+>     multiple_exceptions_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(foreach_test_case)
+> {
+>     foreach_test();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()

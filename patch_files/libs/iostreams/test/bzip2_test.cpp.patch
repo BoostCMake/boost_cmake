@@ -1,0 +1,23 @@
+7a8
+> #define BOOST_TEST_MAIN
+90c91,93
+< test_suite* init_unit_test_suite(int, char* []) 
+---
+> BOOST_AUTO_TEST_SUITE(bzip2_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(bzip2_test_case)
+92,95c95
+<     test_suite* test = BOOST_TEST_SUITE("bzip2 test");
+<     test->add(BOOST_TEST_CASE(&bzip2_test));
+<     test->add(BOOST_TEST_CASE(&multiple_member_test));
+<     return test;
+---
+>     bzip2_test();
+96a97,103
+> 
+> BOOST_AUTO_TEST_CASE(multiple_member_test_case)
+> {
+>     multiple_member_test();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()
