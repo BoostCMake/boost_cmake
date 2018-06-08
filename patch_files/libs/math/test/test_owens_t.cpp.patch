@@ -1,8 +1,0 @@
-41,43c41,43
-< #include "libs/math/test/handle_test_result.hpp"
-< #include "libs/math/test/table_type.hpp"
-< #include "libs/math/test/functor.hpp"
----
-> #include "handle_test_result.hpp"
-> #include "table_type.hpp"
-> #include "functor.hpp"

@@ -1,9 +1,0 @@
-6a7
-> #define BOOST_TEST_MAIN
-134d134
-< 
-161c161
-< }
----
-> }
-\ No newline at end of file

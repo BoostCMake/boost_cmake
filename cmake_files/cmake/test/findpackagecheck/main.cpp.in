@@ -1,5 +1,0 @@
-
-#include <@PKG_HEADER@>
-
-int main() {
-}
