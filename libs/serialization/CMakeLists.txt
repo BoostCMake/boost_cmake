@@ -1,9 +1,14 @@
 cmake_minimum_required(VERSION 3.5)
-project(${CMAKE_WORKSPACE_NAME}_serialization)
 
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
+
+project(${CMAKE_WORKSPACE_NAME} serialization)
+
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
 
 find_package(${CMAKE_WORKSPACE_NAME}_predef)
 find_package(${CMAKE_WORKSPACE_NAME}_move)
@@ -27,7 +32,7 @@ find_package(${CMAKE_WORKSPACE_NAME}_integer)
 find_package(${CMAKE_WORKSPACE_NAME}_optional)
 find_package(${CMAKE_WORKSPACE_NAME}_spirit)
 
-bcm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.58.0)
 
 #
 # Compiler settings
@@ -72,106 +77,106 @@ endif()
 ###########################
 # library builds
 
-add_library(${CMAKE_WORKSPACE_NAME}_serialization
-            src/basic_archive.cpp
-            src/basic_iarchive.cpp
-            src/basic_iserializer.cpp
-            src/basic_oarchive.cpp
-            src/basic_oserializer.cpp
-            src/basic_pointer_iserializer.cpp
-            src/basic_pointer_oserializer.cpp
-            src/basic_serializer_map.cpp
-            src/basic_text_iprimitive.cpp
-            src/basic_text_oprimitive.cpp
-            src/basic_xml_archive.cpp
-            src/binary_iarchive.cpp
-            src/binary_oarchive.cpp
-            src/extended_type_info.cpp
-            src/extended_type_info_typeid.cpp
-            src/extended_type_info_no_rtti.cpp
-            src/polymorphic_iarchive.cpp
-            src/polymorphic_oarchive.cpp
-            src/stl_port.cpp
-            src/text_iarchive.cpp
-            src/text_oarchive.cpp
-            src/void_cast.cpp
-            src/archive_exception.cpp
-            src/xml_grammar.cpp
-            src/xml_iarchive.cpp
-            src/xml_oarchive.cpp
-            src/xml_archive_exception.cpp
-            # src/basic_xml_grammar.ipp # doesn't show up in "Source Files" in Xcode"'
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
+            ${CURRENT_SOURCES_DIR}/src/basic_archive.cpp
+            ${CURRENT_SOURCES_DIR}/src/basic_iarchive.cpp
+            ${CURRENT_SOURCES_DIR}/src/basic_iserializer.cpp
+            ${CURRENT_SOURCES_DIR}/src/basic_oarchive.cpp
+            ${CURRENT_SOURCES_DIR}/src/basic_oserializer.cpp
+            ${CURRENT_SOURCES_DIR}/src/basic_pointer_iserializer.cpp
+            ${CURRENT_SOURCES_DIR}/src/basic_pointer_oserializer.cpp
+            ${CURRENT_SOURCES_DIR}/src/basic_serializer_map.cpp
+            ${CURRENT_SOURCES_DIR}/src/basic_text_iprimitive.cpp
+            ${CURRENT_SOURCES_DIR}/src/basic_text_oprimitive.cpp
+            ${CURRENT_SOURCES_DIR}/src/basic_xml_archive.cpp
+            ${CURRENT_SOURCES_DIR}/src/binary_iarchive.cpp
+            ${CURRENT_SOURCES_DIR}/src/binary_oarchive.cpp
+            ${CURRENT_SOURCES_DIR}/src/extended_type_info.cpp
+            ${CURRENT_SOURCES_DIR}/src/extended_type_info_typeid.cpp
+            ${CURRENT_SOURCES_DIR}/src/extended_type_info_no_rtti.cpp
+            ${CURRENT_SOURCES_DIR}/src/polymorphic_iarchive.cpp
+            ${CURRENT_SOURCES_DIR}/src/polymorphic_oarchive.cpp
+            ${CURRENT_SOURCES_DIR}/src/stl_port.cpp
+            ${CURRENT_SOURCES_DIR}/src/text_iarchive.cpp
+            ${CURRENT_SOURCES_DIR}/src/text_oarchive.cpp
+            ${CURRENT_SOURCES_DIR}/src/void_cast.cpp
+            ${CURRENT_SOURCES_DIR}/src/archive_exception.cpp
+            ${CURRENT_SOURCES_DIR}/src/xml_grammar.cpp
+            ${CURRENT_SOURCES_DIR}/src/xml_iarchive.cpp
+            ${CURRENT_SOURCES_DIR}/src/xml_oarchive.cpp
+            ${CURRENT_SOURCES_DIR}/src/xml_archive_exception.cpp
+            # ${CURRENT_SOURCES_DIR}/src/basic_xml_grammar.ipp # doesn't show up in "Source Files" in Xcode"'
             )
 
 add_library(${CMAKE_WORKSPACE_NAME}_wserialization
-            src/basic_text_wiprimitive.cpp
-            src/basic_text_woprimitive.cpp
-            src/text_wiarchive.cpp
-            src/text_woarchive.cpp
-            src/utf8_codecvt_facet.cpp
-            src/xml_wgrammar.cpp
-            src/xml_wiarchive.cpp
-            src/xml_woarchive.cpp
-            src/codecvt_null.cpp
+            ${CURRENT_SOURCES_DIR}/src/basic_text_wiprimitive.cpp
+            ${CURRENT_SOURCES_DIR}/src/basic_text_woprimitive.cpp
+            ${CURRENT_SOURCES_DIR}/src/text_wiarchive.cpp
+            ${CURRENT_SOURCES_DIR}/src/text_woarchive.cpp
+            ${CURRENT_SOURCES_DIR}/src/utf8_codecvt_facet.cpp
+            ${CURRENT_SOURCES_DIR}/src/xml_wgrammar.cpp
+            ${CURRENT_SOURCES_DIR}/src/xml_wiarchive.cpp
+            ${CURRENT_SOURCES_DIR}/src/xml_woarchive.cpp
+            ${CURRENT_SOURCES_DIR}/src/codecvt_null.cpp
             )
 
 if(BUILD_SHARED_LIBS)
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_serialization PRIVATE -DBOOST_SERIALIZATION_DYN_LINK=1)
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_SERIALIZATION_DYN_LINK=1)
     target_compile_definitions(${CMAKE_WORKSPACE_NAME}_wserialization PRIVATE -DBOOST_SERIALIZATION_DYN_LINK=1)
 endif()
 # end library build
 ###########################
 
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_serialization PROPERTY EXPORT_NAME serialization)
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_wserialization PROPERTY EXPORT_NAME wserialization)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_wserialization PROPERTY EXPORT_NAME w${CURRENT_PROJECT_NAME})
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::predef)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::move)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::io)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::array)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::unordered)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::utility)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::static_assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::iterator)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::detail)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::type_traits)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::smart_ptr)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::config)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::function)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::core)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::mpl)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::variant)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::preprocessor)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::integer)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::optional)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization PUBLIC boost::spirit)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::predef)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::move)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::io)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::array)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::unordered)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::utility)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::static_assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::iterator)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::detail)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::function)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::core)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::mpl)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::variant)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::preprocessor)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::integer)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::optional)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::spirit)
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::move)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::io)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::array)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::unordered)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::utility)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::static_assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::iterator)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::detail)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::type_traits)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::smart_ptr)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::config)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::function)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::core)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::mpl)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::variant)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::preprocessor)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::integer)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::optional)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::spirit)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC boost::serialization)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::move)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::io)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::array)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::unordered)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::utility)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::static_assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::iterator)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::detail)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::function)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::core)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::mpl)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::variant)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::preprocessor)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::integer)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::optional)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::spirit)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_wserialization PUBLIC ${CMAKE_WORKSPACE_NAME}::serialization)
 
-target_include_directories(${CMAKE_WORKSPACE_NAME}_serialization PRIVATE include)
-target_include_directories(${CMAKE_WORKSPACE_NAME}_wserialization PRIVATE include)
+target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/include)
+target_include_directories(${CMAKE_WORKSPACE_NAME}_wserialization PRIVATE ${CURRENT_SOURCES_DIR}/include)
 
-bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_serialization ${CMAKE_WORKSPACE_NAME}_wserialization INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} ${CMAKE_WORKSPACE_NAME}_w${CURRENT_PROJECT_NAME} INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 
 add_subdirectory(test)

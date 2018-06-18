@@ -4,11 +4,11 @@ find_package(${CMAKE_WORKSPACE_NAME}_functional)
 find_package(${CMAKE_WORKSPACE_NAME}_multi_index)
 find_package(${CMAKE_WORKSPACE_NAME}_timer)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_interprocess
-                        boost::functional
-                        boost::multi_index
-                        boost::timer
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_interprocess
+                       ${CMAKE_WORKSPACE_NAME}::functional
+                       ${CMAKE_WORKSPACE_NAME}::multi_index
+                       ${CMAKE_WORKSPACE_NAME}::timer
+                       )
 
 # Boost Interprocess Library Test Jamfile
 
@@ -30,6 +30,6 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_interprocess
 file(GLOB TEST_FILES *.cpp)
 foreach(FILEB ${TEST_FILES})
     get_filename_component(NAME ${FILEB} NAME_WE)
-    bcm_test(NAME interprocess_test_${NAME} SOURCES ${FILEB})
+    cm_test(NAME interprocess_test_${NAME} SOURCES ${FILEB})
 endforeach()
 

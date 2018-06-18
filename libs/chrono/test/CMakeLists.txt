@@ -2,30 +2,30 @@ include(BCMTest)
 
 find_package(${CMAKE_WORKSPACE_NAME}_rational)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_chrono
-                        ${CMAKE_WORKSPACE_NAME}_system
-                        boost::rational
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_chrono
+                       ${CMAKE_WORKSPACE_NAME}_system
+                       ${CMAKE_WORKSPACE_NAME}::rational
+                       )
 
 
 function(chrono_v1_v2_run_header path test_name)
-bcm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp)
-target_compile_definitions(chrono_test_${test_name}_h PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
+    cm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp)
+    target_compile_definitions(chrono_test_${test_name}_h PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
 
-bcm_test(NAME chrono_test_v1_${test_name}_h SOURCES ${path}.cpp)
-target_compile_definitions(chrono_test_v1_${test_name}_h PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY)
+    cm_test(NAME chrono_test_v1_${test_name}_h SOURCES ${path}.cpp)
+    target_compile_definitions(chrono_test_v1_${test_name}_h PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY)
 endfunction(chrono_v1_v2_run_header)
 
 function(chrono_v1_v2_run path test_name)
-    bcm_test(NAME chrono_test_${test_name}_d SOURCES ${path}.cpp)
+    cm_test(NAME chrono_test_${test_name}_d SOURCES ${path}.cpp)
     target_compile_definitions(chrono_test_${test_name}_d PUBLIC BOOST_CHRONO_VERSION=2)
 
-    bcm_test(NAME chrono_test_v1_${test_name}_s SOURCES ${path}.cpp)
+    cm_test(NAME chrono_test_v1_${test_name}_s SOURCES ${path}.cpp)
 
-    bcm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp)
+    cm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp)
     target_compile_definitions(chrono_test_${test_name}_h PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
 
-    bcm_test(NAME chrono_test_v1_${test_name}_h SOURCES ${path}.cpp)
+    cm_test(NAME chrono_test_v1_${test_name}_h SOURCES ${path}.cpp)
     target_compile_definitions(chrono_test_v1_${test_name}_h PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY)
 endfunction(chrono_v1_v2_run)
 
@@ -34,60 +34,60 @@ function(chrono_run2_mt test_name)
     foreach(a IN ITEMS ${ARGN})
         set(arglist ${arglist} ${a}.cpp)
     endforeach()
-    bcm_test(NAME chrono_test_${test_name}_d SOURCES ${path}.cpp ${arglist})
+    cm_test(NAME chrono_test_${test_name}_d SOURCES ${path}.cpp ${arglist})
     target_compile_definitions(chrono_test_${test_name}_d PUBLIC BOOST_CHRONO_VERSION=2)
 
-    bcm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp ${arglist})
+    cm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp ${arglist})
     target_compile_definitions(chrono_test_${test_name}_h
                                PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
 endfunction(chrono_run2_mt)
 
 function(chrono_compile2 path test_name)
-    bcm_test(NAME chrono_test_${test_name}_l SOURCES ${path}.cpp COMPILE_ONLY)
+    cm_test(NAME chrono_test_${test_name}_l SOURCES ${path}.cpp COMPILE_ONLY)
     target_compile_definitions(chrono_test_${test_name}_l PUBLIC BOOST_CHRONO_VERSION=2)
 
-    bcm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp COMPILE_ONLY)
+    cm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp COMPILE_ONLY)
     target_compile_definitions(chrono_test_${test_name}_h
-                                PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
+                               PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
 endfunction(chrono_compile2)
 
 function(chrono_run_mt path test_name)
-    bcm_test(NAME chrono_test_${test_name}_d SOURCES ${path}.cpp)
+    cm_test(NAME chrono_test_${test_name}_d SOURCES ${path}.cpp)
     target_compile_definitions(chrono_test_${test_name}_d PUBLIC BOOST_CHRONO_VERSION=2)
 
-    bcm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp)
+    cm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp)
     target_compile_definitions(chrono_test_${test_name}_h
                                PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
 endfunction(chrono_run_mt)
 
 function(chrono_run path test_name)
-    bcm_test(NAME chrono_test_${test_name}_d SOURCES ${path}.cpp)
+    cm_test(NAME chrono_test_${test_name}_d SOURCES ${path}.cpp)
     target_compile_definitions(chrono_test_${test_name}_d PUBLIC BOOST_CHRONO_VERSION=2)
 
-    bcm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp)
+    cm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp)
     target_compile_definitions(chrono_test_${test_name}_h
                                PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY
                                BOOST_CHRONO_DONT_PROVIDE_HYBRID_ERROR_HANDLING BOOST_CHRONO_VERSION=2)
 endfunction(chrono_run)
 
 function(chrono_run_header2 path test_name)
-    bcm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp)
+    cm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp)
     target_compile_definitions(chrono_test_${test_name}_h
                                PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
 endfunction(chrono_run_header2)
 
 function(chrono_run_header path test_name)
-    bcm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp)
+    cm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp)
     target_compile_definitions(chrono_test_${test_name}_h
-            PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY
-            BOOST_CHRONO_DONT_PROVIDE_HYBRID_ERROR_HANDLING BOOST_CHRONO_VERSION=2)
+                               PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY
+                               BOOST_CHRONO_DONT_PROVIDE_HYBRID_ERROR_HANDLING BOOST_CHRONO_VERSION=2)
 endfunction(chrono_run_header)
 
 function(chrono_compile path test_name)
-    bcm_test(NAME chrono_test_${test_name}_l SOURCES ${path}.cpp COMPILE_ONLY)
+    cm_test(NAME chrono_test_${test_name}_l SOURCES ${path}.cpp COMPILE_ONLY)
     target_compile_definitions(chrono_test_${test_name}_l PUBLIC BOOST_CHRONO_VERSION=2)
 
-    bcm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp COMPILE_ONLY)
+    cm_test(NAME chrono_test_${test_name}_h SOURCES ${path}.cpp COMPILE_ONLY)
     target_compile_definitions(chrono_test_${test_name}_h
                                PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
 endfunction(chrono_compile)
@@ -102,7 +102,7 @@ chrono_run_header(../example/i_dont_like_the_default_duration_behavior i_dont_li
 chrono_run(../example/simulated_thread_interface_demo simulated_thread_interface_demo)
 chrono_run_header(../example/timeval_demo timeval_demo)
 chrono_run(../example/chrono_unit_test chrono_unit_test)
-chrono_run_header(../example/explore_limits  explore_limits)
+chrono_run_header(../example/explore_limits explore_limits)
 chrono_run_header(../example/test_duration test_duration)
 chrono_run(../example/test_clock test_clock)
 chrono_run_header(../example/miscellaneous miscellaneous)
@@ -114,56 +114,56 @@ chrono_run_header(../example/rounding rounding)
 #[ chrono-run ../example/await_keystroke.cpp  ]
 
 #test-suite "traits"
-chrono_compile2(traits/common_type_duration_pass  traits_common_type_duration_p)
+chrono_compile2(traits/common_type_duration_pass traits_common_type_duration_p)
 chrono_compile2(traits/common_type_time_point_pass traits_common_type_time_point_p)
 chrono_compile2(traits/treat_as_floating_point_pass traits_treat_as_floating_point_p)
 chrono_run_header2(traits/duration_values_pass traits_duration_values_p)
 
 #test-suite "duration"
-bcm_test(NAME chrono_test_duration_duration_fail SOURCES duration/duration_duration_fail.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME chrono_test_duration_ratio_fail SOURCES duration/ratio_fail.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME chrono_test_duration_positive_num_fail SOURCES duration/positive_num_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_duration_duration_fail SOURCES duration/duration_duration_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_duration_ratio_fail SOURCES duration/ratio_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_duration_positive_num_fail SOURCES duration/positive_num_fail.cpp COMPILE_ONLY WILL_FAIL)
 chrono_compile(duration/default_ratio_pass duration_default_ratio_pass)
 chrono_compile(duration/types_pass duration_types_pass)
 chrono_compile(duration/ratio_alias_pass duration_ratio_alias_pass)
 chrono_compile(duration/typedefs_pass duration_typedefs_pass)
 chrono_run_header(duration/arithmetic_pass duration_arithmetic_pass)
 chrono_run_header(duration/duration_cast_pass duration_duration_cast_pass)
-bcm_test(NAME chrono_test_duration_cast_int_fail SOURCES duration/duration_cast_int_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_duration_cast_int_fail SOURCES duration/duration_cast_int_fail.cpp COMPILE_ONLY WILL_FAIL)
 chrono_run_header(duration/comparisons_pass duration_comparisons_pass)
 chrono_run_header(duration/constructor_pass duration_constructor_pass)
-bcm_test(NAME chrono_test_duration_convert_float_to_int_fail SOURCES duration/cons/convert_float_to_int_fail.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME chrono_test_duration_convert_inexact_fail SOURCES duration/cons/convert_inexact_fail.cpp COMPILE_ONLY WILL_FAIL)
-#bcm_test(NAME chrono_test_duration_implicit_constructot_fail SOURCES duration/implicit_constructot_fail.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME chrono_test_duration_non_implicit_convertible_rep_fail SOURCES duration/cons/non_implicit_convertible_rep_fail.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME chrono_test_duration_cons_treat_as_floating_point_Rep2_true_fail SOURCES duration/cons/treat_as_floating_point_Rep2_true_fail.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME chrono_test_duration_nonmember_divide_rep2_fail SOURCES duration/nonmember/divide_rep2_fail.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME chrono_test_duration_nonmember_modulus_rep2_fail SOURCES duration/nonmember/modulus_rep2_fail.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME chrono_test_duration_nonmember_times_rep2_lhs_fail SOURCES duration/nonmember/times_rep2_lhs_fail.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME chrono_test_duration_nonmember_times_rep2_rhs_fail SOURCES duration/nonmember/times_rep2_rhs_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_duration_convert_float_to_int_fail SOURCES duration/cons/convert_float_to_int_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_duration_convert_inexact_fail SOURCES duration/cons/convert_inexact_fail.cpp COMPILE_ONLY WILL_FAIL)
+#cm_test(NAME chrono_test_duration_implicit_constructot_fail SOURCES duration/implicit_constructot_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_duration_non_implicit_convertible_rep_fail SOURCES duration/cons/non_implicit_convertible_rep_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_duration_cons_treat_as_floating_point_Rep2_true_fail SOURCES duration/cons/treat_as_floating_point_Rep2_true_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_duration_nonmember_divide_rep2_fail SOURCES duration/nonmember/divide_rep2_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_duration_nonmember_modulus_rep2_fail SOURCES duration/nonmember/modulus_rep2_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_duration_nonmember_times_rep2_lhs_fail SOURCES duration/nonmember/times_rep2_lhs_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_duration_nonmember_times_rep2_rhs_fail SOURCES duration/nonmember/times_rep2_rhs_fail.cpp COMPILE_ONLY WILL_FAIL)
 chrono_run_header(duration/duration_values_pass duration_duration_values_pass)
 chrono_run_header(duration/rounding_pass duration_rounding_pass)
 
 #test-suite "time_point"
 chrono_compile2(time_point/default_duration_pass time_point_default_duration_p)
-bcm_test(NAME chrono_test_time_point_not_duration_fail SOURCES time_point/not_duration_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_time_point_not_duration_fail SOURCES time_point/not_duration_fail.cpp COMPILE_ONLY WILL_FAIL)
 chrono_run_header2(time_point/arithmetic_pass time_point_arithmetic_p)
 chrono_run_header2(time_point/arithmetic_ext_pass time_point_arithmetic_ext_p)
 chrono_run_header2(time_point/time_point_cast_pass time_point_time_point_cast_p)
-bcm_test(NAME chrono_test_time_point_time_point_cast_int_fail SOURCES time_point/time_point_cast_int_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_time_point_time_point_cast_int_fail SOURCES time_point/time_point_cast_int_fail.cpp COMPILE_ONLY WILL_FAIL)
 chrono_run_header2(time_point/comparisons_pass time_point_comparisons_p)
-bcm_test(NAME chrono_test_time_point_comparisons_equal_fail SOURCES time_point/comparisons/equal_fail.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME chrono_test_time_point_comparisons_less_fail SOURCES time_point/comparisons/less_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_time_point_comparisons_equal_fail SOURCES time_point/comparisons/equal_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_time_point_comparisons_less_fail SOURCES time_point/comparisons/less_fail.cpp COMPILE_ONLY WILL_FAIL)
 chrono_run_header2(time_point/constructor_pass time_point_constructor_p)
-bcm_test(NAME chrono_test_time_point_cons_implicit_faill SOURCES time_point/cons/implicit_fail.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME chrono_test_time_point_non_implicit_convertible_duration_fail SOURCES time_point/cons/non_implicit_convertible_duration_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_time_point_cons_implicit_faill SOURCES time_point/cons/implicit_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME chrono_test_time_point_non_implicit_convertible_duration_fail SOURCES time_point/cons/non_implicit_convertible_duration_fail.cpp COMPILE_ONLY WILL_FAIL)
 chrono_run_header2(time_point/min_max_pass time_point_min_max_p)
 
 #test-suite "clock"
 #chrono_run2_mt(clock_clock_p clock/clock_pass )
-bcm_test(NAME clock_clock_p SOURCES clock/clock_pass.cpp)
+cm_test(NAME clock_clock_p SOURCES clock/clock_pass.cpp)
 #chrono_run2_mt(two_obj_p one_obj another_obj )
-bcm_test(NAME two_obj_p SOURCES another_obj.cpp one_obj.cpp)
+cm_test(NAME two_obj_p SOURCES another_obj.cpp one_obj.cpp)
 
 #test-suite "io_ex"
 chrono_v1_v2_run(../example/io_ex1 example_io_ex1)

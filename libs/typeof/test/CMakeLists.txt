@@ -2,9 +2,9 @@ include(BCMTest)
 
 find_package(${CMAKE_WORKSPACE_NAME}_static_assert)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_typeof
-                        boost::static_assert
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_typeof
+                       ${CMAKE_WORKSPACE_NAME}::static_assert
+                       )
 
 # Copyright (C) 2006 Vladimir Prus
 # Copyright (C) 2006 Arkadiy Vertleyb
@@ -32,35 +32,35 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_typeof
 #    return $(properties) ;
 #}
 
-# bcm_test(NAME $(source:B)_native SOURCES $(source) COMPILE_ONLY)
+# cm_test(NAME $(source:B)_native SOURCES $(source) COMPILE_ONLY)
 # target_compile_definitions($(source:B)_native PUBLIC BOOST_TYPEOF_NATIVE)
-# bcm_test(NAME $(source:B)_emulation SOURCES $(source) COMPILE_ONLY)
+# cm_test(NAME $(source:B)_emulation SOURCES $(source) COMPILE_ONLY)
 # target_compile_definitions($(source:B)_emulation PUBLIC BOOST_TYPEOF_EMULATION)
 
 #    for local t in [ set.difference [ glob *.cpp ] : odr1.cpp odr2.cpp ]
 file(GLOB test_sources RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" *_test*.cpp)
-FOREACH(item ${test_sources})
-    IF(${item} MATCHES "odr*.cpp")
-        LIST(REMOVE_ITEM test_sources ${item})
-    ENDIF(${item} MATCHES "odr*.cpp")
-ENDFOREACH(item)
+foreach(item ${test_sources})
+    if(${item} MATCHES "odr*.cpp")
+        list(REMOVE_ITEM test_sources ${item})
+    endif(${item} MATCHES "odr*.cpp")
+endforeach(item)
 
 foreach(source IN LISTS test_sources)
     message(${source})
     string(REPLACE ".cpp" "" name "${source}")
 
-    bcm_test(typeof_test_${name}_native SOURCES ${source} COMPILE_ONLY)
+    cm_test(typeof_test_${name}_native SOURCES ${source} COMPILE_ONLY)
     target_compile_definitions(typeof_test_${name}_native PUBLIC BOOST_TYPEOF_NATIVE)
 
-    bcm_test(typeof_test_${name}__emulation SOURCES ${source} COMPILE_ONLY)
+    cm_test(typeof_test_${name}__emulation SOURCES ${source} COMPILE_ONLY)
     target_compile_definitions(typeof_test_${name}__emulation PUBLIC BOOST_TYPEOF_EMULATION)
 endforeach()
 
-bcm_test(NAME typeof_test_odr_native SOURCES odr1.cpp)
+cm_test(NAME typeof_test_odr_native SOURCES odr1.cpp)
 target_compile_definitions(typeof_test_odr_native PUBLIC BOOST_TYPEOF_NATIVE)
-bcm_test(NAME typeof_test_odr_emulation SOURCES odr1.cpp)
+cm_test(NAME typeof_test_odr_emulation SOURCES odr1.cpp)
 target_compile_definitions(typeof_test_odr_emulation PUBLIC BOOST_TYPEOF_EMULATION)
-bcm_test(NAME typeof_test_odr_no_uns SOURCES odr_no_uns1.cpp)
+cm_test(NAME typeof_test_odr_no_uns SOURCES odr_no_uns1.cpp)
 target_compile_definitions(typeof_test_odr_no_uns PUBLIC BOOST_TYPEOF_EMULATION)
 
 

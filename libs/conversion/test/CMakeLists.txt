@@ -2,9 +2,9 @@ include(BCMTest)
 
 find_package(${CMAKE_WORKSPACE_NAME}_core)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_conversion
-                        boost::core
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_conversion
+                       ${CMAKE_WORKSPACE_NAME}::core
+                       )
 
 # Copyright (C) 2001-2003 Douglas Gregor
 # Copyright (C) 2011-2014 Antony Polukhin
@@ -13,8 +13,8 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_conversion
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #
 
-bcm_test(NAME conversion_test_implicit_cast SOURCES implicit_cast.cpp)
-bcm_test(NAME conversion_test_implicit_cast_fail SOURCES implicit_cast_fail.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME conversion_test_cast_test SOURCES cast_test.cpp)
-bcm_test(NAME conversion_test_polymorphic_cast_test SOURCES polymorphic_cast_test.cpp)
-bcm_test(NAME conversion_test_implicit_cast_fail2 SOURCES implicit_cast_fail2.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME conversion_test_implicit_cast SOURCES implicit_cast.cpp)
+cm_test(NAME conversion_test_implicit_cast_fail SOURCES implicit_cast_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME conversion_test_cast_test SOURCES cast_test.cpp)
+cm_test(NAME conversion_test_polymorphic_cast_test SOURCES polymorphic_cast_test.cpp)
+cm_test(NAME conversion_test_implicit_cast_fail2 SOURCES implicit_cast_fail2.cpp COMPILE_ONLY WILL_FAIL)

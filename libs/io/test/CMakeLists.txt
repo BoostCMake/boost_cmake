@@ -5,12 +5,12 @@ find_package(${CMAKE_WORKSPACE_NAME}_core)
 find_package(${CMAKE_WORKSPACE_NAME}_detail)
 find_package(${CMAKE_WORKSPACE_NAME}_unit_test_framework)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_io
-                        boost::test
-                        boost::core
-                        boost::detail
-                        boost::unit_test_framework
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_io
+                       ${CMAKE_WORKSPACE_NAME}::test
+                       ${CMAKE_WORKSPACE_NAME}::core
+                       ${CMAKE_WORKSPACE_NAME}::detail
+                       ${CMAKE_WORKSPACE_NAME}::unit_test_framework
+                       )
 
 #  Boost.IO Library test Jamfile
 #
@@ -21,8 +21,8 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_io
 #
 #  See <http://www.boost.org/libs/io/> for the library's home page.
 
-bcm_test(NAME io_test_ios_state_unit_test SOURCES ios_state_unit_test.cpp)
-bcm_test(NAME io_test_ios_state_test SOURCES ios_state_test.cpp)
+cm_test(NAME io_test_ios_state_unit_test SOURCES ios_state_unit_test.cpp)
+cm_test(NAME io_test_ios_state_test SOURCES ios_state_test.cpp)
 
-bcm_test(NAME io_test_quoted_manip_test SOURCES quoted_manip_test.cpp)
+cm_test(NAME io_test_quoted_manip_test SOURCES quoted_manip_test.cpp)
 

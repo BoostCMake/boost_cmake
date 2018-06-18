@@ -1,8 +1,0 @@
-67c67
-< - \subpage using_boost_locale
----
-> - \subpage using_${CMAKE_WORKSPACE_NAME}_locale
-81c81
-< - \subpage building_boost_locale
----
-> - \subpage building_${CMAKE_WORKSPACE_NAME}_locale

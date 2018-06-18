@@ -1,36 +1,40 @@
 cmake_minimum_required(VERSION 3.5)
-project(${CMAKE_WORKSPACE_NAME}_system)
 
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
+
+cm_project(${CMAKE_WORKSPACE_NAME} system)
+
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
 
 find_package(${CMAKE_WORKSPACE_NAME}_assert)
 find_package(${CMAKE_WORKSPACE_NAME}_core)
 find_package(${CMAKE_WORKSPACE_NAME}_config)
 find_package(${CMAKE_WORKSPACE_NAME}_predef)
 
-bcm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.58.0)
 
-add_library(${CMAKE_WORKSPACE_NAME}_system
-            src/error_code.cpp
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
+            ${CURRENT_SOURCES_DIR}/src/error_code.cpp
             )
 
 if(BUILD_SHARED_LIBS)
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_system PRIVATE -DBOOST_SYSTEM_DYN_LINK=1)
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_SYSTEM_DYN_LINK=1)
 else()
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_system PRIVATE -DBOOST_SYSTEM_STATIC_LINK=1)
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_SYSTEM_STATIC_LINK=1)
 endif()
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_system PROPERTY EXPORT_NAME system)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_system PUBLIC boost::assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_system PUBLIC boost::core)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_system PUBLIC boost::config)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_system PUBLIC boost::predef)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::core)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::predef)
 
+target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/include)
 
-target_include_directories(${CMAKE_WORKSPACE_NAME}_system PRIVATE include)
-
-bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_system INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 
 add_subdirectory(test)

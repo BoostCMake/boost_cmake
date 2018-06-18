@@ -4,12 +4,12 @@ find_package(${CMAKE_WORKSPACE_NAME}_filesystem)
 find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
 find_package(${CMAKE_WORKSPACE_NAME}_math)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization
-                        ${CMAKE_WORKSPACE_NAME}_wserialization
-                        boost::filesystem
-                        boost::lexical_cast
-                        boost::math
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization
+                       ${CMAKE_WORKSPACE_NAME}_wserialization
+                       ${CMAKE_WORKSPACE_NAME}::filesystem
+                       ${CMAKE_WORKSPACE_NAME}::lexical_cast
+                       ${CMAKE_WORKSPACE_NAME}::math
+                       )
 
 # Boost serialization Library test Jamfile
 
@@ -22,7 +22,7 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization
 include(CheckIncludeFileCXX)
 # TODO: Deduce this value using Boost.Config
 # set(COMPILER_SUPPORTS_CXX11 On)
-CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+check_cxx_compiler_flag("-std=c++11" COMPILER_SUPPORTS_CXX11)
 
 # import rules for testing conditional on config file variables
 
@@ -32,23 +32,23 @@ CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 
 add_library(serialization_test_dll_a_lib STATIC dll_a.cpp)
 target_link_libraries(serialization_test_dll_a_lib ${CMAKE_WORKSPACE_NAME}_serialization)
-bcm_mark_as_test(serialization_test_dll_a_lib)
+cm_mark_as_test(serialization_test_dll_a_lib)
 
 add_library(serialization_test_dll_base_lib STATIC dll_base.cpp)
 target_link_libraries(serialization_test_dll_base_lib ${CMAKE_WORKSPACE_NAME}_serialization)
-bcm_mark_as_test(serialization_test_dll_base_lib)
+cm_mark_as_test(serialization_test_dll_base_lib)
 
 add_library(serialization_test_dll_derived2_lib STATIC dll_derived2.cpp)
 target_link_libraries(serialization_test_dll_derived2_lib ${CMAKE_WORKSPACE_NAME}_serialization serialization_test_dll_base_lib)
-bcm_mark_as_test(serialization_test_dll_derived2_lib)
+cm_mark_as_test(serialization_test_dll_derived2_lib)
 
 add_library(serialization_test_dll_polymorphic_derived2_lib STATIC polymorphic_derived2.cpp)
 target_link_libraries(serialization_test_dll_polymorphic_derived2_lib ${CMAKE_WORKSPACE_NAME}_serialization)
-bcm_mark_as_test(serialization_test_dll_polymorphic_derived2_lib)
+cm_mark_as_test(serialization_test_dll_polymorphic_derived2_lib)
 
 
 # should compile
-# bcm_test(NAME serialization_test_strong_typedef_compile SOURCES test_strong_typedef.cpp COMPILE_ONLY)
+# cm_test(NAME serialization_test_strong_typedef_compile SOURCES test_strong_typedef.cpp COMPILE_ONLY)
 
 # Running the following test requires that the test know the directory
 # in which the dll is stored. I don't know how to extract this from bjam
@@ -69,7 +69,7 @@ function(serialization_test test_name)
     foreach(a IN ITEMS ${ARGN})
         set(arglist ${arglist} ${a}.cpp)
     endforeach()
-    bcm_test(NAME serialization_test_${test_name} SOURCES ${test_name}.cpp ${arglist})
+    cm_test(NAME serialization_test_${test_name} SOURCES ${test_name}.cpp ${arglist})
 endfunction(serialization_test)
 
 function(serialization_archive_test test_name)
@@ -82,7 +82,7 @@ function(serialization_archive_test test_name)
             IN ITEMS text_archive text_warchive binary_archive xml_archive xml_warchive
     )
         set(amended_test_name ${test_name}_${archive-name})
-        bcm_test(NAME serialization_test_${amended_test_name} SOURCES ${test_name}.cpp ${arglist})
+        cm_test(NAME serialization_test_${amended_test_name} SOURCES ${test_name}.cpp ${arglist})
         target_compile_definitions(serialization_test_${amended_test_name} PUBLIC BOOST_ARCHIVE_TEST=${archive-name}.hpp)
     endforeach()
 endfunction(serialization_archive_test)
@@ -97,7 +97,7 @@ function(serialization_polymorphic_archive_test test_name)
             IN ITEMS text_archive text_warchive binary_archive xml_archive xml_warchive
     )
         set(amended_test_name ${test_name}_polymorphic_${archive-name})
-        bcm_test(NAME serialization_test_${amended_test_name} SOURCES ${test_name}.cpp ${arglist})
+        cm_test(NAME serialization_test_${amended_test_name} SOURCES ${test_name}.cpp ${arglist})
         target_compile_definitions(serialization_test_${amended_test_name} PUBLIC BOOST_ARCHIVE_TEST=polymorphic_${archive-name}.hpp)
     endforeach()
 endfunction(serialization_polymorphic_archive_test)
@@ -209,19 +209,19 @@ serialization_polymorphic_archive_test(test_polymorphic2 test_polymorphic2imp)
 # serialization_polymorphic_archive_test(test_polymorphic_helper)
 
 # should compile
-bcm_test(NAME serialization_test_test_dll_plugin SOURCES test_dll_plugin.cpp COMPILE_ONLY)
-bcm_test(NAME serialization_test_test_not_serializable SOURCES test_not_serializable.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME serialization_test_test_traits_fail SOURCES test_traits_fail.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME serialization_test_test_const_load_fail1 SOURCES test_const_load_fail1.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME serialization_test_test_const_load_fail2 SOURCES test_const_load_fail2.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME serialization_test_test_const_load_fail3 SOURCES test_const_load_fail3.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME serialization_test_test_const_load_fail1_nvp SOURCES test_const_load_fail1_nvp.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME serialization_test_test_const_load_fail2_nvp SOURCES test_const_load_fail2_nvp.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME serialization_test_test_const_load_fail3_nvp SOURCES test_const_load_fail3_nvp.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME serialization_test_test_check SOURCES test_check.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME serialization_test_test_static_warning SOURCES test_static_warning.cpp COMPILE_ONLY)
-bcm_test(NAME serialization_test_test_const_save_warn1 SOURCES test_const_save_warn1.cpp COMPILE_ONLY)
-bcm_test(NAME serialization_test_test_const_save_warn2 SOURCES test_const_save_warn2.cpp COMPILE_ONLY)
-bcm_test(NAME serialization_test_test_const_save_warn3 SOURCES test_const_save_warn3.cpp COMPILE_ONLY)
-bcm_test(NAME serialization_test_test_traits_pass SOURCES test_traits_pass.cpp COMPILE_ONLY)
-bcm_test(NAME serialization_test_test_const_pass SOURCES test_const_pass.cpp COMPILE_ONLY)
+cm_test(NAME serialization_test_test_dll_plugin SOURCES test_dll_plugin.cpp COMPILE_ONLY)
+cm_test(NAME serialization_test_test_not_serializable SOURCES test_not_serializable.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME serialization_test_test_traits_fail SOURCES test_traits_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME serialization_test_test_const_load_fail1 SOURCES test_const_load_fail1.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME serialization_test_test_const_load_fail2 SOURCES test_const_load_fail2.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME serialization_test_test_const_load_fail3 SOURCES test_const_load_fail3.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME serialization_test_test_const_load_fail1_nvp SOURCES test_const_load_fail1_nvp.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME serialization_test_test_const_load_fail2_nvp SOURCES test_const_load_fail2_nvp.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME serialization_test_test_const_load_fail3_nvp SOURCES test_const_load_fail3_nvp.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME serialization_test_test_check SOURCES test_check.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME serialization_test_test_static_warning SOURCES test_static_warning.cpp COMPILE_ONLY)
+cm_test(NAME serialization_test_test_const_save_warn1 SOURCES test_const_save_warn1.cpp COMPILE_ONLY)
+cm_test(NAME serialization_test_test_const_save_warn2 SOURCES test_const_save_warn2.cpp COMPILE_ONLY)
+cm_test(NAME serialization_test_test_const_save_warn3 SOURCES test_const_save_warn3.cpp COMPILE_ONLY)
+cm_test(NAME serialization_test_test_traits_pass SOURCES test_traits_pass.cpp COMPILE_ONLY)
+cm_test(NAME serialization_test_test_const_pass SOURCES test_const_pass.cpp COMPILE_ONLY)

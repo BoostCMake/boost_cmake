@@ -3,10 +3,10 @@ include(BCMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_mpl)
 find_package(${CMAKE_WORKSPACE_NAME}_typeof)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_static_assert
-                        boost::typeof
-                        boost::type_traits
-                        boost::mpl)
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_static_assert
+                       ${CMAKE_WORKSPACE_NAME}::typeof
+                       ${CMAKE_WORKSPACE_NAME}::type_traits
+                       ${CMAKE_WORKSPACE_NAME}::mpl)
 
 # copyright John Maddock 2003
 # Use, modification and distribution are subject to the
@@ -17,18 +17,18 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_static_assert
 
 #   [ run static_assert_example_1.cpp ]
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_static_assert boost::type_traits)
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_static_assert ${CMAKE_WORKSPACE_NAME}::type_traits)
 
-bcm_test(NAME static_assert_test SOURCES ../static_assert_test.cpp)
-bcm_test(NAME static_assert_example_2 SOURCES ../static_assert_example_2.cpp)
-bcm_test(NAME static_assert_example_3 SOURCES ../static_assert_example_3.cpp)
-bcm_test(NAME static_assert_test_fail_1 SOURCES ../static_assert_test_fail_1.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME static_assert_test_fail_2 SOURCES ../static_assert_test_fail_2.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME static_assert_test_fail_3 SOURCES ../static_assert_test_fail_3.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME static_assert_test_fail_4 SOURCES ../static_assert_test_fail_4.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME static_assert_test_fail_5 SOURCES ../static_assert_test_fail_5.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME static_assert_test_fail_6 SOURCES ../static_assert_test_fail_6.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME static_assert_test_fail_7 SOURCES ../static_assert_test_fail_7.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME static_assert_test_fail_8 SOURCES ../static_assert_test_fail_8.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME static_assert_test_fail_9 SOURCES ../static_assert_test_fail_9.cpp COMPILE_ONLY WILL_FAIL)
-bcm_test(NAME static_assert_test_fail_10 SOURCES ../static_assert_test_fail_10.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME static_assert_test SOURCES ../static_assert_test.cpp)
+cm_test(NAME static_assert_example_2 SOURCES ../static_assert_example_2.cpp)
+cm_test(NAME static_assert_example_3 SOURCES ../static_assert_example_3.cpp)
+cm_test(NAME static_assert_test_fail_1 SOURCES ../static_assert_test_fail_1.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME static_assert_test_fail_2 SOURCES ../static_assert_test_fail_2.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME static_assert_test_fail_3 SOURCES ../static_assert_test_fail_3.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME static_assert_test_fail_4 SOURCES ../static_assert_test_fail_4.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME static_assert_test_fail_5 SOURCES ../static_assert_test_fail_5.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME static_assert_test_fail_6 SOURCES ../static_assert_test_fail_6.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME static_assert_test_fail_7 SOURCES ../static_assert_test_fail_7.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME static_assert_test_fail_8 SOURCES ../static_assert_test_fail_8.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME static_assert_test_fail_9 SOURCES ../static_assert_test_fail_9.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME static_assert_test_fail_10 SOURCES ../static_assert_test_fail_10.cpp COMPILE_ONLY WILL_FAIL)

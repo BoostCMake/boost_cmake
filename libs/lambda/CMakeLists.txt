@@ -1,9 +1,14 @@
 cmake_minimum_required(VERSION 3.5)
-project(${CMAKE_WORKSPACE_NAME}_lambda)
 
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
+
+cm_project(${CMAKE_WORKSPACE_NAME} lambda)
+
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
 
 find_package(${CMAKE_WORKSPACE_NAME}_core)
 find_package(${CMAKE_WORKSPACE_NAME}_iterator)
@@ -16,23 +21,22 @@ find_package(${CMAKE_WORKSPACE_NAME}_preprocessor)
 find_package(${CMAKE_WORKSPACE_NAME}_utility)
 find_package(${CMAKE_WORKSPACE_NAME}_config)
 
-bcm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.58.0)
 
-add_library(${CMAKE_WORKSPACE_NAME}_lambda INTERFACE)
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_lambda PROPERTY EXPORT_NAME lambda)
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_lambda INTERFACE boost::core)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_lambda INTERFACE boost::iterator)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_lambda INTERFACE boost::tuple)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_lambda INTERFACE boost::bind)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_lambda INTERFACE boost::mpl)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_lambda INTERFACE boost::detail)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_lambda INTERFACE boost::type_traits)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_lambda INTERFACE boost::preprocessor)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_lambda INTERFACE boost::utility)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_lambda INTERFACE boost::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::core)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::iterator)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::tuple)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::bind)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::mpl)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::detail)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::preprocessor)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::utility)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::config)
 
-
-bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_lambda INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 
 add_subdirectory(test)

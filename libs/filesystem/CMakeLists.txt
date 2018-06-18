@@ -1,9 +1,14 @@
 cmake_minimum_required(VERSION 3.5)
-project(${CMAKE_WORKSPACE_NAME}_filesystem)
 
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
+
+cm_project(${CMAKE_WORKSPACE_NAME} filesystem)
+
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
 
 find_package(${CMAKE_WORKSPACE_NAME}_core)
 find_package(${CMAKE_WORKSPACE_NAME}_static_assert)
@@ -18,42 +23,42 @@ find_package(${CMAKE_WORKSPACE_NAME}_smart_ptr)
 find_package(${CMAKE_WORKSPACE_NAME}_io)
 find_package(${CMAKE_WORKSPACE_NAME}_config)
 
-bcm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.58.0)
 
-add_library(${CMAKE_WORKSPACE_NAME}_filesystem
-            src/path_traits.cpp
-            src/portability.cpp
-            src/unique_path.cpp
-            src/path.cpp
-            src/windows_file_codecvt.cpp
-            src/operations.cpp
-            src/codecvt_error_category.cpp
-            src/utf8_codecvt_facet.cpp
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
+            ${CURRENT_SOURCES_DIR}/src/path_traits.cpp
+            ${CURRENT_SOURCES_DIR}/src/portability.cpp
+            ${CURRENT_SOURCES_DIR}/src/unique_path.cpp
+            ${CURRENT_SOURCES_DIR}/src/path.cpp
+            ${CURRENT_SOURCES_DIR}/src/windows_file_codecvt.cpp
+            ${CURRENT_SOURCES_DIR}/src/operations.cpp
+            ${CURRENT_SOURCES_DIR}/src/codecvt_error_category.cpp
+            ${CURRENT_SOURCES_DIR}/src/utf8_codecvt_facet.cpp
             )
 
 if(BUILD_SHARED_LIBS)
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_filesystem PRIVATE -DBOOST_FILESYSTEM_DYN_LINK=1)
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_FILESYSTEM_DYN_LINK=1)
 else()
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_filesystem PRIVATE -DBOOST_FILESYSTEM_STATIC_LINK=1)
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_FILESYSTEM_STATIC_LINK=1)
 endif()
 
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_filesystem PROPERTY EXPORT_NAME filesystem)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_filesystem PUBLIC boost::core)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_filesystem PUBLIC boost::static_assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_filesystem PUBLIC boost::functional)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_filesystem PUBLIC boost::iterator)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_filesystem PUBLIC boost::system)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_filesystem PUBLIC boost::detail)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_filesystem PUBLIC boost::assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_filesystem PUBLIC boost::range)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_filesystem PUBLIC boost::type_traits)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_filesystem PUBLIC boost::smart_ptr)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_filesystem PUBLIC boost::io)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_filesystem PUBLIC boost::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::core)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::static_assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::functional)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::iterator)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::system)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::detail)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::range)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::io)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::config)
 
-target_include_directories(${CMAKE_WORKSPACE_NAME}_filesystem PRIVATE include)
+target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/include)
 
-bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_filesystem INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 
 add_subdirectory(test)

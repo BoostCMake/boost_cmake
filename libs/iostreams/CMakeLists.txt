@@ -1,9 +1,14 @@
 cmake_minimum_required(VERSION 3.7)
-project(${CMAKE_WORKSPACE_NAME}_iostreams)
 
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
+
+cm_project(${CMAKE_WORKSPACE_NAME} iostreams)
+
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
 
 find_package(${CMAKE_WORKSPACE_NAME}_regex)
 find_package(${CMAKE_WORKSPACE_NAME}_core)
@@ -23,54 +28,53 @@ find_package(${CMAKE_WORKSPACE_NAME}_config)
 find_package(${CMAKE_WORKSPACE_NAME}_throw_exception)
 find_package(${CMAKE_WORKSPACE_NAME}_utility)
 
-bcm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.58.0)
 
-add_library(${CMAKE_WORKSPACE_NAME}_iostreams
-            src/gzip.cpp
-            src/file_descriptor.cpp
-            src/mapped_file.cpp
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
+            ${CURRENT_SOURCES_DIR}/src/gzip.cpp
+            ${CURRENT_SOURCES_DIR}/src/file_descriptor.cpp
+            ${CURRENT_SOURCES_DIR}/src/mapped_file.cpp
             )
 
 if(BUILD_SHARED_LIBS)
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_iostreams PRIVATE -DBOOST_IOSTREAMS_DYN_LINK=1)
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_IOSTREAMS_DYN_LINK=1)
 endif()
 
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_iostreams PROPERTY EXPORT_NAME iostreams)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::regex)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::core)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::static_assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::function)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::bind)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::mpl)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::random)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::detail)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::range)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::type_traits)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::preprocessor)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::smart_ptr)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::integer)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::config)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::throw_exception)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC boost::utility)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::regex)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::core)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::static_assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::function)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::bind)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::mpl)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::random)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::detail)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::range)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::preprocessor)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::integer)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::throw_exception)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::utility)
 
 find_package(ZLIB)
 find_package(BZip2)
 
 if(ZLIB_FOUND)
-    target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC ZLIB::ZLIB)
-    target_sources(${CMAKE_WORKSPACE_NAME}_iostreams PRIVATE src/zlib.cpp)
+    target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ZLIB::ZLIB)
+    target_sources(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/src/zlib.cpp)
 endif()
 
 if(BZip2_FOUND)
-    target_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams PUBLIC BZip2::BZip2)
-    target_sources(${CMAKE_WORKSPACE_NAME}_iostreams PRIVATE src/bzip2.cpp)
+    target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC BZip2::BZip2)
+    target_sources(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/src/bzip2.cpp)
 endif()
 
+target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/include)
 
-target_include_directories(${CMAKE_WORKSPACE_NAME}_iostreams PRIVATE include)
-
-bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_iostreams INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 
 add_subdirectory(test)

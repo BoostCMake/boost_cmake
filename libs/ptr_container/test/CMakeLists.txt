@@ -11,18 +11,18 @@ find_package(${CMAKE_WORKSPACE_NAME}_assign)
 find_package(${CMAKE_WORKSPACE_NAME}_numeric_conversion)
 find_package(${CMAKE_WORKSPACE_NAME}_unit_test_framework)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_ptr_container
-                        boost::tuple
-                        boost::bind
-                        boost::functional
-                        boost::timer
-                        boost::test
-                        boost::lexical_cast
-                        boost::lambda
-                        boost::assign
-                        boost::numeric_conversion
-                        boost::unit_test_framework
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_ptr_container
+                       ${CMAKE_WORKSPACE_NAME}::tuple
+                       ${CMAKE_WORKSPACE_NAME}::bind
+                       ${CMAKE_WORKSPACE_NAME}::functional
+                       ${CMAKE_WORKSPACE_NAME}::timer
+                       ${CMAKE_WORKSPACE_NAME}::test
+                       ${CMAKE_WORKSPACE_NAME}::lexical_cast
+                       ${CMAKE_WORKSPACE_NAME}::lambda
+                       ${CMAKE_WORKSPACE_NAME}::assign
+                       ${CMAKE_WORKSPACE_NAME}::numeric_conversion
+                       ${CMAKE_WORKSPACE_NAME}::unit_test_framework
+                       )
 
 #//
 #// Boost.Pointer Container
@@ -36,23 +36,23 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_ptr_container
 #//
 
 
-bcm_test(NAME ptr_container_test_ptr_inserter SOURCES ptr_inserter.cpp)
-bcm_test(NAME ptr_container_test_ptr_vector SOURCES ptr_vector.cpp)
-#bcm_test(NAME ptr_container_test_ptr_list SOURCES ptr_list.cpp)
-bcm_test(NAME ptr_container_test_ptr_deque SOURCES ptr_deque.cpp)
-bcm_test(NAME ptr_container_test_ptr_set SOURCES ptr_set.cpp)
-bcm_test(NAME ptr_container_test_ptr_map SOURCES ptr_map.cpp)
-bcm_test(NAME ptr_container_test_ptr_map_adapter SOURCES ptr_map_adapter.cpp)
-bcm_test(NAME ptr_container_test_ptr_array SOURCES ptr_array.cpp)
-bcm_test(NAME ptr_container_test_tree_test SOURCES tree_test.cpp)
-bcm_test(NAME ptr_container_test_incomplete_type_test SOURCES incomplete_type_test.cpp)
-bcm_test(NAME ptr_container_test_view_example SOURCES view_example.cpp)
-bcm_test(NAME ptr_container_test_iterator_test SOURCES iterator_test.cpp)
-bcm_test(NAME ptr_container_test_tut1 SOURCES tut1.cpp)
-bcm_test(NAME ptr_container_test_indirect_fun SOURCES indirect_fun.cpp)
-bcm_test(NAME ptr_container_test_serialization SOURCES serialization.cpp)
-bcm_test(NAME ptr_container_test_no_exceptions SOURCES no_exceptions.cpp)
+cm_test(NAME ptr_container_test_ptr_inserter SOURCES ptr_inserter.cpp)
+cm_test(NAME ptr_container_test_ptr_vector SOURCES ptr_vector.cpp)
+#cm_test(NAME ptr_container_test_ptr_list SOURCES ptr_list.cpp)
+cm_test(NAME ptr_container_test_ptr_deque SOURCES ptr_deque.cpp)
+cm_test(NAME ptr_container_test_ptr_set SOURCES ptr_set.cpp)
+cm_test(NAME ptr_container_test_ptr_map SOURCES ptr_map.cpp)
+cm_test(NAME ptr_container_test_ptr_map_adapter SOURCES ptr_map_adapter.cpp)
+cm_test(NAME ptr_container_test_ptr_array SOURCES ptr_array.cpp)
+cm_test(NAME ptr_container_test_tree_test SOURCES tree_test.cpp)
+cm_test(NAME ptr_container_test_incomplete_type_test SOURCES incomplete_type_test.cpp)
+cm_test(NAME ptr_container_test_view_example SOURCES view_example.cpp)
+cm_test(NAME ptr_container_test_iterator_test SOURCES iterator_test.cpp)
+cm_test(NAME ptr_container_test_tut1 SOURCES tut1.cpp)
+cm_test(NAME ptr_container_test_indirect_fun SOURCES indirect_fun.cpp)
+cm_test(NAME ptr_container_test_serialization SOURCES serialization.cpp)
+cm_test(NAME ptr_container_test_no_exceptions SOURCES no_exceptions.cpp)
 
-bcm_test(NAME ptr_container_test_ptr_unordered_set SOURCES ptr_unordered_set.cpp)
-bcm_test(NAME ptr_container_test_ptr_unordered_map SOURCES ptr_unordered_map.cpp)
-bcm_test(NAME ptr_container_test_ptr_circular_buffer SOURCES ptr_circular_buffer.cpp)
+cm_test(NAME ptr_container_test_ptr_unordered_set SOURCES ptr_unordered_set.cpp)
+cm_test(NAME ptr_container_test_ptr_unordered_map SOURCES ptr_unordered_map.cpp)
+cm_test(NAME ptr_container_test_ptr_circular_buffer SOURCES ptr_circular_buffer.cpp)

@@ -6,13 +6,13 @@ find_package(${CMAKE_WORKSPACE_NAME}_smart_ptr)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_foreach)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_lockfree
-                        boost::thread
-                        boost::interprocess
-                        boost::smart_ptr
-                        boost::test
-                        boost::foreach
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_lockfree
+                       ${CMAKE_WORKSPACE_NAME}::thread
+                       ${CMAKE_WORKSPACE_NAME}::interprocess
+                       ${CMAKE_WORKSPACE_NAME}::smart_ptr
+                       ${CMAKE_WORKSPACE_NAME}::test
+                       ${CMAKE_WORKSPACE_NAME}::foreach
+                       )
 
 # (C) Copyright 2010: Tim Blechmann
 # Distributed under the Boost Software License, Version 1.0.
@@ -21,6 +21,6 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_lockfree
 file(GLOB TEST_FILES *.cpp)
 foreach(FILEB ${TEST_FILES})
     get_filename_component(NAME ${FILEB} NAME_WE)
-    bcm_test(NAME lockfree_test_${NAME} SOURCES ${FILEB})
+    cm_test(NAME lockfree_test_${NAME} SOURCES ${FILEB})
 endforeach()
 

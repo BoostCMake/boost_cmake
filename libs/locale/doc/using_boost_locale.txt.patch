@@ -1,4 +1,0 @@
-11c11
-< \page using_boost_locale Using Boost.Locale
----
-> \page using_${CMAKE_WORKSPACE_NAME}_locale Using Boost.Locale

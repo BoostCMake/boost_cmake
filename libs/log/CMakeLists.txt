@@ -1,9 +1,14 @@
 cmake_minimum_required(VERSION 3.5)
-project(${CMAKE_WORKSPACE_NAME}_log)
 
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
+
+cm_project(${CMAKE_WORKSPACE_NAME} log)
+
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
 
 find_package(${CMAKE_WORKSPACE_NAME}_predef)
 find_package(${CMAKE_WORKSPACE_NAME}_property_tree)
@@ -48,106 +53,106 @@ find_package(${CMAKE_WORKSPACE_NAME}_filesystem)
 find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
 find_package(${CMAKE_WORKSPACE_NAME}_throw_exception)
 
-bcm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.58.0)
 
-add_library(${CMAKE_WORKSPACE_NAME}_log
-            src/thread_id.cpp
-            src/attribute_set.cpp
-            src/format_parser.cpp
-            src/event.cpp
-            src/global_logger_storage.cpp
-            src/thread_specific.cpp
-            src/unhandled_exception_count.cpp
-            src/severity_level.cpp
-            src/text_multifile_backend.cpp
-            #           src/permissions.cpp
-            src/once_block.cpp
-            src/threadsafe_queue.cpp
-            src/timer.cpp
-            src/exceptions.cpp
-            src/timestamp.cpp
-            src/process_name.cpp
-            src/default_sink.cpp
-            src/syslog_backend.cpp
-            src/date_time_format_parser.cpp
-            src/process_id.cpp
-            src/record_ostream.cpp
-            src/core.cpp
-            src/default_attribute_names.cpp
-            src/text_file_backend.cpp
-            src/attribute_name.cpp
-            src/attribute_value_set.cpp
-            src/text_ostream_backend.cpp
-            src/spirit_encoding.cpp
-            src/code_conversion.cpp
-            src/trivial.cpp
-            src/dump.cpp
-            src/named_scope_format_parser.cpp
-            src/named_scope.cpp
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
+            ${CURRENT_SOURCES_DIR}/src/thread_id.cpp
+            ${CURRENT_SOURCES_DIR}/src/attribute_set.cpp
+            ${CURRENT_SOURCES_DIR}/src/format_parser.cpp
+            ${CURRENT_SOURCES_DIR}/src/event.cpp
+            ${CURRENT_SOURCES_DIR}/src/global_${CURRENT_PROJECT_NAME}ger_storage.cpp
+            ${CURRENT_SOURCES_DIR}/src/thread_specific.cpp
+            ${CURRENT_SOURCES_DIR}/src/unhandled_exception_count.cpp
+            ${CURRENT_SOURCES_DIR}/src/severity_level.cpp
+            ${CURRENT_SOURCES_DIR}/src/text_multifile_backend.cpp
+            # ${CURRENT_SOURCES_DIR}/src/permissions.cpp
+            ${CURRENT_SOURCES_DIR}/src/once_block.cpp
+            ${CURRENT_SOURCES_DIR}/src/threadsafe_queue.cpp
+            ${CURRENT_SOURCES_DIR}/src/timer.cpp
+            ${CURRENT_SOURCES_DIR}/src/exceptions.cpp
+            ${CURRENT_SOURCES_DIR}/src/timestamp.cpp
+            ${CURRENT_SOURCES_DIR}/src/process_name.cpp
+            ${CURRENT_SOURCES_DIR}/src/default_sink.cpp
+            ${CURRENT_SOURCES_DIR}/src/syslog_backend.cpp
+            ${CURRENT_SOURCES_DIR}/src/date_time_format_parser.cpp
+            ${CURRENT_SOURCES_DIR}/src/process_id.cpp
+            ${CURRENT_SOURCES_DIR}/src/record_ostream.cpp
+            ${CURRENT_SOURCES_DIR}/src/core.cpp
+            ${CURRENT_SOURCES_DIR}/src/default_attribute_names.cpp
+            ${CURRENT_SOURCES_DIR}/src/text_file_backend.cpp
+            ${CURRENT_SOURCES_DIR}/src/attribute_name.cpp
+            ${CURRENT_SOURCES_DIR}/src/attribute_value_set.cpp
+            ${CURRENT_SOURCES_DIR}/src/text_ostream_backend.cpp
+            ${CURRENT_SOURCES_DIR}/src/spirit_encoding.cpp
+            ${CURRENT_SOURCES_DIR}/src/code_conversion.cpp
+            ${CURRENT_SOURCES_DIR}/src/trivial.cpp
+            ${CURRENT_SOURCES_DIR}/src/dump.cpp
+            ${CURRENT_SOURCES_DIR}/src/named_scope_format_parser.cpp
+            ${CURRENT_SOURCES_DIR}/src/named_scope.cpp
             )
 
 if(BUILD_SHARED_LIBS)
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_log PRIVATE -DBOOST_LOG_DYN_LINK=1 -DBOOST_LOG_SETUP_DLL -DBOOST_LOG_SETUP_BUILDING_THE_LIB=1)
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_LOG_DYN_LINK=1 -DBOOST_LOG_SETUP_DLL -DBOOST_LOG_SETUP_BUILDING_THE_LIB=1)
 endif()
 
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_log PROPERTY EXPORT_NAME log)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::predef)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::property_tree)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::locale)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::move)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::xpressive)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::type_index)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::atomic)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::io)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::array)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::iterator)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::utility)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::regex)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::static_assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::bind)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::proto)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::system)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::type_traits)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::smart_ptr)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::intrusive)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::config)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::core)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::random)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::phoenix)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::winapi)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::mpl)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::asio)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::interprocess)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::fusion)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::preprocessor)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::optional)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::spirit)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::function_types)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::date_time)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::exception)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::thread)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::parameter)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::align)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::range)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::filesystem)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::lexical_cast)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC boost::throw_exception)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::predef)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::property_tree)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::locale)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::move)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::xpressive)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::type_index)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::atomic)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::io)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::array)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::iterator)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::utility)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::regex)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::static_assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::bind)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::proto)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::system)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::intrusive)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::core)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::random)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::phoenix)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::winapi)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::mpl)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::asio)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::interprocess)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::fusion)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::preprocessor)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::optional)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::spirit)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::function_types)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::date_time)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::exception)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::thread)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::parameter)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::align)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::range)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::filesystem)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::lexical_cast)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::throw_exception)
 
-target_compile_definitions(${CMAKE_WORKSPACE_NAME}_log PUBLIC
+target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC
                            __STDC_CONSTANT_MACROS # Use system-defined macros for integer constants, if possible
                            BOOST_SPIRIT_USE_PHOENIX_V3=1
                            )
 if(MSVC)
     # Disable warnings about using 'insecure' standard C functions
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_log PUBLIC
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC
                                _SCL_SECURE_NO_WARNINGS
                                _SCL_SECURE_NO_DEPRECATE
                                _CRT_SECURE_NO_WARNINGS
                                _CRT_SECURE_NO_DEPRECATE
                                )
-    target_compile_options(${CMAKE_WORKSPACE_NAME}_log PUBLIC
+    target_compile_options(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC
                            /bigobj
                            /wd4503 # decorated name length exceeded, name was truncated
                            /wd4456 # declaration of 'A' hides previous local declaration
@@ -170,26 +175,26 @@ if(${CMAKE_C_COMPILER} MATCHES "icc.*$")
     # warning #734: "X" (declared at line N of "file.hpp"), required for copy that was eliminated, is inaccessible
     # warning #279: controlling expression is constant
     if(MSVC)
-        target_compile_options(${CMAKE_WORKSPACE_NAME}_log PRIVATE "/Qwd177,780,2196,1782,193,304,981,1418,411,734,279")
+        target_compile_options(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE "/Qwd177,780,2196,1782,193,304,981,1418,411,734,279")
     elseif(APPLE)
-        target_compile_options(${CMAKE_WORKSPACE_NAME}_log PRIVATE "-wd177,780,2196,1782,193,304,981,1418,411,734,279")
+        target_compile_options(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE "-wd177,780,2196,1782,193,304,981,1418,411,734,279")
     elseif(UNIX)
-        target_compile_options(${CMAKE_WORKSPACE_NAME}_log PRIVATE "-wd177,780,2196,1782,193,304,981,1418,411,734,279")
+        target_compile_options(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE "-wd177,780,2196,1782,193,304,981,1418,411,734,279")
     endif()
 endif()
 
 if(NOT MSVC)
-    target_compile_options(${CMAKE_WORKSPACE_NAME}_log PUBLIC -ftemplate-depth-1024)
+    target_compile_options(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC -ftemplate-depth-1024)
 endif()
 
 if(WIN32)
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_log PUBLIC
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC
                                NOMINMAX
                                WIN32_LEAN_AND_MEAN
                                SECURITY_WIN32
                                BOOST_USE_WINDOWS_H
                                )
-    target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC
+    target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC
                           -lws2_32
                           -lmswsock
                           -ladvapi32
@@ -197,68 +202,67 @@ if(WIN32)
 endif()
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_log PUBLIC _XOPEN_SOURCE=600)
-    target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC -lrt)
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC _XOPEN_SOURCE=600)
+    target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC -lrt)
 endif()
 
 if(WIN32)
-    target_sources(${CMAKE_WORKSPACE_NAME}_log PRIVATE
-                   src/debug_output_backend.cpp
-                   src/light_rw_mutex.cpp
+    target_sources(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE
+                   ${CURRENT_SOURCES_DIR}/src/debug_output_backend.cpp
+                   ${CURRENT_SOURCES_DIR}/src/light_rw_mutex.cpp
                    )
     if(NOT BOOST_LOG_WITHOUT_IPC)
-        target_sources(${CMAKE_WORKSPACE_NAME}_log PRIVATE
-                       src/windows/object_name.cpp
-                       src/windows/mapped_shared_memory.cpp
-                       src/windows/ipc_sync_wrappers.cpp
-                       src/windows/ipc_reliable_message_queue.cpp
+        target_sources(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE
+                       ${CURRENT_SOURCES_DIR}/src/windows/object_name.cpp
+                       ${CURRENT_SOURCES_DIR}/src/windows/mapped_shared_memory.cpp
+                       ${CURRENT_SOURCES_DIR}/src/windows/ipc_sync_wrappers.cpp
+                       ${CURRENT_SOURCES_DIR}/src/windows/ipc_reliable_message_queue.cpp
                        )
-        target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC -lsecur32)
+        target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC -lsecur32)
     endif()
     if(NOT BOOST_LOG_WITHOUT_DEBUG_OUTPUT)
-        target_sources(${CMAKE_WORKSPACE_NAME}_log PRIVATE src/windows/debug_output_backend.cpp)
+        target_sources(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/src/windows/debug_output_backend.cpp)
     endif()
     if(NOT BOOST_LOG_WITHOUT_EVENT_LOG)
-        target_sources(${CMAKE_WORKSPACE_NAME}_log PRIVATE
-                       #                       src/windows/simple_event_log.mc
-                       #                       src/windows/event_log_backend.cpp
+        target_sources(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE
+                       #                       ${CURRENT_SOURCES_DIR}/src/windows/simple_event_log.mc
+                       #                       ${CURRENT_SOURCES_DIR}/src/windows/event_log_backend.cpp
                        )
-        target_link_libraries(${CMAKE_WORKSPACE_NAME}_log PUBLIC -lpsapi)
+        target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC -lpsapi)
     endif()
 else()
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_log PUBLIC BOOST_LOG_WITHOUT_EVENT_LOG BOOST_LOG_WITHOUT_DEBUG_OUTPUT)
-    #    target_sources(${CMAKE_WORKSPACE_NAME}_log PRIVATE
-    #                   src/posix/object_name.cpp
-    #                   src/posix/ipc_reliable_message_queue.cpp
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC BOOST_LOG_WITHOUT_EVENT_LOG BOOST_LOG_WITHOUT_DEBUG_OUTPUT)
+    #    target_sources(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE
+    #                   ${CURRENT_SOURCES_DIR}/src/posix/object_name.cpp
+    #                   ${CURRENT_SOURCES_DIR}/src/posix/ipc_reliable_message_queue.cpp
     #                   )
 endif()
 
-target_compile_definitions(${CMAKE_WORKSPACE_NAME}_log PUBLIC BOOST_LOG_BUILDING_THE_LIB=1)
-target_include_directories(${CMAKE_WORKSPACE_NAME}_log PRIVATE src/)
+target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC BOOST_LOG_BUILDING_THE_LIB=1)
+target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE src/)
 
-add_library(${CMAKE_WORKSPACE_NAME}_log_setup
-            src/parser_utils.cpp
-            src/init_from_stream.cpp
-            src/init_from_settings.cpp
-            src/settings_parser.cpp
-            src/filter_parser.cpp
-            src/formatter_parser.cpp
-            src/default_filter_factory.cpp
-            src/matches_relation_factory.cpp
-            src/default_formatter_factory.cpp
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_setup
+            ${CURRENT_SOURCES_DIR}/src/parser_utils.cpp
+            ${CURRENT_SOURCES_DIR}/src/init_from_stream.cpp
+            ${CURRENT_SOURCES_DIR}/src/init_from_settings.cpp
+            ${CURRENT_SOURCES_DIR}/src/settings_parser.cpp
+            ${CURRENT_SOURCES_DIR}/src/filter_parser.cpp
+            ${CURRENT_SOURCES_DIR}/src/formatter_parser.cpp
+            ${CURRENT_SOURCES_DIR}/src/default_filter_factory.cpp
+            ${CURRENT_SOURCES_DIR}/src/matches_relation_factory.cpp
+            ${CURRENT_SOURCES_DIR}/src/default_formatter_factory.cpp
             )
 
 if(BUILD_SHARED_LIBS)
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_log_setup PRIVATE -DBOOST_LOG_DYN_LINK=1 -DBOOST_LOG_SETUP_DLL -DBOOST_LOG_SETUP_DYN_LINK=1)
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_setup PRIVATE -DBOOST_LOG_DYN_LINK=1 -DBOOST_LOG_SETUP_DLL -DBOOST_LOG_SETUP_DYN_LINK=1)
 endif()
 
-target_compile_definitions(${CMAKE_WORKSPACE_NAME}_log_setup PUBLIC BOOST_LOG_SETUP_BUILDING_THE_LIB=1)
-target_include_directories(${CMAKE_WORKSPACE_NAME}_log_setup PRIVATE src)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_log_setup ${CMAKE_WORKSPACE_NAME}_log)
+target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_setup PUBLIC BOOST_LOG_SETUP_BUILDING_THE_LIB=1)
+target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_setup PRIVATE ${CURRENT_SOURCES_DIR}/src)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_setup ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME})
 
+target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/include)
 
-target_include_directories(${CMAKE_WORKSPACE_NAME}_log PRIVATE include)
-
-bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_log INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 
 add_subdirectory(test)

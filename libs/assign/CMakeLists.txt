@@ -1,9 +1,18 @@
 cmake_minimum_required(VERSION 3.5)
-project(${CMAKE_WORKSPACE_NAME}_assign)
 
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
+
+cm_project(${CMAKE_WORKSPACE_NAME} assign)
+
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
+
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
 
 find_package(${CMAKE_WORKSPACE_NAME}_static_assert)
 find_package(${CMAKE_WORKSPACE_NAME}_ptr_container)
@@ -15,21 +24,21 @@ find_package(${CMAKE_WORKSPACE_NAME}_preprocessor)
 find_package(${CMAKE_WORKSPACE_NAME}_array)
 find_package(${CMAKE_WORKSPACE_NAME}_config)
 
-bcm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.58.0)
 
-add_library(${CMAKE_WORKSPACE_NAME}_assign INTERFACE)
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_assign PROPERTY EXPORT_NAME assign)
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_assign INTERFACE boost::static_assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_assign INTERFACE boost::ptr_container)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_assign INTERFACE boost::tuple)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_assign INTERFACE boost::mpl)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_assign INTERFACE boost::range)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_assign INTERFACE boost::type_traits)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_assign INTERFACE boost::preprocessor)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_assign INTERFACE boost::array)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_assign INTERFACE boost::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::static_assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::ptr_container)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::tuple)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::mpl)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::range)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::preprocessor)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::array)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::config)
 
-bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_assign INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 
 add_subdirectory(test)

@@ -1,9 +1,14 @@
 cmake_minimum_required(VERSION 3.5)
-project(${CMAKE_WORKSPACE_NAME}_date_time)
 
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
+
+cm_project(${CMAKE_WORKSPACE_NAME} date_time)
+
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
 
 find_package(${CMAKE_WORKSPACE_NAME}_static_assert)
 find_package(${CMAKE_WORKSPACE_NAME}_algorithm)
@@ -20,38 +25,38 @@ find_package(${CMAKE_WORKSPACE_NAME}_config)
 find_package(${CMAKE_WORKSPACE_NAME}_throw_exception)
 find_package(${CMAKE_WORKSPACE_NAME}_utility)
 
-bcm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.58.0)
 
-add_library(${CMAKE_WORKSPACE_NAME}_date_time
-            src/gregorian/greg_month.cpp
-            src/gregorian/greg_weekday.cpp
-            src/gregorian/date_generators.cpp
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
+            ${CURRENT_SOURCES_DIR}/src/gregorian/greg_month.cpp
+            ${CURRENT_SOURCES_DIR}/src/gregorian/greg_weekday.cpp
+            ${CURRENT_SOURCES_DIR}/src/gregorian/date_generators.cpp
             )
 
 if(BUILD_SHARED_LIBS)
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_date_time PRIVATE -DBOOST_DATE_TIME_DYN_LINK=1)
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_DATE_TIME_DYN_LINK=1)
 else()
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_date_time PRIVATE -DBOOST_DATE_TIME_STATIC_LINK=1)
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_DATE_TIME_STATIC_LINK=1)
 endif()
 
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_date_time PROPERTY EXPORT_NAME date_time)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
 
-target_include_directories(${CMAKE_WORKSPACE_NAME}_date_time PRIVATE include)
+target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/include)
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_date_time PUBLIC boost::static_assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_date_time PUBLIC boost::algorithm)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_date_time PUBLIC boost::tokenizer)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_date_time PUBLIC boost::mpl)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_date_time PUBLIC boost::assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_date_time PUBLIC boost::range)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_date_time PUBLIC boost::type_traits)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_date_time PUBLIC boost::smart_ptr)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_date_time PUBLIC boost::io)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_date_time PUBLIC boost::lexical_cast)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_date_time PUBLIC boost::config)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_date_time PUBLIC boost::throw_exception)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_date_time PUBLIC boost::utility)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::static_assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::algorithm)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::tokenizer)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::mpl)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::range)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::io)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::lexical_cast)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::throw_exception)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::utility)
 
-bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_date_time INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 
 add_subdirectory(test)

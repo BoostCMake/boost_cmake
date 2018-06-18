@@ -4,11 +4,11 @@ find_package(${CMAKE_WORKSPACE_NAME}_detail)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_chrono)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_log
-                        boost::detail
-                        boost::test
-                        boost::chrono
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_log
+                       ${CMAKE_WORKSPACE_NAME}::detail
+                       ${CMAKE_WORKSPACE_NAME}::test
+                       ${CMAKE_WORKSPACE_NAME}::chrono
+                       )
 
 #
 #          Copyright Andrey Semashev 2007 - 2015.
@@ -20,7 +20,7 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_log
 
 add_library(${CMAKE_WORKSPACE_NAME}_log_test_common INTERFACE)
 target_include_directories(${CMAKE_WORKSPACE_NAME}_log_test_common INTERFACE common)
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_log_test_common ${CMAKE_WORKSPACE_NAME}_log_setup)
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_log_test_common ${CMAKE_WORKSPACE_NAME}_log_setup)
 
 
 # Disable warnings about using 'insecure' standard C functions
@@ -50,7 +50,7 @@ file(GLOB_RECURSE HEADERS RELATIVE ../include ../include/*.hpp)
 foreach(HEADER ${HEADERS})
     if(NOT "${HEADER}" MATCHES "detail")
         get_filename_component(NAME ${HEADER} NAME_WE)
-        bcm_test_header(NAME log_test_header_${NAME} HEADER ${HEADER} STATIC)
+        cm_test_header(NAME log_test_header_${NAME} HEADER ${HEADER} STATIC)
     endif()
 endforeach()
 
@@ -58,7 +58,7 @@ file(GLOB COMPILE_TEST_FILES compile/*.cpp)
 foreach(FILEB ${COMPILE_TEST_FILES})
     get_filename_component(NAME ${FILEB} NAME_WE)
     if(NOT "${NAME}" MATCHES "self_contained_header")
-        bcm_test(NAME log_test_compile_${NAME} SOURCES ${FILEB} COMPILE_ONLY)
+        cm_test(NAME log_test_compile_${NAME} SOURCES ${FILEB} COMPILE_ONLY)
     endif()
 endforeach()
 
@@ -67,13 +67,13 @@ file(GLOB COMPILE_TEST_FILES compile_fail/*.cpp)
 foreach(FILEB ${COMPILE_TEST_FILES})
     get_filename_component(NAME ${FILEB} NAME_WE)
     if(NOT "${NAME}" MATCHES "self_contained_header")
-        bcm_test(NAME log_test_compile_fail_${NAME} SOURCES ${FILEB} COMPILE_ONLY WILL_FAIL)
+        cm_test(NAME log_test_compile_fail_${NAME} SOURCES ${FILEB} COMPILE_ONLY WILL_FAIL)
     endif()
 endforeach()
 
 file(GLOB COMPILE_TEST_FILES run/*.cpp)
 foreach(FILEB ${COMPILE_TEST_FILES})
     get_filename_component(NAME ${FILEB} NAME_WE)
-    bcm_test(NAME log_test_run_${NAME} SOURCES ${FILEB})
+    cm_test(NAME log_test_run_${NAME} SOURCES ${FILEB})
 endforeach()
 

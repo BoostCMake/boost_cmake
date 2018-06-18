@@ -2,9 +2,9 @@ include(BCMTest)
 
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_property_map
-                        boost::test
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_property_map
+                       ${CMAKE_WORKSPACE_NAME}::test
+                       )
 
 # Function library
 
@@ -18,9 +18,9 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_property_map
 
 # For more information, see http://www.boost.org/
 
-bcm_test(NAME property_map_test_property_map_cc SOURCES property_map_cc.cpp COMPILE_ONLY)
-bcm_test(NAME property_map_test_compose_property_map_test SOURCES compose_property_map_test.cpp)
-bcm_test(NAME property_map_test_dynamic_properties_test SOURCES dynamic_properties_test.cpp)
-bcm_test(NAME property_map_test_function_property_map_test SOURCES function_property_map_test.cpp)
-bcm_test(NAME property_map_test_transform_value_property_map_test SOURCES transform_value_property_map_test.cpp)
+cm_test(NAME property_map_test_property_map_cc SOURCES property_map_cc.cpp COMPILE_ONLY)
+cm_test(NAME property_map_test_compose_property_map_test SOURCES compose_property_map_test.cpp)
+cm_test(NAME property_map_test_dynamic_properties_test SOURCES dynamic_properties_test.cpp)
+cm_test(NAME property_map_test_function_property_map_test SOURCES function_property_map_test.cpp)
+cm_test(NAME property_map_test_transform_value_property_map_test SOURCES transform_value_property_map_test.cpp)
 

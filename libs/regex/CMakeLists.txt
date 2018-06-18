@@ -1,9 +1,14 @@
 cmake_minimum_required(VERSION 3.5)
-project(${CMAKE_WORKSPACE_NAME}_regex)
 
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
+
+cm_project(${CMAKE_WORKSPACE_NAME} regex)
+
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
 
 find_package(${CMAKE_WORKSPACE_NAME}_core)
 find_package(${CMAKE_WORKSPACE_NAME}_static_assert)
@@ -19,50 +24,50 @@ find_package(${CMAKE_WORKSPACE_NAME}_integer)
 find_package(${CMAKE_WORKSPACE_NAME}_config)
 find_package(${CMAKE_WORKSPACE_NAME}_throw_exception)
 
-bcm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.58.0)
 
-add_library(${CMAKE_WORKSPACE_NAME}_regex
-            src/w32_regex_traits.cpp
-            src/wide_posix_api.cpp
-            src/regex_debug.cpp
-            src/winstances.cpp
-            src/regex_raw_buffer.cpp
-            src/cregex.cpp
-            src/instances.cpp
-            src/static_mutex.cpp
-            src/wc_regex_traits.cpp
-            src/icu.cpp
-            src/posix_api.cpp
-            src/fileiter.cpp
-            src/regex_traits_defaults.cpp
-            src/c_regex_traits.cpp
-            src/regex.cpp
-            src/usinstances.cpp
-            src/cpp_regex_traits.cpp
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
+            ${CURRENT_SOURCES_DIR}/src/w32_regex_traits.cpp
+            ${CURRENT_SOURCES_DIR}/src/wide_posix_api.cpp
+            ${CURRENT_SOURCES_DIR}/src/regex_debug.cpp
+            ${CURRENT_SOURCES_DIR}/src/winstances.cpp
+            ${CURRENT_SOURCES_DIR}/src/regex_raw_buffer.cpp
+            ${CURRENT_SOURCES_DIR}/src/cregex.cpp
+            ${CURRENT_SOURCES_DIR}/src/instances.cpp
+            ${CURRENT_SOURCES_DIR}/src/static_mutex.cpp
+            ${CURRENT_SOURCES_DIR}/src/wc_regex_traits.cpp
+            ${CURRENT_SOURCES_DIR}/src/icu.cpp
+            ${CURRENT_SOURCES_DIR}/src/posix_api.cpp
+            ${CURRENT_SOURCES_DIR}/src/fileiter.cpp
+            ${CURRENT_SOURCES_DIR}/src/regex_traits_defaults.cpp
+            ${CURRENT_SOURCES_DIR}/src/c_regex_traits.cpp
+            ${CURRENT_SOURCES_DIR}/src/regex.cpp
+            ${CURRENT_SOURCES_DIR}/src/usinstances.cpp
+            ${CURRENT_SOURCES_DIR}/src/cpp_regex_traits.cpp
             )
 
 if(BUILD_SHARED_LIBS)
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_regex PRIVATE -DBOOST_REGEX_DYN_LINK=1)
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_REGEX_DYN_LINK=1)
 endif()
 
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_regex PROPERTY EXPORT_NAME regex)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_regex PUBLIC boost::core)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_regex PUBLIC boost::static_assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_regex PUBLIC boost::iterator)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_regex PUBLIC boost::predef)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_regex PUBLIC boost::mpl)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_regex PUBLIC boost::functional)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_regex PUBLIC boost::assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_regex PUBLIC boost::type_traits)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_regex PUBLIC boost::concept_check)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_regex PUBLIC boost::smart_ptr)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_regex PUBLIC boost::integer)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_regex PUBLIC boost::config)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_regex PUBLIC boost::throw_exception)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::core)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::static_assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::iterator)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::predef)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::mpl)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::functional)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::concept_check)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::integer)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::throw_exception)
 
-target_include_directories(${CMAKE_WORKSPACE_NAME}_regex PRIVATE include)
+target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/include)
 
-bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_regex INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 
 add_subdirectory(test)

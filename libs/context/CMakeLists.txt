@@ -1,9 +1,14 @@
 cmake_minimum_required(VERSION 3.5)
-project(${CMAKE_WORKSPACE_NAME}_context)
 
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
+
+cm_project(${CMAKE_WORKSPACE_NAME} context)
+
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
 
 find_package(${CMAKE_WORKSPACE_NAME}_align)
 find_package(${CMAKE_WORKSPACE_NAME}_thread)
@@ -12,27 +17,27 @@ find_package(${CMAKE_WORKSPACE_NAME}_smart_ptr)
 find_package(${CMAKE_WORKSPACE_NAME}_config)
 find_package(${CMAKE_WORKSPACE_NAME}_pool)
 
-bcm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.58.0)
 
-add_library(${CMAKE_WORKSPACE_NAME}_context
-            src/dummy.cpp
-            src/execution_context.cpp
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
+            ${CURRENT_SOURCES_DIR}/src/dummy.cpp
+            ${CURRENT_SOURCES_DIR}/src/execution_context.cpp
             )
 
 if(BUILD_SHARED_LIBS)
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_context PRIVATE -DBOOST_CONTEXT_DYN_LINK=1)
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_CONTEXT_DYN_LINK=1)
 else()
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_context PRIVATE -DBOOST_CONTEXT_STATIC_LINK=1)
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_CONTEXT_STATIC_LINK=1)
 endif()
 
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_context PROPERTY EXPORT_NAME context)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_context PUBLIC boost::align)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_context PUBLIC boost::thread)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_context PUBLIC boost::assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_context PUBLIC boost::smart_ptr)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_context PUBLIC boost::config)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_context PUBLIC boost::pool)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::align)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::thread)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::pool)
 
 enable_language(ASM)
 set(abi
@@ -124,28 +129,28 @@ else()
     set(asm_format "gas.S")
 endif()
 
-target_sources(${CMAKE_WORKSPACE_NAME}_context PRIVATE
-               src/asm/make_${BOOST_CONTEXT_ARCHITECTURE}_${BOOST_CONTEXT_ABI}_${BOOST_CONTEXT_BINARY_FORMAT}_${asm_format}
-               src/asm/jump_${BOOST_CONTEXT_ARCHITECTURE}_${BOOST_CONTEXT_ABI}_${BOOST_CONTEXT_BINARY_FORMAT}_${asm_format}
+target_sources(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE
+               ${CURRENT_SOURCES_DIR}/src/asm/make_${BOOST_CONTEXT_ARCHITECTURE}_${BOOST_CONTEXT_ABI}_${BOOST_CONTEXT_BINARY_FORMAT}_${asm_format}
+               ${CURRENT_SOURCES_DIR}/src/asm/jump_${BOOST_CONTEXT_ARCHITECTURE}_${BOOST_CONTEXT_ABI}_${BOOST_CONTEXT_BINARY_FORMAT}_${asm_format}
                #               src/asm/ontop_${BOOST_CONTEXT_ARCHITECTURE}_${BOOST_CONTEXT_ABI}_${BOOST_CONTEXT_BINARY_FORMAT}_${asm_format}
                )
 
 if(WIN32)
-    target_sources(${CMAKE_WORKSPACE_NAME}_context PRIVATE src/windows/stack_traits.cpp)
+    target_sources(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/src/windows/stack_traits.cpp)
 else()
-    target_sources(${CMAKE_WORKSPACE_NAME}_context PRIVATE src/posix/stack_traits.cpp)
+    target_sources(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/src/posix/stack_traits.cpp)
 endif()
 
 find_path(UCONTEXT_INCLUDE_DIR ucontext.h)
 
 if(UCONTEXT_INCLUDE_DIR AND UCONTEXT_INCLUDE_DIR)
-    target_include_directories(${CMAKE_WORKSPACE_NAME}_context PRIVATE ${UCONTEXT_INCLUDE_DIR})
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_context PRIVATE -DBOOST_USE_UCONTEXT=1)
+    target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${UCONTEXT_INCLUDE_DIR})
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_USE_UCONTEXT=1)
 endif()
 
 
-target_include_directories(${CMAKE_WORKSPACE_NAME}_context PRIVATE include)
+target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/include)
 
-bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_context INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 
 add_subdirectory(test)

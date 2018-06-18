@@ -3,10 +3,10 @@ include(BCMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_container)
 find_package(${CMAKE_WORKSPACE_NAME}_timer)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_move
-                        boost::container
-                        boost::timer
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_move
+                       ${CMAKE_WORKSPACE_NAME}::container
+                       ${CMAKE_WORKSPACE_NAME}::timer
+                       )
 
 ##############################################################################
 ##
@@ -20,5 +20,5 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_move
 file(GLOB TEST_FILES *.cpp)
 foreach(FILEB ${TEST_FILES})
     get_filename_component(NAME ${FILEB} NAME_WE)
-    bcm_test(NAME move_test_${NAME} SOURCES ${FILEB})
+    cm_test(NAME move_test_${NAME} SOURCES ${FILEB})
 endforeach()

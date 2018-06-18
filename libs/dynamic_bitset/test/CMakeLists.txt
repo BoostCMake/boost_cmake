@@ -2,9 +2,9 @@ include(BCMTest)
 
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_dynamic_bitset
-                        boost::test
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_dynamic_bitset
+                       ${CMAKE_WORKSPACE_NAME}::test
+                       )
 
 #
 #              Copyright Vladimir Prus 2004
@@ -14,7 +14,7 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_dynamic_bitset
 #           http://www.boost.org/LICENSE_1_0.txt)
 
 
-bcm_test(NAME dynamic_bitset_test_dyn_bitset_unit_tests1 SOURCES ../dyn_bitset_unit_tests1.cpp)
-bcm_test(NAME dynamic_bitset_test_dyn_bitset_unit_tests2 SOURCES ../dyn_bitset_unit_tests2.cpp)
-#bcm_test(NAME dynamic_bitset_test_dyn_bitset_unit_tests3 SOURCES ../dyn_bitset_unit_tests3.cpp)
-bcm_test(NAME dynamic_bitset_test_dyn_bitset_unit_tests4 SOURCES ../dyn_bitset_unit_tests4.cpp)
+cm_test(NAME dynamic_bitset_test_dyn_bitset_unit_tests1 SOURCES ../dyn_bitset_unit_tests1.cpp)
+cm_test(NAME dynamic_bitset_test_dyn_bitset_unit_tests2 SOURCES ../dyn_bitset_unit_tests2.cpp)
+#cm_test(NAME dynamic_bitset_test_dyn_bitset_unit_tests3 SOURCES ../dyn_bitset_unit_tests3.cpp)
+cm_test(NAME dynamic_bitset_test_dyn_bitset_unit_tests4 SOURCES ../dyn_bitset_unit_tests4.cpp)

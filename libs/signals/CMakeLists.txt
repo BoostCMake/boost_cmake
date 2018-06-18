@@ -1,9 +1,14 @@
 cmake_minimum_required(VERSION 3.5)
-project(${CMAKE_WORKSPACE_NAME}_signals)
 
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
+
+project(${CMAKE_WORKSPACE_NAME} signals)
+
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
 
 find_package(${CMAKE_WORKSPACE_NAME}_align)
 find_package(${CMAKE_WORKSPACE_NAME}_function)
@@ -17,36 +22,36 @@ find_package(${CMAKE_WORKSPACE_NAME}_config)
 find_package(${CMAKE_WORKSPACE_NAME}_any)
 find_package(${CMAKE_WORKSPACE_NAME}_utility)
 
-bcm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.58.0)
 
-add_library(${CMAKE_WORKSPACE_NAME}_signals
-            src/connection.cpp
-            src/slot.cpp
-            src/signal_base.cpp
-            src/named_slot_map.cpp
-            src/trackable.cpp
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
+            ${CURRENT_SOURCES_DIR}/src/connection.cpp
+            ${CURRENT_SOURCES_DIR}/src/slot.cpp
+            ${CURRENT_SOURCES_DIR}/src/signal_base.cpp
+            ${CURRENT_SOURCES_DIR}/src/named_slot_map.cpp
+            ${CURRENT_SOURCES_DIR}/src/trackable.cpp
             )
 
 if(BUILD_SHARED_LIBS)
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_signals PRIVATE -DBOOST_SIGNALS_DYN_LINK=1 -DBOOST_SIGNALS_NO_LIB=1)
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_SIGNALS_DYN_LINK=1 -DBOOST_SIGNALS_NO_LIB=1)
 endif()
 
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_signals PROPERTY EXPORT_NAME signals)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_signals PUBLIC boost::align)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_signals PUBLIC boost::function)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_signals PUBLIC boost::core)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_signals PUBLIC boost::iterator)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_signals PUBLIC boost::optional)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_signals PUBLIC boost::mpl)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_signals PUBLIC boost::type_traits)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_signals PUBLIC boost::smart_ptr)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_signals PUBLIC boost::config)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_signals PUBLIC boost::any)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_signals PUBLIC boost::utility)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::align)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::function)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::core)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::iterator)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::optional)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::mpl)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::any)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::utility)
 
-target_include_directories(${CMAKE_WORKSPACE_NAME}_signals PRIVATE include)
+target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/include)
 
-bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_signals INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 
 add_subdirectory(test)

@@ -1,9 +1,18 @@
 cmake_minimum_required(VERSION 3.5)
-project(${CMAKE_WORKSPACE_NAME}_asio)
 
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
+
+cm_project(${CMAKE_WORKSPACE_NAME} asio)
+
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
+
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
 
 find_package(${CMAKE_WORKSPACE_NAME}_date_time)
 find_package(${CMAKE_WORKSPACE_NAME}_coroutine)
@@ -20,36 +29,34 @@ find_package(${CMAKE_WORKSPACE_NAME}_array)
 find_package(${CMAKE_WORKSPACE_NAME}_config)
 find_package(${CMAKE_WORKSPACE_NAME}_throw_exception)
 
-bcm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.58.0)
 
-add_library(${CMAKE_WORKSPACE_NAME}_asio INTERFACE
-            )
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_asio PROPERTY EXPORT_NAME asio)
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_asio INTERFACE boost::date_time)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_asio INTERFACE boost::coroutine)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_asio INTERFACE boost::function)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_asio INTERFACE boost::bind)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_asio INTERFACE boost::chrono)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_asio INTERFACE boost::system)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_asio INTERFACE boost::regex)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_asio INTERFACE boost::assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_asio INTERFACE boost::core)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_asio INTERFACE boost::type_traits)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_asio INTERFACE boost::smart_ptr)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_asio INTERFACE boost::array)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_asio INTERFACE boost::config)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_asio INTERFACE boost::throw_exception)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::date_time)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::coroutine)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::function)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::bind)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::chrono)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::system)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::regex)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::core)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::array)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::throw_exception)
 
 find_package(Threads)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_asio INTERFACE Threads::Threads)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE Threads::Threads)
 
 find_package(OpenSSL)
 if(OpenSSL_FOUND)
-    target_link_libraries(${CMAKE_WORKSPACE_NAME}_asio INTERFACE OpenSSL::SSL)
+    target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE OpenSSL::SSL)
 endif()
 
-
-bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_asio INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 
 add_subdirectory(test)

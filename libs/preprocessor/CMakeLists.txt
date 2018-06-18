@@ -1,17 +1,20 @@
 cmake_minimum_required(VERSION 3.5)
-project(${CMAKE_WORKSPACE_NAME}_preprocessor)
 
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
 
+cm_project(${CMAKE_WORKSPACE_NAME} preprocessor)
 
-bcm_setup_version(VERSION 1.58.0)
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
 
-add_library(${CMAKE_WORKSPACE_NAME}_preprocessor INTERFACE)
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_preprocessor PROPERTY EXPORT_NAME preprocessor)
+cm_setup_version(VERSION 1.58.0)
 
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
 
-bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_preprocessor INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 
 add_subdirectory(test)

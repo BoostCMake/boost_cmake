@@ -1,10 +1,15 @@
 cmake_minimum_required(VERSION 3.5)
-project(${CMAKE_WORKSPACE_NAME}_math)
 
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
 include(CheckTypeSize)
+
+cm_project(${CMAKE_WORKSPACE_NAME} math)
+
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
 
 find_package(${CMAKE_WORKSPACE_NAME}_format)
 find_package(${CMAKE_WORKSPACE_NAME}_function)
@@ -28,97 +33,97 @@ find_package(${CMAKE_WORKSPACE_NAME}_config)
 find_package(${CMAKE_WORKSPACE_NAME}_throw_exception)
 find_package(${CMAKE_WORKSPACE_NAME}_lambda)
 
-bcm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.58.0)
 
-add_library(${CMAKE_WORKSPACE_NAME}_math INTERFACE)
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE)
 
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_math PROPERTY EXPORT_NAME math)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::format)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::function)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::core)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::static_assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::predef)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::tuple)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::array)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::mpl)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::atomic)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::detail)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::fusion)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::range)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::type_traits)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::concept_check)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::smart_ptr)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::lexical_cast)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::utility)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::config)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::throw_exception)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_math INTERFACE boost::lambda)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::format)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::function)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::core)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::static_assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::predef)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::tuple)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::array)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::mpl)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::atomic)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::detail)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::fusion)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::range)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::concept_check)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::lexical_cast)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::utility)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::throw_exception)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::lambda)
 
 set(BOOST_MATH_c99_SOURCES
-    src/tr1/acosh
-    src/tr1/asinh
-    src/tr1/atanh
-    src/tr1/cbrt
-    src/tr1/copysign
-    src/tr1/erfc
-    src/tr1/erf
-    src/tr1/expm1
-    src/tr1/fmax
-    src/tr1/fmin
-    src/tr1/fpclassify
-    src/tr1/hypot
-    src/tr1/lgamma
-    src/tr1/llround
-    src/tr1/log1p
-    src/tr1/lround
-    src/tr1/nextafter
-    src/tr1/nexttoward
-    src/tr1/round
-    src/tr1/tgamma
-    src/tr1/trunc
+    ${CURRENT_SOURCES_DIR}/src/tr1/acosh
+    ${CURRENT_SOURCES_DIR}/src/tr1/asinh
+    ${CURRENT_SOURCES_DIR}/src/tr1/atanh
+    ${CURRENT_SOURCES_DIR}/src/tr1/cbrt
+    ${CURRENT_SOURCES_DIR}/src/tr1/copysign
+    ${CURRENT_SOURCES_DIR}/src/tr1/erfc
+    ${CURRENT_SOURCES_DIR}/src/tr1/erf
+    ${CURRENT_SOURCES_DIR}/src/tr1/expm1
+    ${CURRENT_SOURCES_DIR}/src/tr1/fmax
+    ${CURRENT_SOURCES_DIR}/src/tr1/fmin
+    ${CURRENT_SOURCES_DIR}/src/tr1/fpclassify
+    ${CURRENT_SOURCES_DIR}/src/tr1/hypot
+    ${CURRENT_SOURCES_DIR}/src/tr1/lgamma
+    ${CURRENT_SOURCES_DIR}/src/tr1/llround
+    ${CURRENT_SOURCES_DIR}/src/tr1/log1p
+    ${CURRENT_SOURCES_DIR}/src/tr1/lround
+    ${CURRENT_SOURCES_DIR}/src/tr1/nextafter
+    ${CURRENT_SOURCES_DIR}/src/tr1/nexttoward
+    ${CURRENT_SOURCES_DIR}/src/tr1/round
+    ${CURRENT_SOURCES_DIR}/src/tr1/tgamma
+    ${CURRENT_SOURCES_DIR}/src/tr1/trunc
     )
 
 set(BOOST_MATH_tr1_SOURCES
-    src/tr1/assoc_laguerre
-    src/tr1/assoc_legendre
-    src/tr1/beta
-    src/tr1/comp_ellint_1
-    src/tr1/comp_ellint_2
-    src/tr1/comp_ellint_3
-    src/tr1/cyl_bessel_i
-    src/tr1/cyl_bessel_j
-    src/tr1/cyl_bessel_k
-    src/tr1/cyl_neumann
-    src/tr1/ellint_1
-    src/tr1/ellint_2
-    src/tr1/ellint_3
-    src/tr1/expint
-    src/tr1/hermite
-    src/tr1/laguerre
-    src/tr1/legendre
-    src/tr1/riemann_zeta
-    src/tr1/sph_bessel
-    src/tr1/sph_legendre
-    src/tr1/sph_neumann
+    ${CURRENT_SOURCES_DIR}/src/tr1/assoc_laguerre
+    ${CURRENT_SOURCES_DIR}/src/tr1/assoc_legendre
+    ${CURRENT_SOURCES_DIR}/src/tr1/beta
+    ${CURRENT_SOURCES_DIR}/src/tr1/comp_ellint_1
+    ${CURRENT_SOURCES_DIR}/src/tr1/comp_ellint_2
+    ${CURRENT_SOURCES_DIR}/src/tr1/comp_ellint_3
+    ${CURRENT_SOURCES_DIR}/src/tr1/cyl_bessel_i
+    ${CURRENT_SOURCES_DIR}/src/tr1/cyl_bessel_j
+    ${CURRENT_SOURCES_DIR}/src/tr1/cyl_bessel_k
+    ${CURRENT_SOURCES_DIR}/src/tr1/cyl_neumann
+    ${CURRENT_SOURCES_DIR}/src/tr1/ellint_1
+    ${CURRENT_SOURCES_DIR}/src/tr1/ellint_2
+    ${CURRENT_SOURCES_DIR}/src/tr1/ellint_3
+    ${CURRENT_SOURCES_DIR}/src/tr1/expint
+    ${CURRENT_SOURCES_DIR}/src/tr1/hermite
+    ${CURRENT_SOURCES_DIR}/src/tr1/laguerre
+    ${CURRENT_SOURCES_DIR}/src/tr1/legendre
+    ${CURRENT_SOURCES_DIR}/src/tr1/riemann_zeta
+    ${CURRENT_SOURCES_DIR}/src/tr1/sph_bessel
+    ${CURRENT_SOURCES_DIR}/src/tr1/sph_legendre
+    ${CURRENT_SOURCES_DIR}/src/tr1/sph_neumann
     )
 
 function(add_boost_math_library NAME)
     set(SOURCES)
     foreach(SOURCE ${BOOST_MATH_${NAME}_SOURCES})
-        list(APPEND SOURCES ${SOURCE}${ARGN}.cpp)
+        list(APPEND SOURCES ${CURRENT_SOURCES_DIR}/${SOURCE}${ARGN}.cpp)
     endforeach()
 
-    add_library(${CMAKE_WORKSPACE_NAME}_math_${NAME}${ARGN} ${SOURCES})
+    add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_${NAME}${ARGN} ${SOURCES})
 
     if(BUILD_SHARED_LIBS)
-        target_compile_definitions(${CMAKE_WORKSPACE_NAME}_math_${NAME}${ARGN} PRIVATE -DBOOST_MATH_TR1_DYN_LINK=1)
+        target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_${NAME}${ARGN} PRIVATE -DBOOST_MATH_TR1_DYN_LINK=1)
     endif()
 
-    set_property(TARGET ${CMAKE_WORKSPACE_NAME}_math_${NAME}${ARGN} PROPERTY EXPORT_NAME math_${NAME}${ARGN})
-    target_include_directories(${CMAKE_WORKSPACE_NAME}_math_${NAME}${ARGN} PRIVATE src/tr1)
-    target_link_libraries(${CMAKE_WORKSPACE_NAME}_math_${NAME}${ARGN} ${CMAKE_WORKSPACE_NAME}_math)
+    set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_${NAME}${ARGN} PROPERTY EXPORT_NAME math_${NAME}${ARGN})
+    target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_${NAME}${ARGN} PRIVATE ${CURRENT_SOURCES_DIR}/src/tr1)
+    target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_${NAME}${ARGN} ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME})
 endfunction()
 
 check_type_size("long double" SIZEOF_LONG_DOUBLE)
@@ -135,6 +140,6 @@ if(HAVE_SIZEOF_LONG_DOUBLE)
     add_boost_math_library(c99 l)
 endif()
 
-bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_math ${CMAKE_WORKSPACE_NAME}_math_c99 ${CMAKE_WORKSPACE_NAME}_math_c99f ${CMAKE_WORKSPACE_NAME}_math_c99l ${CMAKE_WORKSPACE_NAME}_math_tr1 ${CMAKE_WORKSPACE_NAME}_math_tr1f ${CMAKE_WORKSPACE_NAME}_math_tr1l INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_c99 ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_c99f ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_c99l ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_tr1 ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_tr1f ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_tr1l INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 
 add_subdirectory(test)

@@ -1,9 +1,14 @@
 cmake_minimum_required(VERSION 3.5)
-project(${CMAKE_WORKSPACE_NAME}_python)
 
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
+
+cm_project(${CMAKE_WORKSPACE_NAME} python)
+
+if(CMAKE_SOURCES_DIR)
+    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
+endif()
 
 find_package(${CMAKE_WORKSPACE_NAME}_function)
 find_package(${CMAKE_WORKSPACE_NAME}_core)
@@ -26,77 +31,77 @@ find_package(${CMAKE_WORKSPACE_NAME}_numeric_conversion)
 find_package(${CMAKE_WORKSPACE_NAME}_utility)
 find_package(${CMAKE_WORKSPACE_NAME}_graph)
 
-bcm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.58.0)
 
-add_library(${CMAKE_WORKSPACE_NAME}_python
-            src/str.cpp
-            src/exec.cpp
-            src/object_operators.cpp
-            src/tuple.cpp
-            src/dict.cpp
-            src/wrapper.cpp
-            src/list.cpp
-            src/object_protocol.cpp
-            src/module.cpp
-            src/import.cpp
-            src/numeric.cpp
-            src/errors.cpp
-            src/long.cpp
-            src/slice.cpp
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
+            ${CURRENT_SOURCES_DIR}/src/str.cpp
+            ${CURRENT_SOURCES_DIR}/src/exec.cpp
+            ${CURRENT_SOURCES_DIR}/src/object_operators.cpp
+            ${CURRENT_SOURCES_DIR}/src/tuple.cpp
+            ${CURRENT_SOURCES_DIR}/src/dict.cpp
+            ${CURRENT_SOURCES_DIR}/src/wrapper.cpp
+            ${CURRENT_SOURCES_DIR}/src/list.cpp
+            ${CURRENT_SOURCES_DIR}/src/object_protocol.cpp
+            ${CURRENT_SOURCES_DIR}/src/module.cpp
+            ${CURRENT_SOURCES_DIR}/src/import.cpp
+            ${CURRENT_SOURCES_DIR}/src/numeric.cpp
+            ${CURRENT_SOURCES_DIR}/src/errors.cpp
+            ${CURRENT_SOURCES_DIR}/src/long.cpp
+            ${CURRENT_SOURCES_DIR}/src/slice.cpp
             )
 
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_python PROPERTY EXPORT_NAME python)
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::function)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::core)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::static_assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::iterator)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::tuple)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::bind)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::mpl)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::smart_ptr)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::detail)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::property_map)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::type_traits)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::preprocessor)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::conversion)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::foreach)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::integer)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::lexical_cast)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::config)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::numeric_conversion)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::utility)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC boost::graph)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::function)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::core)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::static_assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::iterator)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::tuple)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::bind)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::mpl)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::detail)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::property_map)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::preprocessor)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::conversion)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::foreach)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::integer)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::lexical_cast)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::numeric_conversion)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::utility)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::graph)
 
 find_package(PythonLibs)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_python PUBLIC ${PYTHON_LIBRARIES})
-target_include_directories(${CMAKE_WORKSPACE_NAME}_python PUBLIC ${PYTHON_INCLUDE_DIRS})
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${PYTHON_LIBRARIES})
+target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${PYTHON_INCLUDE_DIRS})
 
-target_sources(${CMAKE_WORKSPACE_NAME}_python PRIVATE
-               src/converter/arg_to_python_base.cpp
-               src/converter/builtin_converters.cpp
-               src/converter/from_python.cpp
-               src/converter/registry.cpp
-               src/converter/type_id.cpp
-               src/object/class.cpp
-               src/object/enum.cpp
-               src/object/function.cpp
-               src/object/function_doc_signature.cpp
-               src/object/inheritance.cpp
-               src/object/iterator.cpp
-               src/object/life_support.cpp
-               src/object/pickle_support.cpp
-               src/object/stl_iterator.cpp
-               src/object_operators.cpp
-               src/object_protocol.cpp
+target_sources(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE
+               ${CURRENT_SOURCES_DIR}/src/converter/arg_to_${CURRENT_PROJECT_NAME}_base.cpp
+               ${CURRENT_SOURCES_DIR}/src/converter/builtin_converters.cpp
+               ${CURRENT_SOURCES_DIR}/src/converter/from_${CURRENT_PROJECT_NAME}.cpp
+               ${CURRENT_SOURCES_DIR}/src/converter/registry.cpp
+               ${CURRENT_SOURCES_DIR}/src/converter/type_id.cpp
+               ${CURRENT_SOURCES_DIR}/src/object/class.cpp
+               ${CURRENT_SOURCES_DIR}/src/object/enum.cpp
+               ${CURRENT_SOURCES_DIR}/src/object/function.cpp
+               ${CURRENT_SOURCES_DIR}/src/object/function_doc_signature.cpp
+               ${CURRENT_SOURCES_DIR}/src/object/inheritance.cpp
+               ${CURRENT_SOURCES_DIR}/src/object/iterator.cpp
+               ${CURRENT_SOURCES_DIR}/src/object/life_support.cpp
+               ${CURRENT_SOURCES_DIR}/src/object/pickle_support.cpp
+               ${CURRENT_SOURCES_DIR}/src/object/stl_iterator.cpp
+               ${CURRENT_SOURCES_DIR}/src/object_operators.cpp
+               ${CURRENT_SOURCES_DIR}/src/object_protocol.cpp
                )
 
 if(NOT BUILD_SHARED_LIBS)
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_python PRIVATE -DBOOST_PYTHON_STATIC_LIB=1)
+    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_PYTHON_STATIC_LIB=1)
 endif()
 
-target_include_directories(${CMAKE_WORKSPACE_NAME}_python PRIVATE include)
+target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/include)
 
-bcm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_python INCLUDE include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 
 add_subdirectory(test)

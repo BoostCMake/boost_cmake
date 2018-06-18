@@ -17,11 +17,11 @@ function(create_test BOOST_CONFIG_MACRO BOOST_CONFIG_FILE POSITIVE_TEST EXPECT_S
 
     if(${EXPECT_SUCCESS})
         configure_file(pass.cpp ${BOOST_CONFIG_FILE}_pass.cpp)
-        bcm_test(NAME ${PREFIX}_${BOOST_CONFIG_FILE}_pass SOURCES ${CMAKE_CURRENT_BINARY_DIR}/${BOOST_CONFIG_FILE}_pass.cpp)
+        cm_test(NAME ${PREFIX}_${BOOST_CONFIG_FILE}_pass SOURCES ${CMAKE_CURRENT_BINARY_DIR}/${BOOST_CONFIG_FILE}_pass.cpp)
         target_link_libraries(${PREFIX}_${BOOST_CONFIG_FILE}_pass config_threads)
     else()
         configure_file(fail.cpp ${BOOST_CONFIG_FILE}_fail.cpp)
-        bcm_test(NAME ${PREFIX}_${BOOST_CONFIG_FILE}_fail SOURCES ${CMAKE_CURRENT_BINARY_DIR}/${BOOST_CONFIG_FILE}_fail.cpp COMPILE_ONLY WILL_FAIL)
+        cm_test(NAME ${PREFIX}_${BOOST_CONFIG_FILE}_fail SOURCES ${CMAKE_CURRENT_BINARY_DIR}/${BOOST_CONFIG_FILE}_fail.cpp COMPILE_ONLY WILL_FAIL)
         if(MSVC)
             target_compile_options(${PREFIX}_${BOOST_CONFIG_FILE}_fail PUBLIC /WX)
         else()

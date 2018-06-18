@@ -7,13 +7,13 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_unit_test_framework)
 
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_circular_buffer
-                        boost::thread
-                        boost::bind
-                        boost::timer
-                        boost::test
-                        boost::unit_test_framework
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_circular_buffer
+                       ${CMAKE_WORKSPACE_NAME}::thread
+                       ${CMAKE_WORKSPACE_NAME}::bind
+                       ${CMAKE_WORKSPACE_NAME}::timer
+                       ${CMAKE_WORKSPACE_NAME}::test
+                       ${CMAKE_WORKSPACE_NAME}::unit_test_framework
+                       )
 
 # Boost circular_buffer test Jamfile.
 #
@@ -28,8 +28,8 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_circular_buffer
 # Bring in rules for testing.
 
 
-bcm_test(NAME circular_buffer_base_test SOURCES base_test.cpp)
-bcm_test(NAME circular_buffer_space_optimized_test SOURCES space_optimized_test.cpp)
-bcm_test(NAME circular_buffer_soft_iterator_invalidation SOURCES soft_iterator_invalidation.cpp)
-bcm_test(NAME circular_buffer_constant_erase_test SOURCES constant_erase_test.cpp)
-bcm_test(NAME circular_buffer_bounded_buffer_comparison SOURCES bounded_buffer_comparison.cpp COMPILE_ONLY)
+cm_test(NAME circular_buffer_base_test SOURCES base_test.cpp)
+cm_test(NAME circular_buffer_space_optimized_test SOURCES space_optimized_test.cpp)
+cm_test(NAME circular_buffer_soft_iterator_invalidation SOURCES soft_iterator_invalidation.cpp)
+cm_test(NAME circular_buffer_constant_erase_test SOURCES constant_erase_test.cpp)
+cm_test(NAME circular_buffer_bounded_buffer_comparison SOURCES bounded_buffer_comparison.cpp COMPILE_ONLY)

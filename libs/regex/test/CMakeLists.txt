@@ -9,17 +9,17 @@ find_package(${CMAKE_WORKSPACE_NAME}_range)
 find_package(${CMAKE_WORKSPACE_NAME}_array)
 find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_regex
-                        boost::align
-                        boost::test
-                        boost::thread
-                        boost::detail
-                        boost::timer
-                        boost::range
-                        boost::array
-                        boost::lexical_cast
-                        boost::config
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_regex
+                       ${CMAKE_WORKSPACE_NAME}::align
+                       ${CMAKE_WORKSPACE_NAME}::test
+                       ${CMAKE_WORKSPACE_NAME}::thread
+                       ${CMAKE_WORKSPACE_NAME}::detail
+                       ${CMAKE_WORKSPACE_NAME}::timer
+                       ${CMAKE_WORKSPACE_NAME}::range
+                       ${CMAKE_WORKSPACE_NAME}::array
+                       ${CMAKE_WORKSPACE_NAME}::lexical_cast
+                       ${CMAKE_WORKSPACE_NAME}::config
+                       )
 
 # copyright John Maddock 2003
 # Distributed under the Boost Software License, Version 1.0.
@@ -33,7 +33,7 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_regex
 #
 # rule for simple regex test programs:
 #
-# bcm_test(NAME $(name) SOURCES $(sources))
+# cm_test(NAME $(name) SOURCES $(sources))
 
 # sources
 set(R_SOURCE
@@ -82,64 +82,64 @@ set(R_SOURCE
 # )
 # target_compile_definitions(${CMAKE_WORKSPACE_NAME}_regex_recursive PUBLIC BOOST_REGEX_RECURSIVE=1)
 # target_link_libraries(${CMAKE_WORKSPACE_NAME}_regex_recursive ${CMAKE_WORKSPACE_NAME}_regex)
-# bcm_mark_as_test(${CMAKE_WORKSPACE_NAME}_regex_recursive)
+# cm_mark_as_test(${CMAKE_WORKSPACE_NAME}_regex_recursive)
 
 #c_compiler_checks
-bcm_test(NAME regex_test_c_compiler_checks_posix_api_check_c SOURCES c_compiler_checks/posix_api_check.c)
-bcm_test(NAME regex_test_c_compiler_checks_posix_api_check SOURCES c_compiler_checks/posix_api_check.cpp)
-bcm_test(NAME regex_test_c_compiler_checks_wide_posix_api_check_c SOURCES c_compiler_checks/wide_posix_api_check.c COMPILE_ONLY)
-bcm_test(NAME regex_test_c_compiler_checks_wide_posix_api_check SOURCES c_compiler_checks/wide_posix_api_check.cpp)
+cm_test(NAME regex_test_c_compiler_checks_posix_api_check_c SOURCES c_compiler_checks/posix_api_check.c)
+cm_test(NAME regex_test_c_compiler_checks_posix_api_check SOURCES c_compiler_checks/posix_api_check.cpp)
+cm_test(NAME regex_test_c_compiler_checks_wide_posix_api_check_c SOURCES c_compiler_checks/wide_posix_api_check.c COMPILE_ONLY)
+cm_test(NAME regex_test_c_compiler_checks_wide_posix_api_check SOURCES c_compiler_checks/wide_posix_api_check.cpp)
 
 #captures
-bcm_test(NAME regex_test_captures_captures_test SOURCES captures/captures_test.cpp)
+cm_test(NAME regex_test_captures_captures_test SOURCES files/captures/captures_test.cpp)
 target_compile_definitions(regex_test_captures_captures_test PUBLIC BOOST_REGEX_NO_LIB=1 BOOST_REGEX_MATCH_EXTRA=1)
 
 #collate_info
-bcm_test(NAME regex_test_collate_info_collate_info SOURCES collate_info/collate_info.cpp)
+cm_test(NAME regex_test_collate_info_collate_info SOURCES collate_info/collate_info.cpp)
 
 #concepts
-bcm_test(NAME regex_test_concepts_concept_check SOURCES concepts/concept_check.cpp COMPILE_ONLY)
-bcm_test(NAME regex_test_concepts_icu_concept_check SOURCES concepts/icu_concept_check.cpp COMPILE_ONLY)
+cm_test(NAME regex_test_concepts_concept_check SOURCES concepts/concept_check.cpp COMPILE_ONLY)
+cm_test(NAME regex_test_concepts_icu_concept_check SOURCES concepts/icu_concept_check.cpp COMPILE_ONLY)
 
 #config_info
-bcm_test(NAME regex_test_config_info_regex_config_info SOURCES config_info/regex_config_info.cpp)
+cm_test(NAME regex_test_config_info_regex_config_info SOURCES files/config_info/regex_config_info.cpp)
 
 #named_subexpressions
-bcm_test(NAME regex_test_named_subexpressions_named_subexpressions_test SOURCES named_subexpressions/named_subexpressions_test.cpp)
+cm_test(NAME regex_test_named_subexpressions_named_subexpressions_test SOURCES files/named_subexpressions/named_subexpressions_test.cpp)
 
 #object_cache
-bcm_test(NAME regex_test_object_cache_object_cache_test SOURCES object_cache/object_cache_test.cpp)
+cm_test(NAME regex_test_object_cache_object_cache_test SOURCES files/object_cache/object_cache_test.cpp)
 
 #pathology
-bcm_test(NAME regex_test_pathology_bad_expression_test SOURCES pathology/bad_expression_test.cpp)
-bcm_test(NAME regex_test_pathology_recursion_test SOURCES pathology/recursion_test.cpp)
+cm_test(NAME regex_test_pathology_bad_expression_test SOURCES files/pathology/bad_expression_test.cpp)
+cm_test(NAME regex_test_pathology_recursion_test SOURCES files/pathology/recursion_test.cpp)
 
 #regress
-bcm_test(NAME regex_test_regress SOURCES ${R_SOURCE})
-bcm_test(NAME regex_test_regress_threaded SOURCES ${R_SOURCE})
+cm_test(NAME regex_test_regress SOURCES ${R_SOURCE})
+cm_test(NAME regex_test_regress_threaded SOURCES ${R_SOURCE})
 target_compile_definitions(regex_test_regress_threaded PUBLIC TEST_THREADS)
 
 #static_mutex
-bcm_test(NAME regex_test_static_mutex_static_mutex_test SOURCES static_mutex/static_mutex_test.cpp)
+cm_test(NAME regex_test_static_mutex_static_mutex_test SOURCES static_mutex/static_mutex_test.cpp)
 
 #unicode
-bcm_test(NAME regex_test_unicode_iterator_test_utf8 SOURCES unicode/unicode_iterator_test.cpp)
+cm_test(NAME regex_test_unicode_iterator_test_utf8 SOURCES files/unicode/unicode_iterator_test.cpp)
 target_compile_definitions(regex_test_unicode_iterator_test_utf8 PUBLIC TEST_UTF8)
-bcm_test(NAME regex_test_unicode_iterator_test_utf16 SOURCES unicode/unicode_iterator_test.cpp)
+cm_test(NAME regex_test_unicode_iterator_test_utf16 SOURCES files/unicode/unicode_iterator_test.cpp)
 target_compile_definitions(regex_test_unicode_iterator_test_utf16 PUBLIC TEST_UTF16)
 
 
-# bcm_test(NAME config_info_regex_config_info SOURCES config_info/regex_config_info.cpp)
-# bcm_test(NAME regex_dll_config_info SOURCES config_info/regex_config_info.cpp)
-# bcm_test(NAME concepts_range_concept_check SOURCES concepts/range_concept_check.cpp COMPILE_ONLY)
-# bcm_test(NAME concepts_test_bug_11988 SOURCES concepts/test_bug_11988.cpp)
-# bcm_test(NAME regex_regress_recursive SOURCES ${R_SOURCE})
+# cm_test(NAME config_info_regex_config_info SOURCES config_info/regex_config_info.cpp)
+# cm_test(NAME regex_dll_config_info SOURCES config_info/regex_config_info.cpp)
+# cm_test(NAME concepts_range_concept_check SOURCES concepts/range_concept_check.cpp COMPILE_ONLY)
+# cm_test(NAME concepts_test_bug_11988 SOURCES concepts/test_bug_11988.cpp)
+# cm_test(NAME regex_regress_recursive SOURCES ${R_SOURCE})
 # target_compile_definitions(regex_regress_recursive PUBLIC BOOST_REGEX_RECURSIVE=1)
 # target_link_libraries(regex_regress_recursive ${CMAKE_WORKSPACE_NAME}_regex_recursive)
-# bcm_test(NAME regex_regress_noeh SOURCES ${R_SOURCE})
+# cm_test(NAME regex_regress_noeh SOURCES ${R_SOURCE})
 # set_target_properties(regex_regress_noeh PROPERTIES CXX_EXCEPTIONS off)
 # target_compile_definitions(regex_regress_noeh PUBLIC BOOST_NO_EXCEPTIONS=1)
-bcm_test(NAME regex_test_test_consolidated SOURCES test_consolidated.cpp COMPILE_ONLY)
+cm_test(NAME regex_test_test_consolidated SOURCES test_consolidated.cpp COMPILE_ONLY)
 
 
 

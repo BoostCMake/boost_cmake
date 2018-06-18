@@ -6,13 +6,13 @@ find_package(${CMAKE_WORKSPACE_NAME}_signals)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_array)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_signals2
-                        boost::thread
-                        boost::timer
-                        boost::signals
-                        boost::test
-                        boost::array
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_signals2
+                       ${CMAKE_WORKSPACE_NAME}::thread
+                       ${CMAKE_WORKSPACE_NAME}::timer
+                       ${CMAKE_WORKSPACE_NAME}::signals
+                       ${CMAKE_WORKSPACE_NAME}::test
+                       ${CMAKE_WORKSPACE_NAME}::array
+                       )
 
 # Boost.Signals2 Library
 
@@ -28,21 +28,21 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_signals2
 # bring in rules for testing
 
 
-bcm_test(NAME signals2_test_connection_test SOURCES connection_test.cpp)
-bcm_test(NAME signals2_test_dead_slot_test SOURCES dead_slot_test.cpp)
-bcm_test(NAME signals2_test_deconstruct_test SOURCES deconstruct_test.cpp)
-bcm_test(NAME signals2_test_deletion_test SOURCES deletion_test.cpp)
+cm_test(NAME signals2_test_connection_test SOURCES connection_test.cpp)
+cm_test(NAME signals2_test_dead_slot_test SOURCES dead_slot_test.cpp)
+cm_test(NAME signals2_test_deconstruct_test SOURCES deconstruct_test.cpp)
+cm_test(NAME signals2_test_deletion_test SOURCES deletion_test.cpp)
 # TODO: Remove Boost.Thread from directory test and add it explictly for mutex_test
-bcm_test(NAME signals2_test_mutex_test SOURCES mutex_test.cpp)
-bcm_test(NAME signals2_test_ordering_test SOURCES ordering_test.cpp)
-bcm_test(NAME signals2_test_regression_test SOURCES regression_test.cpp)
-bcm_test(NAME signals2_test_shared_connection_block_test SOURCES shared_connection_block_test.cpp)
-bcm_test(NAME signals2_test_signal_n_test SOURCES signal_n_test.cpp)
-bcm_test(NAME signals2_test_signal_test SOURCES signal_test.cpp)
-bcm_test(NAME signals2_test_signal_type_test SOURCES signal_type_test.cpp)
-bcm_test(NAME signals2_test_slot_compile_test SOURCES slot_compile_test.cpp)
+cm_test(NAME signals2_test_mutex_test SOURCES mutex_test.cpp)
+cm_test(NAME signals2_test_ordering_test SOURCES ordering_test.cpp)
+cm_test(NAME signals2_test_regression_test SOURCES regression_test.cpp)
+cm_test(NAME signals2_test_shared_connection_block_test SOURCES shared_connection_block_test.cpp)
+cm_test(NAME signals2_test_signal_n_test SOURCES signal_n_test.cpp)
+cm_test(NAME signals2_test_signal_test SOURCES signal_test.cpp)
+cm_test(NAME signals2_test_signal_type_test SOURCES signal_type_test.cpp)
+cm_test(NAME signals2_test_slot_compile_test SOURCES slot_compile_test.cpp)
 # TODO: Remove Boost.Thread from directory test and add it explictly for threading_models_test
-bcm_test(NAME signals2_test_threading_models_test SOURCES threading_models_test.cpp)
-bcm_test(NAME signals2_test_trackable_test SOURCES trackable_test.cpp)
-bcm_test(NAME signals2_test_track_test SOURCES track_test.cpp)
+cm_test(NAME signals2_test_threading_models_test SOURCES threading_models_test.cpp)
+cm_test(NAME signals2_test_trackable_test SOURCES trackable_test.cpp)
+cm_test(NAME signals2_test_track_test SOURCES track_test.cpp)
 

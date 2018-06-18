@@ -3,10 +3,10 @@ include(BCMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_array)
 find_package(${CMAKE_WORKSPACE_NAME}_functional)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_detail
-                        boost::array
-                        boost::functional
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_detail
+                       ${CMAKE_WORKSPACE_NAME}::array
+                       ${CMAKE_WORKSPACE_NAME}::functional
+                       )
 
 ################################################################*# Jam #*#######
 #   Copyright (C) 2010 Bryce Lelbach
@@ -16,11 +16,11 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_detail
 ################################################################################
 
 # import rules for testing conditional on config file variables
-bcm_test(NAME detail_test_container_fwd_test SOURCES container_fwd/container_fwd_test.cpp)
-bcm_test(NAME detail_test_container_fwd_test_debug SOURCES container_fwd/container_fwd_test.cpp)
+cm_test(NAME detail_test_container_fwd_test SOURCES container_fwd/container_fwd_test.cpp)
+cm_test(NAME detail_test_container_fwd_test_debug SOURCES container_fwd/container_fwd_test.cpp)
 target_compile_definitions(detail_test_container_fwd_test_debug PUBLIC -D_GLIBCXX_DEBUG)
-bcm_test(NAME detail_test_container_no_fwd_test SOURCES container_fwd/container_no_fwd_test.cpp)
+cm_test(NAME detail_test_container_no_fwd_test SOURCES container_fwd/container_no_fwd_test.cpp)
 
-bcm_test(NAME detail_test_binary_search_test SOURCES binary_search_test.cpp)
-bcm_test(NAME detail_test_is_sorted_test SOURCES is_sorted_test.cpp)
-# bcm_test(NAME test_utf8_codecvt SOURCES test_utf8_codecvt.cpp)
+cm_test(NAME detail_test_binary_search_test SOURCES binary_search_test.cpp)
+cm_test(NAME detail_test_is_sorted_test SOURCES is_sorted_test.cpp)
+# cm_test(NAME test_utf8_codecvt SOURCES test_utf8_codecvt.cpp)

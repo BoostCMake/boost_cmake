@@ -2,9 +2,9 @@ include(BCMTest)
 
 find_package(${CMAKE_WORKSPACE_NAME}_detail)
 
-bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_timer
-                        boost::detail
-                        )
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_timer
+                       ${CMAKE_WORKSPACE_NAME}::detail
+                       )
 
 # Boost Timer Library test Jamfile
 
@@ -25,9 +25,9 @@ bcm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_timer
 #         <test-info>always_show_run_output # requirements
 #       : inspect # test name
 #     ]
-bcm_test(NAME timer_test___example_auto_cpu_timer_example SOURCES ../example/auto_cpu_timer_example.cpp)
-bcm_test(NAME timer_test_cpu_timer_info SOURCES cpu_timer_info.cpp)
-bcm_test(NAME timer_test_cpu_timer_test SOURCES cpu_timer_test.cpp)
-bcm_test(NAME timer_test___example_timex SOURCES ../example/timex.cpp ARGS echo "Hello, world")
-bcm_test(NAME timer_test_original_timer_test SOURCES original_timer_test.cpp COMPILE_ONLY)
+cm_test(NAME timer_test___example_auto_cpu_timer_example SOURCES ../example/auto_cpu_timer_example.cpp)
+cm_test(NAME timer_test_cpu_timer_info SOURCES cpu_timer_info.cpp)
+cm_test(NAME timer_test_cpu_timer_test SOURCES cpu_timer_test.cpp)
+cm_test(NAME timer_test___example_timex SOURCES ../example/timex.cpp ARGS echo "Hello, world")
+cm_test(NAME timer_test_original_timer_test SOURCES original_timer_test.cpp COMPILE_ONLY)
 
