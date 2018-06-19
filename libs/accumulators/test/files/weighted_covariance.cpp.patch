@@ -1,0 +1,24 @@
+7c7
+< 
+---
+> #define BOOST_TEST_MAIN
+91,96d90
+< ///////////////////////////////////////////////////////////////////////////////
+< // init_unit_test_suite
+< //
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+< {
+<     test_suite *test = BOOST_TEST_SUITE("weighted_covariance test");
+98c92
+<     test->add(BOOST_TEST_CASE(&test_stat));
+---
+> BOOST_AUTO_TEST_SUITE(weighted_covariance_test)
+100c94,96
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test_stat_case)
+> {
+>     test_stat();
+101a98,99
+> 
+> BOOST_AUTO_TEST_SUITE_END()

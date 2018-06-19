@@ -1,0 +1,31 @@
+11a12
+> #define BOOST_TEST_MAIN
+185c186,193
+< boost::unit_test::test_suite *init_unit_test_suite(int, char *[])
+---
+> BOOST_AUTO_TEST_SUITE(lexical_cast_stream_character_detection_suite)
+> 
+> BOOST_AUTO_TEST_CASE(test_ostream_character_detection_case)
+> {
+>     test_ostream_character_detection();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_istream_character_detection_case)
+187,193c195
+<     boost::unit_test::test_suite *suite = 
+<         BOOST_TEST_SUITE("lexical_cast stream character detection");
+<     suite->add(BOOST_TEST_CASE(&test_ostream_character_detection));
+<     suite->add(BOOST_TEST_CASE(&test_istream_character_detection));
+<     suite->add(BOOST_TEST_CASE(&test_mixed_stream_character_detection));
+<     
+<     return suite;
+---
+>     test_istream_character_detection();
+194a197,203
+> 
+> BOOST_AUTO_TEST_CASE(test_mixed_stream_character_detection_case)
+> {
+>     test_mixed_stream_character_detection();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()

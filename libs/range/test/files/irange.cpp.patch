@@ -1,0 +1,22 @@
+10a11
+> #define BOOST_TEST_MAIN
+144,150c145
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.irange" );
+< 
+<     test->add(BOOST_TEST_CASE( &boost::irange_unit_test ));
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_irange_suite)
+152c147,149
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_irange_unit_test_case)
+> {
+>     boost::irange_unit_test();
+153a151,152
+> 
+> BOOST_AUTO_TEST_SUITE_END()
+\ No newline at end of file

@@ -1,0 +1,37 @@
+7a8
+> #define BOOST_TEST_MAIN
+14c15
+< using boost::unit_test::test_suite;
+---
+> BOOST_AUTO_TEST_SUITE(sequence_test_suite)
+16c17
+< test_suite* init_unit_test_suite(int, char* [])
+---
+> BOOST_AUTO_TEST_CASE(read_input_sequence_test_case)
+18,23c19
+<     test_suite* test = BOOST_TEST_SUITE("sequence test");
+<     test->add(BOOST_TEST_CASE(&read_input_sequence_test));
+<     test->add(BOOST_TEST_CASE(&read_seekable_sequence_test));
+<     test->add(BOOST_TEST_CASE(&write_output_sequence_test));
+<     test->add(BOOST_TEST_CASE(&write_seekable_sequence_test));
+<     return test;
+---
+>     read_input_sequence_test();
+24a21,37
+> 
+> BOOST_AUTO_TEST_CASE(read_seekable_sequence_test_case)
+> {
+>     read_seekable_sequence_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(write_output_sequence_test_case)
+> {
+>     write_output_sequence_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(write_seekable_sequence_test_case)
+> {
+>     write_seekable_sequence_test();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()

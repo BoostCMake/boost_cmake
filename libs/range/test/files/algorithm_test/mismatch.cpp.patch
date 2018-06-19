@@ -1,0 +1,21 @@
+10a11
+> #define BOOST_TEST_MAIN
+233,239c234
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.algorithm.mismatch" );
+< 
+<     test->add( BOOST_TEST_CASE( &boost::test_mismatch ) );
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_algorithm_mismatch_suite)
+241c236,238
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_test_mismatch_case)
+> {
+>     boost::test_mismatch();
+242a240,241
+> 
+> BOOST_AUTO_TEST_SUITE_END()

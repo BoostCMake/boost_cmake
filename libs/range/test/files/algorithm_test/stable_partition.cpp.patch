@@ -1,0 +1,21 @@
+8a9
+> #define BOOST_TEST_MAIN
+125,131c126
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.algorithm.stable_partition" );
+< 
+<     test->add( BOOST_TEST_CASE( &boost_range_test_algorithm_stable_partition::test_stable_partition ) );
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_algorithm_stable_partition_suite)
+133c128,130
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_range_test_algorithm_stable_partition_test_stable_partition_case)
+> {
+>     boost_range_test_algorithm_stable_partition::test_stable_partition();
+134a132,133
+> 
+> BOOST_AUTO_TEST_SUITE_END()

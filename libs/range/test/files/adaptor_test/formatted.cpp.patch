@@ -1,0 +1,51 @@
+9a10
+> #define BOOST_TEST_MAIN
+297c298,310
+< boost::unit_test::test_suite* init_unit_test_suite(int, char*[] )
+---
+> BOOST_AUTO_TEST_SUITE(boost_range_formatted_test_suite_suite)
+> 
+> BOOST_AUTO_TEST_CASE(boost_range_test_test_formatted1_case)
+> {
+>     boost_range_test::test_formatted1();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(boost_range_test_test_formatted2_case)
+> {
+>     boost_range_test::test_formatted2();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(boost_range_test_test_formatted3_case)
+299,300c312,313
+<     boost::unit_test::test_suite* test =
+<             BOOST_TEST_SUITE( "Boost.Range formatted test suite" );
+---
+>     boost_range_test::test_formatted3();
+> }
+302,306c315,318
+<     test->add(BOOST_TEST_CASE(&boost_range_test::test_formatted1));
+<     test->add(BOOST_TEST_CASE(&boost_range_test::test_formatted2));
+<     test->add(BOOST_TEST_CASE(&boost_range_test::test_formatted3));
+<     test->add(BOOST_TEST_CASE(&boost_range_test::test_formatted4));
+<     test->add(BOOST_TEST_CASE(&boost_range_test::test_formatted5));
+---
+> BOOST_AUTO_TEST_CASE(boost_range_test_test_formatted4_case)
+> {
+>     boost_range_test::test_formatted4();
+> }
+308c320,323
+<     test->add(BOOST_TEST_CASE(&boost_range_test::test_formatted_empty));
+---
+> BOOST_AUTO_TEST_CASE(boost_range_test_test_formatted5_case)
+> {
+>     boost_range_test::test_formatted5();
+> }
+310c325,327
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_range_test_test_formatted_empty_case)
+> {
+>     boost_range_test::test_formatted_empty();
+311a329,330
+> 
+> BOOST_AUTO_TEST_SUITE_END()

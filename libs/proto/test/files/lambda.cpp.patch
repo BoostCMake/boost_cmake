@@ -1,0 +1,23 @@
+7a8
+> #define BOOST_TEST_MAIN
+177,185c178
+< using namespace unit_test;
+< ///////////////////////////////////////////////////////////////////////////////
+< // init_unit_test_suite
+< //
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+< {
+<     test_suite *test = BOOST_TEST_SUITE("test expression template domains");
+< 
+<     test->add(BOOST_TEST_CASE(&test_lambda));
+---
+> BOOST_AUTO_TEST_SUITE(test_expression_template_domains_suite)
+187c180,182
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test_lambda_case)
+> {
+>     test_lambda();
+188a184,185
+> 
+> BOOST_AUTO_TEST_SUITE_END()

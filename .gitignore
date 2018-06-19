@@ -592,10 +592,10 @@ TSWLatexianTemp*
 *.log
 
 # Patch files
-*.patch
-*.diff
-*.orig
-*.rej
+# *.patch
+# *.diff
+# *.orig
+# *.rej
 
 # Cache and temporary files
 *.pyc
@@ -608,35 +608,3 @@ CMakeLists.txt.user
 # ctags/etags files
 /TAGS
 /tags
-
-# Amalgamation code
-botan_all.h
-botan_all_internal.h
-botan_all.cpp
-botan_all_*.cpp
-
-# Coverage output
-coverage.info
-coverage.info.raw
-coverage/
-lcov-out/
-
-/fuzzer_corpus
-
-# Profiler outputs
-cachegrind.*
-callgrind.*
-
-# Ignore stuff in the top level dir that shouldn't be checked in
-/*.c
-/*.cpp
-/*.h
-/*.py
-/*.key
-/*.pem
-/*.der
-/*.ber
-/*.gpg
-/*.pub
-/*.crt
-/*.txt

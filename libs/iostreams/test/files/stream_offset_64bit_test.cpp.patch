@@ -1,0 +1,23 @@
+16a17
+> #define BOOST_TEST_MAIN
+79c80,82
+< test_suite* init_unit_test_suite(int, char* [])
+---
+> BOOST_AUTO_TEST_SUITE(stream_offset_64_bit_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(stream_offset_64bit_test_case)
+81,84c84
+<     test_suite* test = BOOST_TEST_SUITE("stream_offset 64-bit test");
+<     test->add(BOOST_TEST_CASE(&stream_offset_64bit_test));
+<     test->add(BOOST_TEST_CASE(&stream_offset_64bit_test2));
+<     return test;
+---
+>     stream_offset_64bit_test();
+85a86,92
+> 
+> BOOST_AUTO_TEST_CASE(stream_offset_64bit_test2_case)
+> {
+>     stream_offset_64bit_test2();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()

@@ -1,0 +1,21 @@
+10a11
+> #define BOOST_TEST_MAIN
+61,67c62
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.algorithm.copy_n" );
+< 
+<     test->add( BOOST_TEST_CASE( &::test_copy_n ) );
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_algorithm_copy_n_suite)
+69c64,66
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test_copy_n_case)
+> {
+>     ::test_copy_n();
+70a68,69
+> 
+> BOOST_AUTO_TEST_SUITE_END()

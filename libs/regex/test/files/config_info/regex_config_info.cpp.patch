@@ -1,0 +1,4 @@
+22c22
+< #include <libs/config/test/config_info.cpp>
+---
+> #include <../../../config/test/config_info.cpp>

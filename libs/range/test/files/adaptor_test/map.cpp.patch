@@ -1,0 +1,27 @@
+10a11
+> #define BOOST_TEST_MAIN
+159a161
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_adaptor_map_suite)
+161,162c163
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+---
+> BOOST_AUTO_TEST_CASE(boost_map_test_case)
+164,168c165,166
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.adaptor.map" );
+< 
+<     test->add( BOOST_TEST_CASE( &boost::map_test ) );
+<     test->add( BOOST_TEST_CASE( &boost::test_trac_item_4388 ) );
+---
+>     boost::map_test();
+> }
+170c168,170
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_test_trac_item_4388_case)
+> {
+>     boost::test_trac_item_4388();
+171a172,173
+> 
+> BOOST_AUTO_TEST_SUITE_END()

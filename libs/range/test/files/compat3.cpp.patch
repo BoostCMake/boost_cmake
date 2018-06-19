@@ -1,0 +1,29 @@
+10a11,12
+> #define BOOST_TEST_MAIN
+> #include <boost/test/unit_test.hpp>
+58c60
+< #include <boost/test/included/unit_test.hpp> 
+---
+> BOOST_AUTO_TEST_SUITE(range_test_suite_suite)
+60,62c62
+< using boost::unit_test::test_suite;
+< 
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+---
+> BOOST_AUTO_TEST_CASE(compat1_case)
+64,68c64
+<     test_suite* test = BOOST_TEST_SUITE( "Range Test Suite" );
+< 
+<     test->add( BOOST_TEST_CASE( &compat1 ) );
+< 
+<     return test;
+---
+>     compat1();
+71,75c67
+< 
+< 
+< 
+< 
+< 
+---
+> BOOST_AUTO_TEST_SUITE_END()

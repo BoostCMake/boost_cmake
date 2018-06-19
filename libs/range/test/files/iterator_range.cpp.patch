@@ -1,0 +1,66 @@
+12a13
+> #define BOOST_TEST_MAIN
+314c315,317
+< boost::unit_test::test_suite* init_unit_test_suite( int argc, char* argv[] )
+---
+> BOOST_AUTO_TEST_SUITE(range_test_suite_suite)
+> 
+> BOOST_AUTO_TEST_CASE(check_iterator_range_case)
+316,328c319,359
+<     boost::unit_test::test_suite* test = BOOST_TEST_SUITE( "Range Test Suite" );
+<     
+<     test->add(BOOST_TEST_CASE(&check_iterator_range));
+<     test->add(BOOST_TEST_CASE(&check_iterator_range_operator<iterator_range_test_detail::less>));
+<     test->add(BOOST_TEST_CASE(&check_iterator_range_operator<iterator_range_test_detail::less_or_equal>));
+<     test->add(BOOST_TEST_CASE(&check_iterator_range_operator<iterator_range_test_detail::greater>));
+<     test->add(BOOST_TEST_CASE(&check_iterator_range_operator<iterator_range_test_detail::greater_or_equal>));
+<     test->add(BOOST_TEST_CASE(&check_iterator_range_operator<iterator_range_test_detail::equal_to>));
+<     test->add(BOOST_TEST_CASE(&check_iterator_range_operator<iterator_range_test_detail::not_equal_to>));
+<     test->add(BOOST_TEST_CASE(&iterator_range_test_detail::check_make_iterator_range_n));
+<     test->add(BOOST_TEST_CASE(&test_advance));
+<     
+<     return test;
+---
+>     check_iterator_range();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(check_iterator_range_operator_iterator_range_test_detail_less_case)
+> {
+>     check_iterator_range_operator<iterator_range_test_detail::less>();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(check_iterator_range_operator_iterator_range_test_detail_less_or_equal_case)
+> {
+>     check_iterator_range_operator<iterator_range_test_detail::less_or_equal>();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(check_iterator_range_operator_iterator_range_test_detail_greater_case)
+> {
+>     check_iterator_range_operator<iterator_range_test_detail::greater>();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(check_iterator_range_operator_iterator_range_test_detail_greater_or_equal_case)
+> {
+>     check_iterator_range_operator<iterator_range_test_detail::greater_or_equal>();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(check_iterator_range_operator_iterator_range_test_detail_equal_to_case)
+> {
+>     check_iterator_range_operator<iterator_range_test_detail::equal_to>();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(check_iterator_range_operator_iterator_range_test_detail_not_equal_to_case)
+> {
+>     check_iterator_range_operator<iterator_range_test_detail::not_equal_to>();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(iterator_range_test_detail_check_make_iterator_range_n_case)
+> {
+>     iterator_range_test_detail::check_make_iterator_range_n();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_advance_case)
+> {
+>     test_advance();
+330a362
+> BOOST_AUTO_TEST_SUITE_END()

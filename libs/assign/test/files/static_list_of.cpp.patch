@@ -1,0 +1,25 @@
+11c11,12
+< 
+---
+> #define BOOST_TEST_MAIN
+> #include <boost/test/unit_test.hpp>
+86,87c87
+< #include <boost/test/unit_test.hpp>
+< using boost::unit_test::test_suite;
+---
+> BOOST_AUTO_TEST_SUITE(list_test_suite)
+89c89
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+---
+> BOOST_AUTO_TEST_CASE(check_static_list_of_case)
+91,95c91
+<     test_suite* test = BOOST_TEST_SUITE( "List Test Suite" );
+< 
+<     test->add( BOOST_TEST_CASE( &check_static_list_of ) );
+< 
+<     return test;
+---
+>     check_static_list_of();
+96a93,94
+> 
+> BOOST_AUTO_TEST_SUITE_END()

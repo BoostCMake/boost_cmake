@@ -1,0 +1,20 @@
+10a11
+> #define BOOST_TEST_MAIN
+44,49c45
+< boost::unit_test::test_suite* init_unit_test_suite( int argc, char* argv[] )
+< {
+<     boost::unit_test::test_suite* test =
+<         BOOST_TEST_SUITE("Boost.Range iterator_range hash function");
+< 
+<     test->add(BOOST_TEST_CASE(&boost_range_test::test_iterator_range_hash));
+---
+> BOOST_AUTO_TEST_SUITE(boost_range_iterator_range_hash_function_suite)
+51c47,49
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_range_test_test_iterator_range_hash_case)
+> {
+>     boost_range_test::test_iterator_range_hash();
+52a51,52
+> 
+> BOOST_AUTO_TEST_SUITE_END()

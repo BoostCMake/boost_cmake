@@ -1,0 +1,21 @@
+10a11
+> #define BOOST_TEST_MAIN
+73a75
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_adaptor_reversed_suite)
+75,76c77
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+---
+> BOOST_AUTO_TEST_CASE(boost_reversed_test_case)
+78,83c79
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.adaptor.reversed" );
+< 
+<     test->add( BOOST_TEST_CASE( &boost::reversed_test ) );
+< 
+<     return test;
+---
+>     boost::reversed_test();
+84a81,82
+> 
+> BOOST_AUTO_TEST_SUITE_END()

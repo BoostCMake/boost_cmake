@@ -1,0 +1,27 @@
+10c10,11
+< 
+---
+> #define BOOST_TEST_MAIN
+> #include <boost/test/unit_test.hpp>
+12d12
+< 
+35a36
+> BOOST_AUTO_TEST_SUITE(assign_test_suite_suite)
+37,41c38
+< 
+< #include <boost/test/unit_test.hpp>
+< using boost::unit_test::test_suite;
+< 
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+---
+> BOOST_AUTO_TEST_CASE(check_basic_usage_case)
+43,47c40
+<     test_suite* test = BOOST_TEST_SUITE( "Assign Test Suite" );
+< 
+<     test->add( BOOST_TEST_CASE( &check_basic_usage ) );
+< 
+<     return test;
+---
+>     check_basic_usage();
+49a43
+> BOOST_AUTO_TEST_SUITE_END()

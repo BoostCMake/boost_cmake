@@ -1,0 +1,23 @@
+7a8
+> #define BOOST_TEST_MAIN
+381c382,384
+< test_suite* init_unit_test_suite(int, char* [])
+---
+> BOOST_AUTO_TEST_SUITE(code_converter_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(code_converter_test_case)
+383,386c386
+<     test_suite* test = BOOST_TEST_SUITE("code_converter test");
+<     test->add(BOOST_TEST_CASE(&code_converter_test));
+<     //test->add(BOOST_TEST_CASE(&close_test));
+<     return test;
+---
+>     code_converter_test();
+387a388,394
+> 
+> //BOOST_AUTO_TEST_CASE(close_test_case)
+> //{
+> //    close_test();
+> //}
+> 
+> BOOST_AUTO_TEST_SUITE_END()

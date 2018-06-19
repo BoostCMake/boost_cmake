@@ -1,0 +1,72 @@
+11a12
+> #define BOOST_TEST_MAIN
+675c676,683
+< test_suite* init_unit_test_suite(int, char* []) 
+---
+> BOOST_AUTO_TEST_SUITE(oost_stringize_boost_restrict_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(read_device_case)
+> {
+>     read_device();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(read_direct_device_case)
+677,689c685
+<     test_suite* test = 
+<         BOOST_TEST_SUITE(BOOST_STRINGIZE(BOOST_RESTRICT) " test");
+<     test->add(BOOST_TEST_CASE(&read_device));
+<     test->add(BOOST_TEST_CASE(&read_direct_device));
+<     test->add(BOOST_TEST_CASE(&read_filter));
+<     test->add(BOOST_TEST_CASE(&write_device));
+<     test->add(BOOST_TEST_CASE(&write_direct_device));
+<     test->add(BOOST_TEST_CASE(&write_filter));
+<     test->add(BOOST_TEST_CASE(&seek_device));
+<     test->add(BOOST_TEST_CASE(&seek_direct_device));
+<     test->add(BOOST_TEST_CASE(&close_device));
+<     test->add(BOOST_TEST_CASE(&close_filter));
+<     return test;
+---
+>     read_direct_device();
+690a687,728
+> 
+> BOOST_AUTO_TEST_CASE(read_filter_case)
+> {
+>     read_filter();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(write_device_case)
+> {
+>     write_device();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(write_direct_device_case)
+> {
+>     write_direct_device();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(write_filter_case)
+> {
+>     write_filter();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(seek_device_case)
+> {
+>     seek_device();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(seek_direct_device_case)
+> {
+>     seek_direct_device();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(close_device_case)
+> {
+>     close_device();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(close_filter_case)
+> {
+>     close_filter();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()

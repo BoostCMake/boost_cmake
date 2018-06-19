@@ -1,0 +1,42 @@
+10a11
+> #define BOOST_TEST_MAIN
+156c157,174
+< unit_test::test_suite *init_unit_test_suite(int, char *[])
+---
+> BOOST_AUTO_TEST_SUITE(lexical_cast_testing_with_boost_no_std_locale_suite)
+> 
+> BOOST_AUTO_TEST_CASE(test_empty_1_case)
+> {
+>     test_empty_1();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_empty_2_case)
+> {
+>     test_empty_2();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_empty_3_case)
+> {
+>     test_empty_3();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_empty_4_case)
+158,164c176,177
+<     unit_test::test_suite *suite =
+<         BOOST_TEST_SUITE("lexical_cast. Testing with BOOST_NO_STD_LOCALE");
+<     suite->add(BOOST_TEST_CASE(&test_empty_1));
+<     suite->add(BOOST_TEST_CASE(&test_empty_2));
+<     suite->add(BOOST_TEST_CASE(&test_empty_3));
+<     suite->add(BOOST_TEST_CASE(&test_empty_4));
+<     suite->add(BOOST_TEST_CASE(&test_empty_5));
+---
+>     test_empty_4();
+> }
+166c179,181
+<     return suite;
+---
+> BOOST_AUTO_TEST_CASE(test_empty_5_case)
+> {
+>     test_empty_5();
+168a184
+> BOOST_AUTO_TEST_SUITE_END()

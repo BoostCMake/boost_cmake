@@ -1,0 +1,21 @@
+13a14
+> #define BOOST_TEST_MAIN
+56,61d56
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE(
+<             "RangeTestSuite.adaptor.ticket_9519_strided_reversed");
+63c58
+<     test->add(BOOST_TEST_CASE(&boost::ticket_9519_strided_reversed_test));
+---
+> BOOST_AUTO_TEST_SUITE(_suite)
+65c60,62
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_ticket_9519_strided_reversed_test_case)
+> {
+>     boost::ticket_9519_strided_reversed_test();
+67a65
+> BOOST_AUTO_TEST_SUITE_END()
