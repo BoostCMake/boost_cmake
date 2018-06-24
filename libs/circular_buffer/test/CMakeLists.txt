@@ -1,5 +1,7 @@
 include(BCMTest)
 
+patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
+
 find_package(${CMAKE_WORKSPACE_NAME}_thread)
 find_package(${CMAKE_WORKSPACE_NAME}_bind)
 find_package(${CMAKE_WORKSPACE_NAME}_timer)
@@ -8,12 +10,12 @@ find_package(${CMAKE_WORKSPACE_NAME}_unit_test_framework)
 
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_circular_buffer
-                       ${CMAKE_WORKSPACE_NAME}::thread
-                       ${CMAKE_WORKSPACE_NAME}::bind
-                       ${CMAKE_WORKSPACE_NAME}::timer
-                       ${CMAKE_WORKSPACE_NAME}::test
-                       ${CMAKE_WORKSPACE_NAME}::unit_test_framework
-                       )
+                        boost::thread
+                        boost::bind
+                        boost::timer
+                        boost::test
+                        boost::unit_test_framework
+                        )
 
 # Boost circular_buffer test Jamfile.
 #
@@ -27,9 +29,8 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_circular_buffer
 
 # Bring in rules for testing.
 
-
-cm_test(NAME circular_buffer_base_test SOURCES base_test.cpp)
-cm_test(NAME circular_buffer_space_optimized_test SOURCES space_optimized_test.cpp)
-cm_test(NAME circular_buffer_soft_iterator_invalidation SOURCES soft_iterator_invalidation.cpp)
-cm_test(NAME circular_buffer_constant_erase_test SOURCES constant_erase_test.cpp)
-cm_test(NAME circular_buffer_bounded_buffer_comparison SOURCES bounded_buffer_comparison.cpp COMPILE_ONLY)
+cm_test(NAME circular_buffer_base_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/base_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME circular_buffer_space_optimized_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/space_optimized_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME circular_buffer_soft_iterator_invalidation SOURCES ${CMAKE_CURRENT_BINARY_DIR}/soft_iterator_invalidation.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME circular_buffer_constant_erase_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/constant_erase_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME circular_buffer_bounded_buffer_comparison SOURCES ${CURRENT_TEST_SOURCES_DIR}/bounded_buffer_comparison.cpp COMPILE_ONLY)

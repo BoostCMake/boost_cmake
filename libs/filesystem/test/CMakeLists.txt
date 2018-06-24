@@ -8,13 +8,13 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_utility)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_filesystem
-                       ${CMAKE_WORKSPACE_NAME}::align
-                       ${CMAKE_WORKSPACE_NAME}::thread
-                       ${CMAKE_WORKSPACE_NAME}::bind
-                       ${CMAKE_WORKSPACE_NAME}::timer
-                       ${CMAKE_WORKSPACE_NAME}::test
-                       ${CMAKE_WORKSPACE_NAME}::utility
-                       )
+                        boost::align
+                        boost::thread
+                        boost::bind
+                        boost::timer
+                        boost::test
+                        boost::utility
+                        )
 
 # Boost Filesystem Library test Jamfile
 
@@ -22,18 +22,18 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_filesystem
 # Distributed under the Boost Software License, Version 1.0.
 # See www.boost.org/LICENSE_1_0.txt
 
-# cm_test(NAME fs_config_info SOURCES config_info.cpp)
-cm_test(NAME filesystem_test_convenience_test SOURCES convenience_test.cpp)
-cm_test(NAME filesystem_test_macro_default_test SOURCES macro_default_test.cpp COMPILE_ONLY)
-cm_test(NAME filesystem_test_fs_odr_test SOURCES odr1_test.cpp odr2_test.cpp)
-cm_test(NAME filesystem_test_deprecated_test SOURCES deprecated_test.cpp)
-cm_test(NAME filesystem_test_fstream_test SOURCES fstream_test.cpp)
-cm_test(NAME filesystem_test_large_file_support_test SOURCES large_file_support_test.cpp)
-cm_test(NAME filesystem_test_locale_info SOURCES locale_info.cpp)
-cm_test(NAME filesystem_test_operations_test SOURCES operations_test.cpp)
-cm_test(NAME filesystem_test_operations_unit_test SOURCES operations_unit_test.cpp)
-cm_test(NAME filesystem_test_path_test SOURCES path_test.cpp)
-cm_test(NAME filesystem_test_path_unit_test SOURCES path_unit_test.cpp)
-# cm_test(NAME filesystem_test_relative_test SOURCES relative_test.cpp)
-cm_test(NAME filesystem_test_example_simple_ls SOURCES ../example/simple_ls.cpp)
-cm_test(NAME filesystem_test_example_file_status SOURCES ../example/file_status.cpp)
+# cm_test(NAME fs_config_info SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_info.cpp)
+cm_test(NAME filesystem_test_convenience_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/convenience_test.cpp)
+cm_test(NAME filesystem_test_macro_default_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/macro_default_test.cpp COMPILE_ONLY)
+cm_test(NAME filesystem_test_fs_odr_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/odr1_test.cpp ${CURRENT_TEST_SOURCES_DIR}/odr2_test.cpp)
+cm_test(NAME filesystem_test_deprecated_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/deprecated_test.cpp)
+cm_test(NAME filesystem_test_fstream_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/fstream_test.cpp)
+cm_test(NAME filesystem_test_large_file_support_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/large_file_support_test.cpp)
+cm_test(NAME filesystem_test_locale_info SOURCES ${CURRENT_TEST_SOURCES_DIR}/locale_info.cpp)
+cm_test(NAME filesystem_test_operations_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/operations_test.cpp)
+cm_test(NAME filesystem_test_operations_unit_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/operations_unit_test.cpp)
+cm_test(NAME filesystem_test_path_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/path_test.cpp)
+cm_test(NAME filesystem_test_path_unit_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/path_unit_test.cpp)
+# cm_test(NAME filesystem_test_relative_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/relative_test.cpp)
+cm_test(NAME filesystem_test_example_simple_ls SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/simple_ls.cpp)
+cm_test(NAME filesystem_test_example_file_status SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/file_status.cpp)

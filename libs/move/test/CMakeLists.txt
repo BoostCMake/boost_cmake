@@ -4,9 +4,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_container)
 find_package(${CMAKE_WORKSPACE_NAME}_timer)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_move
-                       ${CMAKE_WORKSPACE_NAME}::container
-                       ${CMAKE_WORKSPACE_NAME}::timer
-                       )
+                        boost::container
+                        boost::timer
+                        )
 
 ##############################################################################
 ##

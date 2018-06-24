@@ -8,13 +8,13 @@ find_package(${CMAKE_WORKSPACE_NAME}_bind)
 find_package(${CMAKE_WORKSPACE_NAME}_align)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_atomic
-                       ${CMAKE_WORKSPACE_NAME}::align
-                       ${CMAKE_WORKSPACE_NAME}::function
-                       ${CMAKE_WORKSPACE_NAME}::core
-                       ${CMAKE_WORKSPACE_NAME}::thread
-                       ${CMAKE_WORKSPACE_NAME}::date_time
-                       ${CMAKE_WORKSPACE_NAME}::bind
-                       )
+                        boost::align
+                        boost::function
+                        boost::core
+                        boost::thread
+                        boost::date_time
+                        boost::bind
+                        )
 
 #  Boost.Atomic Library test Jamfile
 #
@@ -26,8 +26,8 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_atomic
 #  http://www.boost.org/LICENSE_1_0.txt)
 
 
-cm_test(NAME atomic_test_native_api SOURCES native_api.cpp)
-cm_test(NAME atomic_test_fallback_api SOURCES fallback_api.cpp)
-cm_test(NAME atomic_test_atomicity SOURCES atomicity.cpp)
-cm_test(NAME atomic_test_ordering SOURCES ordering.cpp)
-cm_test(NAME atomic_test_lockfree SOURCES lockfree.cpp)
+cm_test(NAME atomic_test_native_api SOURCES ${CURRENT_TEST_SOURCES_DIR}/native_api.cpp)
+cm_test(NAME atomic_test_fallback_api SOURCES ${CURRENT_TEST_SOURCES_DIR}/fallback_api.cpp)
+cm_test(NAME atomic_test_atomicity SOURCES ${CURRENT_TEST_SOURCES_DIR}/atomicity.cpp)
+cm_test(NAME atomic_test_ordering SOURCES ${CURRENT_TEST_SOURCES_DIR}/ordering.cpp)
+cm_test(NAME atomic_test_lockfree SOURCES ${CURRENT_TEST_SOURCES_DIR}/lockfree.cpp)

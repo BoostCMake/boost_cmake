@@ -3,8 +3,8 @@ include(BCMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_algorithm_minmax
-                       ${CMAKE_WORKSPACE_NAME}::test
-                       )
+boost::test
+)
 
 #  Boost algorithm library test suite Jamfile  ----------------------------
 #
@@ -16,5 +16,5 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_algorithm_minmax
 #  See http://www.boost.org for updates, documentation, and revision history.
 
 # Search tests
-cm_test(NAME algorithm_minmax_test_minmax_element_test SOURCES minmax_element_test.cpp)
-cm_test(NAME algorithm_minmax_test_minmax_test SOURCES minmax_test.cpp)
+cm_test(NAME algorithm_minmax_test_minmax_element_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/minmax_element_test.cpp)
+cm_test(NAME algorithm_minmax_test_minmax_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/minmax_test.cpp)

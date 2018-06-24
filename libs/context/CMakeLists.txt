@@ -1,14 +1,11 @@
 cmake_minimum_required(VERSION 3.5)
 
+
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
 
 cm_project(${CMAKE_WORKSPACE_NAME} context)
-
-if(CMAKE_SOURCES_DIR)
-    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
-endif()
 
 find_package(${CMAKE_WORKSPACE_NAME}_align)
 find_package(${CMAKE_WORKSPACE_NAME}_thread)
@@ -20,8 +17,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_pool)
 cm_setup_version(VERSION 1.58.0)
 
 add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
-            ${CURRENT_SOURCES_DIR}/src/dummy.cpp
-            ${CURRENT_SOURCES_DIR}/src/execution_context.cpp
+        ${CURRENT_SOURCES_DIR}/src/dummy.cpp
+        ${CURRENT_SOURCES_DIR}/src/execution_${CURRENT_PROJECT_NAME}.cpp
             )
 
 if(BUILD_SHARED_LIBS)
@@ -30,14 +27,14 @@ else()
     target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_CONTEXT_STATIC_LINK=1)
 endif()
 
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME context)
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::align)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::thread)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::smart_ptr)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::config)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::pool)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::align)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::thread)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::pool)
 
 enable_language(ASM)
 set(abi
@@ -130,8 +127,8 @@ else()
 endif()
 
 target_sources(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE
-               ${CURRENT_SOURCES_DIR}/src/asm/make_${BOOST_CONTEXT_ARCHITECTURE}_${BOOST_CONTEXT_ABI}_${BOOST_CONTEXT_BINARY_FORMAT}_${asm_format}
-               ${CURRENT_SOURCES_DIR}/src/asm/jump_${BOOST_CONTEXT_ARCHITECTURE}_${BOOST_CONTEXT_ABI}_${BOOST_CONTEXT_BINARY_FORMAT}_${asm_format}
+        ${CURRENT_SOURCES_DIR}/src/asm/make_${BOOST_CONTEXT_ARCHITECTURE}_${BOOST_CONTEXT_ABI}_${BOOST_CONTEXT_BINARY_FORMAT}_${asm_format}
+        ${CURRENT_SOURCES_DIR}/src/asm/jump_${BOOST_CONTEXT_ARCHITECTURE}_${BOOST_CONTEXT_ABI}_${BOOST_CONTEXT_BINARY_FORMAT}_${asm_format}
                #               src/asm/ontop_${BOOST_CONTEXT_ARCHITECTURE}_${BOOST_CONTEXT_ABI}_${BOOST_CONTEXT_BINARY_FORMAT}_${asm_format}
                )
 

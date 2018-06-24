@@ -1,10 +1,12 @@
 include(BCMTest)
 
+patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
+
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_sort
-                       ${CMAKE_WORKSPACE_NAME}::test
-                       )
+                        boost::test
+                        )
 
 #  Boost sorting_algo library test suite Jamfile  ----------------------------
 #
@@ -15,8 +17,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_sort
 #
 #  See http://www.boost.org/libs/sort for library home page.
 
-
-cm_test(NAME sort_test_integer_sort SOURCES integer_sort_test.cpp)
-cm_test(NAME sort_test_float_sort SOURCES float_sort_test.cpp)
-cm_test(NAME sort_test_string_sort SOURCES string_sort_test.cpp)
-cm_test(NAME sort_test_sort_detail SOURCES sort_detail_test.cpp)
+cm_test(NAME sort_test_integer_sort_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/integer_sort_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME sort_test_float_sort_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/float_sort_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME sort_test_string_sort_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/string_sort_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME sort_test_sort_detail_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/sort_detail_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})

@@ -1,5 +1,8 @@
 include(BCMTest)
 
+patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CURRENT_TEST_SOURCES_DIR})
+
+
 find_package(${CMAKE_WORKSPACE_NAME}_tr1)
 find_package(${CMAKE_WORKSPACE_NAME}_core)
 find_package(${CMAKE_WORKSPACE_NAME}_type_traits)
@@ -7,12 +10,12 @@ find_package(${CMAKE_WORKSPACE_NAME}_detail)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_config
-                       ${CMAKE_WORKSPACE_NAME}::tr1
-                       ${CMAKE_WORKSPACE_NAME}::core
-                       ${CMAKE_WORKSPACE_NAME}::type_traits
-                       ${CMAKE_WORKSPACE_NAME}::detail
-                       ${CMAKE_WORKSPACE_NAME}::test
-                       )
+                        boost::tr1
+                        boost::core
+                        boost::type_traits
+                        boost::detail
+                        boost::test
+                        )
 
 
 include(BCMProperties)
@@ -27,7 +30,7 @@ foreach(lib ${LIBS_TO_CHECK})
         target_link_libraries(config_threads INTERFACE "${FIND_LIB${lib}}")
     endif()
 endforeach()
-include_directories(.)
+include_directories(${CURRENT_TEST_SOURCES_DIR})
 
 include(TestGen.cmake)
 
@@ -66,7 +69,8 @@ set(SKIP_TESTS
     ${CMAKE_WORKSPACE_NAME}_no_sfinae_expr.ipp
     ${CMAKE_WORKSPACE_NAME}_no_two_phase_lookup.ipp
     )
-file(GLOB TESTS *.ipp)
+
+file(GLOB TESTS ${CURRENT_TEST_SOURCES_DIR}/*.ipp)
 foreach(TEST ${TESTS})
     get_filename_component(TEST_NAME ${TEST} NAME)
     if(NOT ${TEST_NAME} IN_LIST SKIP_TESTS)
@@ -74,25 +78,25 @@ foreach(TEST ${TESTS})
     endif()
 endforeach()
 
-cm_test(NAME config_test_config_test_c SOURCES config_test_c.c)
-cm_test(NAME config_test_config_info SOURCES config_info.cpp)
+cm_test(NAME config_test_config_test_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test_c.c)
+cm_test(NAME config_test_config_info SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_info.cpp)
 #[[
-cm_test(NAME config_test_config_test SOURCES config_test.cpp)
-cm_test(NAME config_test_config_test_no_rtti SOURCES config_test.cpp)
+cm_test(NAME config_test_config_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test.cpp)
+cm_test(NAME config_test_config_test_no_rtti SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test.cpp)
 set_target_properties(config_test_config_test_no_rtti PROPERTIES CXX_RTTI Off)
-cm_test(NAME config_test_config_test_no_exceptions SOURCES config_test.cpp)
+cm_test(NAME config_test_config_test_no_exceptions SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test.cpp)
 set_target_properties(config_test_config_test_no_exceptions PROPERTIES CXX_EXCEPTIONS Off)
 
 foreach(CONFIG_TEST config_test_config_test config_test_config_test_no_rtti config_test_config_test_no_exceptions)
     target_link_libraries(${CONFIG_TEST} config_threads)
 endforeach()
 ]]
-cm_test(NAME config_test_test_thread_fail1 SOURCES threads/test_thread_fail1.cpp COMPILE_ONLY WILL_FAIL)
-cm_test(NAME config_test_test_thread_fail2 SOURCES threads/test_thread_fail2.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME config_test_test_thread_fail1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/threads/test_thread_fail1.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME config_test_test_thread_fail2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/threads/test_thread_fail2.cpp COMPILE_ONLY WILL_FAIL)
 
-cm_test(NAME config_test_abi_test SOURCES abi/abi_test.cpp abi/main.cpp)
+cm_test(NAME config_test_abi_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/abi/abi_test.cpp ${CURRENT_TEST_SOURCES_DIR}/abi/main.cpp)
 
-cm_test(NAME config_test_limits_test SOURCES limits_test.cpp)
+cm_test(NAME config_test_limits_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/limits_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 if(BUILD_SHARED_LIBS)
     target_compile_definitions(config_test_limits_test PRIVATE -DBOOST_DYN_LINK=1)
 endif()
@@ -100,15 +104,15 @@ endif()
 target_compile_definitions(config_test_limits_test PRIVATE -DBOOST_CONFIG_NO_LIB=1)
 set_target_properties(config_test_limits_test PROPERTIES CXX_EXCEPTIONS On)
 
-cm_test(NAME config_test_math_info SOURCES math_info.cpp)
+cm_test(NAME config_test_math_info SOURCES ${CURRENT_TEST_SOURCES_DIR}/math_info.cpp)
 
 include(CheckCXXCompilerFlag)
 set(IMPLICIT_FALLTHROUGH_FLAG -std=c++11 -Wimplicit-fallthrough -Wall -Werror)
 check_cxx_compiler_flag("${IMPLICIT_FALLTHROUGH_FLAG}" HAS_IMPLICIT_FALLTHROUGH)
-cm_test(NAME config_test_${CMAKE_WORKSPACE_NAME}_fallthrough_test SOURCES ${CMAKE_WORKSPACE_NAME}_fallthrough_test.cpp COMPILE_ONLY)
+cm_test(NAME config_test_boost_fallthrough_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/boost_fallthrough_test.cpp COMPILE_ONLY)
 if(HAS_IMPLICIT_FALLTHROUGH)
-    target_compile_options(config_test_${CMAKE_WORKSPACE_NAME}_fallthrough_test PUBLIC ${IMPLICIT_FALLTHROUGH_FLAG})
+    target_compile_options(config_test_boost_fallthrough_test PUBLIC ${IMPLICIT_FALLTHROUGH_FLAG})
 endif(HAS_IMPLICIT_FALLTHROUGH)
-cm_test(NAME config_test_helper_macro_test SOURCES helper_macro_test.cpp COMPILE_ONLY)
+cm_test(NAME config_test_helper_macro_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/helper_macro_test.cpp COMPILE_ONLY)
 
-cm_test(NAME cstdint_include_test SOURCES cstdint_include_test.cpp COMPILE_ONLY)
+cm_test(NAME cstdint_include_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/cstdint_include_test.cpp COMPILE_ONLY)

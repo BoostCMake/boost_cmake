@@ -3,8 +3,8 @@ include(BCMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_logic
-                       ${CMAKE_WORKSPACE_NAME}::test
-                       )
+                        boost::test
+                        )
 
 # Tribool library
 
@@ -16,9 +16,9 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_logic
 
 # For more information, see http://www.boost.org/
 
-cm_test(NAME logic_test_tribool_test SOURCES tribool_test.cpp)
-cm_test(NAME logic_test_tribool_rename_test SOURCES tribool_rename_test.cpp)
-cm_test(NAME logic_test_tribool_io_test SOURCES tribool_io_test.cpp)
+cm_test(NAME logic_test_tribool_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/tribool_test.cpp)
+cm_test(NAME logic_test_tribool_rename_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/tribool_rename_test.cpp)
+cm_test(NAME logic_test_tribool_io_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/tribool_io_test.cpp)
 
 
 

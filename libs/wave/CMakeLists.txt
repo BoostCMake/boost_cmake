@@ -1,14 +1,11 @@
 cmake_minimum_required(VERSION 3.5)
 
+
 find_package(BCM)
 include(BCMDeploy)
 include(BCMSetupVersion)
 
 cm_project(${CMAKE_WORKSPACE_NAME} wave)
-
-if(CMAKE_SOURCES_DIR)
-    set(CURRENT_SOURCES_DIR ${CMAKE_SOURCES_DIR}/libs/${CURRENT_PROJECT_NAME})
-endif()
 
 find_package(${CMAKE_WORKSPACE_NAME}_core)
 find_package(${CMAKE_WORKSPACE_NAME}_static_assert)
@@ -30,17 +27,17 @@ find_package(${CMAKE_WORKSPACE_NAME}_smart_ptr)
 cm_setup_version(VERSION 1.58.0)
 
 add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
-            ${CURRENT_SOURCES_DIR}/src/cpplexer/re2clex/aq.cpp
-            ${CURRENT_SOURCES_DIR}/src/cpplexer/re2clex/cpp_re.cpp
-            ${CURRENT_SOURCES_DIR}/src/wave_config_constant.cpp
-            ${CURRENT_SOURCES_DIR}/src/instantiate_cpp_grammar.cpp
-            ${CURRENT_SOURCES_DIR}/src/instantiate_re2c_lexer_str.cpp
-            ${CURRENT_SOURCES_DIR}/src/instantiate_cpp_literalgrs.cpp
-            ${CURRENT_SOURCES_DIR}/src/token_ids.cpp
-            ${CURRENT_SOURCES_DIR}/src/instantiate_re2c_lexer.cpp
-            ${CURRENT_SOURCES_DIR}/src/instantiate_cpp_exprgrammar.cpp
-            ${CURRENT_SOURCES_DIR}/src/instantiate_predef_macros.cpp
-            ${CURRENT_SOURCES_DIR}/src/instantiate_defined_grammar.cpp
+        ${CURRENT_SOURCES_DIR}/src/cpplexer/re2clex/aq.cpp
+        ${CURRENT_SOURCES_DIR}/src/cpplexer/re2clex/cpp_re.cpp
+        ${CURRENT_SOURCES_DIR}/src/wave_config_constant.cpp
+        ${CURRENT_SOURCES_DIR}/src/instantiate_cpp_grammar.cpp
+        ${CURRENT_SOURCES_DIR}/src/instantiate_re2c_lexer_str.cpp
+        ${CURRENT_SOURCES_DIR}/src/instantiate_cpp_literalgrs.cpp
+        ${CURRENT_SOURCES_DIR}/src/token_ids.cpp
+        ${CURRENT_SOURCES_DIR}/src/instantiate_re2c_lexer.cpp
+        ${CURRENT_SOURCES_DIR}/src/instantiate_cpp_exprgrammar.cpp
+        ${CURRENT_SOURCES_DIR}/src/instantiate_predef_macros.cpp
+        ${CURRENT_SOURCES_DIR}/src/instantiate_defined_grammar.cpp
             )
 
 if(BUILD_SHARED_LIBS)
@@ -49,24 +46,25 @@ else()
     target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_THREAD_USE_LIB=1)
 endif()
 
-set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME ${CURRENT_PROJECT_NAME})
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME wave)
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::core)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::static_assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::iterator)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::mpl)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::multi_index)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::spirit)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::type_traits)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::concept_check)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::preprocessor)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::filesystem)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::serialization)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::config)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::throw_exception)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::pool)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC ${CMAKE_WORKSPACE_NAME}::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::core)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::static_assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::iterator)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::mpl)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::multi_index)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::spirit)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::concept_check)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::preprocessor)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::filesystem)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::serialization)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::throw_exception)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::pool)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC boost::smart_ptr)
+
 
 target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/include)
 

@@ -3,8 +3,8 @@ include(BCMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_static_assert)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_typeof
-                       ${CMAKE_WORKSPACE_NAME}::static_assert
-                       )
+                        boost::static_assert
+                        )
 
 # Copyright (C) 2006 Vladimir Prus
 # Copyright (C) 2006 Arkadiy Vertleyb
@@ -39,11 +39,11 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_typeof
 
 #    for local t in [ set.difference [ glob *.cpp ] : odr1.cpp odr2.cpp ]
 file(GLOB test_sources RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" *_test*.cpp)
-foreach(item ${test_sources})
-    if(${item} MATCHES "odr*.cpp")
-        list(REMOVE_ITEM test_sources ${item})
-    endif(${item} MATCHES "odr*.cpp")
-endforeach(item)
+FOREACH(item ${test_sources})
+    IF(${item} MATCHES "odr*.cpp")
+        LIST(REMOVE_ITEM test_sources ${item})
+    ENDIF(${item} MATCHES "odr*.cpp")
+ENDFOREACH(item)
 
 foreach(source IN LISTS test_sources)
     message(${source})
@@ -56,11 +56,11 @@ foreach(source IN LISTS test_sources)
     target_compile_definitions(typeof_test_${name}__emulation PUBLIC BOOST_TYPEOF_EMULATION)
 endforeach()
 
-cm_test(NAME typeof_test_odr_native SOURCES odr1.cpp)
+cm_test(NAME typeof_test_odr_native SOURCES ${CURRENT_TEST_SOURCES_DIR}/odr1.cpp)
 target_compile_definitions(typeof_test_odr_native PUBLIC BOOST_TYPEOF_NATIVE)
-cm_test(NAME typeof_test_odr_emulation SOURCES odr1.cpp)
+cm_test(NAME typeof_test_odr_emulation SOURCES ${CURRENT_TEST_SOURCES_DIR}/odr1.cpp)
 target_compile_definitions(typeof_test_odr_emulation PUBLIC BOOST_TYPEOF_EMULATION)
-cm_test(NAME typeof_test_odr_no_uns SOURCES odr_no_uns1.cpp)
+cm_test(NAME typeof_test_odr_no_uns SOURCES ${CURRENT_TEST_SOURCES_DIR}/odr_no_uns1.cpp)
 target_compile_definitions(typeof_test_odr_no_uns PUBLIC BOOST_TYPEOF_EMULATION)
 
 

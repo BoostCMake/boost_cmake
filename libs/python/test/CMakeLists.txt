@@ -3,8 +3,8 @@ include(BCMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_assert)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_python
-                       ${CMAKE_WORKSPACE_NAME}::assert
-                       )
+                        boost::assert
+                        )
 
 # Copyright David Abrahams 2006. Distributed under the Boost
 # Software License, Version 1.0. (See accompanying
@@ -34,12 +34,12 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_python
 # --- unit tests of library components ---
 
 
-cm_test(NAME python_test_exec SOURCES exec.cpp ARGS exec.py)
-cm_test(NAME python_test_import_ SOURCES import_.cpp ARGS import_.py)
-cm_test(NAME python_test_indirect_traits_test SOURCES indirect_traits_test.cpp COMPILE_ONLY)
-cm_test(NAME python_test_destroy_test SOURCES destroy_test.cpp)
-cm_test(NAME python_test_if_else SOURCES if_else.cpp)
-cm_test(NAME python_test_result SOURCES result.cpp)
-cm_test(NAME python_test_string_literal SOURCES string_literal.cpp COMPILE_ONLY)
-cm_test(NAME python_test_select_from_python_test SOURCES select_from_python_test.cpp)
+cm_test(NAME python_test_exec SOURCES ${CURRENT_TEST_SOURCES_DIR}/exec.cpp ARGS exec.py)
+cm_test(NAME python_test_import_ SOURCES ${CURRENT_TEST_SOURCES_DIR}/import_.cpp ARGS import_.py)
+cm_test(NAME python_test_indirect_traits_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/indirect_traits_test.cpp COMPILE_ONLY)
+cm_test(NAME python_test_destroy_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/destroy_test.cpp)
+cm_test(NAME python_test_if_else SOURCES ${CURRENT_TEST_SOURCES_DIR}/if_else.cpp)
+cm_test(NAME python_test_result SOURCES ${CURRENT_TEST_SOURCES_DIR}/result.cpp)
+cm_test(NAME python_test_string_literal SOURCES ${CURRENT_TEST_SOURCES_DIR}/string_literal.cpp COMPILE_ONLY)
+cm_test(NAME python_test_select_from_python_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/select_from_python_test.cpp)
 target_compile_definitions(python_test_select_from_python_test PUBLIC BOOST_PYTHON_STATIC_LIB)

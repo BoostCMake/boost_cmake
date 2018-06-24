@@ -6,11 +6,11 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_foreach)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_heap
-                       ${CMAKE_WORKSPACE_NAME}::random
-                       ${CMAKE_WORKSPACE_NAME}::smart_ptr
-                       ${CMAKE_WORKSPACE_NAME}::test
-                       ${CMAKE_WORKSPACE_NAME}::foreach
-                       )
+                        boost::random
+                        boost::smart_ptr
+                        boost::test
+                        boost::foreach
+                        )
 
 # (C) Copyright 2010: Tim Blechmann
 # Distributed under the Boost Software License, Version 1.0.

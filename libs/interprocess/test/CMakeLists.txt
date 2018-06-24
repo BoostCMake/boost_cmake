@@ -5,10 +5,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_multi_index)
 find_package(${CMAKE_WORKSPACE_NAME}_timer)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_interprocess
-                       ${CMAKE_WORKSPACE_NAME}::functional
-                       ${CMAKE_WORKSPACE_NAME}::multi_index
-                       ${CMAKE_WORKSPACE_NAME}::timer
-                       )
+                        boost::functional
+                        boost::multi_index
+                        boost::timer
+                        )
 
 # Boost Interprocess Library Test Jamfile
 
