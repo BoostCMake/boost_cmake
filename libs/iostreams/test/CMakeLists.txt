@@ -68,7 +68,6 @@ cm_test(NAME iostreams_test_null_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/null_t
 cm_test(NAME iostreams_test_operation_sequence_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/operation_sequence_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME iostreams_test_pipeline_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/pipeline_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME iostreams_test_regex_filter_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/regex_filter_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-message(!!!!!!!!111 ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME iostreams_test_restrict_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/restrict_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME iostreams_test_seekable_file_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/seekable_file_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME iostreams_test_seekable_filter_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/seekable_filter_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
