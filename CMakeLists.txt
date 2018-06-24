@@ -3,7 +3,13 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/share/modules/cma
 
 include(BCMConfig)
 
-cm_workspace(boost)
+set(BUILD_WITH_SOURCES_DIR "Sources directory" CACHE string "")
+
+if(BUILD_WITH_SOURCES_DIR)
+    cm_workspace(boost SOURCES_DIR ${BUILD_WITH_SOURCES_DIR})
+else()
+    cm_workspace(boost)
+endif()
 
 macro(find_package NAME)
     if(NOT "${NAME}" MATCHES "^${CMAKE_WORKSPACE_NAME}_.*$" AND NOT "${NAME}" STREQUAL BCM)
@@ -18,13 +24,8 @@ set(EXCLUDE_LIBS)
 option(BUILD_SHARED_LIBS "Build shared libraries" TRUE)
 option(BUILD_MULTITHREADED_LIBRARIES "Build multithreaded libraries" TRUE)
 
-set(BUILD_WITH_SOURCES_DIR "Sources directory" CACHE string "")
 set(BUILD_WITH_TARGET_ARCHITECTURE "" CACHE string "Target build architecture")
 set(APPLE_CODE_SIGN_IDENTITY "iPhone Developer: nemo1369@gmail.com (S686GL5RJ6)" CACHE STRING "Sign identity name")
-
-if(BUILD_WITH_SOURCES_DIR)
-    set(CMAKE_SOURCES_DIR ${BUILD_WITH_SOURCES_DIR})
-endif()
 
 #if(BUILD_WITH_TARGET_ARCHITECTURE)
 #    set(CMAKE_TARGET_ARCHITECTURE ${BUILD_WITH_TARGET_ARCHITECTURE})
