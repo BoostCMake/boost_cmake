@@ -18,7 +18,7 @@ find_package(${CMAKE_WORKSPACE_NAME}_config)
 find_package(${CMAKE_WORKSPACE_NAME}_unordered)
 find_package(${CMAKE_WORKSPACE_NAME}_align)
 
-list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(ICU COMPONENTS uc dt in)
 find_package(ICONV)
 
