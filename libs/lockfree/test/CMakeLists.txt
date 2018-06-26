@@ -1,4 +1,4 @@
-include(BCMTest)
+include(CMTest)
 
 find_package(${CMAKE_WORKSPACE_NAME}_thread)
 find_package(${CMAKE_WORKSPACE_NAME}_interprocess)

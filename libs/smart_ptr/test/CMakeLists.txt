@@ -1,4 +1,4 @@
-include(BCMTest)
+include(CMTest)
 
 find_package(${CMAKE_WORKSPACE_NAME}_align)
 find_package(${CMAKE_WORKSPACE_NAME}_functional)

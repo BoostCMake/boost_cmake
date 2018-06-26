@@ -8,8 +8,8 @@ cm_project(${CMAKE_WORKSPACE_NAME} mpi)
 
 
 find_package(BCM)
-include(BCMDeploy)
-include(BCMSetupVersion)
+include(CMDeploy)
+include(CMSetupVersion)
 
 find_package(${CMAKE_WORKSPACE_NAME}_assert)
 find_package(${CMAKE_WORKSPACE_NAME}_throw_exception)

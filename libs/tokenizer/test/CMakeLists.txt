@@ -1,4 +1,4 @@
-include(BCMTest)
+include(CMTest)
 
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_array)
