@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-find_package(BCM)
+find_package(CM)
 include(CMDeploy)
 include(CMSetupVersion)
 include(CheckTypeSize)

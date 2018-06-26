@@ -7,7 +7,7 @@ endif()
 cm_project(${CMAKE_WORKSPACE_NAME} mpi)
 
 
-find_package(BCM)
+find_package(CM)
 include(CMDeploy)
 include(CMSetupVersion)
 

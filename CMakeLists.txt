@@ -14,7 +14,7 @@ else()
 endif()
 
 macro(find_package NAME)
-    if(NOT "${NAME}" MATCHES "^${CMAKE_WORKSPACE_NAME}_.*$" AND NOT "${NAME}" STREQUAL BCM)
+    if(NOT "${NAME}" MATCHES "^${CMAKE_WORKSPACE_NAME}_.*$" AND NOT "${NAME}" STREQUAL CM)
         _find_package(${ARGV})
     else()
         set(${ARGV0}_FOUND ON CACHE BOOL "")
