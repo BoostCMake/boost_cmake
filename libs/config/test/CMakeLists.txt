@@ -1,4 +1,4 @@
-include(BCMTest)
+include(CMTest)
 
 patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CURRENT_TEST_SOURCES_DIR})
 
@@ -18,7 +18,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_config
                         )
 
 
-include(BCMProperties)
+include(CMProperties)
 
 find_package(Threads)
 add_library(config_threads INTERFACE)

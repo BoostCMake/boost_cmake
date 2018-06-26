@@ -1,8 +1,8 @@
-include(BCMTest)
+include(CMTest)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_predef)
 
-include(BCMProperties)
+include(CMProperties)
 
 cm_test(NAME predef_test_info_as_cpp SOURCES ${CURRENT_TEST_SOURCES_DIR}/info_as_cpp.cpp)
 cm_test(NAME predef_test_info_as_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/info_as_c.c)

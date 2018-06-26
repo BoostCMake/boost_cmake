@@ -1,8 +1,8 @@
-include(BCMTest)
+include(CMTest)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_system
                         )
-include(BCMProperties)
+include(CMProperties)
 
 add_library(system_test_throw_test ${CURRENT_TEST_SOURCES_DIR}/throw_test.cpp)
 cm_mark_as_test(system_test_throw_test)

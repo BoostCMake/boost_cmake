@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
 
 
-find_package(BCM)
-include(BCMDeploy)
-include(BCMSetupVersion)
+find_package(CM)
+include(CMDeploy)
+include(CMSetupVersion)
 
 cm_project(${CMAKE_WORKSPACE_NAME} tr1)
 

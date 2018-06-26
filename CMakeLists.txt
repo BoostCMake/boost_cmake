@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/share/modules/cmake")
+list(APPEND CMAKE_MODULE_PATH
+     "${CMAKE_CURRENT_LIST_DIR}/cmake"
+     "${CMAKE_CURRENT_LIST_DIR}/cmake/modules/share/modules/cmake")
 
-include(BCMConfig)
+include(CMConfig)
 
 set(BUILD_WITH_SOURCES_DIR "Sources directory" CACHE string "")
 
@@ -12,7 +14,7 @@ else()
 endif()
 
 macro(find_package NAME)
-    if(NOT "${NAME}" MATCHES "^${CMAKE_WORKSPACE_NAME}_.*$" AND NOT "${NAME}" STREQUAL BCM)
+    if(NOT "${NAME}" MATCHES "^${CMAKE_WORKSPACE_NAME}_.*$" AND NOT "${NAME}" STREQUAL CM)
         _find_package(${ARGV})
     else()
         set(${ARGV0}_FOUND ON CACHE BOOL "")

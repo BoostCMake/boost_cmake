@@ -1,4 +1,4 @@
-include(BCMTest)
+include(CMTest)
 
 find_package(${CMAKE_WORKSPACE_NAME}_functional)
 find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)

@@ -1,4 +1,4 @@
-include(BCMTest)
+include(CMTest)
 
 find_package(${CMAKE_WORKSPACE_NAME}_static_assert)
 find_package(${CMAKE_WORKSPACE_NAME}_type_traits)
@@ -12,7 +12,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_core
                         boost::typeof
                         )
 
-include(BCMProperties)
+include(CMProperties)
 
 find_package(${CMAKE_WORKSPACE_NAME}_static_assert)
 

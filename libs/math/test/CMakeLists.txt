@@ -1,4 +1,4 @@
-include(BCMTest)
+include(CMTest)
 
 patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
 patch_directory(${CURRENT_SOURCES_DIR}/octonion ${CMAKE_SOURCES_DIR}/libs/math/octonion/files ${CMAKE_BINARY_DIR}/libs/math/octonion/)

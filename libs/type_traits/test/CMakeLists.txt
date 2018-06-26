@@ -1,4 +1,4 @@
-include(BCMTest)
+include(CMTest)
 
 find_package(${CMAKE_WORKSPACE_NAME}_function)
 find_package(${CMAKE_WORKSPACE_NAME}_mpl)
@@ -10,7 +10,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_type_traits
                         boost::move
                         )
 
-include(BCMProperties)
+include(CMProperties)
 
 # TODO: We currently need to prepend ${CMAKE_WORKSPACE_NAME}_type_traits_ to all the tests
 # we add here, otherwise some of them will conflict with tests in other

@@ -1,4 +1,4 @@
-include(BCMTest)
+include(CMTest)
 
 find_package(${CMAKE_WORKSPACE_NAME}_random)
 find_package(${CMAKE_WORKSPACE_NAME}_smart_ptr)
