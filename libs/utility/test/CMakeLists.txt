@@ -1,6 +1,6 @@
 include(CMTest)
 
-patch_directory(${CURRENT_TEST_SOURCES_DIR}/.. ${CMAKE_CURRENT_SOURCE_DIR}/../files ${CMAKE_CURRENT_BINARY_DIR}/..)
+patch_directory(${CURRENT_SOURCES_DIR} ${CMAKE_SOURCE_DIR}/libs/utility/files ${CMAKE_BINARY_DIR}/libs/utility)
 
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_random)

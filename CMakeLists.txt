@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
+
 list(APPEND CMAKE_MODULE_PATH
      "${CMAKE_CURRENT_LIST_DIR}/cmake"
      "${CMAKE_CURRENT_LIST_DIR}/cmake/modules/share/modules/cmake")
