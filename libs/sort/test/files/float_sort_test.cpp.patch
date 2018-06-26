@@ -1,6 +1,4 @@
-9c9,10
-< 
----
+9a9,10
 > #define BOOST_TEST_MAIN
 > #include <boost/test/unit_test.hpp>
 125a127,133
