@@ -1,9 +1,9 @@
 include(BCMTest)
 
 patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
-patch_directory(${CURRENT_TEST_SOURCES_DIR}/../octonion/ ${CMAKE_CURRENT_SOURCE_DIR}/../octonion/files ${CMAKE_CURRENT_BINARY_DIR}/../octonion/)
-patch_directory(${CURRENT_TEST_SOURCES_DIR}/../quaternion ${CMAKE_CURRENT_SOURCE_DIR}/../quaternion/files ${CMAKE_CURRENT_BINARY_DIR}/../quaternion/)
-patch_directory(${CURRENT_TEST_SOURCES_DIR}/../special_functions ${CMAKE_CURRENT_SOURCE_DIR}/../special_functions/files ${CMAKE_CURRENT_BINARY_DIR}/../special_functions/)
+patch_directory(${CURRENT_SOURCES_DIR}/octonion ${CMAKE_SOURCES_DIR}/libs/math/octonion/files ${CMAKE_BINARY_DIR}/libs/math/octonion/)
+patch_directory(${CURRENT_SOURCES_DIR}/quaternion ${CMAKE_SOURCES_DIR}/libs/math/quaternion/files ${CMAKE_BINARY_DIR}/libs/math/quaternion/)
+patch_directory(${CURRENT_SOURCES_DIR}/special_functions ${CMAKE_SOURCES_DIR}/libs/math/special_functions/files ${CMAKE_BINARY_DIR}/libs/math/special_functions/)
 
 
 find_package(${CMAKE_WORKSPACE_NAME}_regex)
