@@ -2,6 +2,10 @@
 < 
 ---
 > #define BOOST_TEST_MAIN
+26c26
+< #include <boost/coroutine/asymmetric_coroutine.hpp>
+---
+> #include <boost/coroutine/asymmetric_coroutine_patched.hpp>
 52c52
 <         state( false)
 ---
