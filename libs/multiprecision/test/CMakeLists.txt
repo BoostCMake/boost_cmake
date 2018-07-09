@@ -1,5 +1,7 @@
 include(CMTest)
 
+patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
+
 find_package(${CMAKE_WORKSPACE_NAME}_algorithm)
 find_package(${CMAKE_WORKSPACE_NAME}_chrono)
 find_package(${CMAKE_WORKSPACE_NAME}_exception)
@@ -56,9 +58,9 @@ cm_test(NAME multiprecision_test_test_arithmetic_cpp_dec_float_2 SOURCES ${CURRE
 cm_test(NAME multiprecision_test_test_arithmetic_cpp_dec_float_3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_cpp_dec_float_3.cpp)
 
 if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (NOT PROJECT_VERSION LESS 1.60.0))
-    cm_test(NAME multiprecision_test_test_arithmetic_cpp_bin_float_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_cpp_bin_float_1.cpp)
-    cm_test(NAME multiprecision_test_test_arithmetic_cpp_bin_float_2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_cpp_bin_float_2.cpp)
-    cm_test(NAME multiprecision_test_test_arithmetic_cpp_bin_float_3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_cpp_bin_float_3.cpp)
+    cm_test(NAME multiprecision_test_test_arithmetic_cpp_bin_float_1 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_arithmetic_cpp_bin_float_1.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+    cm_test(NAME multiprecision_test_test_arithmetic_cpp_bin_float_2 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_arithmetic_cpp_bin_float_2.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+    cm_test(NAME multiprecision_test_test_arithmetic_cpp_bin_float_3 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_arithmetic_cpp_bin_float_3.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 endif()
 
 try_compile(HAS_MPFR ${CURRENT_TEST_SOURCES_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_mpfr.cpp)
@@ -252,13 +254,13 @@ endif()
 # cm_test(NAME test_cpp_bin_float_conv SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_bin_float_conv.cpp)
 
 if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (PROJECT_VERSION GREATER 1.59))
-    cm_test(NAME multiprecision_test_test_cpp_bin_float_io_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_bin_float_io.cpp)
+    cm_test(NAME multiprecision_test_test_cpp_bin_float_io_1 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_cpp_bin_float_io.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
     target_compile_definitions(multiprecision_test_test_cpp_bin_float_io_1 PUBLIC TEST1release)
 
-    cm_test(NAME multiprecision_test_test_cpp_bin_float_io_2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_bin_float_io.cpp)
+    cm_test(NAME multiprecision_test_test_cpp_bin_float_io_2 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_cpp_bin_float_io.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
     target_compile_definitions(multiprecision_test_test_cpp_bin_float_io_2 PUBLIC TEST2release)
 
-    cm_test(NAME multiprecision_test_test_cpp_bin_float SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_bin_float.cpp)
+    cm_test(NAME multiprecision_test_test_cpp_bin_float SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_cpp_bin_float.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
     target_compile_definitions(multiprecision_test_test_cpp_bin_float PUBLIC TEST_MPFRrelease)
 
     cm_test(NAME multiprecision_test_test_checked_cpp_int SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_checked_cpp_int.cpp)
@@ -394,13 +396,13 @@ if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (NOT PROJECT_VERSION LESS 1.60.
     cm_test(NAME multiprecision_test_test_cpp_dec_float_serial_2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_dec_float_serial.cpp)
     target_compile_definitions(multiprecision_test_test_cpp_dec_float_serial_2 PUBLIC TEST2)
     # cm_test(NAME test_float128_serial SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_float128_serial.cpp)
-    cm_test(NAME multiprecision_test_test_cpp_int_serial_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_int_serial.cpp)
+    cm_test(NAME multiprecision_test_test_cpp_int_serial_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_int_serial.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
     target_compile_definitions(multiprecision_test_test_cpp_int_serial_1 PUBLIC TEST1)
-    cm_test(NAME multiprecision_test_test_cpp_int_serial_2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_int_serial.cpp)
+    cm_test(NAME multiprecision_test_test_cpp_int_serial_2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_int_serial.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
     target_compile_definitions(multiprecision_test_test_cpp_int_serial_2 PUBLIC TEST2)
-    cm_test(NAME multiprecision_test_test_cpp_int_serial_3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_int_serial.cpp)
+    cm_test(NAME multiprecision_test_test_cpp_int_serial_3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_int_serial.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
     target_compile_definitions(multiprecision_test_test_cpp_int_serial_3 PUBLIC TEST3)
-    cm_test(NAME multiprecision_test_test_cpp_int_serial_4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_int_serial.cpp)
+    cm_test(NAME multiprecision_test_test_cpp_int_serial_4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_int_serial.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
     target_compile_definitions(multiprecision_test_test_cpp_int_serial_4 PUBLIC TEST4)
 
     cm_test(NAME multiprecision_test_test_bin_dec_float_serial_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_bin_float_serial.cpp)
