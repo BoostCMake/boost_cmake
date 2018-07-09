@@ -1,0 +1,23 @@
+sudo: required
+before_install:
+  - sudo apt-get install -y zlib1g-dev libbz2-dev mpich
+  - sudo apt-get install -y python3-dev python3-pip python3-tk python3-lxml python3-six 
+  - sudo apt-get install -y libssl-dev #for OPpenSSl
+  - sudo apt-get install -y libicu-dev # for ICU  
+  - sudo apt-get install -y git
+  - sudo git clone --recurse-submodules https://github.com/boostorg/boost.git -b boost-1.58.0
+  
+# Enable C++ support
+language: cpp
+
+# Compiler selection
+compiler:
+  - gcc
+  
+install:
+
+# Build steps
+script:
+  - mkdir build
+  - cd build
+  - cmake .. -DBUILD_WITH_SOURCES_DIR=../boost-1.58.0 && make Build All && make tests
