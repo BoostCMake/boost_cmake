@@ -1,0 +1,4 @@
+12c12
+< #include <boost/coroutine/detail/symmetric_coroutine_call.hpp>
+---
+> #include <boost/coroutine/detail/symmetric_coroutine_call_patched.hpp>
