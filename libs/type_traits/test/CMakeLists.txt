@@ -62,7 +62,7 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
 endif()
 
 if (APPLE)
-    target_compile_options(type_traits_test_promote_enum_msvc_bug_test PRIVATE -Wall -Wno-unused-l-typedef)
+    target_compile_options(type_traits_test_promote_enum_msvc_bug_test PRIVATE -Wall -Wno-unused-local-typedef)
     target_compile_options(type_traits_test_promote_basic_test PRIVATE -Wall -Wno-unused-local-typedef)
     target_compile_options(type_traits_test_promote_enum_test PRIVATE -Wall -Wno-unused-local-typedef)
     target_compile_options(type_traits_test_promote_mpl_test PRIVATE -Wall -Wno-unused-local-typedef)
