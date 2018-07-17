@@ -36,15 +36,13 @@ set(APPLE_CODE_SIGN_IDENTITY "iPhone Developer: nemo1369@gmail.com (S686GL5RJ6)"
 #    target_architecture(CMAKE_TARGET_ARCHITECTURE)
 #endif()
 
-find_package(PythonLibs)
+set(Python_ADDITIONAL_VERSIONS 2)
+find_package(PythonLibs 2 EXACT REQUIRED)
 if(NOT PythonLibs_FOUND)
     list(APPEND EXCLUDE_LIBS python)
 endif()
+message (STATUS "Found Python: ${PYTHON_LIBRARIES}")
 
-find_package(PythonLibs)
-if(NOT PythonLibs_FOUND)
-    list(APPEND EXCLUDE_LIBS python)
-endif()
 
 find_package(MPI)
 if(NOT MPI_FOUND)
