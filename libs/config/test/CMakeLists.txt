@@ -62,6 +62,7 @@ set(SKIP_TESTS
     ${CMAKE_WORKSPACE_NAME}_no_cxx11_std_align.ipp
     ${CMAKE_WORKSPACE_NAME}_no_cxx11_trailing_result_types.ipp
     ${CMAKE_WORKSPACE_NAME}_no_cxx14_binary_literals.ipp
+    ${CMAKE_WORKSPACE_NAME}_no_cxx14_digit_separator.ipp
     ${CMAKE_WORKSPACE_NAME}_no_decltype.ipp
     ${CMAKE_WORKSPACE_NAME}_no_decltype_n3276.ipp
     ${CMAKE_WORKSPACE_NAME}_no_ded_typename.ipp
@@ -77,6 +78,9 @@ foreach(TEST ${TESTS})
         parse_test(${TEST} config_test)
     endif()
 endforeach()
+
+parse_test(${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_WORKSPACE_NAME}_no_cxx14_digit_separator.ipp config_test)
+FILE(REMOVE ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_WORKSPACE_NAME}_no_cxx14_digit_separator.ipp)
 
 cm_test(NAME config_test_config_test_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test_c.c)
 cm_test(NAME config_test_config_info SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_info.cpp)
