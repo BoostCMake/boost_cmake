@@ -2,7 +2,6 @@ include(CMTest)
 
 patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
 
-
 find_package(${CMAKE_WORKSPACE_NAME}_tr1)
 find_package(${CMAKE_WORKSPACE_NAME}_core)
 find_package(${CMAKE_WORKSPACE_NAME}_type_traits)
@@ -80,7 +79,6 @@ foreach(TEST ${TESTS})
 endforeach()
 
 parse_test(${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_WORKSPACE_NAME}_no_cxx14_digit_separator.ipp config_test)
-FILE(REMOVE ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_WORKSPACE_NAME}_no_cxx14_digit_separator.ipp)
 
 cm_test(NAME config_test_config_test_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test_c.c)
 cm_test(NAME config_test_config_info SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_info.cpp)

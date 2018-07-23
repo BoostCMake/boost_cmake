@@ -18,6 +18,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_config)
 find_package(${CMAKE_WORKSPACE_NAME}_unordered)
 find_package(${CMAKE_WORKSPACE_NAME}_align)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(ICU COMPONENTS uc dt in)
 find_package(ICONV)
