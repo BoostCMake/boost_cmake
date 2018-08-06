@@ -32,6 +32,9 @@ function(thread_run)
     string(REPLACE "." "_" NAME "${NAME}")
     cm_test(NAME thread_test_${NAME} SOURCES ${CURRENT_TEST_SOURCES_DIR}/winrt_init.cpp ${PARSE_SOURCES_PREFIX}/${PARSE_SOURCES} ${ADD_ARG})
     cm_test(NAME thread_test_${NAME}_lib SOURCES ${CURRENT_TEST_SOURCES_DIR}/../src/tss_null.cpp ${CURRENT_TEST_SOURCES_DIR}/winrt_init.cpp ${PARSE_SOURCES_PREFIX}/${PARSE_SOURCES} ${ADD_ARG})
+    target_compile_options(thread_test_${NAME} PRIVATE -std=c++11)
+    target_compile_options(thread_test_${NAME}_lib PRIVATE -std=c++11)
+
 endfunction(thread_run)
 
 function(thread_run_h SOURCES)

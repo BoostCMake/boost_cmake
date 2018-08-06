@@ -18,8 +18,6 @@ find_package(${CMAKE_WORKSPACE_NAME}_config)
 find_package(${CMAKE_WORKSPACE_NAME}_unordered)
 find_package(${CMAKE_WORKSPACE_NAME}_align)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(ICU COMPONENTS uc dt in)
 find_package(ICONV)
@@ -52,6 +50,7 @@ if(BUILD_SHARED_LIBS)
     target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_LOCALE_DYN_LINK=1)
 endif()
 
+target_compile_options(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -std=c++11)
 set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME locale)
 
 if(BOOST_LOCALE_WITH_STD)
