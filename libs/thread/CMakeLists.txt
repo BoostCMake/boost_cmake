@@ -39,9 +39,6 @@ find_package(${CMAKE_WORKSPACE_NAME}_throw_exception)
 
 cm_setup_version(VERSION 1.58.0)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-message(STATUS "Compiler is g++ c++11")
-
 add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
         ${CURRENT_SOURCES_DIR}/src/future.cpp
         ${CURRENT_SOURCES_DIR}/src/tss_null.cpp
@@ -52,6 +49,8 @@ if(BUILD_SHARED_LIBS)
 else()
     target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_THREAD_USE_LIB=1)
 endif()
+
+target_compile_options(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -std=c++11)
 
 set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME thread)
 
