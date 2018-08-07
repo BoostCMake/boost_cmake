@@ -1,0 +1,44 @@
+0a1,2
+> #define BOOST_TEST_MAIN
+> #include <boost/test/unit_test.hpp>
+13,22c15
+< test_suite*
+< init_unit_test_suite( int argc, char* argv[] )
+< {
+<     test_suite* ts1 = BOOST_TEST_SUITE( "test_suite1" );
+<     ts1->add( BOOST_TEST_CASE( &test_case1 ) );
+<     ts1->add( BOOST_TEST_CASE( &test_case2 ) );
+< 
+<     test_suite* ts2 = BOOST_TEST_SUITE( "test_suite2" );
+<     ts2->add( BOOST_TEST_CASE( &test_case3 ) );
+<     ts2->add( BOOST_TEST_CASE( &test_case4 ) );
+---
+> BOOST_AUTO_TEST_SUITE(test_suite)
+24,28c17,35
+<     framework::master_test_suite().add( ts1 );
+<     framework::master_test_suite().add( ts2 );
+< 
+<     return 0;
+< }
+---
+>     BOOST_AUTO_TEST_CASE(test_case1_case)
+>     {
+>         test_case1();
+>     }
+> 
+>     BOOST_AUTO_TEST_CASE(test_case2_case)
+>     {
+>         test_case2();
+>     }
+> 
+>     BOOST_AUTO_TEST_CASE(test_case3_case)
+>     {
+>         test_case3();
+>     }
+> 
+>     BOOST_AUTO_TEST_CASE(test_case4_case)
+>     {
+>         test_case4();
+>     }
+29a37
+> BOOST_AUTO_TEST_SUITE_END()

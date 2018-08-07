@@ -1,0 +1,25 @@
+10a11
+> #define BOOST_TEST_MAIN
+70c71,73
+< boost::unit_test::test_suite *init_unit_test_suite(int, char *[])
+---
+> BOOST_AUTO_TEST_SUITE(tests_for_try_lexical_convert_suite)
+> 
+> BOOST_AUTO_TEST_CASE(try_uncommon_cases_case)
+72,75c75,76
+<     boost::unit_test::test_suite *suite =
+<         BOOST_TEST_SUITE("Tests for try_lexical_convert");
+<     suite->add(BOOST_TEST_CASE(&try_uncommon_cases));
+<     suite->add(BOOST_TEST_CASE(&try_common_cases));
+---
+>     try_uncommon_cases();
+> }
+77c78,80
+<     return suite;
+---
+> BOOST_AUTO_TEST_CASE(try_common_cases_case)
+> {
+>     try_common_cases();
+78a82,83
+> 
+> BOOST_AUTO_TEST_SUITE_END()

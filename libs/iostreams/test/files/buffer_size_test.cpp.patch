@@ -1,0 +1,17 @@
+7a8
+> #define BOOST_TEST_MAIN
+77c78,80
+< test_suite* init_unit_test_suite(int, char* [])
+---
+> BOOST_AUTO_TEST_SUITE(buffer_size_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(buffer_size_test_case)
+79,81c82
+<     test_suite* test = BOOST_TEST_SUITE("buffer_size test");
+<     test->add(BOOST_TEST_CASE(&buffer_size_test));
+<     return test;
+---
+>     buffer_size_test();
+82a84,85
+> 
+> BOOST_AUTO_TEST_SUITE_END()

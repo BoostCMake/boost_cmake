@@ -1,0 +1,21 @@
+10a11
+> #define BOOST_TEST_MAIN
+191,197c192
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.algorithm.find_end" );
+< 
+<     test->add( BOOST_TEST_CASE( &boost_range_test_algorithm_find_end::test_find_end ) );
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_algorithm_find_end_suite)
+199c194,196
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_range_test_algorithm_find_end_test_find_end_case)
+> {
+>     boost_range_test_algorithm_find_end::test_find_end();
+200a198,199
+> 
+> BOOST_AUTO_TEST_SUITE_END()

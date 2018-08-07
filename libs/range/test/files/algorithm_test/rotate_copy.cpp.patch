@@ -1,0 +1,21 @@
+8a9
+> #define BOOST_TEST_MAIN
+106,112c107
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.algorithm.rotate_copy" );
+< 
+<     test->add( BOOST_TEST_CASE( &test_rotate_copy ) );
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_algorithm_rotate_copy_suite)
+114c109,111
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test_rotate_copy_case)
+> {
+>     test_rotate_copy();
+115a113,114
+> 
+> BOOST_AUTO_TEST_SUITE_END()

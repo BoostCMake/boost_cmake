@@ -1,0 +1,21 @@
+8a9
+> #define BOOST_TEST_MAIN
+115a117
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_algorithm_binary_search_suite)
+117,118c119
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+---
+> BOOST_AUTO_TEST_CASE(boost_test_binary_search_case)
+120,125c121
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.algorithm.binary_search" );
+< 
+<     test->add( BOOST_TEST_CASE( &boost::test_binary_search ) );
+< 
+<     return test;
+---
+>     boost::test_binary_search();
+126a123,124
+> 
+> BOOST_AUTO_TEST_SUITE_END()

@@ -1,0 +1,21 @@
+10a11
+> #define BOOST_TEST_MAIN
+117,123c118
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.algorithm.find_if" );
+< 
+<     test->add( BOOST_TEST_CASE( &boost_range_test_algorithm_find_if::test_find_if ) );
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_algorithm_find_if_suite)
+125c120,122
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_range_test_algorithm_find_if_test_find_if_case)
+> {
+>     boost_range_test_algorithm_find_if::test_find_if();
+126a124,125
+> 
+> BOOST_AUTO_TEST_SUITE_END()

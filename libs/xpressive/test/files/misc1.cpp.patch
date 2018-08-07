@@ -1,0 +1,52 @@
+7a8
+> #define BOOST_TEST_MAIN
+237,240c238,240
+< ///////////////////////////////////////////////////////////////////////////////
+< // init_unit_test_suite
+< //
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+---
+> BOOST_AUTO_TEST_SUITE(miscelaneous_tests_and_examples_from_the_docs_suite)
+> 
+> BOOST_AUTO_TEST_CASE(test1_case)
+242c242,243
+<     test_suite *test = BOOST_TEST_SUITE("miscelaneous tests and examples from the docs");
+---
+>     test1();
+> }
+244,249c245,248
+<     test->add(BOOST_TEST_CASE(&test1));
+<     test->add(BOOST_TEST_CASE(&test2));
+<     test->add(BOOST_TEST_CASE(&test3));
+<     test->add(BOOST_TEST_CASE(&test4));
+<     test->add(BOOST_TEST_CASE(&test5));
+<     test->add(BOOST_TEST_CASE(&test6));
+---
+> BOOST_AUTO_TEST_CASE(test2_case)
+> {
+>     test2();
+> }
+251c250,252
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test3_case)
+> {
+>     test3();
+252a254,270
+> 
+> BOOST_AUTO_TEST_CASE(test4_case)
+> {
+>     test4();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test5_case)
+> {
+>     test5();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test6_case)
+> {
+>     test6();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()

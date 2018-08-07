@@ -1,0 +1,290 @@
+include(CMTest)
+
+find_package(${CMAKE_WORKSPACE_NAME}_random)
+find_package(${CMAKE_WORKSPACE_NAME}_functional)
+find_package(${CMAKE_WORKSPACE_NAME}_dynamic_bitset)
+find_package(${CMAKE_WORKSPACE_NAME}_bind)
+find_package(${CMAKE_WORKSPACE_NAME}_assign)
+find_package(${CMAKE_WORKSPACE_NAME}_lambda)
+
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_spirit
+                        boost::random
+                        boost::functional
+                        boost::dynamic_bitset
+                        boost::bind
+                        boost::assign
+                        boost::lambda
+                        )
+
+#==============================================================================
+#   Copyright (c) 2001-2011 Joel de Guzman
+#   Copyright (c) 2001-2012 Hartmut Kaiser
+#   Copyright (c)      2011 Bryce Lelbach
+#
+#   Use, modification and distribution is subject to the Boost Software
+#   License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
+#   http://www.boost.org/LICENSE_1_0.txt)
+#==============================================================================
+
+# bring in rules for testing
+
+###############################################################################
+
+add_library(test_spirit_flags INTERFACE)
+target_include_directories(test_spirit_flags INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+cm_test_link_libraries(test_spirit_flags)
+
+
+###############################################################################
+
+###########################################################################
+
+
+cm_test(NAME spirit_test_qi_actions SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/actions.cpp)
+cm_test(NAME spirit_test_qi_actions2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/actions2.cpp)
+cm_test(NAME spirit_test_qi_alternative SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/alternative.cpp)
+cm_test(NAME spirit_test_qi_attr SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/attr.cpp)
+cm_test(NAME spirit_test_qi_attribute1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/attribute1.cpp)
+cm_test(NAME spirit_test_qi_attribute2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/attribute2.cpp)
+cm_test(NAME spirit_test_qi_and_predicate SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/and_predicate.cpp)
+cm_test(NAME spirit_test_qi_auto SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/auto.cpp)
+cm_test(NAME spirit_test_qi_binary SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/binary.cpp)
+cm_test(NAME spirit_test_qi_bool1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/bool1.cpp)
+cm_test(NAME spirit_test_qi_bool2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/bool2.cpp)
+cm_test(NAME spirit_test_qi_char1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/char1.cpp)
+cm_test(NAME spirit_test_qi_char2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/char2.cpp)
+cm_test(NAME spirit_test_qi_char_class SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/char_class.cpp)
+cm_test(NAME spirit_test_qi_debug SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/debug.cpp)
+cm_test(NAME spirit_test_qi_difference SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/difference.cpp)
+cm_test(NAME spirit_test_qi_encoding SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/encoding.cpp)
+cm_test(NAME spirit_test_qi_end SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/end.cpp)
+cm_test(NAME spirit_test_qi_eps SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/eps.cpp)
+cm_test(NAME spirit_test_qi_expect SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/expect.cpp)
+cm_test(NAME spirit_test_qi_grammar SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/grammar.cpp)
+cm_test(NAME spirit_test_qi_int1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/int1.cpp)
+cm_test(NAME spirit_test_qi_int2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/int2.cpp)
+cm_test(NAME spirit_test_qi_int3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/int3.cpp)
+cm_test(NAME spirit_test_qi_kleene SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/kleene.cpp)
+cm_test(NAME spirit_test_qi_lazy SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/lazy.cpp)
+cm_test(NAME spirit_test_qi_lexeme SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/lexeme.cpp)
+cm_test(NAME spirit_test_qi_lit1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/lit1.cpp)
+cm_test(NAME spirit_test_qi_lit2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/lit2.cpp)
+cm_test(NAME spirit_test_qi_list SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/list.cpp)
+cm_test(NAME spirit_test_qi_hold SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/hold.cpp)
+cm_test(NAME spirit_test_qi_match_manip1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/match_manip1.cpp)
+cm_test(NAME spirit_test_qi_match_manip2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/match_manip2.cpp)
+cm_test(NAME spirit_test_qi_match_manip3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/match_manip3.cpp)
+cm_test(NAME spirit_test_qi_match_manip_attr SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/match_manip_attr.cpp)
+cm_test(NAME spirit_test_qi_matches SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/matches.cpp)
+cm_test(NAME spirit_test_qi_no_case SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/no_case.cpp)
+cm_test(NAME spirit_test_qi_no_skip SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/no_skip.cpp)
+cm_test(NAME spirit_test_qi_not_predicate SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/not_predicate.cpp)
+cm_test(NAME spirit_test_qi_optional SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/optional.cpp)
+cm_test(NAME spirit_test_qi_parse_attr SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/parse_attr.cpp)
+cm_test(NAME spirit_test_qi_pass_container1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/pass_container1.cpp)
+cm_test(NAME spirit_test_qi_pass_container2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/pass_container2.cpp)
+cm_test(NAME spirit_test_qi_permutation SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/permutation.cpp)
+cm_test(NAME spirit_test_qi_plus SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/plus.cpp)
+cm_test(NAME spirit_test_qi_range_run SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/range_run.cpp)
+cm_test(NAME spirit_test_qi_raw SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/raw.cpp)
+cm_test(NAME spirit_test_qi_real1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/real1.cpp)
+cm_test(NAME spirit_test_qi_real2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/real2.cpp)
+cm_test(NAME spirit_test_qi_real3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/real3.cpp)
+cm_test(NAME spirit_test_qi_real4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/real4.cpp)
+cm_test(NAME spirit_test_qi_real5 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/real5.cpp)
+cm_test(NAME spirit_test_qi_repeat SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/repeat.cpp)
+cm_test(NAME spirit_test_qi_rule1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/rule1.cpp)
+cm_test(NAME spirit_test_qi_rule2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/rule2.cpp)
+cm_test(NAME spirit_test_qi_rule3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/rule3.cpp)
+cm_test(NAME spirit_test_qi_rule4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/rule4.cpp)
+cm_test(NAME spirit_test_qi_sequence SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/sequence.cpp)
+cm_test(NAME spirit_test_qi_sequential_or SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/sequential_or.cpp)
+cm_test(NAME spirit_test_qi_skip SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/skip.cpp)
+cm_test(NAME spirit_test_qi_stream SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/stream.cpp)
+cm_test(NAME spirit_test_qi_symbols1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/symbols1.cpp)
+cm_test(NAME spirit_test_qi_symbols2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/symbols2.cpp)
+cm_test(NAME spirit_test_qi_terminal_ex SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/terminal_ex.cpp)
+cm_test(NAME spirit_test_qi_tst SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/tst.cpp)
+cm_test(NAME spirit_test_qi_uint1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/uint1.cpp)
+cm_test(NAME spirit_test_qi_uint2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/uint2.cpp)
+cm_test(NAME spirit_test_qi_uint3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/uint3.cpp)
+cm_test(NAME spirit_test_qi_uint_radix SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/uint_radix.cpp)
+cm_test(NAME spirit_test_qi_utree1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/utree1.cpp)
+cm_test(NAME spirit_test_qi_utree2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/utree2.cpp)
+cm_test(NAME spirit_test_qi_utree3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/utree3.cpp)
+cm_test(NAME spirit_test_qi_utree4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/utree4.cpp)
+
+###########################################################################
+
+
+#[ run qi/regression_float_fraction.cpp                      : : : : qi_regression_float_fraction ]
+cm_test(NAME spirit_test_qi_pass_container3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/pass_container3.cpp COMPILE_ONLY)
+cm_test(NAME spirit_test_qi_regression_attr_with_action SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_attr_with_action.cpp COMPILE_ONLY)
+cm_test(NAME spirit_test_qi_regression_container_attribute SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_container_attribute.cpp COMPILE_ONLY)
+cm_test(NAME spirit_test_qi_regression_debug_optional SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_debug_optional.cpp COMPILE_ONLY)
+cm_test(NAME spirit_test_qi_regression_fusion_proto_spirit SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_fusion_proto_spirit.cpp COMPILE_ONLY)
+cm_test(NAME spirit_test_qi_regression_one_element_fusion_sequence SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_one_element_fusion_sequence.cpp COMPILE_ONLY)
+cm_test(NAME spirit_test_qi_regression_one_element_sequence_attribute SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_one_element_sequence_attribute.cpp COMPILE_ONLY)
+cm_test(NAME spirit_test_qi_regression_adapt_adt SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_adapt_adt.cpp)
+cm_test(NAME spirit_test_qi_regression_clear SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_clear.cpp)
+cm_test(NAME spirit_test_qi_regression_lazy_repeat SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_lazy_repeat.cpp)
+cm_test(NAME spirit_test_qi_regression_numeric_alternatives SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_numeric_alternatives.cpp)
+cm_test(NAME spirit_test_qi_regression_reorder SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_reorder.cpp)
+cm_test(NAME spirit_test_qi_regression_repeat SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_repeat.cpp)
+cm_test(NAME spirit_test_qi_regression_transform_assignment SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_transform_assignment.cpp)
+cm_test(NAME spirit_test_qi_regression_binary_action SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_binary_action.cpp)
+cm_test(NAME spirit_test_qi_regression_stream_eof SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_stream_eof.cpp)
+
+###########################################################################
+
+
+cm_test(NAME spirit_test_karma_grammar_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/grammar_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME spirit_test_karma_rule_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/rule_fail.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME spirit_test_karma_actions SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/actions.cpp)
+cm_test(NAME spirit_test_karma_alternative1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/alternative1.cpp)
+cm_test(NAME spirit_test_karma_alternative2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/alternative2.cpp)
+cm_test(NAME spirit_test_karma_and_predicate SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/and_predicate.cpp)
+cm_test(NAME spirit_test_karma_attribute SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/attribute.cpp)
+cm_test(NAME spirit_test_karma_auto1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/auto1.cpp)
+cm_test(NAME spirit_test_karma_auto2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/auto2.cpp)
+cm_test(NAME spirit_test_karma_auto3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/auto3.cpp)
+cm_test(NAME spirit_test_karma_binary1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/binary1.cpp)
+cm_test(NAME spirit_test_karma_binary2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/binary2.cpp)
+cm_test(NAME spirit_test_karma_binary3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/binary3.cpp)
+cm_test(NAME spirit_test_karma_bool SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/bool.cpp)
+cm_test(NAME spirit_test_karma_buffer SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/buffer.cpp)
+cm_test(NAME spirit_test_karma_case_handling1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/case_handling1.cpp)
+cm_test(NAME spirit_test_karma_case_handling2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/case_handling2.cpp)
+cm_test(NAME spirit_test_karma_case_handling3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/case_handling3.cpp)
+cm_test(NAME spirit_test_karma_center_alignment SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/center_alignment.cpp)
+cm_test(NAME spirit_test_karma_char1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/char1.cpp)
+cm_test(NAME spirit_test_karma_char2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/char2.cpp)
+cm_test(NAME spirit_test_karma_char3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/char3.cpp)
+cm_test(NAME spirit_test_karma_char_class SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/char_class.cpp)
+cm_test(NAME spirit_test_karma_columns SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/columns.cpp)
+cm_test(NAME spirit_test_karma_debug SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/debug.cpp)
+cm_test(NAME spirit_test_karma_delimiter SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/delimiter.cpp)
+cm_test(NAME spirit_test_karma_duplicate SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/duplicate.cpp)
+cm_test(NAME spirit_test_karma_encoding SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/encoding.cpp)
+cm_test(NAME spirit_test_karma_eol SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/eol.cpp)
+cm_test(NAME spirit_test_karma_eps SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/eps.cpp)
+cm_test(NAME spirit_test_karma_format_manip SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/format_manip.cpp)
+cm_test(NAME spirit_test_karma_format_manip_attr SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/format_manip_attr.cpp)
+cm_test(NAME spirit_test_karma_format_pointer_container SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/format_pointer_container.cpp)
+cm_test(NAME spirit_test_karma_generate_attr SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/generate_attr.cpp)
+cm_test(NAME spirit_test_karma_grammar SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/grammar.cpp)
+cm_test(NAME spirit_test_karma_int1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/int1.cpp)
+cm_test(NAME spirit_test_karma_int2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/int2.cpp)
+cm_test(NAME spirit_test_karma_int3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/int3.cpp)
+cm_test(NAME spirit_test_karma_kleene SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/kleene.cpp)
+cm_test(NAME spirit_test_karma_lazy SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/lazy.cpp)
+cm_test(NAME spirit_test_karma_left_alignment SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/left_alignment.cpp)
+cm_test(NAME spirit_test_karma_list SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/list.cpp)
+cm_test(NAME spirit_test_karma_lit SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/lit.cpp)
+cm_test(NAME spirit_test_karma_maxwidth SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/maxwidth.cpp)
+cm_test(NAME spirit_test_karma_not_predicate SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/not_predicate.cpp)
+cm_test(NAME spirit_test_karma_omit SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/omit.cpp)
+cm_test(NAME spirit_test_karma_optional SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/optional.cpp)
+cm_test(NAME spirit_test_karma_pattern1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/pattern1.cpp)
+cm_test(NAME spirit_test_karma_pattern2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/pattern2.cpp)
+cm_test(NAME spirit_test_karma_pattern3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/pattern3.cpp)
+cm_test(NAME spirit_test_karma_pattern4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/pattern4.cpp)
+cm_test(NAME spirit_test_karma_plus SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/plus.cpp)
+cm_test(NAME spirit_test_karma_real1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/real1.cpp)
+cm_test(NAME spirit_test_karma_real2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/real2.cpp)
+cm_test(NAME spirit_test_karma_real3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/real3.cpp)
+cm_test(NAME spirit_test_karma_repeat1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/repeat1.cpp)
+cm_test(NAME spirit_test_karma_repeat2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/repeat2.cpp)
+cm_test(NAME spirit_test_karma_right_alignment SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/right_alignment.cpp)
+cm_test(NAME spirit_test_karma_sequence1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/sequence1.cpp)
+cm_test(NAME spirit_test_karma_sequence2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/sequence2.cpp)
+cm_test(NAME spirit_test_karma_stream SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/stream.cpp)
+cm_test(NAME spirit_test_karma_symbols1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/symbols1.cpp)
+cm_test(NAME spirit_test_karma_symbols2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/symbols2.cpp)
+cm_test(NAME spirit_test_karma_symbols3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/symbols3.cpp)
+cm_test(NAME spirit_test_karma_tricky_alignment SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/tricky_alignment.cpp)
+cm_test(NAME spirit_test_karma_uint_radix SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/uint_radix.cpp)
+cm_test(NAME spirit_test_karma_utree1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/utree1.cpp)
+cm_test(NAME spirit_test_karma_utree2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/utree2.cpp)
+cm_test(NAME spirit_test_karma_utree3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/utree3.cpp)
+cm_test(NAME spirit_test_karma_wstream SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/wstream.cpp)
+
+###########################################################################
+
+
+cm_test(NAME spirit_test_regression_const_real_policies SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/regression_const_real_policies.cpp COMPILE_ONLY)
+cm_test(NAME spirit_test_karma_regression_adapt_adt SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/regression_adapt_adt.cpp)
+cm_test(NAME spirit_test_karma_regression_optional_double SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/regression_optional_double.cpp)
+cm_test(NAME spirit_test_karma_regression_semantic_action_attribute SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/regression_semantic_action_attribute.cpp)
+cm_test(NAME spirit_test_karma_regression_real_scientific SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/regression_real_scientific.cpp)
+cm_test(NAME spirit_test_karma_regression_center_alignment SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/regression_center_alignment.cpp)
+cm_test(NAME spirit_test_karma_regression_container_variant_sequence SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/regression_container_variant_sequence.cpp)
+cm_test(NAME spirit_test_karma_regression_real_0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/regression_real_0.cpp)
+cm_test(NAME spirit_test_karma_regression_unicode_char SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/regression_unicode_char.cpp)
+cm_test(NAME spirit_test_karma_regression_iterator SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/regression_iterator.cpp)
+
+###########################################################################
+
+
+cm_test(NAME spirit_test_lex_auto_switch_lexerstate SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/auto_switch_lexerstate.cpp)
+cm_test(NAME spirit_test_lex_dedent_handling_phoenix SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/dedent_handling_phoenix.cpp)
+cm_test(NAME spirit_test_lex_id_type_enum SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/id_type_enum.cpp)
+cm_test(NAME spirit_test_lex_lexertl1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/lexertl1.cpp)
+cm_test(NAME spirit_test_lex_lexertl2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/lexertl2.cpp)
+cm_test(NAME spirit_test_lex_lexertl3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/lexertl3.cpp)
+cm_test(NAME spirit_test_lex_lexertl4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/lexertl4.cpp)
+cm_test(NAME spirit_test_lex_lexertl5 SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/lexertl5.cpp)
+cm_test(NAME spirit_test_lex_lexer_state_switcher SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/lexer_state_switcher.cpp)
+cm_test(NAME spirit_test_lex_semantic_actions SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/semantic_actions.cpp)
+cm_test(NAME spirit_test_lex_set_token_value SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/set_token_value.cpp)
+cm_test(NAME spirit_test_lex_set_token_value_phoenix SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/set_token_value_phoenix.cpp)
+cm_test(NAME spirit_test_lex_state_switcher SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/state_switcher.cpp)
+cm_test(NAME spirit_test_lex_string_token_id SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/string_token_id.cpp)
+cm_test(NAME spirit_test_lex_token_iterpair SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/token_iterpair.cpp)
+cm_test(NAME spirit_test_lex_token_moretypes SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/token_moretypes.cpp)
+cm_test(NAME spirit_test_lex_token_omit SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/token_omit.cpp)
+cm_test(NAME spirit_test_lex_token_onetype SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/token_onetype.cpp)
+
+###########################################################################
+
+#     [ run lex/regression_matlib_static.cpp : : :
+#       <phoenix_v3>on:<dependency>.//lex_regression_matlib_generate-p3
+#       <phoenix_v3>off:<dependency>.//lex_regression_matlib_generate-p2
+#       : lex_regression_matlib_static ]
+#     [ run lex/regression_matlib_switch.cpp : : :
+#       <phoenix_v3>on:<dependency>.//lex_regression_matlib_generate_switch-p3
+#       <phoenix_v3>off:<dependency>.//lex_regression_matlib_generate_switch-p2
+#         : lex_regression_matlib_switch ]
+
+cm_test(NAME spirit_test_lex_regression_basic_lexer SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_basic_lexer.cpp)
+cm_test(NAME spirit_test_lex_regression_matlib_dynamic SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_matlib_dynamic.cpp)
+cm_test(NAME spirit_test_lex_regression_matlib_generate SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_matlib_generate.cpp)
+cm_test(NAME spirit_test_lex_regression_matlib_generate_switch SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_matlib_generate_switch.cpp)
+cm_test(NAME spirit_test_lex_regression_word_count SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_word_count.cpp)
+cm_test(NAME spirit_test_lex_regression_syntax_error SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_syntax_error.cpp)
+cm_test(NAME spirit_test_lex_regression_wide SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_wide.cpp)
+cm_test(NAME spirit_test_lex_regression_file_iterator1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_file_iterator1.cpp)
+cm_test(NAME spirit_test_lex_regression_file_iterator2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_file_iterator2.cpp)
+cm_test(NAME spirit_test_lex_regression_file_iterator3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_file_iterator3.cpp)
+cm_test(NAME spirit_test_lex_regression_file_iterator4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_file_iterator4.cpp)
+cm_test(NAME spirit_test_regression_static_wide_6253 SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_static_wide_6253.cpp)
+cm_test(NAME spirit_test_regression_less_8563 SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_less_8563.cpp)
+
+###########################################################################
+
+
+cm_test(NAME spirit_test_support_utree SOURCES ${CURRENT_TEST_SOURCES_DIR}/support/utree.cpp)
+cm_test(NAME spirit_test_support_utree_debug SOURCES ${CURRENT_TEST_SOURCES_DIR}/support/utree_debug.cpp)
+
+###########################################################################
+
+
+cm_test(NAME spirit_test_support_regression_multi_pass_position_iterator SOURCES ${CURRENT_TEST_SOURCES_DIR}/support/regression_multi_pass_position_iterator.cpp COMPILE_ONLY)
+cm_test(NAME spirit_test_support_regression_multi_pass_functor SOURCES ${CURRENT_TEST_SOURCES_DIR}/support/regression_multi_pass_functor.cpp COMPILE_ONLY)
+cm_test(NAME spirit_test_support_regression_multi_pass_parse SOURCES ${CURRENT_TEST_SOURCES_DIR}/support/regression_multi_pass_parse.cpp COMPILE_ONLY)
+cm_test(NAME spirit_test_regression_multi_pass_error_handler SOURCES ${CURRENT_TEST_SOURCES_DIR}/support/regression_multi_pass_error_handler.cpp)
+
+# use this alias to build Spirit against Phoenix V3
+
+include_directories(${CURRENT_TEST_SOURCES_DIR})
+include_directories(${CURRENT_TEST_SOURCES_DIR}/karma)

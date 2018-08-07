@@ -1,0 +1,48 @@
+10a11
+> #define BOOST_TEST_MAIN
+234c235,257
+< unit_test::test_suite *init_unit_test_suite(int, char *[])
+---
+> BOOST_AUTO_TEST_SUITE(lexical_cast_testing_conversions_using_iterator_range_suite)
+> 
+> BOOST_AUTO_TEST_CASE(test_char_iterator_ranges_case)
+> {
+>     test_char_iterator_ranges();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_unsigned_char_iterator_ranges_case)
+> {
+>     test_unsigned_char_iterator_ranges();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_signed_char_iterator_ranges_case)
+> {
+>     test_signed_char_iterator_ranges();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_wchar_iterator_ranges_case)
+> {
+>     test_wchar_iterator_ranges();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_char16_iterator_ranges_case)
+236,242c259,260
+<     unit_test::test_suite *suite = BOOST_TEST_SUITE("lexical_cast. Testing conversions using iterator_range<>");
+<     suite->add(BOOST_TEST_CASE(&test_char_iterator_ranges));
+<     suite->add(BOOST_TEST_CASE(&test_unsigned_char_iterator_ranges));
+<     suite->add(BOOST_TEST_CASE(&test_signed_char_iterator_ranges));
+<     suite->add(BOOST_TEST_CASE(&test_wchar_iterator_ranges));
+<     suite->add(BOOST_TEST_CASE(&test_char16_iterator_ranges));
+<     suite->add(BOOST_TEST_CASE(&test_char32_iterator_ranges));
+---
+>     test_char16_iterator_ranges();
+> }
+244c262,264
+<     return suite;
+---
+> BOOST_AUTO_TEST_CASE(test_char32_iterator_ranges_case)
+> {
+>     test_char32_iterator_ranges();
+245a266,267
+> 
+> BOOST_AUTO_TEST_SUITE_END()

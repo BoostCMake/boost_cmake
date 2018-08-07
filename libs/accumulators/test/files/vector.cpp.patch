@@ -1,0 +1,24 @@
+5c5
+< 
+---
+> #define BOOST_TEST_MAIN
+170,175c170
+< ///////////////////////////////////////////////////////////////////////////////
+< // init_unit_test_suite
+< //
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+< {
+<     test_suite *test = BOOST_TEST_SUITE("vector test");
+---
+> BOOST_AUTO_TEST_SUITE(vector_test)
+177,179c172,174
+<     test->add(BOOST_TEST_CASE(&test_stat));
+< 
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test_stat_case)
+> {
+>     test_stat();
+180a176,177
+> 
+> BOOST_AUTO_TEST_SUITE_END()

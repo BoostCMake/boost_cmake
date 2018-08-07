@@ -1,0 +1,576 @@
+469c469
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+477c477
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+482c482
+<                 boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                 boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+497c497
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+505c505
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+510c510
+<                 boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                 boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+525c525
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+533c533
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+538c538
+<                     boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+553c553
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+561c561
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+566c566
+<                     boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+581c581
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+589c589
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+594c594
+<                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+609c609
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+617c617
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+622c622
+<                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+637c637
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+645c645
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+650c650
+<                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+665c665
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+673c673
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+678c678
+<                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+854c854
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+862c862
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+867c867
+<                 boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                 boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+882c882
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+890c890
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+895c895
+<                 boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                 boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+910c910
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+918c918
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+923c923
+<                     boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+938c938
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+946c946
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+951c951
+<                     boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+966c966
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+974c974
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+979c979
+<                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+994c994
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+1002c1002
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1007c1007
+<                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1022c1022
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+1030c1030
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1035c1035
+<                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1050c1050
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+1058c1058
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1063c1063
+<                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1235c1235
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+1243c1243
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1248c1248
+<                 boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                 boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1263c1263
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+1271c1271
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1276c1276
+<                 boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                 boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1291c1291
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+1299c1299
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1304c1304
+<                     boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1319c1319
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+1327c1327
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1332c1332
+<                     boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1347c1347
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+1355c1355
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1360c1360
+<                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1375c1375
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+1383c1383
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1388c1388
+<                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1403c1403
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+1411c1411
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1416c1416
+<                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1431c1431
+<         BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != stack_ctx.sp);
+1439c1439
+<         BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>         BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1444c1444
+<                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>                     fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1502c1502
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1510c1510
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1515c1515
+<             boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1530c1530
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1538c1538
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1543c1543
+<             boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1557c1557
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1565c1565
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1570c1570
+<             boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1585c1585
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1593c1593
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1598c1598
+<             boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1611c1611
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1619c1619
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1624c1624
+<             boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1638c1638
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1646c1646
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1651c1651
+<             boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             boost::forward< coroutine_fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1666c1666
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1674c1674
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1679c1679
+<             boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1694c1694
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1702c1702
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1707c1707
+<             boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1722c1722
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1730c1730
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1735c1735
+<             boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1750c1750
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1758c1758
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1763c1763
+<             boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1777c1777
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1785c1785
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1790c1790
+<             boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1804c1804
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1812c1812
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1817c1817
+<             boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             boost::forward< Fn >( fn), attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1832c1832
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1840c1840
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1845c1845
+<             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1860c1860
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1868c1868
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1873c1873
+<             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1888c1888
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1896c1896
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1901c1901
+<             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1916c1916
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1924c1924
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1929c1929
+<             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1943c1943
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1951c1951
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1956c1956
+<             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1970c1970
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+1978c1978
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+1983c1983
+<             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+1998c1998
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+2006c2006
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+2011c2011
+<             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+2026c2026
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+2034c2034
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+2039c2039
+<             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+2054c2054
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+2062c2062
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+2067c2067
+<             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+2082c2082
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+2090c2090
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+2095c2095
+<             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+2109c2109
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+2117c2117
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+2122c2122
+<             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);
+2136c2136
+<     BOOST_ASSERT( 0 < stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != stack_ctx.sp);
+2144c2144
+<     BOOST_ASSERT( 0 < internal_stack_ctx.sp);
+---
+>     BOOST_ASSERT( NULL != internal_stack_ctx.sp);
+2149c2149
+<             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc); 
+---
+>             fn, attrs, stack_ctx, internal_stack_ctx, stack_alloc);

@@ -1,0 +1,70 @@
+7a8
+> #define BOOST_TEST_MAIN
+217c218
+< using namespace boost::unit_test;
+---
+> BOOST_AUTO_TEST_SUITE(test_typeof_suite)
+219,234c220,242
+< ///////////////////////////////////////////////////////////////////////////////
+< // init_unit_test_suite
+< //
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+< {
+<     test_suite *test = BOOST_TEST_SUITE("test_typeof");
+<     test->add(BOOST_TEST_CASE(&test_misc1));
+<     test->add(BOOST_TEST_CASE(&test_misc2));
+<     test->add(BOOST_TEST_CASE(&test_misc3));
+<     test->add(BOOST_TEST_CASE(&test_misc4));
+<     test->add(BOOST_TEST_CASE(&test_misc5));
+<     test->add(BOOST_TEST_CASE(&test_misc6));
+<     test->add(BOOST_TEST_CASE(&test_actions));
+<     test->add(BOOST_TEST_CASE(&test_symbols));
+<     test->add(BOOST_TEST_CASE(&test_assert));
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test_misc1_case)
+> {
+>     test_misc1();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_misc2_case)
+> {
+>     test_misc2();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_misc3_case)
+> {
+>     test_misc3();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_misc4_case)
+> {
+>     test_misc4();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_misc5_case)
+> {
+>     test_misc5();
+235a244,265
+> 
+> BOOST_AUTO_TEST_CASE(test_misc6_case)
+> {
+>     test_misc6();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_actions_case)
+> {
+>     test_actions();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_symbols_case)
+> {
+>     test_symbols();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_assert_case)
+> {
+>     test_assert();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()

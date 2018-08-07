@@ -1,0 +1,56 @@
+7a8
+> #define BOOST_TEST_MAIN
+282a284
+> BOOST_AUTO_TEST_SUITE(test_handling_of_member_pointers_by_the_default_transform_and_default_contexts_suite)
+284,288c286
+< using namespace boost::unit_test;
+< ///////////////////////////////////////////////////////////////////////////////
+< // init_unit_test_suite
+< //
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+---
+> BOOST_AUTO_TEST_CASE(test_refs_transform_case)
+290c288,289
+<     test_suite *test = BOOST_TEST_SUITE("test handling of member pointers by the default transform and default contexts");
+---
+>     test_refs_transform();
+> }
+292,293c291,294
+<     test->add(BOOST_TEST_CASE(&test_refs_transform));
+<     test->add(BOOST_TEST_CASE(&test_refs_context));
+---
+> BOOST_AUTO_TEST_CASE(test_refs_context_case)
+> {
+>     test_refs_context();
+> }
+295,296c296,299
+<     test->add(BOOST_TEST_CASE(&test_ptrs_transform));
+<     test->add(BOOST_TEST_CASE(&test_ptrs_context));
+---
+> BOOST_AUTO_TEST_CASE(test_ptrs_transform_case)
+> {
+>     test_ptrs_transform();
+> }
+298c301,304
+<     test->add(BOOST_TEST_CASE(&with_get_pointer_transform));
+---
+> BOOST_AUTO_TEST_CASE(test_ptrs_context_case)
+> {
+>     test_ptrs_context();
+> }
+300c306,309
+<     test->add(BOOST_TEST_CASE(&potentially_ambiguous_transform));
+---
+> BOOST_AUTO_TEST_CASE(with_get_pointer_transform_case)
+> {
+>     with_get_pointer_transform();
+> }
+302c311,313
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(potentially_ambiguous_transform_case)
+> {
+>     potentially_ambiguous_transform();
+303a315,316
+> 
+> BOOST_AUTO_TEST_SUITE_END()

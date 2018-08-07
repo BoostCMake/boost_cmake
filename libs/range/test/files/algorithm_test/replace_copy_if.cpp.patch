@@ -1,0 +1,21 @@
+10a11
+> #define BOOST_TEST_MAIN
+106,112c107
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.algorithm.replace_copy_if" );
+< 
+<     test->add( BOOST_TEST_CASE( &test_replace_copy_if ) );
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_algorithm_replace_copy_if_suite)
+114c109,111
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test_replace_copy_if_case)
+> {
+>     test_replace_copy_if();
+115a113,114
+> 
+> BOOST_AUTO_TEST_SUITE_END()

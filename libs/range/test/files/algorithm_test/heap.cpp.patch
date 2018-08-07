@@ -1,0 +1,21 @@
+8a9
+> #define BOOST_TEST_MAIN
+136,142c137
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.algorithm.heap" );
+< 
+<     test->add( BOOST_TEST_CASE( &boost::test_heap ) );
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_algorithm_heap_suite)
+144c139,141
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_test_heap_case)
+> {
+>     boost::test_heap();
+145a143,144
+> 
+> BOOST_AUTO_TEST_SUITE_END()

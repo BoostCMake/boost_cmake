@@ -1,0 +1,21 @@
+10a11
+> #define BOOST_TEST_MAIN
+101,107c102
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.adaptor.adjacent_filtered" );
+< 
+<     test->add( BOOST_TEST_CASE( &boost::adjacent_filtered_test ) );
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_adaptor_adjacent_filtered_suite)
+109c104,106
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_adjacent_filtered_test_case)
+> {
+>     boost::adjacent_filtered_test();
+110a108,109
+> 
+> BOOST_AUTO_TEST_SUITE_END()

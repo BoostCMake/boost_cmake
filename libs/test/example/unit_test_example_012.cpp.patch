@@ -1,0 +1,14 @@
+0a1
+> #define BOOST_TEST_MAIN
+24c25,32
+< } 
+\ No newline at end of file
+---
+> } BOOST_AUTO_TEST_SUITE(master_test_suite_suite)
+> 
+> BOOST_AUTO_TEST_CASE(Vektor3Test1_case)
+> {
+>     Vektor3Test1();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()

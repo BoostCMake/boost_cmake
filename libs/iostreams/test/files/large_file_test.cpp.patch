@@ -1,0 +1,17 @@
+15a16
+> #define BOOST_TEST_MAIN
+441c442,444
+< test_suite* init_unit_test_suite(int, char* []) 
+---
+> BOOST_AUTO_TEST_SUITE(execute_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(large_file_test_case)
+443,445c446
+<     test_suite* test = BOOST_TEST_SUITE("execute test");
+<     test->add(BOOST_TEST_CASE(&large_file_test));
+<     return test;
+---
+>     large_file_test();
+446a448,449
+> 
+> BOOST_AUTO_TEST_SUITE_END()

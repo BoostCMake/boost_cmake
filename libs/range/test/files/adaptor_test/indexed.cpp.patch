@@ -1,0 +1,21 @@
+10a11
+> #define BOOST_TEST_MAIN
+143,149c144
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int, char*[])
+< {
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "Boost.Range indexed adaptor test suite" );
+< 
+<     test->add(BOOST_TEST_CASE(&boost_range_test::indexed_test));
+---
+> BOOST_AUTO_TEST_SUITE(boost_range_indexed_adaptor_test_suite_suite)
+151c146,148
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(boost_range_test_indexed_test_case)
+> {
+>     boost_range_test::indexed_test();
+152a150,151
+> 
+> BOOST_AUTO_TEST_SUITE_END()

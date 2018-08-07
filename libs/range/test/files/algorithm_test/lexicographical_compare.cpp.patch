@@ -1,0 +1,21 @@
+8a9
+> #define BOOST_TEST_MAIN
+146a148
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_algorithm_lexicographical_compare_suite)
+148,149c150
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+---
+> BOOST_AUTO_TEST_CASE(boost_test_lexicographical_compare_case)
+151,156c152
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.algorithm.lexicographical_compare" );
+< 
+<     test->add( BOOST_TEST_CASE( &boost::test_lexicographical_compare ) );
+< 
+<     return test;
+---
+>     boost::test_lexicographical_compare();
+157a154,155
+> 
+> BOOST_AUTO_TEST_SUITE_END()

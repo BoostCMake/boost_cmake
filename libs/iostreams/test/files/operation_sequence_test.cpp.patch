@@ -1,0 +1,17 @@
+16a17
+> #define BOOST_TEST_MAIN
+263c264,266
+< test_suite* init_unit_test_suite(int, char* []) 
+---
+> BOOST_AUTO_TEST_SUITE(execute_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(operation_sequence_test_case)
+265,267c268
+<     test_suite* test = BOOST_TEST_SUITE("execute test");
+<     test->add(BOOST_TEST_CASE(&operation_sequence_test));
+<     return test;
+---
+>     operation_sequence_test();
+268a270,271
+> 
+> BOOST_AUTO_TEST_SUITE_END()

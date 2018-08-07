@@ -1,0 +1,167 @@
+19a20
+> #define BOOST_TEST_MAIN
+99c100,117
+< unit_test::test_suite *init_unit_test_suite(int, char *[])
+---
+> BOOST_AUTO_TEST_SUITE(lexical_cast_unit_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_to_char_case)
+> {
+>     test_conversion_to_char();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_to_int_case)
+> {
+>     test_conversion_to_int();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_to_double_case)
+> {
+>     test_conversion_to_double();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_to_bool_case)
+101,109c119,136
+<     unit_test::test_suite *suite =
+<         BOOST_TEST_SUITE("lexical_cast unit test");
+<     suite->add(BOOST_TEST_CASE(test_conversion_to_char));
+<     suite->add(BOOST_TEST_CASE(test_conversion_to_int));
+<     suite->add(BOOST_TEST_CASE(test_conversion_to_double));
+<     suite->add(BOOST_TEST_CASE(test_conversion_to_bool));
+<     suite->add(BOOST_TEST_CASE(test_conversion_from_to_wchar_t_alias));
+<     suite->add(BOOST_TEST_CASE(test_conversion_to_string));
+<     suite->add(BOOST_TEST_CASE(test_conversion_with_nonconst_char));
+---
+>     test_conversion_to_bool();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_from_to_wchar_t_alias_case)
+> {
+>     test_conversion_from_to_wchar_t_alias();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_to_string_case)
+> {
+>     test_conversion_to_string();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_with_nonconst_char_case)
+> {
+>     test_conversion_with_nonconst_char();
+> }
+> 
+111,118c138,173
+<     suite->add(BOOST_TEST_CASE(test_conversion_from_wchar_t));
+<     suite->add(BOOST_TEST_CASE(test_conversion_to_wchar_t));
+<     suite->add(BOOST_TEST_CASE(test_conversion_from_wstring));
+<     suite->add(BOOST_TEST_CASE(test_conversion_to_wstring));
+< #endif
+<     suite->add(BOOST_TEST_CASE(test_bad_lexical_cast));
+<     suite->add(BOOST_TEST_CASE(test_no_whitespace_stripping));
+<     suite->add(BOOST_TEST_CASE(test_volatile_types_conversions));
+---
+> BOOST_AUTO_TEST_CASE(test_conversion_from_wchar_t_case)
+> {
+>     test_conversion_from_wchar_t();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_to_wchar_t_case)
+> {
+>     test_conversion_to_wchar_t();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_from_wstring_case)
+> {
+>     test_conversion_from_wstring();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_conversion_to_wstring_case)
+> {
+>     test_conversion_to_wstring();
+> }
+> #endif
+> 
+> BOOST_AUTO_TEST_CASE(test_bad_lexical_cast_case)
+> {
+>     test_bad_lexical_cast();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_no_whitespace_stripping_case)
+> {
+>     test_no_whitespace_stripping();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_volatile_types_conversions_case)
+> {
+>     test_volatile_types_conversions();
+> }
+> 
+120,123c175,193
+<     suite->add(BOOST_TEST_CASE(&test_traits));
+<     suite->add(BOOST_TEST_CASE(&test_wtraits));
+<     suite->add(BOOST_TEST_CASE(&test_allocator));
+<     suite->add(BOOST_TEST_CASE(&test_wallocator));
+---
+> BOOST_AUTO_TEST_CASE(test_traits_case)
+> {
+>     test_traits();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_wtraits_case)
+> {
+>     test_wtraits();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_allocator_case)
+> {
+>     test_allocator();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_wallocator_case)
+> {
+>     test_wallocator();
+> }
+126,127c196,205
+<     suite->add(BOOST_TEST_CASE(&test_char_types_conversions));
+<     suite->add(BOOST_TEST_CASE(&operators_overload_test));
+---
+> BOOST_AUTO_TEST_CASE(test_char_types_conversions_case)
+> {
+>     test_char_types_conversions();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(operators_overload_test_case)
+> {
+>     operators_overload_test();
+> }
+> 
+129c207,210
+<     suite->add(BOOST_TEST_CASE(&test_char16_conversions));
+---
+> BOOST_AUTO_TEST_CASE(test_char16_conversions_case)
+> {
+>     test_char16_conversions();
+> }
+130a212
+> 
+132c214,217
+<     suite->add(BOOST_TEST_CASE(&test_char32_conversions));
+---
+> BOOST_AUTO_TEST_CASE(test_char32_conversions_case)
+> {
+>     test_char32_conversions();
+> }
+134d218
+<     suite->add(BOOST_TEST_CASE(&test_getting_pointer_to_function));
+136c220,222
+<     return suite;
+---
+> BOOST_AUTO_TEST_CASE(test_getting_pointer_to_function_case)
+> {
+>     test_getting_pointer_to_function();
+138a225,226
+> BOOST_AUTO_TEST_SUITE_END()
+> 
+648,649d735
+< 
+< 

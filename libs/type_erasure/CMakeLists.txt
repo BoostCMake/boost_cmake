@@ -1,0 +1,47 @@
+cmake_minimum_required(VERSION 3.5)
+
+
+find_package(CM)
+include(CMDeploy)
+include(CMSetupVersion)
+
+cm_project(${CMAKE_WORKSPACE_NAME} type_erasure)
+
+find_package(${CMAKE_WORKSPACE_NAME}_core)
+find_package(${CMAKE_WORKSPACE_NAME}_thread)
+find_package(${CMAKE_WORKSPACE_NAME}_iterator)
+find_package(${CMAKE_WORKSPACE_NAME}_typeof)
+find_package(${CMAKE_WORKSPACE_NAME}_mpl)
+find_package(${CMAKE_WORKSPACE_NAME}_assert)
+find_package(${CMAKE_WORKSPACE_NAME}_fusion)
+find_package(${CMAKE_WORKSPACE_NAME}_type_traits)
+find_package(${CMAKE_WORKSPACE_NAME}_preprocessor)
+find_package(${CMAKE_WORKSPACE_NAME}_config)
+find_package(${CMAKE_WORKSPACE_NAME}_throw_exception)
+find_package(${CMAKE_WORKSPACE_NAME}_smart_ptr)
+
+cm_setup_version(VERSION 1.58.0)
+
+add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE
+            #src/dynamic_binding.cpp
+            )
+set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME type_erasure)
+
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::core)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::thread)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::iterator)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::typeof)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::mpl)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::fusion)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::type_traits)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::preprocessor)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::config)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::throw_exception)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::smart_ptr)
+
+# target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE include)
+
+cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
+
+add_subdirectory(test)

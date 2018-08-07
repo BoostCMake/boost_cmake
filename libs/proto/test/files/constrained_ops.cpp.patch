@@ -1,0 +1,21 @@
+9a10
+> #define BOOST_TEST_MAIN
+122,126c123,125
+< using namespace boost::unit_test;
+< ///////////////////////////////////////////////////////////////////////////////
+< // init_unit_test_suite
+< //
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+---
+> BOOST_AUTO_TEST_SUITE(test_constrained_edsls_suite)
+> 
+> BOOST_AUTO_TEST_CASE(test_constrained_ops_case)
+128,130c127
+<     test_suite *test = BOOST_TEST_SUITE("test constrained EDSLs");
+<     test->add(BOOST_TEST_CASE(&test_constrained_ops));
+<     return test;
+---
+>     test_constrained_ops();
+131a129,130
+> 
+> BOOST_AUTO_TEST_SUITE_END()

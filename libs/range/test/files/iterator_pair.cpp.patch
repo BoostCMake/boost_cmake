@@ -1,0 +1,27 @@
+10a11,12
+> #define BOOST_TEST_MAIN
+> #include <boost/test/unit_test.hpp>
+85a88
+> BOOST_AUTO_TEST_SUITE(range_test_suite_suite)
+87,89c90
+< #include <boost/test/unit_test.hpp>
+< 
+< boost::unit_test::test_suite* init_unit_test_suite( int argc, char* argv[] )
+---
+> BOOST_AUTO_TEST_CASE(check_iterator_pair_case)
+91,95c92
+<     boost::unit_test::test_suite* test = BOOST_TEST_SUITE( "Range Test Suite" );
+< 
+<     test->add( BOOST_TEST_CASE( &check_iterator_pair ) );
+< 
+<     return test;
+---
+>     check_iterator_pair();
+98,102c95
+< 
+< 
+< 
+< 
+< 
+---
+> BOOST_AUTO_TEST_SUITE_END()

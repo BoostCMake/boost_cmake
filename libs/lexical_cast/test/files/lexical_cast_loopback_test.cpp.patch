@@ -1,0 +1,33 @@
+13a14
+> #define BOOST_TEST_MAIN
+31c32,39
+< unit_test::test_suite *init_unit_test_suite(int, char *[])
+---
+> BOOST_AUTO_TEST_SUITE(lexical_cast_unit_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(test_round_conversion_float_case)
+> {
+>     test_round_conversion_float();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_round_conversion_double_case)
+33,37c41,42
+<     unit_test::test_suite *suite =
+<         BOOST_TEST_SUITE("lexical_cast unit test");
+<     suite->add(BOOST_TEST_CASE(&test_round_conversion_float));
+<     suite->add(BOOST_TEST_CASE(&test_round_conversion_double));
+<     suite->add(BOOST_TEST_CASE(&test_round_conversion_long_double));
+---
+>     test_round_conversion_double();
+> }
+39c44,46
+<     return suite;
+---
+> BOOST_AUTO_TEST_CASE(test_round_conversion_long_double_case)
+> {
+>     test_round_conversion_long_double();
+41a49,50
+> BOOST_AUTO_TEST_SUITE_END()
+> 
+96d104
+< 

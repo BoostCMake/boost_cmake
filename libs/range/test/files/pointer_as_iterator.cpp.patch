@@ -1,0 +1,22 @@
+10a11
+> #define BOOST_TEST_MAIN
+30,31c31,33
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+---
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_pointer_as_iterator_suite)
+> 
+> BOOST_AUTO_TEST_CASE(test_pointer_as_iterator_case)
+33,34c35,36
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.pointer_as_iterator" );
+---
+>     test_pointer_as_iterator();
+> }
+36c38
+<     test->add(BOOST_TEST_CASE( &test_pointer_as_iterator ));
+---
+> BOOST_AUTO_TEST_SUITE_END()
+38,39d39
+<     return test;
+< }

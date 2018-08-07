@@ -1,0 +1,117 @@
+11a12,13
+> #define BOOST_TEST_MAIN
+> #include <boost/test/unit_test.hpp>
+723,724c725
+< // test main
+< test_suite* init_unit_test_suite(int /*argc*/, char* /*argv*/[]) {
+---
+> BOOST_AUTO_TEST_SUITE(unit_tests_for_the_iterator_of_the_circular_buffer_suite)
+726c727,765
+<     test_suite* tests = BOOST_TEST_SUITE("Unit tests for the iterator of the circular_buffer.");
+---
+> BOOST_AUTO_TEST_CASE(validity_example_test_case)
+> {
+>     validity_example_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(validity_insert_test_case)
+> {
+>     validity_insert_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(validity_insert_n_test_case)
+> {
+>     validity_insert_n_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(validity_insert_range_test_case)
+> {
+>     validity_insert_range_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(validity_rinsert_test_case)
+> {
+>     validity_rinsert_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(validity_rinsert_n_test_case)
+> {
+>     validity_rinsert_n_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(validity_rinsert_range_test_case)
+> {
+>     validity_rinsert_range_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(validity_erase_test_case)
+> {
+>     validity_erase_test();
+> }
+728,744c767,770
+<     tests->add(BOOST_TEST_CASE(&validity_example_test));
+<     tests->add(BOOST_TEST_CASE(&validity_insert_test));
+<     tests->add(BOOST_TEST_CASE(&validity_insert_n_test));
+<     tests->add(BOOST_TEST_CASE(&validity_insert_range_test));
+<     tests->add(BOOST_TEST_CASE(&validity_rinsert_test));
+<     tests->add(BOOST_TEST_CASE(&validity_rinsert_n_test));
+<     tests->add(BOOST_TEST_CASE(&validity_rinsert_range_test));
+<     tests->add(BOOST_TEST_CASE(&validity_erase_test));
+<     tests->add(BOOST_TEST_CASE(&validity_erase_range_test));
+<     tests->add(BOOST_TEST_CASE(&validity_rerase_test));
+<     tests->add(BOOST_TEST_CASE(&validity_rerase_range_test));
+<     tests->add(BOOST_TEST_CASE(&validity_linearize_test));
+<     tests->add(BOOST_TEST_CASE(&validity_swap_test));
+<     tests->add(BOOST_TEST_CASE(&validity_push_back_test));
+<     tests->add(BOOST_TEST_CASE(&validity_push_front_test));
+<     tests->add(BOOST_TEST_CASE(&validity_pop_back_test));
+<     tests->add(BOOST_TEST_CASE(&validity_pop_front_test));
+---
+> BOOST_AUTO_TEST_CASE(validity_erase_range_test_case)
+> {
+>     validity_erase_range_test();
+> }
+746c772,774
+<     return tests;
+---
+> BOOST_AUTO_TEST_CASE(validity_rerase_test_case)
+> {
+>     validity_rerase_test();
+747a776,812
+> 
+> BOOST_AUTO_TEST_CASE(validity_rerase_range_test_case)
+> {
+>     validity_rerase_range_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(validity_linearize_test_case)
+> {
+>     validity_linearize_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(validity_swap_test_case)
+> {
+>     validity_swap_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(validity_push_back_test_case)
+> {
+>     validity_push_back_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(validity_push_front_test_case)
+> {
+>     validity_push_front_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(validity_pop_back_test_case)
+> {
+>     validity_pop_back_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(validity_pop_front_test_case)
+> {
+>     validity_pop_front_test();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()

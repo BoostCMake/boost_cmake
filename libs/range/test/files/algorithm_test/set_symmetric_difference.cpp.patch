@@ -1,0 +1,21 @@
+8a9
+> #define BOOST_TEST_MAIN
+205a207
+> BOOST_AUTO_TEST_SUITE(rangetestsuite_algorithm_set_symmetric_difference_suite)
+207,208c209
+< boost::unit_test::test_suite*
+< init_unit_test_suite(int argc, char* argv[])
+---
+> BOOST_AUTO_TEST_CASE(boost_test_set_symmetric_difference_case)
+210,215c211
+<     boost::unit_test::test_suite* test
+<         = BOOST_TEST_SUITE( "RangeTestSuite.algorithm.set_symmetric_difference" );
+< 
+<     test->add( BOOST_TEST_CASE( &boost::test_set_symmetric_difference ) );
+< 
+<     return test;
+---
+>     boost::test_set_symmetric_difference();
+216a213,214
+> 
+> BOOST_AUTO_TEST_SUITE_END()

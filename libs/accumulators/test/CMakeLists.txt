@@ -1,0 +1,72 @@
+include(CMTest)
+
+patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
+
+find_package(${CMAKE_WORKSPACE_NAME}_random)
+find_package(${CMAKE_WORKSPACE_NAME}_foreach)
+find_package(${CMAKE_WORKSPACE_NAME}_test)
+
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_accumulators
+                        boost::random
+                        boost::foreach
+                        boost::test
+                        )
+
+# (C) Copyright 2005: Eric Niebler
+# Distributed under the Boost Software License, Version 1.0.
+# (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+
+# bring in rules for testing
+
+# TODO: Tests disabled because of problems in ublas
+cm_test(NAME accumulators_test_count SOURCES ${CMAKE_CURRENT_BINARY_DIR}/count.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_covariance SOURCES ${CMAKE_CURRENT_BINARY_DIR}/covariance.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_droppable SOURCES ${CMAKE_CURRENT_BINARY_DIR}/droppable.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_error_of SOURCES ${CMAKE_CURRENT_BINARY_DIR}/error_of.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_extended_p_square SOURCES ${CMAKE_CURRENT_BINARY_DIR}/extended_p_square.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_extended_p_square_quantile SOURCES ${CMAKE_CURRENT_BINARY_DIR}/extended_p_square_quantile.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_external_accumulator SOURCES ${CMAKE_CURRENT_BINARY_DIR}/external_accumulator.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_external_weights SOURCES ${CMAKE_CURRENT_BINARY_DIR}/external_weights.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_kurtosis SOURCES ${CMAKE_CURRENT_BINARY_DIR}/kurtosis.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_max SOURCES ${CMAKE_CURRENT_BINARY_DIR}/max.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_mean SOURCES ${CMAKE_CURRENT_BINARY_DIR}/mean.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_median SOURCES ${CMAKE_CURRENT_BINARY_DIR}/median.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_min SOURCES ${CMAKE_CURRENT_BINARY_DIR}/min.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_moment SOURCES ${CMAKE_CURRENT_BINARY_DIR}/moment.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_pot_quantile SOURCES ${CMAKE_CURRENT_BINARY_DIR}/pot_quantile.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_p_square_cumul_dist SOURCES ${CMAKE_CURRENT_BINARY_DIR}/p_square_cumul_dist.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_p_square_quantile SOURCES ${CMAKE_CURRENT_BINARY_DIR}/p_square_quantile.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_reference SOURCES ${CMAKE_CURRENT_BINARY_DIR}/reference.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_rolling_count SOURCES ${CMAKE_CURRENT_BINARY_DIR}/rolling_count.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_rolling_sum SOURCES ${CMAKE_CURRENT_BINARY_DIR}/rolling_sum.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_rolling_mean SOURCES ${CMAKE_CURRENT_BINARY_DIR}/rolling_mean.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_skewness SOURCES ${CMAKE_CURRENT_BINARY_DIR}/skewness.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_sum SOURCES ${CMAKE_CURRENT_BINARY_DIR}/sum.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_sum_kahan SOURCES ${CMAKE_CURRENT_BINARY_DIR}/sum_kahan.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_tail SOURCES ${CMAKE_CURRENT_BINARY_DIR}/tail.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_tail_mean SOURCES ${CMAKE_CURRENT_BINARY_DIR}/tail_mean.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_tail_quantile SOURCES ${CMAKE_CURRENT_BINARY_DIR}/tail_quantile.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_tail_variate_means SOURCES ${CMAKE_CURRENT_BINARY_DIR}/tail_variate_means.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+
+if(NOT APPLE AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    cm_test(NAME accumulators_test_valarray SOURCES ${CMAKE_CURRENT_BINARY_DIR}/valarray.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+endif()
+
+cm_test(NAME accumulators_test_variance SOURCES ${CMAKE_CURRENT_BINARY_DIR}/variance.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_vector SOURCES ${CMAKE_CURRENT_BINARY_DIR}/vector.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_weighted_covariance SOURCES ${CMAKE_CURRENT_BINARY_DIR}/weighted_covariance.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_weighted_extended_p_square SOURCES ${CMAKE_CURRENT_BINARY_DIR}/weighted_extended_p_square.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_weighted_kurtosis SOURCES ${CMAKE_CURRENT_BINARY_DIR}/weighted_kurtosis.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_weighted_mean SOURCES ${CMAKE_CURRENT_BINARY_DIR}/weighted_mean.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_weighted_median SOURCES ${CMAKE_CURRENT_BINARY_DIR}/weighted_median.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_weighted_moment SOURCES ${CMAKE_CURRENT_BINARY_DIR}/weighted_moment.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_weighted_p_square_cumul_dist SOURCES ${CMAKE_CURRENT_BINARY_DIR}/weighted_p_square_cumul_dist.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_weighted_p_square_quantile SOURCES ${CMAKE_CURRENT_BINARY_DIR}/weighted_p_square_quantile.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_weighted_skewness SOURCES ${CMAKE_CURRENT_BINARY_DIR}/weighted_skewness.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_weighted_sum SOURCES ${CMAKE_CURRENT_BINARY_DIR}/weighted_sum.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_weighted_sum_kahan SOURCES ${CMAKE_CURRENT_BINARY_DIR}/weighted_sum_kahan.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_weighted_variance SOURCES ${CMAKE_CURRENT_BINARY_DIR}/weighted_variance.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_weighted_pot_quantile SOURCES ${CMAKE_CURRENT_BINARY_DIR}/weighted_pot_quantile.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_weighted_tail_mean SOURCES ${CMAKE_CURRENT_BINARY_DIR}/weighted_tail_mean.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_weighted_tail_quantile SOURCES ${CMAKE_CURRENT_BINARY_DIR}/weighted_tail_quantile.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME accumulators_test_weighted_tail_variate_means SOURCES ${CMAKE_CURRENT_BINARY_DIR}/weighted_tail_variate_means.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})

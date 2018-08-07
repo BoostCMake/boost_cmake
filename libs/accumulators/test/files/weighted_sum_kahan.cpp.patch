@@ -1,0 +1,31 @@
+5c5
+< 
+---
+> #define BOOST_TEST_MAIN
+53,58c53
+< ///////////////////////////////////////////////////////////////////////////////
+< // init_unit_test_suite
+< //
+< test_suite* init_unit_test_suite( int argc, char* argv[] )
+< {
+<     test_suite *test = BOOST_TEST_SUITE("weighted sum kahan tests");
+---
+> BOOST_AUTO_TEST_SUITE(weighted_sum_kahan_suite)
+60,61c55,58
+<     test->add(BOOST_TEST_CASE(&test_weighted_sum_kahan));
+<     test->add(BOOST_TEST_CASE(&test_weighted_sum_of_variates_kahan));
+---
+> BOOST_AUTO_TEST_CASE (weighted_sum_kahan_case)
+> {
+>     test_weighted_sum_kahan();
+> }
+63c60,62
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE (test_weighted_sum_of_variates_kahan_case)
+> {
+>     test_weighted_sum_of_variates_kahan();
+64a64,65
+> 
+> BOOST_AUTO_TEST_SUITE_END()
+\ No newline at end of file
