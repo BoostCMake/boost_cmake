@@ -1,17 +1,23 @@
 cmake_minimum_required(VERSION 3.5)
-
+set(BOOST_VERSION "105800")
 list(APPEND CMAKE_MODULE_PATH
      "${CMAKE_CURRENT_LIST_DIR}/cmake"
      "${CMAKE_CURRENT_LIST_DIR}/cmake/modules/share/modules/cmake")
 
 include(CMConfig)
-
 set(BUILD_WITH_SOURCES_DIR "Sources directory" CACHE string "")
 
 if(BUILD_WITH_SOURCES_DIR)
     cm_workspace(boost SOURCES_DIR ${BUILD_WITH_SOURCES_DIR})
 else()
     cm_workspace(boost)
+endif()
+
+execute_process(COMMAND grep ${BOOST_VERSION}1 ${CMAKE_WORKSPACE_SOURCES_DIR}libs/config/include/boost/version.hpp
+                RESULT_VARIABLE BAD_EXECUTE_RESULT OUTPUT_QUIET
+                )
+if (${BAD_EXECUTE_RESULT})
+    message(FATAL_ERROR "Wrong boost version. Check boost version at ${CMAKE_WORKSPACE_SOURCES_DIR}libs/config/include/boost/version.hpp")
 endif()
 
 macro(find_package NAME)
