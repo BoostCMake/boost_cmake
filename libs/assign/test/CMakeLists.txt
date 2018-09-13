@@ -27,10 +27,12 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_assign
 #
 cm_test(NAME assign_test_basic SOURCES ${CMAKE_CURRENT_BINARY_DIR}/basic.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME assign_test_std SOURCES ${CMAKE_CURRENT_BINARY_DIR}/std.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+# TODO: fix test. error: ambiguous overload for ‘operator=’ (operand types are ‘std::__cxx11::list<int>’ and ‘boost::assign_detail::generic_list<int>’)
 #cm_test(NAME assign_test_list_of SOURCES ${CMAKE_CURRENT_BINARY_DIR}/list_of.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME assign_test_ptr_list_of SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_list_of.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME assign_test_static_list_of SOURCES ${CMAKE_CURRENT_BINARY_DIR}/static_list_of.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME assign_test_tuple_list_of SOURCES ${CMAKE_CURRENT_BINARY_DIR}/tuple_list_of.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+# TODO: fix test. error: ambiguous overload for ‘operator=’ (operand types are ‘team_score_map {aka std::map<std::__cxx11::basic_string<char>, std::vector<int> >}’ and ‘boost::assign_detail::generic_list<std::pair<std::__cxx11::basic_string<char>, std::vector<int> > >’)
 #cm_test(NAME assign_test_list_inserter SOURCES ${CMAKE_CURRENT_BINARY_DIR}/list_inserter.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME assign_test_ptr_list_inserter SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_list_inserter.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME assign_test_ptr_map_inserter SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_map_inserter.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})

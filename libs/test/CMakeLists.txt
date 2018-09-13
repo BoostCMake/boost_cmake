@@ -27,7 +27,7 @@ find_package(${CMAKE_WORKSPACE_NAME}_config)
 find_package(${CMAKE_WORKSPACE_NAME}_numeric_conversion)
 find_package(${CMAKE_WORKSPACE_NAME}_preprocessor)
 
-cm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.59.0)
 
 add_library(${CMAKE_WORKSPACE_NAME}_prg_exec_monitor
         ${CURRENT_SOURCES_DIR}/src/execution_monitor.cpp
@@ -56,6 +56,7 @@ set_property(TARGET ${CMAKE_WORKSPACE_NAME}_prg_exec_monitor PROPERTY EXPORT_NAM
 add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_exec_monitor STATIC
         ${CURRENT_SOURCES_DIR}/src/compiler_log_formatter.cpp
         ${CURRENT_SOURCES_DIR}/src/debug.cpp
+        ${CURRENT_SOURCES_DIR}/src/decorator.cpp
         ${CURRENT_SOURCES_DIR}/src/execution_monitor.cpp
         ${CURRENT_SOURCES_DIR}/src/framework.cpp
         ${CURRENT_SOURCES_DIR}/src/plain_report_formatter.cpp
@@ -64,11 +65,11 @@ add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_exec_monitor STATIC
         ${CURRENT_SOURCES_DIR}/src/results_reporter.cpp
         ${CURRENT_SOURCES_DIR}/src/test_main.cpp
         ${CURRENT_SOURCES_DIR}/src/test_tools.cpp
+        ${CURRENT_SOURCES_DIR}/src/test_tree.cpp
         ${CURRENT_SOURCES_DIR}/src/unit_${CURRENT_PROJECT_NAME}_log.cpp
         ${CURRENT_SOURCES_DIR}/src/unit_${CURRENT_PROJECT_NAME}_main.cpp
         ${CURRENT_SOURCES_DIR}/src/unit_${CURRENT_PROJECT_NAME}_monitor.cpp
         ${CURRENT_SOURCES_DIR}/src/unit_${CURRENT_PROJECT_NAME}_parameters.cpp
-        ${CURRENT_SOURCES_DIR}/src/unit_${CURRENT_PROJECT_NAME}_suite.cpp
         ${CURRENT_SOURCES_DIR}/src/xml_log_formatter.cpp
         ${CURRENT_SOURCES_DIR}/src/xml_report_formatter.cpp
             #            src/decorator.cpp
@@ -96,21 +97,19 @@ target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}_exec_monit
 add_library(${CMAKE_WORKSPACE_NAME}_unit_test_framework
         ${CURRENT_SOURCES_DIR}/src/compiler_log_formatter.cpp
         ${CURRENT_SOURCES_DIR}/src/debug.cpp
-        ${CURRENT_SOURCES_DIR}/src/exception_safety.cpp
+        ${CURRENT_SOURCES_DIR}/src/decorator.cpp
         ${CURRENT_SOURCES_DIR}/src/execution_monitor.cpp
         ${CURRENT_SOURCES_DIR}/src/framework.cpp
-        ${CURRENT_SOURCES_DIR}/src/interaction_based.cpp
-        ${CURRENT_SOURCES_DIR}/src/logged_expectations.cpp
         ${CURRENT_SOURCES_DIR}/src/plain_report_formatter.cpp
         ${CURRENT_SOURCES_DIR}/src/progress_monitor.cpp
         ${CURRENT_SOURCES_DIR}/src/results_collector.cpp
         ${CURRENT_SOURCES_DIR}/src/results_reporter.cpp
         ${CURRENT_SOURCES_DIR}/src/test_tools.cpp
+        ${CURRENT_SOURCES_DIR}/src/test_tree.cpp
         ${CURRENT_SOURCES_DIR}/src/unit_test_log.cpp
         ${CURRENT_SOURCES_DIR}/src/unit_test_main.cpp
         ${CURRENT_SOURCES_DIR}/src/unit_test_monitor.cpp
         ${CURRENT_SOURCES_DIR}/src/unit_test_parameters.cpp
-        ${CURRENT_SOURCES_DIR}/src/unit_test_suite.cpp
         ${CURRENT_SOURCES_DIR}/src/xml_log_formatter.cpp
         ${CURRENT_SOURCES_DIR}/src/xml_report_formatter.cpp
 

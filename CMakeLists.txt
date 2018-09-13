@@ -5,6 +5,7 @@ list(APPEND CMAKE_MODULE_PATH
      "${CMAKE_CURRENT_LIST_DIR}/cmake/modules/share/modules/cmake")
 
 include(CMConfig)
+include(CMSetupVersion)
 
 set(BUILD_WITH_SOURCES_DIR "Sources directory" CACHE string "")
 
@@ -13,6 +14,8 @@ if(BUILD_WITH_SOURCES_DIR)
 else()
     cm_workspace(boost)
 endif()
+
+cm_setup_version(VERSION 1.59.0)
 
 macro(find_package NAME)
     if(NOT "${NAME}" MATCHES "^${CMAKE_WORKSPACE_NAME}_.*$" AND NOT "${NAME}" STREQUAL CM)

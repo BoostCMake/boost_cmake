@@ -14,7 +14,7 @@ find_package(${CMAKE_WORKSPACE_NAME}_smart_ptr)
 find_package(${CMAKE_WORKSPACE_NAME}_config)
 find_package(${CMAKE_WORKSPACE_NAME}_throw_${CURRENT_PROJECT_NAME})
 
-cm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.59.0)
 
 add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
         ${CURRENT_SOURCES_DIR}/src/clone_current_${CURRENT_PROJECT_NAME}_non_intrusive.cpp

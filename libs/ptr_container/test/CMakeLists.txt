@@ -35,7 +35,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_ptr_container
 #// For more information, see http://www.boost.org/libs/ptr_container/
 #//
 
-
+#[[
 cm_test(NAME ptr_container_test_ptr_inserter SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_inserter.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME ptr_container_test_ptr_vector SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_vector.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 #cm_test(NAME ptr_container_test_ptr_list SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_list.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
@@ -56,3 +56,4 @@ cm_test(NAME ptr_container_test_no_exceptions SOURCES ${CMAKE_CURRENT_BINARY_DIR
 cm_test(NAME ptr_container_test_ptr_unordered_set SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_unordered_set.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME ptr_container_test_ptr_unordered_map SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_unordered_map.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME ptr_container_test_ptr_circular_buffer SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_circular_buffer.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+]]

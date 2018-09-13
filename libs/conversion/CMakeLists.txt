@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
 
-
 find_package(CM)
 include(CMDeploy)
 include(CMSetupVersion)
@@ -14,7 +13,7 @@ find_package(${CMAKE_WORKSPACE_NAME}_config)
 find_package(${CMAKE_WORKSPACE_NAME}_throw_exception)
 find_package(${CMAKE_WORKSPACE_NAME}_smart_ptr)
 
-cm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.59.0)
 
 add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE
             )
@@ -26,7 +25,6 @@ target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE 
 target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::config)
 target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::throw_exception)
 target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::smart_ptr)
-
 
 cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 

@@ -14,7 +14,7 @@ find_package(${CMAKE_WORKSPACE_NAME}_io)
 find_package(${CMAKE_WORKSPACE_NAME}_config)
 find_package(${CMAKE_WORKSPACE_NAME}_throw_exception)
 
-cm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.59.0)
 
 add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
         ${CURRENT_SOURCES_DIR}/src/auto_${CURRENT_PROJECT_NAME}s_construction.cpp

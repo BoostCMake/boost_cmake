@@ -78,35 +78,32 @@ foreach(TEST ${TESTS})
     endif()
 endforeach()
 
-parse_test(${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_WORKSPACE_NAME}_no_cxx14_digit_separator.ipp config_test)
-
 cm_test(NAME config_test_config_test_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test_c.c)
-cm_test(NAME config_test_config_info SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_info.cpp)
-#[[
 cm_test(NAME config_test_config_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test.cpp)
 cm_test(NAME config_test_config_test_no_rtti SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test.cpp)
 set_target_properties(config_test_config_test_no_rtti PROPERTIES CXX_RTTI Off)
 cm_test(NAME config_test_config_test_no_exceptions SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test.cpp)
 set_target_properties(config_test_config_test_no_exceptions PROPERTIES CXX_EXCEPTIONS Off)
-
 foreach(CONFIG_TEST config_test_config_test config_test_config_test_no_rtti config_test_config_test_no_exceptions)
     target_link_libraries(${CONFIG_TEST} config_threads)
 endforeach()
-]]
+cm_test(NAME config_test_config_info SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_info.cpp)
+cm_test(NAME config_test_config_info_no_rtti SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test.cpp)
+set_target_properties(config_test_config_info_no_rtti PROPERTIES CXX_RTTI Off)
+cm_test(NAME config_test_config_info_no_exceptions SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test.cpp)
+set_target_properties(config_test_config_info_no_exceptions PROPERTIES CXX_EXCEPTIONS Off)
+foreach(CONFIG_TEST config_test_config_info config_test_config_info_no_rtti config_test_config_info_no_exceptions)
+    target_link_libraries(${CONFIG_TEST} config_threads)
+endforeach()
+cm_test(NAME config_test_math_info SOURCES ${CURRENT_TEST_SOURCES_DIR}/math_info.cpp)
+cm_test(NAME config_test_abi_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/abi/abi_test.cpp ${CURRENT_TEST_SOURCES_DIR}/abi/main.cpp)
+cm_test(NAME config_test_limits_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/limits_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+# TODO: fix test. CMakeFiles/config_test_link_test.dir/home/alex/Projects/boost-1.59.0/libs/config/test/link/main.cpp.o: In function `main':  main.cpp:(.text+0xa): undefined reference to `int test_free_proc<int>(int)'
+#cm_test(NAME config_test_link_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/link/main.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+#target_compile_definitions(config_test_link_test PRIVATE -DBOOST_CONFIG_NO_LIB=1)
+
 cm_test(NAME config_test_test_thread_fail1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/threads/test_thread_fail1.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME config_test_test_thread_fail2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/threads/test_thread_fail2.cpp COMPILE_ONLY WILL_FAIL)
-
-cm_test(NAME config_test_abi_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/abi/abi_test.cpp ${CURRENT_TEST_SOURCES_DIR}/abi/main.cpp)
-
-cm_test(NAME config_test_limits_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/limits_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-if(BUILD_SHARED_LIBS)
-    target_compile_definitions(config_test_limits_test PRIVATE -DBOOST_DYN_LINK=1)
-endif()
-
-target_compile_definitions(config_test_limits_test PRIVATE -DBOOST_CONFIG_NO_LIB=1)
-set_target_properties(config_test_limits_test PROPERTIES CXX_EXCEPTIONS On)
-
-cm_test(NAME config_test_math_info SOURCES ${CURRENT_TEST_SOURCES_DIR}/math_info.cpp)
 
 include(CheckCXXCompilerFlag)
 set(IMPLICIT_FALLTHROUGH_FLAG -std=c++11 -Wimplicit-fallthrough -Wall -Werror)
@@ -115,6 +112,11 @@ cm_test(NAME config_test_boost_fallthrough_test SOURCES ${CURRENT_TEST_SOURCES_D
 if(HAS_IMPLICIT_FALLTHROUGH)
     target_compile_options(config_test_boost_fallthrough_test PUBLIC ${IMPLICIT_FALLTHROUGH_FLAG})
 endif(HAS_IMPLICIT_FALLTHROUGH)
+
 cm_test(NAME config_test_helper_macro_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/helper_macro_test.cpp COMPILE_ONLY)
 
-cm_test(NAME cstdint_include_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/cstdint_include_test.cpp COMPILE_ONLY)
+cm_test(NAME config_test_cstdint_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/cstdint_test.cpp COMPILE_ONLY)
+cm_test(NAME config_test_cstdint_test2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/cstdint_test2.cpp COMPILE_ONLY)
+
+cm_test(NAME config_test_cstdint_include_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/cstdint_include_test.cpp COMPILE_ONLY)
+cm_test(NAME config_test_config_build_check SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_build_check.cpp COMPILE_ONLY)

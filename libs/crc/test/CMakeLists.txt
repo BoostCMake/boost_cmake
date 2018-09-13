@@ -2,8 +2,6 @@ include(CMTest)
 
 patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
 
-
-
 find_package(${CMAKE_WORKSPACE_NAME}_random)
 find_package(${CMAKE_WORKSPACE_NAME}_detail)
 find_package(${CMAKE_WORKSPACE_NAME}_timer)

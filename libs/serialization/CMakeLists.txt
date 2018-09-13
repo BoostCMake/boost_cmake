@@ -29,7 +29,7 @@ find_package(${CMAKE_WORKSPACE_NAME}_integer)
 find_package(${CMAKE_WORKSPACE_NAME}_optional)
 find_package(${CMAKE_WORKSPACE_NAME}_spirit)
 
-cm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.59.0)
 
 #
 # Compiler settings
