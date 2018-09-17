@@ -52,7 +52,6 @@ cm_test(NAME type_erasure_test_test_member SOURCES ${CURRENT_TEST_SOURCES_DIR}/t
 cm_test(NAME type_erasure_test_test_null SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_null.cpp)
 cm_test(NAME type_erasure_test_test_free SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_free.cpp)
 cm_test(NAME type_erasure_test_test_is_empty SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_is_empty.cpp)
-# cm_test(NAME type_erasure_test_test_dynamic_any_cast SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_dynamic_any_cast.cpp)
 
 cm_test(NAME type_erasure_test_test_param SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_param.cpp COMPILE_ONLY)
 cm_test(NAME type_erasure_test_test_is_subconcept SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_is_subconcept.cpp COMPILE_ONLY)
@@ -81,4 +80,3 @@ cm_test(NAME type_erasure_test_fail_any_cast_discard_const5 SOURCES ${CURRENT_TE
 cm_test(NAME type_erasure_test_fail_any_cast_discard_const6 SOURCES ${CURRENT_TEST_SOURCES_DIR}/fail_any_cast_discard_const6.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME type_erasure_test_fail_any_cast_pointer_to_ref SOURCES ${CURRENT_TEST_SOURCES_DIR}/fail_any_cast_pointer_to_ref.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME type_erasure_test_fail_any_cast_pointer_to_val SOURCES ${CURRENT_TEST_SOURCES_DIR}/fail_any_cast_pointer_to_val.cpp COMPILE_ONLY WILL_FAIL)
-

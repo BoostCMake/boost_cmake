@@ -21,6 +21,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_io
 #
 #  See <http://www.boost.org/libs/io/> for the library's home page.
 
+#test-suite "io"
 cm_test(NAME io_test_ios_state_unit_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ios_state_unit_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME io_test_ios_state_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ios_state_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 

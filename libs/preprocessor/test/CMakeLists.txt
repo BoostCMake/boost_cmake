@@ -18,7 +18,7 @@ target_include_directories(preprocessor_test_settings INTERFACE ${CMAKE_CURRENT_
 
 cm_test_link_libraries(preprocessor_test_settings)
 
-
+#test-suite preprocessor
 cm_test(NAME preprocessor_test_arithmetic SOURCES ${CURRENT_TEST_SOURCES_DIR}/arithmetic.cpp COMPILE_ONLY)
 cm_test(NAME preprocessor_test_array SOURCES ${CURRENT_TEST_SOURCES_DIR}/array.cpp COMPILE_ONLY)
 cm_test(NAME preprocessor_test_comparison SOURCES ${CURRENT_TEST_SOURCES_DIR}/comparison.cpp COMPILE_ONLY)
@@ -36,6 +36,7 @@ cm_test(NAME preprocessor_test_slot SOURCES ${CURRENT_TEST_SOURCES_DIR}/slot.cpp
 cm_test(NAME preprocessor_test_tuple SOURCES ${CURRENT_TEST_SOURCES_DIR}/tuple.cpp COMPILE_ONLY)
 cm_test(NAME preprocessor_test_variadic SOURCES ${CURRENT_TEST_SOURCES_DIR}/variadic.cpp COMPILE_ONLY)
 
+#test-suite preprocessor_nvm
 cm_test(NAME preprocessor_test_arithmetic_nvm SOURCES ${CURRENT_TEST_SOURCES_DIR}/arithmetic.cpp COMPILE_ONLY)
 target_compile_definitions(preprocessor_test_arithmetic_nvm PUBLIC BOOST_PP_VARIADICS=0)
 cm_test(NAME preprocessor_test_array_nvm SOURCES ${CURRENT_TEST_SOURCES_DIR}/array.cpp COMPILE_ONLY)
@@ -65,6 +66,7 @@ target_compile_definitions(preprocessor_test_slot_nvm PUBLIC BOOST_PP_VARIADICS=
 cm_test(NAME preprocessor_test_tuple_nvm SOURCES ${CURRENT_TEST_SOURCES_DIR}/tuple.cpp COMPILE_ONLY)
 target_compile_definitions(preprocessor_test_tuple_nvm PUBLIC BOOST_PP_VARIADICS=0)
 
+#test-suite preprocessor_c
 cm_test(NAME preprocessor_test_arithmetic_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/arithmetic.c COMPILE_ONLY)
 cm_test(NAME preprocessor_test_array_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/array.c COMPILE_ONLY)
 cm_test(NAME preprocessor_test_comparison_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/comparison.c COMPILE_ONLY)
@@ -80,6 +82,7 @@ cm_test(NAME preprocessor_test_slot_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/slot.c
 cm_test(NAME preprocessor_test_tuple_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/tuple.c COMPILE_ONLY)
 cm_test(NAME preprocessor_test_variadic_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/variadic.c COMPILE_ONLY)
 
+#test-suite preprocessor_c_nvm
 cm_test(NAME preprocessor_test_arithmetic_c_nvm SOURCES ${CURRENT_TEST_SOURCES_DIR}/arithmetic.c COMPILE_ONLY)
 target_compile_definitions(preprocessor_test_arithmetic_c_nvm PUBLIC BOOST_PP_VARIADICS=0)
 cm_test(NAME preprocessor_test_array_c_nvm SOURCES ${CURRENT_TEST_SOURCES_DIR}/array.c COMPILE_ONLY)
@@ -105,19 +108,20 @@ target_compile_definitions(preprocessor_test_slot_c_nvm PUBLIC BOOST_PP_VARIADIC
 cm_test(NAME preprocessor_test_tuple_c_nvm SOURCES ${CURRENT_TEST_SOURCES_DIR}/tuple.c COMPILE_ONLY)
 target_compile_definitions(preprocessor_test_tuple_c_nvm PUBLIC BOOST_PP_VARIADICS=0)
 
-
+#test-suite preprocessor_isempty
 cm_test(NAME preprocessor_test_isempty SOURCES ${CURRENT_TEST_SOURCES_DIR}/isempty.cpp COMPILE_ONLY)
 cm_test(NAME preprocessor_test_isempty_variadic_standard_failure SOURCES ${CURRENT_TEST_SOURCES_DIR}/isempty_variadic_standard_failure.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME preprocessor_test_isempty_variadic_standard_failure2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/isempty_variadic_standard_failure2.cpp COMPILE_ONLY WILL_FAIL)
 
+#test-suite preprocessor_isempty_nvm
 cm_test(NAME preprocessor_test_isempty_nvm SOURCES ${CURRENT_TEST_SOURCES_DIR}/isempty.cpp COMPILE_ONLY)
 target_compile_definitions(preprocessor_test_isempty_nvm PUBLIC BOOST_PP_VARIADICS=0)
 
+#test-suite preprocessor_isempty_c
 cm_test(NAME preprocessor_test_isempty_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/isempty.c COMPILE_ONLY)
 cm_test(NAME preprocessor_test_isempty_variadic_standard_failure_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/isempty_variadic_standard_failure.c COMPILE_ONLY WILL_FAIL)
 cm_test(NAME preprocessor_test_isempty_variadic_standard_failure2_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/isempty_variadic_standard_failure2.c COMPILE_ONLY WILL_FAIL)
 
+#test-suite preprocessor_isempty_c_nvm
 cm_test(NAME preprocessor_test_isempty_c_nvm SOURCES ${CURRENT_TEST_SOURCES_DIR}/isempty.c COMPILE_ONLY)
 target_compile_definitions(preprocessor_test_isempty_c_nvm PUBLIC BOOST_PP_VARIADICS=0)
-
-# cm_test(NAME preprocessor_test_config_info SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_info.cpp)

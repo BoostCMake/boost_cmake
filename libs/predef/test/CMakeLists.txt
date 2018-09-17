@@ -20,7 +20,7 @@ if(APPLE)
 endif()
 if(NOT CMAKE_SYSTEM_NAME MATCHES "Linux")
     if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-        # cm_test(NAME predef_test_check_value SOURCES ${CURRENT_TEST_SOURCES_DIR}/check_value.cpp)
+        cm_test(NAME predef_test_check_value SOURCES ${CURRENT_TEST_SOURCES_DIR}/check_value.cpp)
     endif()
 endif()
 

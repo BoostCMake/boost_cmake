@@ -15,6 +15,7 @@ endif()
 
 set_target_properties(system_test_throw_test PROPERTIES CXX_EXCEPTIONS On)
 
+#test-suite "system"
 cm_test(NAME system_test_error_code_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/error_code_test.cpp)
 cm_test(NAME system_test_error_code_user_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/error_code_user_test.cpp)
 cm_test(NAME system_test_system_error_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/system_error_test.cpp)
@@ -27,4 +28,3 @@ target_link_libraries(system_test_dynamic_link_test system_test_throw_test)
 cm_test(NAME system_test_initialization_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/initialization_test.cpp)
 cm_test(NAME system_test_header_only_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/header_only_test.cpp)
 cm_test(NAME system_test_system_config_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test.cpp)
-

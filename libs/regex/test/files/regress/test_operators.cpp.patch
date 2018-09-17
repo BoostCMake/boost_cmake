@@ -1,0 +1,10 @@
+11a12,14
+> #define BOOST_TEST_MAIN
+> #include <boost/test/unit_test.hpp>
+> 
+175a179,183
+> 
+> BOOST_AUTO_TEST_CASE(current_test_case)
+> {
+>    test_operators();
+> }

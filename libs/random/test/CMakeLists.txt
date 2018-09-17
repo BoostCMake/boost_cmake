@@ -141,17 +141,8 @@ cm_test(NAME random_test_test_laplace SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_l
 cm_test(NAME random_test_test_laplace_distribution SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_laplace_distribution.cpp)
 cm_test(NAME random_test_test_non_central_chi_squared SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_non_central_chi_squared.cpp)
 cm_test(NAME random_test_test_non_central_chi_squared_distribution SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_non_central_chi_squared_distribution.cpp)
-# cm_test(NAME random_test_test_hyperexponential SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_hyperexponential.cpp)
-# cm_test(NAME random_test_test_hyperexponential_distribution SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_hyperexponential_distribution.cpp)
 
 # run nondet_random_speed.cpp ;
 # run random_device.cpp ;
 # run random_speed.cpp ;
 # run statistic_tests.cpp ;
-
-#
-# Multiprecision tests:
-#
-# cm_test(NAME random_test_multiprecision_int_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/multiprecision_int_test.cpp)
-# This one runs too slow in debug mode, we really need inline expansions turned on amonst other things:
-# cm_test(NAME random_test_multiprecision_float_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/multiprecision_float_test.cpp)

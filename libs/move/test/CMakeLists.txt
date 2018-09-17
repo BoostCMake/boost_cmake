@@ -17,7 +17,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_move
 ##
 ##############################################################################
 
-file(GLOB TEST_FILES *.cpp)
+file(GLOB TEST_FILES ${CURRENT_TEST_SOURCES_DIR}/*.cpp)
 foreach(FILEB ${TEST_FILES})
     get_filename_component(NAME ${FILEB} NAME_WE)
     cm_test(NAME move_test_${NAME} SOURCES ${FILEB})

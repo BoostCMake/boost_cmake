@@ -25,15 +25,15 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_signals2
 
 # For more information, see http://www.boost.org
 
-# bring in rules for testing
 
-
+#test-suite signals2
 cm_test(NAME signals2_test_connection_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/connection_test.cpp)
 cm_test(NAME signals2_test_dead_slot_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/dead_slot_test.cpp)
 cm_test(NAME signals2_test_deconstruct_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/deconstruct_test.cpp)
 cm_test(NAME signals2_test_deletion_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/deletion_test.cpp)
 # TODO: Remove Boost.Thread from directory test and add it explictly for mutex_test
 cm_test(NAME signals2_test_mutex_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/mutex_test.cpp)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::thread)
 cm_test(NAME signals2_test_ordering_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/ordering_test.cpp)
 cm_test(NAME signals2_test_regression_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/regression_test.cpp)
 cm_test(NAME signals2_test_shared_connection_block_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_connection_block_test.cpp)

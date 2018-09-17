@@ -30,7 +30,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_multiprecision
 # http://www.boost.org/LICENSE_1_0.txt.
 
 # HACK: Workaround broken includes
-file(GLOB TEST_HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.hpp *.ipp)
+file(GLOB TEST_HEADERS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/*.hpp ${CMAKE_CURRENT_SOURCE_DIR}/*.ipp)
 foreach(HEADER ${TEST_HEADERS})
     configure_file(${HEADER} ${CURRENT_TEST_SOURCES_DIR}/include/libs/multiprecision/test/${HEADER} @ONLY)
 endforeach()
@@ -58,6 +58,7 @@ cm_test(NAME multiprecision_test_test_arithmetic_cpp_dec_float_2 SOURCES ${CURRE
 cm_test(NAME multiprecision_test_test_arithmetic_cpp_dec_float_3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_cpp_dec_float_3.cpp)
 
 if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (NOT PROJECT_VERSION LESS 1.60.0))
+    # reason: error: right operand of shift expression ‘(1u << 63u)’ is >= than the precision of the left operand [-fpermissive]
     cm_test(NAME multiprecision_test_test_arithmetic_cpp_bin_float_1 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_arithmetic_cpp_bin_float_1.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
     cm_test(NAME multiprecision_test_test_arithmetic_cpp_bin_float_2 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_arithmetic_cpp_bin_float_2.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
     cm_test(NAME multiprecision_test_test_arithmetic_cpp_bin_float_3 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_arithmetic_cpp_bin_float_3.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
@@ -76,10 +77,11 @@ if (HAS_TOMMATH)
     cm_test(NAME multiprecision_test_test_arithmetic_tommath_br SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_tommath_br.cpp)
 
     cm_test(NAME multiprecision_test_test_numeric_limits_tommath SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_numeric_limits.cpp)
-    target_compile_definitions(multiprecision_test_test_numeric_limits_tommath PUBLIC TEST_TOMMATH)
+    target_compile_definitions(multiprecision_test_test_numeric_limits_tommath PUBLIC -DTEST_TOMMATH)
 endif()
 
 if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (NOT PROJECT_VERSION LESS 1.60.0))
+    # reason: error: right operand of shift expression ‘(1u << 63u)’ is >= than the precision of the left operand [-fpermissive]
     cm_test(NAME multiprecision_test_test_arithmetic_cpp_int_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_cpp_int_1.cpp)
     cm_test(NAME multiprecision_test_test_arithmetic_cpp_int_2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_cpp_int_2.cpp)
     cm_test(NAME multiprecision_test_test_arithmetic_cpp_int_3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_cpp_int_3.cpp)
@@ -107,6 +109,7 @@ cm_test(NAME multiprecision_test_test_arithmetic_ab_3 SOURCES ${CURRENT_TEST_SOU
 cm_test(NAME multiprecision_test_test_cpp_dec_float_round SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_dec_float_round.cpp)
 
 if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (NOT PROJECT_VERSION LESS 1.60.0))
+    # reason: error: right operand of shift expression ‘(1u << 63u)’ is >= than the precision of the left operand [-fpermissive]
     cm_test(NAME multiprecision_test_test_arithmetic_logged_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_logged_1.cpp)
     cm_test(NAME multiprecision_test_test_arithmetic_logged_2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_logged_2.cpp)
 
@@ -429,65 +432,65 @@ endif()
 # cm_test(NAME bug11922 SOURCES ${CURRENT_TEST_SOURCES_DIR}/bug11922.cpp COMPILE_ONLY)
 # cm_test(NAME bug12039 SOURCES ${CURRENT_TEST_SOURCES_DIR}/bug12039.cpp)
 # cm_test(NAME test_hash SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_hash.cpp)
+# TODO: /home/alex/Projects/boost-1.59.0/libs/multiprecision/test/math/high_prec/test_gamma.hpp:18:38: fatal error: libs/math/test/functor.hpp: No such file or directory #include "libs/math/test/functor.hpp"
+#[[
+file(GLOB TEST_FILES ${CURRENT_TEST_SOURCES_DIR}/math/high_prec/*.cpp)
+foreach(FILEB ${TEST_FILES})
+    get_filename_component(NAME ${FILEB} NAME_WE)
+    cm_test(NAME multiprecision_test_math_high_prec_${NAME} SOURCES ${FILEB})
+    if (HAS_MPFR)
+        target_compile_definitions(multiprecision_test_math_high_prec_${NAME} PRIVATE -DTEST_MPFR)
+    endif()
+    target_compile_definitions(multiprecision_test_math_high_prec_${NAME} PRIVATE -DBOOST_OPTIONAL_USE_OLD_DEFINITION_OF_NONE -DBOOST_ALL_NO_LIB)
+    target_include_directories(multiprecision_test_math_high_prec_${NAME} PRIVATE ${CURRENT_TEST_SOURCES_DIR}/../../math/include_private)
+endforeach()
+]]
+file(GLOB TEST_FILES ${CURRENT_TEST_SOURCES_DIR}/compile_fail/*.cpp)
+foreach(FILEB ${TEST_FILES})
+    get_filename_component(NAME ${FILEB} NAME_WE)
+    cm_test(NAME multiprecision_test_compile_fail_${NAME} SOURCES ${FILEB} COMPILE_ONLY WILL_FAIL)
+    if (HAS_GMP)
+        target_compile_definitions(multiprecision_test_compile_fail_${NAME} PUBLIC -DTEST_GMP)
+    endif()
+     if (HAS_MPFR)
+        target_compile_definitions(multiprecision_test_compile_fail_${NAME} PUBLIC -DTEST_MPFR)
+    endif()
+endforeach()
 
-
-# cm_test(NAME $(source:B)_mpfr SOURCES $(source))
-# target_compile_definitions($(source:B)_mpfr PUBLIC BOOST_OPTIONAL_USE_OLD_DEFINITION_OF_NONE)
-# cm_test(NAME $(source:B)_mpf SOURCES $(source))
-# target_compile_definitions($(source:B)_mpf PUBLIC BOOST_OPTIONAL_USE_OLD_DEFINITION_OF_NONE)
-# cm_test(NAME $(source:B)_cpp_dec_float SOURCES $(source))
-# target_compile_definitions($(source:B)_cpp_dec_float PUBLIC BOOST_OPTIONAL_USE_OLD_DEFINITION_OF_NONE)
-# cm_test(NAME $(source:B)_cpp_bin_float SOURCES $(source))
-# target_compile_definitions($(source:B)_cpp_bin_float PUBLIC BOOST_OPTIONAL_USE_OLD_DEFINITION_OF_NONE)
-# cm_test(NAME $(source:B)_float128 SOURCES $(source))
-# target_compile_definitions($(source:B)_float128 PUBLIC BOOST_OPTIONAL_USE_OLD_DEFINITION_OF_NONE)
-# cm_test(NAME $(source:B)_intel_quad SOURCES $(source))
-# target_compile_definitions($(source:B)_intel_quad PUBLIC BOOST_OPTIONAL_USE_OLD_DEFINITION_OF_NONE)
-#
-# High precision tests are rather different, as they test only one
-# multiprecision type and are more a test of Boost.Math:
-#
-# cm_test(NAME $(source) SOURCES $(source))
-# target_compile_definitions($(source) PUBLIC BOOST_OPTIONAL_USE_OLD_DEFINITION_OF_NONE)
-
-# cm_test(NAME $(source) SOURCES $(source) COMPILE_ONLY WILL_FAIL)
-
-# cm_test(NAME $(source:B)_mpfr_50 SOURCES $(source) COMPILE_ONLY)
-# target_compile_definitions($(source:B)_mpfr_50 PUBLIC TEST_MPFR_50)
-
-# cm_test(NAME $(source:B)_mpfr_6 SOURCES $(source) COMPILE_ONLY)
-# target_compile_definitions($(source:B)_mpfr_6 PUBLIC TEST_MPFR_6)
-
-# cm_test(NAME $(source:B)_mpfr_15 SOURCES $(source) COMPILE_ONLY)
-# target_compile_definitions($(source:B)_mpfr_15 PUBLIC TEST_MPFR_15)
-
-# cm_test(NAME $(source:B)_mpfr_17 SOURCES $(source) COMPILE_ONLY)
-# target_compile_definitions($(source:B)_mpfr_17 PUBLIC TEST_MPFR_17)
-
-# cm_test(NAME $(source:B)_mpfr_30 SOURCES $(source) COMPILE_ONLY)
-# target_compile_definitions($(source:B)_mpfr_30 PUBLIC TEST_MPFR_30)
-
-# cm_test(NAME $(source:B)_mpf50 SOURCES $(source) COMPILE_ONLY)
-# target_compile_definitions($(source:B)_mpf50 PUBLIC TEST_MPF_50)
-
-# cm_test(NAME $(source:B)_cpp_dec_float SOURCES $(source) COMPILE_ONLY)
-# target_compile_definitions($(source:B)_cpp_dec_float PUBLIC TEST_CPP_DEC_FLOAT)
-
-# cm_test(NAME $(source:B)_cpp_bin_float SOURCES $(source) COMPILE_ONLY)
-# target_compile_definitions($(source:B)_cpp_bin_float PUBLIC TEST_CPP_BIN_FLOAT)
-
-# cm_test(NAME $(source:B)_cpp_dec_float_no_et SOURCES $(source) COMPILE_ONLY)
-# target_compile_definitions($(source:B)_cpp_dec_float_no_et PUBLIC TEST_CPP_DEC_FLOAT_NO_ET)
-
-# cm_test(NAME $(source:B)_backend_concept SOURCES $(source) COMPILE_ONLY)
-# target_compile_definitions($(source:B)_backend_concept PUBLIC TEST_BACKEND)
-
-# cm_test(NAME $(source:B)_logged_adaptor SOURCES $(source) COMPILE_ONLY)
-# target_compile_definitions($(source:B)_logged_adaptor PUBLIC TEST_LOGGED_ADAPTER)
-
-
-
-
-
-
-
+file(GLOB TEST_FILES ${CURRENT_TEST_SOURCES_DIR}/concepts/*.cpp)
+foreach(FILEB ${TEST_FILES})
+    get_filename_component(NAME ${FILEB} NAME_WE)
+    
+    cm_test(NAME multiprecision_test_concepts_${NAME}_mpfr_50 SOURCES ${FILEB} COMPILE_ONLY)
+    target_compile_definitions(multiprecision_test_concepts_${NAME}_mpfr_50 PUBLIC -DTEST_MPFR_50)
+    
+    cm_test(NAME multiprecision_test_concepts_${NAME}_mpfr_6 SOURCES ${FILEB} COMPILE_ONLY)
+    target_compile_definitions(multiprecision_test_concepts_${NAME}_mpfr_6 PUBLIC -DTEST_MPFR_6)
+    
+    cm_test(NAME multiprecision_test_concepts_${NAME}_mpfr_15 SOURCES ${FILEB} COMPILE_ONLY)
+    target_compile_definitions(multiprecision_test_concepts_${NAME}_mpfr_15 PUBLIC -DTEST_MPFR_15)
+    
+    cm_test(NAME multiprecision_test_concepts_${NAME}_mpfr_17 SOURCES ${FILEB} COMPILE_ONLY)
+    target_compile_definitions(multiprecision_test_concepts_${NAME}_mpfr_17 PUBLIC -DTEST_MPFR_17)
+    
+    cm_test(NAME multiprecision_test_concepts_${NAME}_mpfr_30 SOURCES ${FILEB} COMPILE_ONLY)
+    target_compile_definitions(multiprecision_test_concepts_${NAME}_mpfr_30 PUBLIC -DTEST_MPFR_30)
+    
+    cm_test(NAME multiprecision_test_concepts_${NAME}_mpf50 SOURCES ${FILEB} COMPILE_ONLY)
+    target_compile_definitions(multiprecision_test_concepts_${NAME}_mpf50 PUBLIC -DTEST_MPF_50)
+    
+    cm_test(NAME multiprecision_test_concepts_${NAME}_cpp_dec_float SOURCES ${FILEB} COMPILE_ONLY)
+    target_compile_definitions(multiprecision_test_concepts_${NAME}_cpp_dec_float PUBLIC -DTEST_CPP_DEC_FLOAT)
+    
+    cm_test(NAME multiprecision_test_concepts_${NAME}_cpp_bin_float SOURCES ${FILEB} COMPILE_ONLY)
+    target_compile_definitions(multiprecision_test_concepts_${NAME}_cpp_bin_float PUBLIC -DTEST_CPP_BIN_FLOAT)
+    
+    cm_test(NAME multiprecision_test_concepts_${NAME}_cpp_dec_float_no_et SOURCES ${FILEB} COMPILE_ONLY)
+    target_compile_definitions(multiprecision_test_concepts_${NAME}_cpp_dec_float_no_et PUBLIC -DTEST_CPP_DEC_FLOAT_NO_ET)
+    
+    cm_test(NAME multiprecision_test_concepts_${NAME}_backend_concept SOURCES ${FILEB} COMPILE_ONLY)
+    target_compile_definitions(multiprecision_test_concepts_${NAME}_backend_concept PUBLIC -DTEST_BACKEND)
+    
+    cm_test(NAME multiprecision_test_concepts_${NAME}_logged_adaptor SOURCES ${FILEB} COMPILE_ONLY)
+    target_compile_definitions(multiprecision_test_concepts_${NAME}_logged_adaptor PUBLIC -DTEST_LOGGED_ADAPTER)
+endforeach()

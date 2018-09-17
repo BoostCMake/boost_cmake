@@ -20,10 +20,6 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_local_function
 
 # Sun does not automatically detect type-of emulation mode (force it).
 
-
-cm_test(NAME local_function_test_ten_void SOURCES ${CURRENT_TEST_SOURCES_DIR}/ten_void.cpp)
-cm_test(NAME local_function_test_ten_void_nova SOURCES ${CURRENT_TEST_SOURCES_DIR}/ten_void_nova.cpp)
-
 function(compile_fail_vaseq target)
     cm_test(NAME local_function_test_${target} SOURCES ${CURRENT_TEST_SOURCES_DIR}/${target}.cpp COMPILE_ONLY WILL_FAIL)
     cm_test(NAME local_function_test_${target}_seq SOURCES ${CURRENT_TEST_SOURCES_DIR}/${target}_seq.cpp COMPILE_ONLY WILL_FAIL)
@@ -38,6 +34,7 @@ endfunction(run_vaseq)
 
 run_vaseq(add)
 if ((COMPILER_SUPPORTS_CXX20) OR (NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (PROJECT_VERSION GREATER 1.59))
+    #reason: add_classifiers.cpp:20:39: error: two or more data types in declaration of ‘x’
     run_vaseq(add_classifiers)
 
     target_compile_definitions(local_function_test_add_classifiers_seq_nova PRIVATE BOOST_NO_CXX11_AUTO_DECLARATIONS)
@@ -70,3 +67,6 @@ run_vaseq(same_line)
 run_vaseq(transform)
 run_vaseq(typeof)
 run_vaseq(typeof_template)
+
+cm_test(NAME local_function_test_ten_void SOURCES ${CURRENT_TEST_SOURCES_DIR}/ten_void.cpp)
+cm_test(NAME local_function_test_ten_void_nova SOURCES ${CURRENT_TEST_SOURCES_DIR}/ten_void_nova.cpp)

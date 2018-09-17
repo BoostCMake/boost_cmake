@@ -44,6 +44,8 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_uuid
 
 # test MSVC 12 (VS2013) optimizer bug with SIMD operations. See https://svn.boost.org/trac/boost/ticket/8509#comment:3.
 # Only happens in Release x64 builds.
+
+#test-suite uuid
 cm_test(NAME uuid_test_compile_uuid SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_uuid.cpp COMPILE_ONLY)
 cm_test(NAME uuid_test_compile_uuid_no_type_traits SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_uuid.cpp COMPILE_ONLY)
 target_compile_definitions(uuid_test_compile_uuid_no_type_traits  PUBLIC BOOST_UUID_NO_TYPE_TRAITS)
@@ -55,18 +57,25 @@ cm_test(NAME uuid_test_compile_name_generator SOURCES ${CURRENT_TEST_SOURCES_DIR
 cm_test(NAME uuid_test_compile_string_generator SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_string_generator.cpp COMPILE_ONLY)
 cm_test(NAME uuid_test_compile_random_generator SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_random_generator.cpp COMPILE_ONLY)
 cm_test(NAME uuid_test_compile_seed_rng SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_seed_rng.cpp COMPILE_ONLY)
+
 cm_test(NAME uuid_test_test_include1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_include1.cpp ${CURRENT_TEST_SOURCES_DIR}/test_include2.cpp)
+
 cm_test(NAME uuid_test_test_test_uuid SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_uuid.cpp)
 cm_test(NAME uuid_test_test_test_uuid_no_simd SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_uuid_no_simd.cpp)
+
 cm_test(NAME uuid_test_test_test_io SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_io.cpp)
+
 cm_test(NAME uuid_test_test_test_nil_generator SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_nil_generator.cpp)
 cm_test(NAME uuid_test_test_name_generator SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_name_generator.cpp)
 cm_test(NAME uuid_test_test_string_generator SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_string_generator.cpp)
 cm_test(NAME uuid_test_test_random_generator SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_random_generator.cpp)
+
 cm_test(NAME uuid_test_test_tagging SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_tagging.cpp)
+
 cm_test(NAME uuid_test_test_uuid_class SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_uuid_class.cpp)
 cm_test(NAME uuid_test_test_uuid_in_map SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_uuid_in_map.cpp)
+
 cm_test(NAME uuid_test_test_serialization SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_serialization.cpp)
+
 cm_test(NAME uuid_test_test_sha1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_sha1.cpp)
-# cm_test(NAME uuid_test_test_msvc_simd_bug981648 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_msvc_simd_bug981648_main.cpp)
 
