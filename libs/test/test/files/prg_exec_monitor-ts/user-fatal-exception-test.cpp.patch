@@ -1,0 +1,12 @@
+14a15,16
+> #define BOOST_TEST_MAIN
+> #include <boost/test/unit_test.hpp>
+32a35,40
+> BOOST_AUTO_TEST_CASE(current_test)
+> {
+>     int argc = boost::unit_test::framework::master_test_suite().argc;
+>     char **argv = boost::unit_test::framework::master_test_suite().argv;
+>     BOOST_CHECK_EQUAL(cpp_main(argc, argv), 0);
+> }
+35a44
+> 

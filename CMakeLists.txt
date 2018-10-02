@@ -17,6 +17,14 @@ endif()
 
 cm_setup_version(VERSION 1.59.0)
 
+execute_process(COMMAND grep ${PROJECT_VERSION_MAJOR}_${PROJECT_VERSION_MINOR} ${CMAKE_WORKSPACE_SOURCES_DIR}/libs/config/include/boost/version.hpp
+        RESULT_VARIABLE BAD_EXECUTE_RESULT OUTPUT_QUIET
+        )
+
+if (${BAD_EXECUTE_RESULT})
+    message(FATAL_ERROR "Wrong boost version. Check boost version at ${CMAKE_WORKSPACE_SOURCES_DIR}/libs/config/include/boost/version.hpp")
+endif()
+
 macro(find_package NAME)
     if(NOT "${NAME}" MATCHES "^${CMAKE_WORKSPACE_NAME}_.*$" AND NOT "${NAME}" STREQUAL CM)
         _find_package(${ARGV})

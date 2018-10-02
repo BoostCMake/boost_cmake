@@ -2,95 +2,191 @@
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+75c75
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 92c92
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+99c99
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 116c116
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+123c123
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 140c140
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+147c147
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 164c164
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+171c171
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 188c188
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+195c195
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 212c212
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+219c219
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 236c236
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+243c243
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 324c324
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+331c331
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 348c348
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+355c355
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 372c372
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+379c379
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 396c396
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+403c403
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 420c420
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+427c427
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 444c444
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+451c451
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 468c468
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+475c475
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 492c492
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+499c499
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 580c580
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+587c587
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 604c604
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+611c611
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 628c628
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+635c635
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 652c652
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+659c659
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 676c676
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+683c683
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 700c700
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+707c707
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 724c724
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+731c731
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);
 748c748
 <         BOOST_ASSERT( 0 < stack_ctx.sp);
 ---
 >         BOOST_ASSERT( NULL != stack_ctx.sp);
+755c755
+<         BOOST_ASSERT( 0 < sp);
+---
+>         BOOST_ASSERT( NULL != sp);

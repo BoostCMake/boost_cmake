@@ -25,4 +25,6 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_context
 
 
 cm_test(NAME context_test_test_context SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_context.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-cm_test(NAME context_test_test_execution_context SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_execution_context.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+if (NOT ((CMAKE_CXX_COMPILER_ID STREQUAL "Clang") AND (CMAKE_CXX_COMPILER_VERSION VERSION_LESS "6.0.0")))
+    cm_test(NAME context_test_test_execution_context SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_execution_context.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+endif()

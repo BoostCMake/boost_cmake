@@ -46,10 +46,10 @@ endfunction(compile_fail_typeof)
 
 run_vaseq(same_line)
 
-#if(CMAKE_COMPILER_IS_GNUCXX AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+if(CMAKE_COMPILER_IS_GNUCXX AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     run_vaseq(world)
     run_vaseq(world_checkpoint)
-#endif()
+endif()
 
 # TODO: fix test. Undefine defenition BOOST_NO_CXX11_LAMBDAS.
 #run_vaseq(world_checkpoint_all)

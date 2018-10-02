@@ -32,11 +32,6 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_regex
 #<toolset>gcc-mw:<link>static
 #<toolset>gcc-mingw:<link>static
 
-#
-# rule for simple regex test programs:
-#
-# cm_test(NAME $(name SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR}) SOURCES $(sources SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR}) SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-
 # sources
 set(R_SOURCE
         ${CURRENT_TEST_SOURCES_DIR}/regress/basic_tests.cpp
