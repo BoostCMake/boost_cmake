@@ -5,6 +5,8 @@ list(APPEND CMAKE_MODULE_PATH
      "${CMAKE_CURRENT_LIST_DIR}/cmake/modules/share/modules/cmake")
 
 include(CMConfig)
+include(CMSetupVersion)
+
 set(BUILD_WITH_SOURCES_DIR "Sources directory" CACHE string "")
 
 if(BUILD_WITH_SOURCES_DIR)
