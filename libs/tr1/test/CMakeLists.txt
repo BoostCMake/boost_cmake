@@ -79,7 +79,7 @@ foreach(FILEB ${STD_HEADERS_COMPILE_TEST_FILES})
 endforeach()
 
 
-    file(GLOB CYCLE_DEPEND_COMPILE_TEST_FILES cyclic_depend/*.cpp)
+file(GLOB CYCLE_DEPEND_COMPILE_TEST_FILES cyclic_depend/*.cpp)
 foreach(FILEB ${CYCLE_DEPEND_COMPILE_TEST_FILES})
     get_filename_component(NAME ${FILEB} NAME_WE)
     cm_test(NAME tr1_test_${NAME} SOURCES ${FILEB} COMPILE_ONLY SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})

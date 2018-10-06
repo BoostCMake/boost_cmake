@@ -174,8 +174,6 @@ cm_test(NAME math_test_test_chi_squared SOURCES ${CURRENT_TEST_SOURCES_DIR}/test
 target_link_libraries(math_test_test_chi_squared boost::test)
 cm_test(NAME math_test_test_classify SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_classify.cpp )
 target_link_libraries(math_test_test_classify boost::test)
-# cm_test(NAME math_test_test_difference SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_difference.cpp )
-# target_link_libraries(math_test_test_difference boost::test)
 cm_test(NAME math_test_test_digamma SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_digamma.cpp )
 target_link_libraries(math_test_test_digamma boost::test)
 cm_test(NAME math_test_test_dist_overloads SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_dist_overloads.cpp )
@@ -261,34 +259,6 @@ target_compile_definitions(math_test_test_ibeta_real_concept3 PUBLIC TEST_DATA=3
 cm_test(NAME math_test_test_ibeta_real_concept4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_ibeta.cpp )
 target_link_libraries(math_test_test_ibeta_real_concept4 boost::test)
 target_compile_definitions(math_test_test_ibeta_real_concept4 PUBLIC TEST_DATA=4)
-
-# cm_test(NAME math_test_test_ibeta_derivative_float SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_ibeta_derivative.cpp )
-# target_link_libraries(math_test_test_ibeta_derivative_float boost::test)
-# target_compile_definitions(math_test_test_ibeta_derivative_float PUBLIC TEST_FLOAT)
-
-# cm_test(NAME math_test_test_ibeta_derivative_double SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_ibeta_derivative.cpp )
-# target_link_libraries(math_test_test_ibeta_derivative_double boost::test)
-# target_compile_definitions(math_test_test_ibeta_derivative_double PUBLIC TEST_DOUBLE)
-
-# cm_test(NAME math_test_test_ibeta_derivative_long_double SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_ibeta_derivative.cpp )
-# target_link_libraries(math_test_test_ibeta_derivative_long_double boost::test)
-# target_compile_definitions(math_test_test_ibeta_derivative_long_double PUBLIC TEST_LDOUBLE)
-
-# cm_test(NAME math_test_test_ibeta_derivative_real_concept1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_ibeta_derivative.cpp )
-# target_link_libraries(math_test_test_ibeta_derivative_real_concept1 boost::test)
-# target_compile_definitions(math_test_test_ibeta_derivative_real_concept1 PUBLIC TEST_DATA=1)
-
-# cm_test(NAME math_test_test_ibeta_derivative_real_concept2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_ibeta_derivative.cpp )
-# target_link_libraries(math_test_test_ibeta_derivative_real_concept2 boost::test)
-# target_compile_definitions(math_test_test_ibeta_derivative_real_concept2 PUBLIC TEST_DATA=2)
-#
-# cm_test(NAME math_test_test_ibeta_derivative_real_concept3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_ibeta_derivative.cpp )
-# target_link_libraries(math_test_test_ibeta_derivative_real_concept3 boost::test)
-# target_compile_definitions(math_test_test_ibeta_derivative_real_concept3 PUBLIC TEST_DATA=3)
-
-# cm_test(NAME math_test_test_ibeta_derivative_real_concept4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_ibeta_derivative.cpp )
-# target_link_libraries(math_test_test_ibeta_derivative_real_concept4 boost::test)
-# target_compile_definitions(math_test_test_ibeta_derivative_real_concept4 PUBLIC TEST_DATA=4)
 
 cm_test(NAME math_test_test_ibeta_inv_float SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_ibeta_inv.cpp )
 target_link_libraries(math_test_test_ibeta_inv_float boost::test)
@@ -462,6 +432,7 @@ target_compile_definitions(math_test_test_poisson_real_concept PUBLIC TEST_REAL_
 cm_test(NAME math_test_test_rayleigh SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_rayleigh.cpp )
 target_link_libraries(math_test_test_rayleigh boost::test)
 
+# TODO: fix test.
 #cm_test(NAME math_test_test_rationals SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_rationals.cpp
          #test_rational_instances/test_rational_double1.cpp
          #test_rational_instances/test_rational_double2.cpp
@@ -491,10 +462,6 @@ cm_test(NAME math_test_test_remez SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_remez
 target_link_libraries(math_test_test_remez boost::test)
 cm_test(NAME math_test_test_roots SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_roots.cpp )
 target_link_libraries(math_test_test_roots boost::test)
-# cm_test(NAME math_test_test_root_iterations SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_root_iterations.cpp )
-# target_link_libraries(math_test_test_root_iterations boost::test)
-# cm_test(NAME math_test_test_root_finding_concepts SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_root_finding_concepts.cpp )
-# target_link_libraries(math_test_test_root_finding_concepts boost::test)
 cm_test(NAME math_test_test_round SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_round.cpp )
 target_link_libraries(math_test_test_round boost::test)
 cm_test(NAME math_test_test_spherical_harmonic SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_spherical_harmonic.cpp )
@@ -536,8 +503,6 @@ cm_test(NAME math_test_test_policy_7 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_po
 target_link_libraries(math_test_test_policy_7 boost::test)
 cm_test(NAME math_test_test_policy_8 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_policy_8.cpp )
 target_link_libraries(math_test_test_policy_8 boost::test)
-# cm_test(NAME math_test_test_policy_9 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_policy_9.cpp COMPILE_ONLY )
-# target_link_libraries(math_test_test_policy_9 boost::test)
 cm_test(NAME math_test_test_policy_sf SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_policy_sf.cpp )
 target_link_libraries(math_test_test_policy_sf boost::test)
 
@@ -713,8 +678,6 @@ cm_test(NAME math_test_compile_test_sf_next_incl_test SOURCES ${CURRENT_TEST_SOU
 target_link_libraries(math_test_compile_test_sf_next_incl_test compile_test_main)
 cm_test(NAME math_test_compile_test_sf_powm1_incl_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_test/sf_powm1_incl_test.cpp )
 target_link_libraries(math_test_compile_test_sf_powm1_incl_test compile_test_main)
-# cm_test(NAME math_test_compile_test_sf_relative_distance_incl_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_test/sf_relative_distance_incl_test.cpp )
-# target_link_libraries(math_test_compile_test_sf_relative_distance_incl_test compile_test_main)
 cm_test(NAME math_test_compile_test_sf_round_incl_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_test/sf_round_incl_test.cpp )
 target_link_libraries(math_test_compile_test_sf_round_incl_test compile_test_main)
 cm_test(NAME math_test_compile_test_sf_sign_incl_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_test/sf_sign_incl_test.cpp )
@@ -731,8 +694,6 @@ cm_test(NAME math_test_compile_test_sf_sqrt1pm1_incl_test SOURCES ${CURRENT_TEST
 target_link_libraries(math_test_compile_test_sf_sqrt1pm1_incl_test compile_test_main)
 cm_test(NAME math_test_compile_test_sf_trunc_incl_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_test/sf_trunc_incl_test.cpp )
 target_link_libraries(math_test_compile_test_sf_trunc_incl_test compile_test_main)
-# cm_test(NAME math_test_compile_test_sf_ulp_incl_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_test/sf_ulp_incl_test.cpp )
-# target_link_libraries(math_test_compile_test_sf_ulp_incl_test compile_test_main)
 cm_test(NAME math_test_compile_test_sf_zeta_incl_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_test/sf_zeta_incl_test.cpp )
 target_link_libraries(math_test_compile_test_sf_zeta_incl_test compile_test_main)
 cm_test(NAME math_test_compile_test_std_real_concept_check SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_test/std_real_concept_check.cpp )
@@ -805,11 +766,6 @@ target_link_libraries(math_test_test_signed_zero boost::test)
 
 cm_test(NAME math_test_complex_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/complex_test.cpp )
 target_link_libraries(math_test_complex_test boost::test)
-# cm_test(NAME math_test_test_polynomial SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_polynomial.cpp )
-# target_link_libraries(math_test_test_polynomial boost::test)
-
-# cm_test(NAME math_test_test_gcd SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_gcd.cpp )
-# target_link_libraries(math_test_test_gcd boost::test)
 
 cm_test(NAME math_test_multiprc_concept_check_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/multiprc_concept_check_1.cpp COMPILE_ONLY )
 target_link_libraries(math_test_multiprc_concept_check_1 boost::test)
@@ -856,9 +812,7 @@ endif()
 # run zztest_max_digits10.cpp ;
 #  Removed as inexplicably failing for VS12 on teeks99 but OK locally.
 
-# TODO: Add float128 tests
-# cm_test(NAME math_test_$(source ) SOURCES $(source ) )
-file(GLOB FLOAT_TEST float128/*.cpp)
+file(GLOB FLOAT_TEST ${CURRENT_TEST_SOURCES_DIR}/float128/*.cpp)
 foreach(FILE ${FLOAT_TEST})
     get_filename_component(NAME ${FILE} NAME_WE)
     if ((HAS_INTEL_QUAD) AND (HAS_FLOAT128) AND (HAS_128BIT_FLOATMAX_T))

@@ -21,7 +21,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_endian
 
 # See library home page at http://www.boost.org/libs/endian
 
-
+#test-suite "endian"
 cm_test(NAME endian_test_buffer_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/buffer_test.cpp)
 cm_test(NAME endian_test_endian_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/endian_test.cpp)
 cm_test(NAME endian_test_endian_operations_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/endian_operations_test.cpp)

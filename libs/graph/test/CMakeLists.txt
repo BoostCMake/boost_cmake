@@ -32,14 +32,13 @@ set(PLANAR_INPUT_FILES ${CMAKE_CURRENT_SOURCE_DIR}/planar_input_graphs)
 set(CYCLE_RATIO_INPUT_FILE ${CMAKE_CURRENT_SOURCE_DIR}/cycle_ratio_s382.90.dot)
 set(METIS_INPUT_FILE ${CMAKE_CURRENT_SOURCE_DIR}/weighted_graph.gr)
 
+#test-suite graph_test
 cm_test(NAME graph_test_test_graphs SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_graphs.cpp)
 cm_test(NAME graph_test_index_graph SOURCES ${CURRENT_TEST_SOURCES_DIR}/index_graph.cpp)
 cm_test(NAME graph_test_labeled_graph SOURCES ${CURRENT_TEST_SOURCES_DIR}/labeled_graph.cpp)
-# cm_test(NAME graph_test_finish_edge_bug SOURCES ${CURRENT_TEST_SOURCES_DIR}/finish_edge_bug.cpp)
 
 cm_test(NAME graph_test_transitive_closure_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/transitive_closure_test.cpp)
 cm_test(NAME graph_test_adj_list_cc SOURCES ${CURRENT_TEST_SOURCES_DIR}/adj_list_cc.cpp COMPILE_ONLY)
-
 
 cm_test(NAME graph_test_adj_list_edge_list_set SOURCES ${CURRENT_TEST_SOURCES_DIR}/adj_list_edge_list_set.cpp)
 cm_test(NAME graph_test_adj_list_loops SOURCES ${CURRENT_TEST_SOURCES_DIR}/adj_list_loops.cpp)
@@ -70,7 +69,7 @@ cm_test(NAME graph_test_metis_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/metis_tes
 cm_test(NAME graph_test_gursoy_atun_layout_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/gursoy_atun_layout_test.cpp)
 cm_test(NAME graph_test_layout_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/layout_test.cpp)
 
-# TODO: Skip serialization, since this requires grap_parallel
+# TODO: fix test. Error: need add graph_parallel
 #cm_test(NAME graph_test_serialize SOURCES ${CURRENT_TEST_SOURCES_DIR}/serialize.cpp)
 
 cm_test(NAME graph_test_reverse_graph_cc SOURCES ${CURRENT_TEST_SOURCES_DIR}/reverse_graph_cc.cpp COMPILE_ONLY)
@@ -132,9 +131,6 @@ cm_test(NAME graph_test_vf2_sub_graph_iso_test_2 SOURCES ${CURRENT_TEST_SOURCES_
 cm_test(NAME graph_test_hawick_circuits SOURCES ${CURRENT_TEST_SOURCES_DIR}/hawick_circuits.cpp)
 cm_test(NAME graph_test_successive_shortest_path_nonnegative_weights_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/successive_shortest_path_nonnegative_weights_test.cpp)
 cm_test(NAME graph_test_cycle_canceling_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/cycle_canceling_test.cpp)
-# cm_test(NAME graph_test_strong_components_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/strong_components_test.cpp)
-# cm_test(NAME graph_test_find_flow_cost_bundled_properties_and_named_params_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/find_flow_cost_bundled_properties_and_named_params_test.cpp)
-# cm_test(NAME graph_test_max_flow_algorithms_bundled_properties_and_named_params SOURCES ${CURRENT_TEST_SOURCES_DIR}/max_flow_algorithms_bundled_properties_and_named_params.cpp)
 
 # Run SDB tests only when -DSDB=1 is set.
 if(SDB)

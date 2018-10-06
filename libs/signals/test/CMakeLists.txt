@@ -25,9 +25,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_signals
 
 # For more information, see http://www.boost.org
 
-# bring in rules for testing
-
-
+#test-suite signals
 cm_test(NAME signals_test_dead_slot_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/dead_slot_test.cpp)
 cm_test(NAME signals_test_deletion_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/deletion_test.cpp)
 cm_test(NAME signals_test_ordering_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/ordering_test.cpp)

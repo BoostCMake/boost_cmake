@@ -19,7 +19,7 @@ find_package(${CMAKE_WORKSPACE_NAME}_serialization)
 find_package(${CMAKE_WORKSPACE_NAME}_graph)
 find_package(${CMAKE_WORKSPACE_NAME}_python)
 
-cm_setup_version(VERSION 1.58.0)
+cm_setup_version(VERSION 1.59.0)
 
 add_library(${CMAKE_WORKSPACE_NAME}_mpi
         ${CURRENT_SOURCES_DIR}/src/broadcast.cpp
@@ -62,7 +62,7 @@ target_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC ${MPI_CXX_LINK_FLAGS} $
 find_package(PythonLibs)
 if(PythonLibs_FOUND)
     cm_project(${CMAKE_WORKSPACE_NAME} mpi_python)
-    cm_setup_version(VERSION 1.58.0)
+    cm_setup_version(VERSION 1.59.0)
 
     add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} SHARED  ${CURRENT_SOURCES_DIR}/src/python/serialize.cpp)
     target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_MPI_DYN_LINK=1 -DBOOST_MPI_PYTHON_DYN_LINK=1

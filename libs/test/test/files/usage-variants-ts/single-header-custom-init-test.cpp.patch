@@ -1,0 +1,13 @@
+16c16
+< #define BOOST_TEST_ALTERNATIVE_INIT_API
+---
+> #define BOOST_TEST_MAIN
+23,30d22
+< }
+< 
+< //____________________________________________________________________________//
+< 
+< bool init_unit_test() {
+<     boost::unit_test::framework::master_test_suite().p_name.value = "Custom init func";
+< 
+<     return true;

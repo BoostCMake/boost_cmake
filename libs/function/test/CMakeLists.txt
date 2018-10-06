@@ -19,10 +19,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_function
 
 # For more information, see http://www.boost.org/
 
-
-# bring in rules for testing
-
-
+#test-suite function
 cm_test(NAME function_test_function_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/function_test.cpp)
 
 cm_test(NAME function_test_lib_function_test_no_rtti SOURCES ${CURRENT_TEST_SOURCES_DIR}/function_test.cpp)
@@ -34,9 +31,9 @@ cm_test(NAME function_test_allocator_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/al
 
 cm_test(NAME function_test_stateless_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/stateless_test.cpp)
 
-if(NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    cm_test(NAME function_test_lambda_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/lambda_test.cpp)
-endif()
+#if(NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+cm_test(NAME function_test_lambda_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/lambda_test.cpp)
+#endif()
 
 cm_test(NAME function_test_function_test_fail1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/function_test_fail1.cpp COMPILE_ONLY WILL_FAIL)
 
@@ -73,5 +70,3 @@ cm_test(NAME function_test_nothrow_swap SOURCES ${CURRENT_TEST_SOURCES_DIR}/noth
 cm_test(NAME function_test_rvalues_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/rvalues_test.cpp)
 
 cm_test(NAME function_test_function_typeof_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/function_typeof_test.cpp COMPILE_ONLY)
-
-# cm_test(NAME function_test_result_arg_types_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/result_arg_types_test.cpp)

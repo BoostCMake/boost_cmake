@@ -18,6 +18,7 @@ boost::test
 
 # bring in rules for testing
 
+#test-suite numeric/interva
 cm_test(NAME numeric_interval_test_integer SOURCES ${CURRENT_TEST_SOURCES_DIR}/integer.cpp COMPILE_ONLY)
 cm_test(NAME numeric_interval_test_add SOURCES ${CURRENT_TEST_SOURCES_DIR}/add.cpp)
 cm_test(NAME numeric_interval_test_det SOURCES ${CURRENT_TEST_SOURCES_DIR}/det.cpp)

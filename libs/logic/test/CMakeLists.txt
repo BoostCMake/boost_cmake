@@ -19,6 +19,3 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_logic
 cm_test(NAME logic_test_tribool_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/tribool_test.cpp)
 cm_test(NAME logic_test_tribool_rename_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/tribool_rename_test.cpp)
 cm_test(NAME logic_test_tribool_io_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/tribool_io_test.cpp)
-
-
-

@@ -18,7 +18,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_integer
 #~ Distributed under the Boost Software License, Version 1.0.
 #~ (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-
+#test-suite integer
 cm_test(NAME integer_test_integer_traits_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/integer_traits_test.cpp)
 cm_test(NAME integer_test_integer_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/integer_test.cpp)
 if (VERSION GREATER 1.60)

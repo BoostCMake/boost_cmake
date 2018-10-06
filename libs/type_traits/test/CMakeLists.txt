@@ -12,10 +12,6 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_type_traits
 
 include(CMProperties)
 
-# TODO: We currently need to prepend ${CMAKE_WORKSPACE_NAME}_type_traits_ to all the tests
-# we add here, otherwise some of them will conflict with tests in other
-# Boost libraries. This is madness!
-
 # Wrapper around cm_test to set our own warning levels
 function(type_traits_add_test target)
     cm_test(NAME ${target} ${ARGN})

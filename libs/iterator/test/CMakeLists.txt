@@ -19,20 +19,13 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_iterator
 # These first two tests will run last, and are expected to fail
 # for many less-capable compilers.
 
+#test-suite iterator
 cm_test(NAME iterator_test_interoperable_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/interoperable_fail.cpp COMPILE_ONLY WILL_FAIL)
 # test uses expected success, so that we catch unrelated
 # compilation problems.
 cm_test(NAME iterator_test_is_convertible_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/is_convertible_fail.cpp)
 
 cm_test(NAME iterator_test_zip_iterator_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/zip_iterator_test.cpp)
-# cm_test(NAME iterator_test_zip_iterator_test2_std_tuple SOURCES ${CURRENT_TEST_SOURCES_DIR}/zip_iterator_test2_std_tuple.cpp)
-# cm_test(NAME iterator_test_zip_iterator_test2_fusion_vector SOURCES ${CURRENT_TEST_SOURCES_DIR}/zip_iterator_test2_fusion_vector.cpp)
-# cm_test(NAME iterator_test_zip_iterator_test2_fusion_list SOURCES ${CURRENT_TEST_SOURCES_DIR}/zip_iterator_test2_fusion_list.cpp)
-# See bug report for fusion https://svn.boost.org/trac/boost/ticket/11572
-# cm_test(NAME iterator_test_zip_iterator_test2_fusion_deque SOURCES ${CURRENT_TEST_SOURCES_DIR}/zip_iterator_test2_fusion_deque.cpp)
-# cm_test(NAME iterator_test_zip_iterator_test_fusion SOURCES ${CURRENT_TEST_SOURCES_DIR}/zip_iterator_test_fusion.cpp)
-# cm_test(NAME iterator_test_zip_iterator_test_std_tuple SOURCES ${CURRENT_TEST_SOURCES_DIR}/zip_iterator_test_std_tuple.cpp)
-# cm_test(NAME iterator_test_zip_iterator_test_std_pair SOURCES ${CURRENT_TEST_SOURCES_DIR}/zip_iterator_test_std_pair.cpp)
 
 # These tests should work for just about everything.
 cm_test(NAME iterator_test_is_lvalue_iterator SOURCES ${CURRENT_TEST_SOURCES_DIR}/is_lvalue_iterator.cpp COMPILE_ONLY)
@@ -62,4 +55,3 @@ cm_test(NAME iterator_test_generator_iterator_test SOURCES ${CURRENT_TEST_SOURCE
 
 cm_test(NAME iterator_test_minimum_category SOURCES ${CURRENT_TEST_SOURCES_DIR}/minimum_category.cpp)
 cm_test(NAME iterator_test_minimum_category_compile_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/minimum_category_compile_fail.cpp COMPILE_ONLY WILL_FAIL)
-

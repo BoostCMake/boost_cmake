@@ -49,17 +49,18 @@ cm_test(NAME units_test_test_limits SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_lim
 cm_test(NAME units_test_test_custom_unit SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_custom_unit.cpp)
 cm_test(NAME units_test_test_scaled_conversion SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_scaled_conversion.cpp)
 
-if(NOT APPLE AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang" AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 5.0 OR NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
+#if(NOT APPLE AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+#    if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang" AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 5.0 OR NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
         cm_test(NAME units_test_test_lambda SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_lambda.cpp)
-    endif()
-endif()
+#    endif()
+#endif()
 
 cm_test(NAME units_test_test_scaled_unit SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_scaled_unit.cpp)
 cm_test(NAME units_test_test_output SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_output.cpp)
 cm_test(NAME units_test_test_trig SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_trig.cpp)
 
 if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (PROJECT_VERSION GREATER 1.60.0))
+    # TODO: fix test. reason error: right operand of shift expression ‘(1u << 63u)’ is >= than the precision of the left operand [-fpermissive]
     cm_test(NAME units_test_test_information_units SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_information_units.cpp)
 endif()
 

@@ -22,7 +22,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_parameter
 
 # Boost Parameter Library test Jamfile
 
-
+#test-suite "parameter"
 cm_test(NAME parameter_test_basics SOURCES ${CURRENT_TEST_SOURCES_DIR}/basics.cpp)
 cm_test(NAME parameter_test_sfinae SOURCES ${CURRENT_TEST_SOURCES_DIR}/sfinae.cpp)
 cm_test(NAME parameter_test_macros SOURCES ${CURRENT_TEST_SOURCES_DIR}/macros.cpp)
@@ -43,5 +43,3 @@ cm_test(NAME parameter_test_unwrap_cv_reference SOURCES ${CURRENT_TEST_SOURCES_D
 cm_test(NAME parameter_test_duplicates SOURCES ${CURRENT_TEST_SOURCES_DIR}/duplicates.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME parameter_test_deduced_unmatched_arg SOURCES ${CURRENT_TEST_SOURCES_DIR}/deduced_unmatched_arg.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME parameter_test_compose SOURCES ${CURRENT_TEST_SOURCES_DIR}/compose.cpp COMPILE_ONLY)
-
-
