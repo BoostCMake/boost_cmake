@@ -60,4 +60,4 @@ if(NOT MPI_FOUND)
     list(APPEND EXCLUDE_LIBS mpi)
 endif()
 
-find_subdirectories(libs "project\\(")
+add_subdirectories(libs SUBMODULE_DEFINITION_HEADER "project\\(")
