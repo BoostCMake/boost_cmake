@@ -45,9 +45,9 @@ cm_test(NAME accumulators_test_tail_mean SOURCES ${CMAKE_CURRENT_BINARY_DIR}/tai
 cm_test(NAME accumulators_test_tail_quantile SOURCES ${CMAKE_CURRENT_BINARY_DIR}/tail_quantile.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME accumulators_test_tail_variate_means SOURCES ${CMAKE_CURRENT_BINARY_DIR}/tail_variate_means.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 
-#if(NOT APPLE AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-cm_test(NAME accumulators_test_valarray SOURCES ${CMAKE_CURRENT_BINARY_DIR}/valarray.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-#endif()
+if(NOT APPLE)
+    cm_test(NAME accumulators_test_valarray SOURCES ${CMAKE_CURRENT_BINARY_DIR}/valarray.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+endif()
 
 cm_test(NAME accumulators_test_variance SOURCES ${CMAKE_CURRENT_BINARY_DIR}/variance.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME accumulators_test_vector SOURCES ${CMAKE_CURRENT_BINARY_DIR}/vector.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})

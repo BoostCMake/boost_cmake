@@ -496,7 +496,6 @@ if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (NOT PROJECT_VERSION LESS 1.60.
     target_compile_definitions(multiprecision_test_test_cpp_int_serial_4 PUBLIC TEST4)
     cm_test(NAME multiprecision_test_test_cpp_int_deserial SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_int_deserial.cpp)
     cm_test(NAME multiprecision_test_test_cpp_rat_serial SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_rat_serial.cpp)
-    cm_test(NAME multiprecision_test_test_cpp_rat_serial SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_rat_serial.cpp)
     cm_test(NAME multiprecision_test_test_adapt_serial SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_adapt_serial.cpp)
     cm_test(NAME multiprecision_test_test_cpp_dec_float_serial_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_dec_float_serial.cpp)
     target_compile_definitions(multiprecision_test_test_cpp_dec_float_serial_1 PUBLIC TEST1)
@@ -515,7 +514,7 @@ endif()
     cm_test(NAME multiprecision_test_test_checked_mixed_cpp_int SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_checked_mixed_cpp_int.cpp)
     cm_test(NAME multiprecision_test_test_mixed_cpp_bin_float SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_mixed_cpp_bin_float.cpp)
     cm_test(NAME multiprecision_test_test_mixed_cpp_dec_float SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_mixed_cpp_dec_float.cpp)
-endif()z
+endif()
 
 if (HAS_GMP)
     cm_test(NAME multiprecision_test_test_mixed_mpf_float SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_mixed_mpf_float.cpp)

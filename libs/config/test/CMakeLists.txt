@@ -80,7 +80,7 @@ endforeach()
 
 cm_test(NAME config_test_config_test_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test_c.c)
 
-if (NOT ((CMAKE_CXX_COMPILER_ID STREQUAL "Clang") AND (CMAKE_CXX_COMPILER_VERSION VERSION_LESS "6.0.0")))
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     cm_test(NAME config_test_config_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test.cpp)
         
     cm_test(NAME config_test_config_test_no_rtti SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test.cpp)

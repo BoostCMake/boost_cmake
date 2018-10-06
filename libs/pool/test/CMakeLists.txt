@@ -29,9 +29,9 @@ cm_test(NAME pool_test_test_bug_2696 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_bu
 cm_test(NAME pool_test_test_bug_5526 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_bug_5526.cpp)
 cm_test(NAME pool_test_test_threading SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_threading.cpp)
 
-#if(NOT APPLE AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-cm_test(NAME pool_test___example_time_pool_alloc SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/time_pool_alloc.cpp)
-#endif()
+if(NOT APPLE)
+    cm_test(NAME pool_test___example_time_pool_alloc SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/time_pool_alloc.cpp)
+endif()
 
 cm_test(NAME pool_test_test_poisoned_macros SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_poisoned_macros.cpp COMPILE_ONLY)
 

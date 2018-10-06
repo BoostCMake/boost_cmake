@@ -28,7 +28,7 @@ cm_test(NAME test_test_utils-ts_ifstream_line_iterator-test SOURCES ${CURRENT_TE
 cm_test(NAME test_test_utils-ts_token_iterator-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/utils-ts/token_iterator-test.cpp)
 
 #test-suite "usage-variants-ts"
-if (NOT ((CMAKE_CXX_COMPILER_ID STREQUAL "Clang") AND (CMAKE_CXX_COMPILER_VERSION VERSION_LESS "6.0.0")))
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     #reason: stl_tree.h:452:21: error: static assertion failed: comparison object must be invocable with two arguments of key type
     cm_test(NAME test_test_usage-variants-ts_single-header-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/usage-variants-ts/single-header-test.cpp)
     cm_test(NAME test_test_usage-variants-ts_single-header-custom-init-test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/usage-variants-ts/single-header-custom-init-test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR}/usage-variants-ts)
@@ -57,7 +57,7 @@ endif()
 
 cm_test(NAME test_test_writing-test-ts_boost_check_equal-str-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/writing-test-ts/boost_check_equal-str-test.cpp)
 
-if (NOT ((CMAKE_CXX_COMPILER_ID STREQUAL "Clang") AND (CMAKE_CXX_COMPILER_VERSION VERSION_LESS "6.0.0")))
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     cm_test(NAME test_test_writing-test-ts_collection-comparison-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/writing-test-ts/collection-comparison-test.cpp)
     cm_test(NAME test_test_writing-test-ts_dont_print_log_value-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/writing-test-ts/dont_print_log_value-test.cpp)
     cm_test(NAME test_test_writing-test-ts_fp-comparisons-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/writing-test-ts/fp-comparisons-test.cpp)
@@ -78,7 +78,7 @@ foreach(FILEB ${TEST_FILES})
     cm_test(NAME test_test_test-organization-ts_datasets-test_${NAME} SOURCES ${FILEB})
 endforeach()
 
-if (NOT ((CMAKE_CXX_COMPILER_ID STREQUAL "Clang") AND (CMAKE_CXX_COMPILER_VERSION VERSION_LESS "6.0.0")))
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     cm_test(NAME test_test_test-organization-ts_test_unit-order-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/test-organization-ts/test_unit-order-test.cpp)
 endif()
     

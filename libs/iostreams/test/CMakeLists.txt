@@ -33,11 +33,9 @@ cm_test(NAME iostreams_test_auto_close_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/
 cm_test(NAME iostreams_test_buffer_size_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/buffer_size_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME iostreams_test_close_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/close_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 
-#if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-    #if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "3.5")
-cm_test(NAME iostreams_test_code_converter_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/code_converter_test.cpp ${CURRENT_TEST_SOURCES_DIR}/detail/utf8_codecvt_facet.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-    #endif()
-#endif()
+if(NOT APPLE)
+    cm_test(NAME iostreams_test_code_converter_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/code_converter_test.cpp ${CURRENT_TEST_SOURCES_DIR}/detail/utf8_codecvt_facet.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+endif()
 
 cm_test(NAME iostreams_test_combine_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/combine_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME iostreams_test_compose_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/compose_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
