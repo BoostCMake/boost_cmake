@@ -8,10 +8,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
 find_package(${CMAKE_WORKSPACE_NAME}_regex)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams
-                        boost::filesystem
-                        boost::test
-                        boost::lexical_cast
-                        boost::regex
+                        ${CMAKE_WORKSPACE_NAME}::filesystem
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::lexical_cast
+                        ${CMAKE_WORKSPACE_NAME}::regex
                         )
 
 # Boost.Iostreams Library test Jamfile

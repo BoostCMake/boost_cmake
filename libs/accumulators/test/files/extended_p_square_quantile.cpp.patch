@@ -1,11 +1,7 @@
-7c7,8
-< 
----
+7a8,9
 > #define BOOST_TEST_MAIN
-> #include <boost/test/unit_test.hpp>
-10d10
-< #include <boost/test/unit_test.hpp>
-91,98c91
+> 
+91,98c93
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -15,13 +11,12 @@
 < 
 <     test->add(BOOST_TEST_CASE(&test_stat));
 ---
-> BOOST_AUTO_TEST_SUITE(extended_p_square_quantile_test)
-100c93,95
+> BOOST_AUTO_TEST_SUITE(accumulators_test_extended_p_square_quantile)
+100c95,97
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-101a97,98
-> 
+102a100
 > BOOST_AUTO_TEST_SUITE_END()

@@ -13,15 +13,15 @@ find_package(${CMAKE_WORKSPACE_NAME}_assign)
 find_package(${CMAKE_WORKSPACE_NAME}_numeric_conversion)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_ptr_container
-                        boost::tuple
-                        boost::bind
-                        boost::functional
-                        boost::timer
-                        boost::test
-                        boost::lexical_cast
-                        boost::lambda
-                        boost::assign
-                        boost::numeric_conversion
+                        ${CMAKE_WORKSPACE_NAME}::tuple
+                        ${CMAKE_WORKSPACE_NAME}::bind
+                        ${CMAKE_WORKSPACE_NAME}::functional
+                        ${CMAKE_WORKSPACE_NAME}::timer
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::lexical_cast
+                        ${CMAKE_WORKSPACE_NAME}::lambda
+                        ${CMAKE_WORKSPACE_NAME}::assign
+                        ${CMAKE_WORKSPACE_NAME}::numeric_conversion
                         )
 
 #//

@@ -3,7 +3,7 @@ include(CMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_assert)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_python
-                        boost::assert
+                        ${CMAKE_WORKSPACE_NAME}::assert
                         )
 
 # Copyright David Abrahams 2006. Distributed under the Boost

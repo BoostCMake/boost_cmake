@@ -6,9 +6,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_math)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization
                         ${CMAKE_WORKSPACE_NAME}_wserialization
-                        boost::filesystem
-                        boost::lexical_cast
-                        boost::math
+                        ${CMAKE_WORKSPACE_NAME}::filesystem
+                        ${CMAKE_WORKSPACE_NAME}::lexical_cast
+                        ${CMAKE_WORKSPACE_NAME}::math
                         )
 
 # Boost serialization Library test Jamfile

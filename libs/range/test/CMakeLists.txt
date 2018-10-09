@@ -14,16 +14,16 @@ find_package(${CMAKE_WORKSPACE_NAME}_assign)
 find_package(${CMAKE_WORKSPACE_NAME}_lambda)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_range
-                        boost::algorithm
-                        boost::bind
-                        boost::variant
-                        boost::smart_ptr
-                        boost::unordered
-                        boost::foreach
-                        boost::test
-                        boost::phoenix
-                        boost::assign
-                        boost::lambda
+                        ${CMAKE_WORKSPACE_NAME}::algorithm
+                        ${CMAKE_WORKSPACE_NAME}::bind
+                        ${CMAKE_WORKSPACE_NAME}::variant
+                        ${CMAKE_WORKSPACE_NAME}::smart_ptr
+                        ${CMAKE_WORKSPACE_NAME}::unordered
+                        ${CMAKE_WORKSPACE_NAME}::foreach
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::phoenix
+                        ${CMAKE_WORKSPACE_NAME}::assign
+                        ${CMAKE_WORKSPACE_NAME}::lambda
                         )
 
 # Boost.Range library

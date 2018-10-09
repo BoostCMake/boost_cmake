@@ -7,11 +7,11 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_array)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_signals2
-                        boost::thread
-                        boost::timer
-                        boost::signals
-                        boost::test
-                        boost::array
+                        ${CMAKE_WORKSPACE_NAME}::thread
+                        ${CMAKE_WORKSPACE_NAME}::timer
+                        ${CMAKE_WORKSPACE_NAME}::signals
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::array
                         )
 
 # Boost.Signals2 Library
@@ -33,7 +33,7 @@ cm_test(NAME signals2_test_deconstruct_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/
 cm_test(NAME signals2_test_deletion_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/deletion_test.cpp)
 # TODO: Remove Boost.Thread from directory test and add it explictly for mutex_test
 cm_test(NAME signals2_test_mutex_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/mutex_test.cpp)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE boost::thread)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE ${CMAKE_WORKSPACE_NAME}::thread)
 cm_test(NAME signals2_test_ordering_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/ordering_test.cpp)
 cm_test(NAME signals2_test_regression_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/regression_test.cpp)
 cm_test(NAME signals2_test_shared_connection_block_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_connection_block_test.cpp)

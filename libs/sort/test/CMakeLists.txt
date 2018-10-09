@@ -5,7 +5,7 @@ patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_sort
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 #  Boost sorting_algo library test suite Jamfile  ----------------------------

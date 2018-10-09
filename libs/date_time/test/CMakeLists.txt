@@ -3,7 +3,7 @@ include(CMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_serialization)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_date_time
-                        boost::serialization)
+                        ${CMAKE_WORKSPACE_NAME}::serialization)
 
 set(DATE_TIME_DYNAMIC_PROPERTIES "-DBOOST_ALL_DYN_LINK -DBOOST_DATE_TIME_POSIX_TIME_STD_CONFIG -DBOOST_ALL_NO_LIB")
 set(DATE_TIME_PROPERTIES "-DBOOST_DATE_TIME_POSIX_TIME_STD_CONFIG -DBOOST_ALL_NO_LIB")

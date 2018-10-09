@@ -7,11 +7,11 @@ find_package(${CMAKE_WORKSPACE_NAME}_serialization)
 find_package(${CMAKE_WORKSPACE_NAME}_thread)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_pool
-                        boost::core
-                        boost::random
-                        boost::smart_ptr
-                        boost::serialization
-                        boost::thread
+                        ${CMAKE_WORKSPACE_NAME}::core
+                        ${CMAKE_WORKSPACE_NAME}::random
+                        ${CMAKE_WORKSPACE_NAME}::smart_ptr
+                        ${CMAKE_WORKSPACE_NAME}::serialization
+                        ${CMAKE_WORKSPACE_NAME}::thread
                         )
 
 #~ Copyright Rene Rivera 2008

@@ -14,16 +14,16 @@ find_package(${CMAKE_WORKSPACE_NAME}_numeric_conversion)
 find_package(${CMAKE_WORKSPACE_NAME}_assign)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_geometry
-                        boost::random
-                        boost::program_options
-                        boost::foreach
-                        boost::test
-                        boost::typeof
-                        boost::optional
-                        boost::timer
-                        boost::ptr_container
-                        boost::numeric_conversion
-                        boost::assign
+                        ${CMAKE_WORKSPACE_NAME}::random
+                        ${CMAKE_WORKSPACE_NAME}::program_options
+                        ${CMAKE_WORKSPACE_NAME}::foreach
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::typeof
+                        ${CMAKE_WORKSPACE_NAME}::optional
+                        ${CMAKE_WORKSPACE_NAME}::timer
+                        ${CMAKE_WORKSPACE_NAME}::ptr_container
+                        ${CMAKE_WORKSPACE_NAME}::numeric_conversion
+                        ${CMAKE_WORKSPACE_NAME}::assign
                         )
 
 #test-suite boost-geometry-algorithms-buffer

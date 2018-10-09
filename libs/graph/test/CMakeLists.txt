@@ -10,12 +10,12 @@ find_package(${CMAKE_WORKSPACE_NAME}_disjoint_sets)
 #find_package(${CMAKE_WORKSPACE_NAME}_graph_parallel)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_graph
-                        boost::test
-                        boost::timer
-                        boost::assign
-                        boost::filesystem
-                        boost::disjoint_sets
-                        #boost::graph_parallel
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::timer
+                        ${CMAKE_WORKSPACE_NAME}::assign
+                        ${CMAKE_WORKSPACE_NAME}::filesystem
+                        ${CMAKE_WORKSPACE_NAME}::disjoint_sets
+                        #${CMAKE_WORKSPACE_NAME}::graph_parallel
                         )
 
 # Copyright (c) 2002 Trustees of Indiana University

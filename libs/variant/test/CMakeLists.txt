@@ -6,10 +6,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
 find_package(${CMAKE_WORKSPACE_NAME}_array)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_variant
-                        boost::fusion
-                        boost::test
-                        boost::lexical_cast
-                        boost::array
+                        ${CMAKE_WORKSPACE_NAME}::fusion
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::lexical_cast
+                        ${CMAKE_WORKSPACE_NAME}::array
                         )
 
 #  Boost.Variant Library test Jamfile

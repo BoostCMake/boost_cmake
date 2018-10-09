@@ -5,9 +5,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_lambda)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_function
-                        boost::static_assert
-                        boost::test
-                        boost::lambda
+                        ${CMAKE_WORKSPACE_NAME}::static_assert
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::lambda
                         )
 
 # Function library

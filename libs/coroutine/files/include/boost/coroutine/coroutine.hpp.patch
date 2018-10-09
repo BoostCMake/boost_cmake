@@ -1,8 +1,0 @@
-10c10
-< #include <boost/coroutine/asymmetric_coroutine.hpp>
----
-> #include <boost/coroutine/asymmetric_coroutine_patched.hpp>
-11c11
-< #include <boost/coroutine/symmetric_coroutine.hpp>
----
-> #include <boost/coroutine/symmetric_coroutine_patched.hpp>

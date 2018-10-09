@@ -16,7 +16,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_function_types
 #find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
 #find_package(${CMAKE_WORKSPACE_NAME}_container)
 
-#cm_test_link_libraries(boost::mpl boost::timer boost::tokenizer boost::lexical_cast boost::container)
+#cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}::mpl ${CMAKE_WORKSPACE_NAME}::timer ${CMAKE_WORKSPACE_NAME}::tokenizer ${CMAKE_WORKSPACE_NAME}::lexical_cast ${CMAKE_WORKSPACE_NAME}::container)
 
 #test-suite function_types : 
 # Classification

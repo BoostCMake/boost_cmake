@@ -8,12 +8,12 @@ find_package(${CMAKE_WORKSPACE_NAME}_assert)
 find_package(${CMAKE_WORKSPACE_NAME}_graph)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_parameter
-                        boost::static_assert
-                        boost::tuple
-                        boost::bind
-                        boost::timer
-                        boost::assert
-                        boost::graph
+                        ${CMAKE_WORKSPACE_NAME}::static_assert
+                        ${CMAKE_WORKSPACE_NAME}::tuple
+                        ${CMAKE_WORKSPACE_NAME}::bind
+                        ${CMAKE_WORKSPACE_NAME}::timer
+                        ${CMAKE_WORKSPACE_NAME}::assert
+                        ${CMAKE_WORKSPACE_NAME}::graph
                         )
 
 # Copyright David Abrahams, Daniel Wallin 2006. Distributed under the

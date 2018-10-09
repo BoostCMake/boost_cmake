@@ -9,13 +9,13 @@ find_package(${CMAKE_WORKSPACE_NAME}_system)
 find_package(${CMAKE_WORKSPACE_NAME}_date_time)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_wave
-                        boost::any
-                        boost::program_options
-                        boost::lexical_cast
-                        boost::filesystem
-                        boost::thread
-                        boost::system
-                        boost::date_time
+                        ${CMAKE_WORKSPACE_NAME}::any
+                        ${CMAKE_WORKSPACE_NAME}::program_options
+                        ${CMAKE_WORKSPACE_NAME}::lexical_cast
+                        ${CMAKE_WORKSPACE_NAME}::filesystem
+                        ${CMAKE_WORKSPACE_NAME}::thread
+                        ${CMAKE_WORKSPACE_NAME}::system
+                        ${CMAKE_WORKSPACE_NAME}::date_time
                         )
 #testlexers
 cm_test(NAME wave_test_testlexers_test_slex_lexer SOURCES ${CURRENT_TEST_SOURCES_DIR}/testlexers/test_slex_lexer.cpp)

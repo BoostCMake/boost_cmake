@@ -1,8 +1,7 @@
-5c5
-< 
----
+5a6,7
 > #define BOOST_TEST_MAIN
-92,97c92
+> 
+92,97c94
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -10,16 +9,15 @@
 < {
 <     test_suite *test = BOOST_TEST_SUITE("weighted_mean test");
 ---
-> BOOST_AUTO_TEST_SUITE(weighted_mean_test)
-99,101c94,96
+> BOOST_AUTO_TEST_SUITE(accumulators_test_weighted_mean)
+99,101c96,98
 <     test->add(BOOST_TEST_CASE(&test_stat));
 < 
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-102a98,99
+102a100,101
 > 
 > BOOST_AUTO_TEST_SUITE_END()
-\ No newline at end of file

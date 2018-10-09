@@ -9,11 +9,11 @@ find_package(${CMAKE_WORKSPACE_NAME}_graph)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_signals
-                        boost::property_map
-                        boost::bind
-                        boost::random
-                        boost::graph
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::property_map
+                        ${CMAKE_WORKSPACE_NAME}::bind
+                        ${CMAKE_WORKSPACE_NAME}::random
+                        ${CMAKE_WORKSPACE_NAME}::graph
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # Boost.Signals Library

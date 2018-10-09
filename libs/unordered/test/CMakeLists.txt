@@ -5,9 +5,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_concept_check)
 find_package(${CMAKE_WORKSPACE_NAME}_utility)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_unordered
-                        boost::static_assert
-                        boost::concept_check
-                        boost::utility
+                        ${CMAKE_WORKSPACE_NAME}::static_assert
+                        ${CMAKE_WORKSPACE_NAME}::concept_check
+                        ${CMAKE_WORKSPACE_NAME}::utility
                         )
 
 

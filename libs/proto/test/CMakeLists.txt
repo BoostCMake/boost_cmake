@@ -8,10 +8,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_mpl)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_proto
-                        boost::assert
-                        boost::smart_ptr
-                        boost::test
-                        boost::mpl
+                        ${CMAKE_WORKSPACE_NAME}::assert
+                        ${CMAKE_WORKSPACE_NAME}::smart_ptr
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::mpl
                         )
 
 # (C) Copyright 2004: Eric Niebler

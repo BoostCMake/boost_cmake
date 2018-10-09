@@ -6,10 +6,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_timer)
 find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_endian
-                        boost::random
-                        boost::detail
-                        boost::timer
-                        boost::lexical_cast
+                        ${CMAKE_WORKSPACE_NAME}::random
+                        ${CMAKE_WORKSPACE_NAME}::detail
+                        ${CMAKE_WORKSPACE_NAME}::timer
+                        ${CMAKE_WORKSPACE_NAME}::lexical_cast
                         )
 
 # Boost Endian Library test Jamfile

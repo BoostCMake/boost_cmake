@@ -4,8 +4,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_container)
 find_package(${CMAKE_WORKSPACE_NAME}_type_traits)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_intrusive
-                        boost::container
-                        boost::type_traits
+                        ${CMAKE_WORKSPACE_NAME}::container
+                        ${CMAKE_WORKSPACE_NAME}::type_traits
                         )
 
 # Boost Intrusive Library Test Jamfile

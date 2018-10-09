@@ -1,24 +1,22 @@
-7c7
-< 
----
+7a8,9
 > #define BOOST_TEST_MAIN
-70,75c70
+> 
+70,77c72
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
 < test_suite* init_unit_test_suite( int argc, char* argv[] )
 < {
 <     test_suite *test = BOOST_TEST_SUITE("p_square_cumulative_distribution test");
----
-> BOOST_AUTO_TEST_SUITE(p_square_cumulative_distribution_test)
-77,79c72,74
-<     test->add(BOOST_TEST_CASE(&test_stat));
 < 
+<     test->add(BOOST_TEST_CASE(&test_stat));
+---
+> BOOST_AUTO_TEST_SUITE(accumulators_test_p_square_cumulative_distribution)
+79c74,76
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-80a76,77
-> 
+81a79
 > BOOST_AUTO_TEST_SUITE_END()

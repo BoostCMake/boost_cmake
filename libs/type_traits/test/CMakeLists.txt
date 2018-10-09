@@ -5,9 +5,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_mpl)
 find_package(${CMAKE_WORKSPACE_NAME}_move)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_type_traits
-                        boost::function
-                        boost::mpl
-                        boost::move
+                        ${CMAKE_WORKSPACE_NAME}::function
+                        ${CMAKE_WORKSPACE_NAME}::mpl
+                        ${CMAKE_WORKSPACE_NAME}::move
                         )
 
 include(CMProperties)

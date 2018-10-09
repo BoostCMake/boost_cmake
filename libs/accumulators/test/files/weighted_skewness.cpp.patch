@@ -1,24 +1,22 @@
-7c7
-< 
----
+7a8,9
 > #define BOOST_TEST_MAIN
-58,63c58
+> 
+58,65c60
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
 < test_suite* init_unit_test_suite( int argc, char* argv[] )
 < {
 <     test_suite *test = BOOST_TEST_SUITE("weighted_skewness test");
----
-> BOOST_AUTO_TEST_SUITE(weighted_skewness_test)
-65,67c60,62
-<     test->add(BOOST_TEST_CASE(&test_stat));
 < 
+<     test->add(BOOST_TEST_CASE(&test_stat));
+---
+> BOOST_AUTO_TEST_SUITE(accumulators_test_weighted_skewness)
+67c62,64
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-68a64,65
-> 
+69a67
 > BOOST_AUTO_TEST_SUITE_END()

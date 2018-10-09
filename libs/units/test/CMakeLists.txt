@@ -7,11 +7,11 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_filesystem)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_units
-                        boost::regex
-                        boost::multiprecision
-                        boost::function
-                        boost::test
-                        boost::filesystem
+                        ${CMAKE_WORKSPACE_NAME}::regex
+                        ${CMAKE_WORKSPACE_NAME}::multiprecision
+                        ${CMAKE_WORKSPACE_NAME}::function
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::filesystem
                         )
 
 # Jamfile.v2

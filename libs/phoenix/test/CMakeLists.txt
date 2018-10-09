@@ -12,16 +12,16 @@ find_package(${CMAKE_WORKSPACE_NAME}_any)
 find_package(${CMAKE_WORKSPACE_NAME}_log)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_phoenix
-                        boost::static_assert
-                        boost::assign
-                        boost::thread
-                        boost::typeof
-                        boost::spirit
-                        boost::test
-                        boost::signals2
-                        boost::lambda
-                        boost::any
-                        boost::log
+                        ${CMAKE_WORKSPACE_NAME}::static_assert
+                        ${CMAKE_WORKSPACE_NAME}::assign
+                        ${CMAKE_WORKSPACE_NAME}::thread
+                        ${CMAKE_WORKSPACE_NAME}::typeof
+                        ${CMAKE_WORKSPACE_NAME}::spirit
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::signals2
+                        ${CMAKE_WORKSPACE_NAME}::lambda
+                        ${CMAKE_WORKSPACE_NAME}::any
+                        ${CMAKE_WORKSPACE_NAME}::log
                         )
 
 #==============================================================================

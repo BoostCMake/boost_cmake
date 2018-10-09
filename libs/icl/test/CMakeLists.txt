@@ -6,10 +6,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_interprocess)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_icl
-                        boost::bind
-                        boost::chrono
-                        boost::interprocess
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::bind
+                        ${CMAKE_WORKSPACE_NAME}::chrono
+                        ${CMAKE_WORKSPACE_NAME}::interprocess
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # (C) Copyright 2008-2011: Joachim Faulhaber

@@ -1,8 +1,6 @@
-11c11
-< 
----
+7a8
 > #define BOOST_TEST_MAIN
-86,91c86
+86,91c87
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -10,15 +8,14 @@
 < {
 <     test_suite *test = BOOST_TEST_SUITE("pot_quantile test");
 ---
-> BOOST_AUTO_TEST_SUITE(pot_quantile_test)
-93,95c88,90
+> BOOST_AUTO_TEST_SUITE(accumulators_test_pot_quantile)
+93,95c89,91
 <     test->add(BOOST_TEST_CASE(&test_stat));
 < 
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-96a92,93
-> 
+97a94
 > BOOST_AUTO_TEST_SUITE_END()

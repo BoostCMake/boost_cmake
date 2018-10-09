@@ -5,9 +5,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_type_index
-                        boost::functional
-                        boost::lexical_cast
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::functional
+                        ${CMAKE_WORKSPACE_NAME}::lexical_cast
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # Copyright (C) 2012-2014 Antony Polukhin

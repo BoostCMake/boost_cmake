@@ -7,9 +7,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_core)
 find_package(${CMAKE_WORKSPACE_NAME}_detail)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_io
-                        boost::core
-                        boost::detail
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::core
+                        ${CMAKE_WORKSPACE_NAME}::detail
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 #  Boost.IO Library test Jamfile

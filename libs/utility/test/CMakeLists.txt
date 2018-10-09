@@ -6,8 +6,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_random)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_utility
-                        boost::test
-                        boost::random
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::random
                         )
 
 # Copyright David Abrahams 2003.
@@ -24,7 +24,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_utility
 #        [ compile-fail string_ref_from_rvalue.cpp ]
 #        [ compile-fail string_view_from_rvalue.cpp ]
 
-cm_test_link_libraries(boost::test_exec_monitor)
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}::test_exec_monitor)
 
 cm_test(NAME utility_test___base_from_member_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/../base_from_member_test.cpp)
 cm_test(NAME utility_test___base_from_member_ref_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/../base_from_member_ref_test.cpp)

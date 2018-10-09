@@ -8,12 +8,12 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_utility)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_filesystem
-                        boost::align
-                        boost::thread
-                        boost::bind
-                        boost::timer
-                        boost::test
-                        boost::utility
+                        ${CMAKE_WORKSPACE_NAME}::align
+                        ${CMAKE_WORKSPACE_NAME}::thread
+                        ${CMAKE_WORKSPACE_NAME}::bind
+                        ${CMAKE_WORKSPACE_NAME}::timer
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::utility
                         )
 
 # Boost Filesystem Library test Jamfile

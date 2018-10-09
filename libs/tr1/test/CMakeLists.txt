@@ -9,9 +9,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_concept_check)
 find_package(${CMAKE_WORKSPACE_NAME}_program_options)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_tr1
-                        boost::test
-                        boost::concept_check
-                        boost::program_options
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::concept_check
+                        ${CMAKE_WORKSPACE_NAME}::program_options
                         )
 
 # Copyright John Maddock 2005.

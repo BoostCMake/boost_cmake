@@ -5,9 +5,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_uuid
-                        boost::functional
-                        boost::test
-                        boost::lexical_cast
+                        ${CMAKE_WORKSPACE_NAME}::functional
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::lexical_cast
                         )
 
 # Copyright 2007 Andy Tompkins.

@@ -5,9 +5,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_bind)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_optional
-                        boost::tuple
-                        boost::bind
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::tuple
+                        ${CMAKE_WORKSPACE_NAME}::bind
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # Boost.Optional Library test Jamfile

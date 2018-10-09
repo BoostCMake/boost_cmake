@@ -4,8 +4,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_array)
 find_package(${CMAKE_WORKSPACE_NAME}_functional)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_detail
-                        boost::array
-                        boost::functional
+                        ${CMAKE_WORKSPACE_NAME}::array
+                        ${CMAKE_WORKSPACE_NAME}::functional
                         )
 
 ################################################################*# Jam #*#######

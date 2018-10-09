@@ -2,10 +2,6 @@
 < 
 ---
 > #define BOOST_TEST_MAIN
-27c27
-< #include <boost/coroutine/symmetric_coroutine.hpp>
----
-> #include <boost/coroutine/symmetric_coroutine_patched.hpp>
 44c44
 <         i( 0)
 ---

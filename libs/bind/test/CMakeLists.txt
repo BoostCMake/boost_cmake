@@ -4,8 +4,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_function)
 find_package(${CMAKE_WORKSPACE_NAME}_smart_ptr)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_bind
-                        boost::function
-                        boost::smart_ptr
+                        ${CMAKE_WORKSPACE_NAME}::function
+                        ${CMAKE_WORKSPACE_NAME}::smart_ptr
                         )
 
 #  Boost.Bind Library test Jamfile
@@ -57,3 +57,8 @@ cm_test(NAME bind_test_mem_fn_unary_addr_test SOURCES ${CURRENT_TEST_SOURCES_DIR
 cm_test(NAME bind_test_bind_function2_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_function2_test.cpp)
 cm_test(NAME bind_test_bind_fwd_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_fwd_test.cpp)
 cm_test(NAME bind_test_bind_fwd2_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_fwd2_test.cpp)
+cm_test(NAME bind_test_bind_no_placeholders_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_no_placeholders_test)
+cm_test(NAME bind_test_placeholder_const_ref_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/placeholder_const_ref_test)
+cm_test(NAME bind_test_bind_function_ap_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_function_ap_test)
+cm_test(NAME bind_test_bind_type_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_type_test)
+cm_test(NAME bind_test_ SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_unique_ptr_test)

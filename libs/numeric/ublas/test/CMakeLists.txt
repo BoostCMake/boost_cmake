@@ -9,11 +9,11 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_math)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_numeric_ublas
-boost::detail
-boost::timer
-boost::numeric_interval
-boost::test
-boost::math
+${CMAKE_WORKSPACE_NAME}::detail
+${CMAKE_WORKSPACE_NAME}::timer
+${CMAKE_WORKSPACE_NAME}::numeric_interval
+${CMAKE_WORKSPACE_NAME}::test
+${CMAKE_WORKSPACE_NAME}::math
 )
 
 # Copyright (c) 2004-2011 Michael Stevens, David Bellot
@@ -48,7 +48,7 @@ set(UBLAS_TESTSET_SPARSE_COO "-DUSE_DOUBLE -DUSE_STD_COMPLEX -DUSE_UNBOUNDED_ARR
 # Project settings
 
 
-# Test commented out because boost::interval does not behave like a scalar type
+# Test commented out because ${CMAKE_WORKSPACE_NAME}::interval does not behave like a scalar type
 #      [ run test7.cpp
 #            test71.cpp
 #            test72.cpp

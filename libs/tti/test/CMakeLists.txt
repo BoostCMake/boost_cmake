@@ -3,7 +3,7 @@ include(CMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_core)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_tti
-                        boost::core
+                        ${CMAKE_WORKSPACE_NAME}::core
                         )
 
 

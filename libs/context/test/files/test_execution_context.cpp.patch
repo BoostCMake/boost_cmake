@@ -1,45 +1,29 @@
 6a7,8
 > #define BOOST_TEST_MAIN
 > 
-107c109,111
+145,148d146
 < boost::unit_test::test_suite * init_unit_test_suite( int, char* [])
----
-> BOOST_AUTO_TEST_SUITE(boost_context_context_test_suite)
-> 
-> BOOST_AUTO_TEST_CASE(test_case_test_ectx)
-109,110c113,114
+< {
 <     boost::unit_test::test_suite * test =
 <         BOOST_TEST_SUITE("Boost.Context: execution_context test suite");
----
->     test_ectx();
-> }
-112,116c116,119
+150,158c148
 <     test->add( BOOST_TEST_CASE( & test_ectx) );
-<     test->add( BOOST_TEST_CASE( & test_return) );
+< #if 0
 <     test->add( BOOST_TEST_CASE( & test_variadric) );
 <     test->add( BOOST_TEST_CASE( & test_memfn) );
+<     test->add( BOOST_TEST_CASE( & test_exception) );
+<     test->add( BOOST_TEST_CASE( & test_fp) );
+<     test->add( BOOST_TEST_CASE( & test_stacked) );
 <     test->add( BOOST_TEST_CASE( & test_prealloc) );
+< #endif
 ---
-> BOOST_AUTO_TEST_CASE(test_case_test_return)
-> {
->     test_return();
-> }
-118c121,123
+> BOOST_AUTO_TEST_SUITE(context_test_execution_context)
+160c150,152
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_case_test_variadric)
+> BOOST_AUTO_TEST_CASE(test_ectx)
 > {
->     test_variadric();
-119a125,136
-> 
-> BOOST_AUTO_TEST_CASE(test_case_test_memfn)
-> {
->     test_memfn();
-> }
-> 
-> BOOST_AUTO_TEST_CASE(test_case_test_prealloc)
-> {
->     test_prealloc();
-> }
+>         test_ectx();
+161a154,155
 > 
 > BOOST_AUTO_TEST_SUITE_END()

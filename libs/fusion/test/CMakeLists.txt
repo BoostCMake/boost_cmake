@@ -5,9 +5,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_array)
 find_package(${CMAKE_WORKSPACE_NAME}_lambda)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_fusion
-                        boost::assert
-                        boost::array
-                        boost::lambda
+                        ${CMAKE_WORKSPACE_NAME}::assert
+                        ${CMAKE_WORKSPACE_NAME}::array
+                        ${CMAKE_WORKSPACE_NAME}::lambda
                         )
 
 ##==============================================================================

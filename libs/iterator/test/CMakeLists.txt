@@ -6,10 +6,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_assign)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_iterator
-                        boost::tuple
-                        boost::bind
-                        boost::test
-                        boost::assign
+                        ${CMAKE_WORKSPACE_NAME}::tuple
+                        ${CMAKE_WORKSPACE_NAME}::bind
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::assign
                         )
 
 # Copyright David Abrahams 2003. Distributed under the Boost

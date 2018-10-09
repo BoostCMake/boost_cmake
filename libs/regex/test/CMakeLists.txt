@@ -12,15 +12,15 @@ find_package(${CMAKE_WORKSPACE_NAME}_array)
 find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_regex
-                        boost::align
-                        boost::test
-                        boost::thread
-                        boost::detail
-                        boost::timer
-                        boost::range
-                        boost::array
-                        boost::lexical_cast
-                        boost::config
+                        ${CMAKE_WORKSPACE_NAME}::align
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::thread
+                        ${CMAKE_WORKSPACE_NAME}::detail
+                        ${CMAKE_WORKSPACE_NAME}::timer
+                        ${CMAKE_WORKSPACE_NAME}::range
+                        ${CMAKE_WORKSPACE_NAME}::array
+                        ${CMAKE_WORKSPACE_NAME}::lexical_cast
+                        ${CMAKE_WORKSPACE_NAME}::config
                         )
 
 # copyright John Maddock 2003

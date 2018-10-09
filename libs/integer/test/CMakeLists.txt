@@ -7,11 +7,11 @@ find_package(${CMAKE_WORKSPACE_NAME}_type_traits)
 find_package(${CMAKE_WORKSPACE_NAME}_utility)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_integer
-                        boost::core
-                        boost::mpl
-                        boost::detail
-                        boost::type_traits
-                        boost::utility
+                        ${CMAKE_WORKSPACE_NAME}::core
+                        ${CMAKE_WORKSPACE_NAME}::mpl
+                        ${CMAKE_WORKSPACE_NAME}::detail
+                        ${CMAKE_WORKSPACE_NAME}::type_traits
+                        ${CMAKE_WORKSPACE_NAME}::utility
                         )
 
 #~ Copyright Rene Rivera 2008

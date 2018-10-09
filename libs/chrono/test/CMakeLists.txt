@@ -4,7 +4,7 @@ find_package(${CMAKE_WORKSPACE_NAME}_rational)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_chrono
                         ${CMAKE_WORKSPACE_NAME}_system
-                        boost::rational
+                        ${CMAKE_WORKSPACE_NAME}::rational
                         )
 
 
@@ -188,3 +188,4 @@ chrono_run(win32_test win32_test)
 #[ chrono-run test_7868.cpp  ]
 #[ chrono-run test_9337.cpp  ]
 #[ chrono-run test_10778.cpp  ]
+chrono_run(test_10631 test_10631)

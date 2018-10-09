@@ -10,8 +10,6 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_asio
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #
 
-# TODO: Add select versions
-set(USE_SELECT_SSL "-DBOOST_ASIO_DISABLE_EPOLL -DBOOST_ASIO_DISABLE_KQUEUE -DBOOST_ASIO_DISABLE_IOCP")
 set(USE_SELECT "-DBOOST_ASIO_DISABLE_DEV_POLL -DBOOST_ASIO_DISABLE_EPOLL -DBOOST_ASIO_DISABLE_KQUEUE -DBOOST_ASIO_DISABLE_IOCP")
 
 #test-suite "asio"
@@ -42,7 +40,6 @@ target_compile_definitions(asio_test_basic_streambuf_select PRIVATE ${USE_SELECT
 cm_test(NAME asio_test_basic_waitable_timer SOURCES ${CURRENT_TEST_SOURCES_DIR}/basic_waitable_timer.cpp COMPILE_ONLY)
 cm_test(NAME asio_test_basic_waitable_timer_select SOURCES ${CURRENT_TEST_SOURCES_DIR}/basic_waitable_timer.cpp COMPILE_ONLY)
 target_compile_definitions(asio_test_basic_waitable_timer_select PRIVATE ${USE_SELECT})
-
 cm_test(NAME asio_test_buffer SOURCES ${CURRENT_TEST_SOURCES_DIR}/buffer.cpp)
 cm_test(NAME asio_test_buffer_select SOURCES ${CURRENT_TEST_SOURCES_DIR}/buffer.cpp)
 target_compile_definitions(asio_test_buffer_select PRIVATE ${USE_SELECT})
@@ -64,7 +61,6 @@ target_compile_definitions(asio_test_completion_condition_select PRIVATE ${USE_S
 cm_test(NAME asio_test_connect SOURCES ${CURRENT_TEST_SOURCES_DIR}/connect.cpp COMPILE_ONLY)
 cm_test(NAME asio_test_connect_select SOURCES ${CURRENT_TEST_SOURCES_DIR}/connect.cpp COMPILE_ONLY)
 target_compile_definitions(asio_test_connect_select PRIVATE ${USE_SELECT})
-
 cm_test(NAME asio_test_coroutine SOURCES ${CURRENT_TEST_SOURCES_DIR}/coroutine.cpp COMPILE_ONLY)
 cm_test(NAME asio_test_coroutine_select SOURCES ${CURRENT_TEST_SOURCES_DIR}/coroutine.cpp COMPILE_ONLY)
 target_compile_definitions(asio_test_coroutine_select PRIVATE ${USE_SELECT})
@@ -291,5 +287,3 @@ if(OpenSSL_FOUND)
     target_compile_definitions(asio_test_asio_test_stream_select PRIVATE ${USE_SELECT_SSL})
 
 endif()
-
-

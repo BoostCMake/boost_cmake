@@ -8,10 +8,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_unordered)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_thread
-                        boost::asio
-                        boost::interprocess
-                        boost::test
-                        boost::unordered
+                        ${CMAKE_WORKSPACE_NAME}::asio
+                        ${CMAKE_WORKSPACE_NAME}::interprocess
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::unordered
                         )
 
 function(thread_run)

@@ -4,8 +4,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_tuple)
 find_package(${CMAKE_WORKSPACE_NAME}_utility)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_flyweight
-                        boost::tuple
-                        boost::utility
+                        ${CMAKE_WORKSPACE_NAME}::tuple
+                        ${CMAKE_WORKSPACE_NAME}::utility
                         )
 
 # See http://www.boost.org/libs/flyweight for library home page.

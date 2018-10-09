@@ -13,15 +13,15 @@ find_package(${CMAKE_WORKSPACE_NAME}_serialization)
 find_package(${CMAKE_WORKSPACE_NAME}_numeric_interval)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_multiprecision
-                        boost::algorithm
-                        boost::chrono
-                        boost::exception
-                        boost::timer
-                        boost::numeric_ublas
-                        boost::filesystem
-                        boost::test
-                        boost::serialization
-                        boost::numeric_interval
+                        ${CMAKE_WORKSPACE_NAME}::algorithm
+                        ${CMAKE_WORKSPACE_NAME}::chrono
+                        ${CMAKE_WORKSPACE_NAME}::exception
+                        ${CMAKE_WORKSPACE_NAME}::timer
+                        ${CMAKE_WORKSPACE_NAME}::numeric_ublas
+                        ${CMAKE_WORKSPACE_NAME}::filesystem
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::serialization
+                        ${CMAKE_WORKSPACE_NAME}::numeric_interval
                         )
 
 # copyright John Maddock 2011

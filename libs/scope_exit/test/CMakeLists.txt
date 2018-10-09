@@ -4,8 +4,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_foreach)
 find_package(${CMAKE_WORKSPACE_NAME}_rational)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_scope_exit
-                        boost::foreach
-                        boost::rational
+                        ${CMAKE_WORKSPACE_NAME}::foreach
+                        ${CMAKE_WORKSPACE_NAME}::rational
                         )
 
 

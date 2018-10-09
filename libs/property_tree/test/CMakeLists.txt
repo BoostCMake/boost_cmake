@@ -6,8 +6,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_detail)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_property_tree
-                        boost::detail
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::detail
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # Boost.PropertyTree

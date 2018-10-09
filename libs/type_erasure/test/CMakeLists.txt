@@ -7,11 +7,11 @@ find_package(${CMAKE_WORKSPACE_NAME}_utility)
 find_package(${CMAKE_WORKSPACE_NAME}_align)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_type_erasure
-                        boost::align
-                        boost::tuple
-                        boost::concept_check
-                        boost::test
-                        boost::utility
+                        ${CMAKE_WORKSPACE_NAME}::align
+                        ${CMAKE_WORKSPACE_NAME}::tuple
+                        ${CMAKE_WORKSPACE_NAME}::concept_check
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::utility
                         )
 
 # Boost.TypeErasure library

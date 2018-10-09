@@ -9,12 +9,12 @@ find_package(${CMAKE_WORKSPACE_NAME}_thread)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_align)
 
-cm_test_link_libraries(boost::test
-        boost::multiprecision
-        boost::thread
-        boost::lexical_cast
-        boost::thread
-        boost::align
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}::test
+        ${CMAKE_WORKSPACE_NAME}::multiprecision
+        ${CMAKE_WORKSPACE_NAME}::thread
+        ${CMAKE_WORKSPACE_NAME}::lexical_cast
+        ${CMAKE_WORKSPACE_NAME}::thread
+        ${CMAKE_WORKSPACE_NAME}::align
         )
 
 

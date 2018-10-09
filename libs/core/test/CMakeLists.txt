@@ -6,16 +6,17 @@ find_package(${CMAKE_WORKSPACE_NAME}_mpl)
 find_package(${CMAKE_WORKSPACE_NAME}_typeof)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_core
-                        boost::static_assert
-                        boost::type_traits
-                        boost::mpl
-                        boost::typeof
+                        ${CMAKE_WORKSPACE_NAME}::static_assert
+                        ${CMAKE_WORKSPACE_NAME}::type_traits
+                        ${CMAKE_WORKSPACE_NAME}::mpl
+                        ${CMAKE_WORKSPACE_NAME}::typeof
                         )
 
 include(CMProperties)
 
 find_package(${CMAKE_WORKSPACE_NAME}_static_assert)
 
+#swap
 cm_test(NAME core_test_root_header_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/swap/root_header_1.cpp COMPILE_ONLY)
 cm_test(NAME core_test_root_header_2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/swap/root_header_2.cpp COMPILE_ONLY)
 cm_test(NAME core_test_lib_header_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/swap/lib_header_1.cpp COMPILE_ONLY)

@@ -10,10 +10,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_filesystem)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_lexical_cast
-                        boost::numeric_conversion
-                        boost::date_time
-                        boost::filesystem
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::numeric_conversion
+                        ${CMAKE_WORKSPACE_NAME}::date_time
+                        ${CMAKE_WORKSPACE_NAME}::filesystem
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # Copyright (C) 2001-2003 Douglas Gregor

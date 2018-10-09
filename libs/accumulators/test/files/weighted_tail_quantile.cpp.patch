@@ -1,8 +1,6 @@
-11c11
-< 
----
+7a8
 > #define BOOST_TEST_MAIN
-64,69c64
+64,69c65
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -10,15 +8,14 @@
 < {
 <     test_suite *test = BOOST_TEST_SUITE("weighted_tail_quantile test");
 ---
-> BOOST_AUTO_TEST_SUITE(weighted_tail_quantile_test)
-71,73c66,68
+> BOOST_AUTO_TEST_SUITE(accumulators_test_weighted_tail_quantile)
+71,73c67,69
 <     test->add(BOOST_TEST_CASE(&test_stat));
 < 
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-74a70,71
-> 
+75a72
 > BOOST_AUTO_TEST_SUITE_END()

@@ -1,4 +1,0 @@
-11c11
-< #include <boost/coroutine/coroutine.hpp>
----
-> #include <boost/coroutine/coroutine_patched.hpp>

@@ -1,8 +1,7 @@
-5c5
-< 
----
+5a6,7
 > #define BOOST_TEST_MAIN
-36,41c36
+> 
+36,41c38
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -10,15 +9,15 @@
 < {
 <     test_suite *test = BOOST_TEST_SUITE("weighted_moment test");
 ---
-> BOOST_AUTO_TEST_SUITE(weighted_moment_test)
-43,45c38,40
+> BOOST_AUTO_TEST_SUITE(accumulators_test_weighted_moment)
+43,45c40,42
 <     test->add(BOOST_TEST_CASE(&test_stat));
 < 
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-46a42,43
+46a44,45
 > 
 > BOOST_AUTO_TEST_SUITE_END()

@@ -6,10 +6,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_any)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_lambda
-                        boost::function
-                        boost::smart_ptr
-                        boost::test
-                        boost::any
+                        ${CMAKE_WORKSPACE_NAME}::function
+                        ${CMAKE_WORKSPACE_NAME}::smart_ptr
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::any
                         )
 
 # Lambda library

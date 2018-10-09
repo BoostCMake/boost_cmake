@@ -7,11 +7,11 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_foreach)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_lockfree
-                        boost::thread
-                        boost::interprocess
-                        boost::smart_ptr
-                        boost::test
-                        boost::foreach
+                        ${CMAKE_WORKSPACE_NAME}::thread
+                        ${CMAKE_WORKSPACE_NAME}::interprocess
+                        ${CMAKE_WORKSPACE_NAME}::smart_ptr
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::foreach
                         )
 
 # (C) Copyright 2010: Tim Blechmann

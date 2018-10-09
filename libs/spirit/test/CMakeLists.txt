@@ -8,12 +8,12 @@ find_package(${CMAKE_WORKSPACE_NAME}_assign)
 find_package(${CMAKE_WORKSPACE_NAME}_lambda)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_spirit
-                        boost::random
-                        boost::functional
-                        boost::dynamic_bitset
-                        boost::bind
-                        boost::assign
-                        boost::lambda
+                        ${CMAKE_WORKSPACE_NAME}::random
+                        ${CMAKE_WORKSPACE_NAME}::functional
+                        ${CMAKE_WORKSPACE_NAME}::dynamic_bitset
+                        ${CMAKE_WORKSPACE_NAME}::bind
+                        ${CMAKE_WORKSPACE_NAME}::assign
+                        ${CMAKE_WORKSPACE_NAME}::lambda
                         )
 
 #==============================================================================

@@ -6,10 +6,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_bind)
 find_package(${CMAKE_WORKSPACE_NAME}_align)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_exception
-                        boost::align
-                        boost::function
-                        boost::thread
-                        boost::bind
+                        ${CMAKE_WORKSPACE_NAME}::align
+                        ${CMAKE_WORKSPACE_NAME}::function
+                        ${CMAKE_WORKSPACE_NAME}::thread
+                        ${CMAKE_WORKSPACE_NAME}::bind
                         )
 
 # Boost Exception Library test Jamfile

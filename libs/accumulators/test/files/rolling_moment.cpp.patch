@@ -1,33 +1,31 @@
-6c6
-< 
----
+6a7,8
 > #define BOOST_TEST_MAIN
-74,77c74,76
+> 
+74,77c76,78
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
 < test_suite* init_unit_test_suite( int argc, char* argv[] )
 ---
-> BOOST_AUTO_TEST_SUITE(rolling_moment_test)
+> BOOST_AUTO_TEST_SUITE(accumulators_test_rolling_moment)
 > 
-> BOOST_AUTO_TEST_CASE(test_rolling_second_moment_case)
-79c78,79
+> BOOST_AUTO_TEST_CASE(test_rolling_second_moment)
+79c80,86
 <     test_suite *test = BOOST_TEST_SUITE("rolling moment test");
 ---
 >     test_rolling_second_moment();
 > }
-81,82c81,84
-<     test->add(BOOST_TEST_CASE(&test_rolling_second_moment));
-<     test->add(BOOST_TEST_CASE(&test_rolling_fifth_moment));
----
-> BOOST_AUTO_TEST_CASE(test_rolling_fifth_moment_case)
+> 
+> BOOST_AUTO_TEST_CASE(test_rolling_fifth_moment)
 > {
 >     test_rolling_fifth_moment();
 > }
-84,85c86
+81,82d87
+<     test->add(BOOST_TEST_CASE(&test_rolling_second_moment));
+<     test->add(BOOST_TEST_CASE(&test_rolling_fifth_moment));
+84,85c89
 <     return test;
 < }
 \ No newline at end of file
 ---
 > BOOST_AUTO_TEST_SUITE_END()
-\ No newline at end of file

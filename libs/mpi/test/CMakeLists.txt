@@ -21,14 +21,14 @@ find_package(${CMAKE_WORKSPACE_NAME}_numeric_ublas)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi
-                        boost::regex
-                        boost::multiprecision
-                        boost::bind
-                        boost::random
-                        boost::typeof
-                        boost::serialization
-                        boost::numeric_ublas
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::regex
+                        ${CMAKE_WORKSPACE_NAME}::multiprecision
+                        ${CMAKE_WORKSPACE_NAME}::bind
+                        ${CMAKE_WORKSPACE_NAME}::random
+                        ${CMAKE_WORKSPACE_NAME}::typeof
+                        ${CMAKE_WORKSPACE_NAME}::serialization
+                        ${CMAKE_WORKSPACE_NAME}::numeric_ublas
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 find_package(MPI)
 if(NOT MPI_CXX_FOUND)

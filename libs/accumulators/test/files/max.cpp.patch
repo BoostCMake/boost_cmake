@@ -1,8 +1,7 @@
-5c5
-< 
----
+5a6,7
 > #define BOOST_TEST_MAIN
-32,37c32
+> 
+32,37c34
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -10,15 +9,15 @@
 < {
 <     test_suite *test = BOOST_TEST_SUITE("max test");
 ---
-> BOOST_AUTO_TEST_SUITE(max_test)
-39,41c34,36
+> BOOST_AUTO_TEST_SUITE(accumulators_test_max)
+39,41c36,38
 <     test->add(BOOST_TEST_CASE(&test_stat));
 < 
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-42a38,39
+42a40,41
 > 
 > BOOST_AUTO_TEST_SUITE_END()

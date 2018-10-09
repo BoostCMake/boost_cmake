@@ -5,9 +5,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_core)
 find_package(${CMAKE_WORKSPACE_NAME}_functional)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_local_function
-                        boost::function
-                        boost::core
-                        boost::functional
+                        ${CMAKE_WORKSPACE_NAME}::function
+                        ${CMAKE_WORKSPACE_NAME}::core
+                        ${CMAKE_WORKSPACE_NAME}::functional
                         )
 
 

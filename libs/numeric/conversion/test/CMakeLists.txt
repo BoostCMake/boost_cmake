@@ -6,8 +6,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_utility)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_numeric_conversion
-boost::test
-boost::utility
+${CMAKE_WORKSPACE_NAME}::test
+${CMAKE_WORKSPACE_NAME}::utility
 )
 
 # Boost Numeric Conversion Library test Jamfile

@@ -5,9 +5,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_preprocessor)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_rational
-                        boost::mpl
-                        boost::preprocessor
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::mpl
+                        ${CMAKE_WORKSPACE_NAME}::preprocessor
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # TODO: fix test. boost-1.59.0/libs/test/include/boost/test/unit_test_suite.hpp:50:1: error: expected initializer before ‘namespace’
