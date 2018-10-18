@@ -22,6 +22,38 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_parameter
 
 # Boost Parameter Library test Jamfile
 
+# literate
+cm_test(NAME parameter_test_literate_extracting-parameter-types0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/extracting-parameter-types0.cpp)
+cm_test(NAME parameter_test_literate_extracting-parameter-types1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/extracting-parameter-types1.cpp)
+cm_test(NAME parameter_test_literate_template-keywords0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/template-keywords0.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_template-keywords1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/template-keywords1.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_top-level0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/top-level0.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_headers-and-namespaces0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/headers-and-namespaces0.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_predicate-requirements0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/predicate-requirements0.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_handling-out-parameters0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/handling-out-parameters0.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_writing-the-function0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/writing-the-function0.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_building-argumentpacks0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/building-argumentpacks0.cpp)
+cm_test(NAME parameter_test_literate_defining-the-keywords0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/defining-the-keywords0.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_defining-the-keywords1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/defining-the-keywords1.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_exercising-the-code-so-far0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/exercising-the-code-so-far0.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_lazy-default-computation0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/lazy-default-computation0.cpp)
+cm_test(NAME parameter_test_literate_lazy-default-computation1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/lazy-default-computation1.cpp)
+cm_test(NAME parameter_test_literate_namespaces0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/namespaces0.cpp)
+cm_test(NAME parameter_test_literate_namespaces1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/namespaces1.cpp)
+cm_test(NAME parameter_test_literate_namespaces2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/namespaces2.cpp)
+cm_test(NAME parameter_test_literate_namespaces3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/namespaces3.cpp)
+cm_test(NAME parameter_test_literate_optional-parameters0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/optional-parameters0.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_static-member-functions0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/static-member-functions0.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_parameter-enabled-constructors0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/parameter-enabled-constructors0.cpp)
+cm_test(NAME parameter_test_literate_required-parameters0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/required-parameters0.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_class-template-skeleton0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/class-template-skeleton0.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_deduced-template-parameters0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/deduced-template-parameters0.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_deduced-parameters0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/deduced-parameters0.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_default-expression-evaluation0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/default-expression-evaluation0.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_parameter-enabled-member-functions0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/parameter-enabled-member-functions0.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_parameter-enabled-member-functions1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/parameter-enabled-member-functions1.cpp COMPILE_ONLY)
+cm_test(NAME parameter_test_literate_fine-grained-name-control0 SOURCES ${CURRENT_TEST_SOURCES_DIR}/literate/fine-grained-name-control0.cpp)
+
 #test-suite "parameter"
 cm_test(NAME parameter_test_basics SOURCES ${CURRENT_TEST_SOURCES_DIR}/basics.cpp)
 cm_test(NAME parameter_test_sfinae SOURCES ${CURRENT_TEST_SOURCES_DIR}/sfinae.cpp)
@@ -43,3 +75,5 @@ cm_test(NAME parameter_test_unwrap_cv_reference SOURCES ${CURRENT_TEST_SOURCES_D
 cm_test(NAME parameter_test_duplicates SOURCES ${CURRENT_TEST_SOURCES_DIR}/duplicates.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME parameter_test_deduced_unmatched_arg SOURCES ${CURRENT_TEST_SOURCES_DIR}/deduced_unmatched_arg.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME parameter_test_compose SOURCES ${CURRENT_TEST_SOURCES_DIR}/compose.cpp COMPILE_ONLY)
+# TODO: add test.
+# [ bpl-test python_test ]

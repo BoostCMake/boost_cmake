@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.7)
 
-
 find_package(CM)
 include(CMDeploy)
 include(CMSetupVersion)
@@ -69,7 +68,6 @@ if(BZip2_FOUND)
     target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PUBLIC BZip2::BZip2)
     target_sources(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/src/bzip2.cpp)
 endif()
-
 
 target_include_directories(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE ${CURRENT_SOURCES_DIR}/include)
 

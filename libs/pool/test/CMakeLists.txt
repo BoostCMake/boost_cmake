@@ -84,4 +84,3 @@ if(HAS_VALGRIND)
     cm_test(NAME pool_test_test_valgrind_fail_2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_valgrind_fail_2.cpp WILL_FAIL)
     target_compile_definitions(pool_test_test_valgrind_fail_2 PUBLIC -DBOOST_POOL_VALGRIND=1)
 endif()
-

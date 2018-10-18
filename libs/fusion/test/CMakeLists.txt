@@ -70,6 +70,12 @@ cm_test(NAME fusion_test_sequence_as_vector SOURCES ${CURRENT_TEST_SOURCES_DIR}/
 cm_test(NAME fusion_test_sequence_${CMAKE_WORKSPACE_NAME}_tuple SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/${CMAKE_WORKSPACE_NAME}_tuple.cpp)
 cm_test(NAME fusion_test_sequence_${CMAKE_WORKSPACE_NAME}_tuple_iterator SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/${CMAKE_WORKSPACE_NAME}_tuple_iterator.cpp)
 cm_test(NAME fusion_test_sequence_cons SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/cons.cpp)
+cm_test(NAME fusion_test_sequence_convert_boost_tuple SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/convert_boost_tuple.cpp)
+cm_test(NAME fusion_test_sequence_convert_deque SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/convert_deque.cpp)
+cm_test(NAME fusion_test_sequence_convert_list SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/convert_list.cpp)
+cm_test(NAME fusion_test_sequence_convert_std_pair SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/convert_std_pair.cpp)
+cm_test(NAME fusion_test_sequence_convert_std_tuple SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/convert_std_tuple.cpp)
+cm_test(NAME fusion_test_sequence_convert_vector SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/convert_vector.cpp)
 cm_test(NAME fusion_test_sequence_filter_view SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/filter_view.cpp)
 cm_test(NAME fusion_test_sequence_hash SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/hash.cpp)
 cm_test(NAME fusion_test_sequence_io SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/io.cpp)
@@ -91,6 +97,7 @@ cm_test(NAME fusion_test_sequence_deque_construction SOURCES ${CURRENT_TEST_SOUR
 cm_test(NAME fusion_test_sequence_deque_copy SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/deque_copy.cpp)
 cm_test(NAME fusion_test_sequence_deque_iterator SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/deque_iterator.cpp)
 cm_test(NAME fusion_test_sequence_deque_hash SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/deque_hash.cpp)
+cm_test(NAME fusion_test_sequence_deque_is_constructible SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/deque_is_constructible.cpp COMPILE_ONLY)
 cm_test(NAME fusion_test_sequence_deque_make SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/deque_make.cpp)
 cm_test(NAME fusion_test_sequence_deque_misc SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/deque_misc.cpp)
 cm_test(NAME fusion_test_sequence_deque_move SOURCES ${CURRENT_TEST_SOURCES_DIR}/sequence/deque_move.cpp)
@@ -193,6 +200,7 @@ cm_test(NAME fusion_test_support_pair_list SOURCES ${CURRENT_TEST_SOURCES_DIR}/s
 cm_test(NAME fusion_test_support_pair_map SOURCES ${CURRENT_TEST_SOURCES_DIR}/support/pair_map.cpp COMPILE_ONLY)
 cm_test(NAME fusion_test_support_pair_set SOURCES ${CURRENT_TEST_SOURCES_DIR}/support/pair_set.cpp COMPILE_ONLY)
 cm_test(NAME fusion_test_support_pair_vector SOURCES ${CURRENT_TEST_SOURCES_DIR}/support/pair_vector.cpp COMPILE_ONLY)
+cm_test(NAME fusion_test_support_pair_nest SOURCES ${CURRENT_TEST_SOURCES_DIR}/support/pair_nest.cpp COMPILE_ONLY)
 cm_test(NAME fusion_test_support_index_sequence SOURCES ${CURRENT_TEST_SOURCES_DIR}/support/index_sequence.cpp COMPILE_ONLY)
 
 #   [ compile-fail xxx.cpp :  :  :  :  ]

@@ -27,7 +27,6 @@ cm_mark_as_test(test-iostreams-flags)
 cm_test_link_libraries(test-iostreams-flags)
 target_compile_definitions(test-iostreams-flags INTERFACE BOOST_IOSTREAMS_NO_LIB)
 
-
 cm_test(NAME iostreams_test_array_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/array_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME iostreams_test_auto_close_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/auto_close_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME iostreams_test_buffer_size_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/buffer_size_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})

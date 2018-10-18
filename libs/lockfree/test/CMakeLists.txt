@@ -23,4 +23,3 @@ foreach(FILEB ${TEST_FILES})
     get_filename_component(NAME ${FILEB} NAME_WE)
     cm_test(NAME lockfree_test_${NAME} SOURCES ${FILEB})
 endforeach()
-

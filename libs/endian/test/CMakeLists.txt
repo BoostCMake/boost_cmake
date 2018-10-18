@@ -28,4 +28,3 @@ cm_test(NAME endian_test_endian_operations_test SOURCES ${CURRENT_TEST_SOURCES_D
 cm_test(NAME endian_test_endian_in_union_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/endian_in_union_test.cpp)
 cm_test(NAME endian_test_conversion_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/conversion_test.cpp)
 #         [ run endian_test_floating_point_test.cpp : : : <test-info>always_show_run_output ]
-

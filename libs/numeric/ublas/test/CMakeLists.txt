@@ -60,7 +60,7 @@ set(UBLAS_TESTSET_SPARSE_COO "-DUSE_DOUBLE -DUSE_STD_COMPLEX -DUSE_UNBOUNDED_ARR
 
 #            <define>INTERAL
 #            <define>SKIP_BAD
-# TODO: Disable tests for now
+
 cm_test(NAME numeric_test_ublas_test1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test1.cpp  ${CURRENT_TEST_SOURCES_DIR}/test11.cpp  ${CURRENT_TEST_SOURCES_DIR}/test12.cpp  ${CURRENT_TEST_SOURCES_DIR}/test13.cpp)
 target_compile_definitions(numeric_test_ublas_test1 PUBLIC ${UBLAS_TESTSET})
 

@@ -49,6 +49,9 @@ cm_test_link_libraries(multiprecision_test_settings)
 # cm_mark_as_test(no_eh_support)
 # target_link_libraries(no_eh_support boost_throw_exception)
 # cm_target_link_test_libs(no_eh_support)
+
+#TODO: watch another time
+try_compile(HAS_GMP ${CURRENT_TEST_SOURCES_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_gmp.cpp)
 try_compile(HAS_MPFR ${CURRENT_TEST_SOURCES_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_mpfr.cpp)
 try_compile(HAS_TOMMATH ${CURRENT_TEST_SOURCES_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_tommath.cpp)
 try_compile(HAS_FLOAT128 ${CURRENT_TEST_SOURCES_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_float128.cpp)
@@ -61,12 +64,12 @@ cm_test(NAME multiprecision_test_test_arithmetic_cpp_dec_float_1 SOURCES ${CURRE
 cm_test(NAME multiprecision_test_test_arithmetic_cpp_dec_float_2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_cpp_dec_float_2.cpp)
 cm_test(NAME multiprecision_test_test_arithmetic_cpp_dec_float_3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_cpp_dec_float_3.cpp)
 
-if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (NOT PROJECT_VERSION LESS 1.60.0))
+#if (NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     # reason: error: right operand of shift expression ‘(1u << 63u)’ is >= than the precision of the left operand [-fpermissive]
     cm_test(NAME multiprecision_test_test_arithmetic_cpp_bin_float_1 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_arithmetic_cpp_bin_float_1.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
     cm_test(NAME multiprecision_test_test_arithmetic_cpp_bin_float_2 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_arithmetic_cpp_bin_float_2.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
     cm_test(NAME multiprecision_test_test_arithmetic_cpp_bin_float_3 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_arithmetic_cpp_bin_float_3.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-endif()
+#endif()
 
 if (HAS_GMP)
     cm_test(NAME multiprecision_test_test_arithmetic_mpf_50 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_mpf_50.cpp)
@@ -89,7 +92,7 @@ if (HAS_TOMMATH)
     cm_test(NAME multiprecision_test_test_arithmetic_tommath_br SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_tommath_br.cpp)
 endif()
 
-if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (NOT PROJECT_VERSION LESS 1.60.0))
+#if (NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     # reason: error: right operand of shift expression ‘(1u << 63u)’ is >= than the precision of the left operand [-fpermissive]
     cm_test(NAME multiprecision_test_test_arithmetic_cpp_int_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_cpp_int_1.cpp)
     cm_test(NAME multiprecision_test_test_arithmetic_cpp_int_2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_cpp_int_2.cpp)
@@ -110,7 +113,7 @@ if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (NOT PROJECT_VERSION LESS 1.60.
     cm_test(NAME multiprecision_test_test_arithmetic_cpp_int_17 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_cpp_int_17.cpp)
     cm_test(NAME multiprecision_test_test_arithmetic_cpp_int_18 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_cpp_int_18.cpp)
     cm_test(NAME multiprecision_test_test_arithmetic_cpp_int_br SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_cpp_int_br.cpp)
-endif()
+#endif()
 
 cm_test(NAME multiprecision_test_test_arithmetic_ab_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_ab_1.cpp)
 cm_test(NAME multiprecision_test_test_arithmetic_ab_2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_ab_2.cpp)
@@ -118,41 +121,43 @@ cm_test(NAME multiprecision_test_test_arithmetic_ab_3 SOURCES ${CURRENT_TEST_SOU
 
 cm_test(NAME multiprecision_test_test_cpp_dec_float_round SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_dec_float_round.cpp)
 
-if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (NOT PROJECT_VERSION LESS 1.60.0))
+#if (NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     # reason: error: right operand of shift expression ‘(1u << 63u)’ is >= than the precision of the left operand [-fpermissive]
     cm_test(NAME multiprecision_test_test_arithmetic_logged_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_logged_1.cpp)
     cm_test(NAME multiprecision_test_test_arithmetic_logged_2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_logged_2.cpp)
 
     cm_test(NAME multiprecision_test_test_arithmetic_dbg_adptr1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_dbg_adptr1.cpp)
     cm_test(NAME multiprecision_test_test_arithmetic_dbg_adptr2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_dbg_adptr2.cpp)
-endif()
+#endif()
 
 if (HAS_MPFI)
     cm_test(NAME multiprecision_test_test_arithmetic_mpfi_50 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_arithmetic_mpfi_50.cpp)
 endif()
 
-# reason fatal error: gmp.h: No such file or directory. 
-#[[
 cm_test(NAME multiprecision_test_test_numeric_limits_backend_concept SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_numeric_limits.cpp)
 target_compile_definitions(multiprecision_test_test_numeric_limits_backend_concept PUBLIC -DTEST_BACKEND)
 
-cm_test(NAME multiprecision_test_test_numeric_limits_mpf50 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_numeric_limits.cpp)
-target_compile_definitions(multiprecision_test_test_numeric_limits_mpf50 PUBLIC -DTEST_MPF_50)
+if (HAS_GMP)
+    cm_test(NAME multiprecision_test_test_numeric_limits_mpf50 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_numeric_limits.cpp)
+    target_compile_definitions(multiprecision_test_test_numeric_limits_mpf50 PUBLIC -DTEST_MPF_50)
+    
+    cm_test(NAME multiprecision_test_test_numeric_limits_mpf SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_numeric_limits.cpp)
+    target_compile_definitions(multiprecision_test_test_numeric_limits_mpf PUBLIC -DTEST_MPF)
+    
+    cm_test(NAME multiprecision_test_test_numeric_limits_mpz SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_numeric_limits.cpp)
+    target_compile_definitions(multiprecision_test_test_numeric_limits_mpz PUBLIC -DTEST_MPZ)
+    
+    cm_test(NAME multiprecision_test_test_numeric_limits_mpq SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_numeric_limits.cpp)
+    target_compile_definitions(multiprecision_test_test_numeric_limits_mpq PUBLIC -DTEST_MPQ)
+endif()
 
-cm_test(NAME multiprecision_test_test_numeric_limits_mpf SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_numeric_limits.cpp)
-target_compile_definitions(multiprecision_test_test_numeric_limits_mpf PUBLIC -DTEST_MPF)
-
-cm_test(NAME multiprecision_test_test_numeric_limits_mpz SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_numeric_limits.cpp)
-target_compile_definitions(multiprecision_test_test_numeric_limits_mpz PUBLIC -DTEST_MPZ)
-
-cm_test(NAME multiprecision_test_test_numeric_limits_mpq SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_numeric_limits.cpp)
-target_compile_definitions(multiprecision_test_test_numeric_limits_mpq PUBLIC -DTEST_MPQ)
-
-cm_test(NAME multiprecision_test_test_numeric_limits_mpfr SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_numeric_limits.cpp)
-target_compile_definitions(multiprecision_test_test_numeric_limits_mpfr PUBLIC -DTEST_MPFR)
-
-cm_test(NAME multiprecision_test_test_numeric_limits_mpfr_50 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_numeric_limits.cpp)
-target_compile_definitions(multiprecision_test_test_numeric_limits_mpfr_50 PUBLIC -DTEST_MPFR_50)
+if (HAS_MPFR)
+    cm_test(NAME multiprecision_test_test_numeric_limits_mpfr SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_numeric_limits.cpp)
+    target_compile_definitions(multiprecision_test_test_numeric_limits_mpfr PUBLIC -DTEST_MPFR)
+    
+    cm_test(NAME multiprecision_test_test_numeric_limits_mpfr_50 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_numeric_limits.cpp)
+    target_compile_definitions(multiprecision_test_test_numeric_limits_mpfr_50 PUBLIC -DTEST_MPFR_50)
+endif()
 
 cm_test(NAME multiprecision_test_test_numeric_limits_cpp_dec_float SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_numeric_limits.cpp)
 target_compile_definitions(multiprecision_test_test_numeric_limits_cpp_dec_float PUBLIC T-DEST_CPP_DEC_FLOAT)
@@ -182,7 +187,7 @@ if ((HAS_INTEL_QUAD) AND (HAS_FLOAT128))
     cm_test(NAME multiprecision_test_test_numeric_limits_intel_quad SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_numeric_limits.cpp)
     target_compile_definitions(multiprecision_test_test_numeric_limits_intel_quad PUBLIC -DTEST_FLOAT128)
 endif()
-]]
+
 
 set(LOCAL_SOURCES "")
 # TODO: fix tests. -fpremissive  test_log.cpp test_pow.cpp test_sinh.cpp test_sqrt.cpp test_cosh.cpp test_tanh.cpp test_sin.cpp 
@@ -273,10 +278,10 @@ endif()
 
 cm_test(NAME multiprecision_test_test_nothrow_cpp_int SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_nothrow_cpp_int.cpp COMPILE_ONLY)
 cm_test(NAME multiprecision_test_test_nothrow_cpp_rational SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_nothrow_cpp_rational.cpp COMPILE_ONLY)
-if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (NOT PROJECT_VERSION LESS 1.60.0))
+#if (NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     cm_test(NAME multiprecision_test_test_nothrow_cpp_bin_float SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_nothrow_cpp_bin_float.cpp COMPILE_ONLY)
     cm_test(NAME multiprecision_test_test_nothrow_cpp_dec_float SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_nothrow_cpp_dec_float.cpp COMPILE_ONLY)
-endif()
+#endif()
 
 if (HAS_FLOAT128)
     cm_test(NAME multiprecision_test_test_nothrow_float128 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_nothrow_float128.cpp COMPILE_ONLY)
@@ -290,7 +295,7 @@ if (HAS_MPFR)
     cm_test(NAME multiprecision_test_test_nothrow_mpfr SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_nothrow_mpfr.cpp COMPILE_ONLY)
 endif()
 
-if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (PROJECT_VERSION GREATER 1.59))
+#if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (PROJECT_VERSION GREATER 1.59))
     cm_test(NAME multiprecision_test_test_cpp_bin_float_io_1 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_cpp_bin_float_io.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
     target_compile_definitions(multiprecision_test_test_cpp_bin_float_io_1 PUBLIC -DTEST1 -DTEST_CPP_BIN_FLOAT)
 
@@ -380,10 +385,10 @@ if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (PROJECT_VERSION GREATER 1.59))
     
     endif()
     
-endif()
+#endif()
 
 # reason fatal error: gmp.h: No such file or directory
-#[[
+
 cm_test(NAME multiprecision_test_test_rat_float_interconv_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_rat_float_interconv.cpp)
 target_compile_definitions(multiprecision_test_test_rat_float_interconv_1 PUBLIC TEST1)
 
@@ -407,9 +412,9 @@ target_compile_definitions(multiprecision_test_test_rat_float_interconv_7 PUBLIC
 
 cm_test(NAME multiprecision_test_test_rat_float_interconv_8 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_rat_float_interconv.cpp)
 target_compile_definitions(multiprecision_test_test_rat_float_interconv_8 PUBLIC TEST8)
-]]
 
-if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (NOT PROJECT_VERSION LESS 1.60.0))
+
+#if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (NOT PROJECT_VERSION LESS 1.60.0))
     cm_test(NAME multiprecision_test_test_cpp_int_conv SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_int_conv.cpp)
     cm_test(NAME multiprecision_test_test_native_integer SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_native_integer.cpp)
 
@@ -418,7 +423,7 @@ if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (NOT PROJECT_VERSION LESS 1.60.
     if ((HAS_GMP) AND (HAS_MPFR))
         cm_test(NAME multiprecision_test_test_mixed_float SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_mixed_float.cpp)
     endif()
-endif()
+#endif()
 
 if (HAS_MPFR)
     cm_test(NAME multiprecision_test_include_test_mpfr_include_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/include_test/mpfr_include_test.cpp COMPILE_ONLY)
@@ -484,7 +489,7 @@ cm_test(NAME multiprecision_test_ublas_interopinclude_test_cpp_bin_float_include
     target_include_directories(multiprecision_test_ublas_interop_test6_et PUBLIC -DTEST_ET=1)
 
     #run ublas_interop/test7.cpp ublas_interop/test71.cpp ublas_interop/test72.cpp ublas_interop/test73.cpp ;
-if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (NOT PROJECT_VERSION LESS 1.60.0))
+#if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (NOT PROJECT_VERSION LESS 1.60.0))
         
     cm_test(NAME multiprecision_test_test_cpp_int_serial_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_cpp_int_serial.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
     target_compile_definitions(multiprecision_test_test_cpp_int_serial_1 PUBLIC TEST1)
@@ -514,7 +519,7 @@ endif()
     cm_test(NAME multiprecision_test_test_checked_mixed_cpp_int SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_checked_mixed_cpp_int.cpp)
     cm_test(NAME multiprecision_test_test_mixed_cpp_bin_float SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_mixed_cpp_bin_float.cpp)
     cm_test(NAME multiprecision_test_test_mixed_cpp_dec_float SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_mixed_cpp_dec_float.cpp)
-endif()
+#endif()
 
 if (HAS_GMP)
     cm_test(NAME multiprecision_test_test_mixed_mpf_float SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_mixed_mpf_float.cpp)

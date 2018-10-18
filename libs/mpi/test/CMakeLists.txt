@@ -1,7 +1,5 @@
 include(CMTest)
 
-patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
-
 ##############################################################################
 ##
 ## (C) Copyright Ion Gaztanaga 2008-2009 Distributed under the Boost
@@ -42,8 +40,8 @@ cm_test(NAME mpi_test_all_to_all_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/all_to
 cm_test(NAME mpi_test_broadcast_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/broadcast_test.cpp ARGS 2 17)
 cm_test(NAME mpi_test_gather_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/gather_test.cpp)
 cm_test(NAME mpi_test_is_mpi_op_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/is_mpi_op_test.cpp ARGS 1)
-cm_test(NAME mpi_test_mt_level_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/mt_level_test.cpp ARGS 1 SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-cm_test(NAME mpi_test_mt_init_test_single SOURCES ${CMAKE_CURRENT_BINARY_DIR}/mt_init_test.cpp ARGS "single" 1 4 SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME mpi_test_mt_level_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/mt_level_test.cpp ARGS 1)
+cm_test(NAME mpi_test_mt_init_test_single SOURCES ${CURRENT_TEST_SOURCES_DIR}/mt_init_test.cpp ARGS "single" 1 4)
 cm_test(NAME mpi_test_mt_init_test_funneled SOURCES ${CMAKE_CURRENT_BINARY_DIR}/mt_init_test.cpp ARGS "funneled" 1 4 SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME mpi_test_mt_init_test_serialized SOURCES ${CMAKE_CURRENT_BINARY_DIR}/mt_init_test.cpp ARGS "serialized" 1 4 SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME mpi_test_mt_init_test_multiple SOURCES ${CMAKE_CURRENT_BINARY_DIR}/mt_init_test.cpp ARGS "multiple" 1 4 SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})

@@ -22,18 +22,13 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_function
 #test-suite function
 cm_test(NAME function_test_function_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/function_test.cpp)
 
-cm_test(NAME function_test_lib_function_test_no_rtti SOURCES ${CURRENT_TEST_SOURCES_DIR}/function_test.cpp)
-set_target_properties(function_test_lib_function_test_no_rtti PROPERTIES CXX_RTTI off)
-
 cm_test(NAME function_test_function_n_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/function_n_test.cpp)
 
 cm_test(NAME function_test_allocator_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/allocator_test.cpp)
 
 cm_test(NAME function_test_stateless_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/stateless_test.cpp)
 
-#if(NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 cm_test(NAME function_test_lambda_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/lambda_test.cpp)
-#endif()
 
 cm_test(NAME function_test_function_test_fail1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/function_test_fail1.cpp COMPILE_ONLY WILL_FAIL)
 

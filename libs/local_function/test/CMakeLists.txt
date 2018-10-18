@@ -33,7 +33,7 @@ function(run_vaseq target)
 endfunction(run_vaseq)
 
 run_vaseq(add)
-if ((COMPILER_SUPPORTS_CXX20) OR (NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (PROJECT_VERSION GREATER 1.59))
+if ((COMPILER_SUPPORTS_CXX20) OR (NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU"))
     #reason: add_classifiers.cpp:20:39: error: two or more data types in declaration of ‘x’
     run_vaseq(add_classifiers)
 

@@ -29,11 +29,12 @@ cm_test(NAME function_types_test_classification_is_callable_builtin SOURCES ${CU
 cm_test(NAME function_types_test_classification_is_nonmember_callable_builtin SOURCES ${CURRENT_TEST_SOURCES_DIR}/classification/is_nonmember_callable_builtin.cpp COMPILE_ONLY)
 cm_test(NAME function_types_test_classification_is_member_pointer SOURCES ${CURRENT_TEST_SOURCES_DIR}/classification/is_member_pointer.cpp COMPILE_ONLY)
 
-# Decomposition
 cm_test(NAME function_types_test_classification_is_cv_mem_func_ptr SOURCES ${CURRENT_TEST_SOURCES_DIR}/classification/is_cv_mem_func_ptr.cpp COMPILE_ONLY)
 cm_test(NAME function_types_test_classification_is_variadic SOURCES ${CURRENT_TEST_SOURCES_DIR}/classification/is_variadic.cpp COMPILE_ONLY)
 cm_test(NAME function_types_test_classification_is_cv_pointer SOURCES ${CURRENT_TEST_SOURCES_DIR}/classification/is_cv_pointer.cpp COMPILE_ONLY)
 #cm_test(NAME function_types_test_classification_is_cv_function SOURCES ${CURRENT_TEST_SOURCES_DIR}/classification/is_cv_function.cpp COMPILE_ONLY)
+
+# Decomposition
 
 cm_test(NAME function_types_test_decomposition_components SOURCES ${CURRENT_TEST_SOURCES_DIR}/decomposition/components.cpp COMPILE_ONLY)
 cm_test(NAME function_types_test_decomposition_result_type SOURCES ${CURRENT_TEST_SOURCES_DIR}/decomposition/result_type.cpp COMPILE_ONLY)
@@ -80,6 +81,3 @@ cm_test(NAME function_types_test_example_fast_mem_fn_example SOURCES ${CURRENT_T
 # needed for Boost.PP file iteration with some compilers
 target_include_directories(function_types_test_example_fast_mem_fn_example PUBLIC ../example)
 cm_test(NAME function_types_test_example_macro_type_args_example SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/macro_type_args_example.cpp COMPILE_ONLY)
-
-
-

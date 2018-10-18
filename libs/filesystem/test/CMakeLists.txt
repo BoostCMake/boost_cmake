@@ -34,5 +34,6 @@ cm_test(NAME filesystem_test_operations_test SOURCES ${CURRENT_TEST_SOURCES_DIR}
 cm_test(NAME filesystem_test_operations_unit_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/operations_unit_test.cpp)
 cm_test(NAME filesystem_test_path_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/path_test.cpp)
 cm_test(NAME filesystem_test_path_unit_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/path_unit_test.cpp)
+cm_test(NAME filesystem_test_relative_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/relative_test.cpp)
 cm_test(NAME filesystem_test_example_simple_ls SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/simple_ls.cpp)
 cm_test(NAME filesystem_test_example_file_status SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/file_status.cpp)

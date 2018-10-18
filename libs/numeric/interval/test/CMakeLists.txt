@@ -14,10 +14,6 @@ ${CMAKE_WORKSPACE_NAME}::test
 # (See accompanying file LICENSE_1_0.txt or
 # copy at http://www.boost.org/LICENSE_1_0.txt)
 
-# Enable dynamic rounding on Tru64 (Alpha CPU).
-
-# bring in rules for testing
-
 #test-suite numeric/interva
 cm_test(NAME numeric_interval_test_integer SOURCES ${CURRENT_TEST_SOURCES_DIR}/integer.cpp COMPILE_ONLY)
 cm_test(NAME numeric_interval_test_add SOURCES ${CURRENT_TEST_SOURCES_DIR}/add.cpp)
@@ -43,4 +39,3 @@ cm_test(NAME numeric_interval_test_cmp_tribool SOURCES ${CURRENT_TEST_SOURCES_DI
 target_link_libraries(numeric_interval_test_cmp_tribool ${CMAKE_WORKSPACE_NAME}::test_exec_monitor)
 cm_test(NAME numeric_interval_test_test_float SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_float.cpp)
 target_link_libraries(numeric_interval_test_test_float ${CMAKE_WORKSPACE_NAME}::test_exec_monitor)
-

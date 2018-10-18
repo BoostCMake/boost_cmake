@@ -1,10 +1,6 @@
 include(CMTest)
 
 patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
-patch_directory(${CURRENT_SOURCES_DIR}/octonion ${CMAKE_SOURCE_DIR}/libs/math/octonion/files ${CMAKE_BINARY_DIR}/libs/math/octonion)
-patch_directory(${CURRENT_SOURCES_DIR}/quaternion ${CMAKE_SOURCE_DIR}/libs/math/quaternion/files ${CMAKE_BINARY_DIR}/libs/math/quaternion)
-patch_directory(${CURRENT_SOURCES_DIR}/special_functions ${CMAKE_SOURCE_DIR}/libs/math/special_functions/files ${CMAKE_BINARY_DIR}/libs/math/special_functions)
-
 
 find_package(${CMAKE_WORKSPACE_NAME}_regex)
 find_package(${CMAKE_WORKSPACE_NAME}_multiprecision)
@@ -578,10 +574,10 @@ cm_test(NAME math_test_compile_test_tools_toms748_inc_test SOURCES ${CURRENT_TES
 
 cm_test(NAME math_test___test_common_factor_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/../test/common_factor_test.cpp )
 
-cm_test(NAME math_test___octonion_octonion_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../octonion/octonion_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME math_test___octonion_octonion_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/octonion_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 
-cm_test(NAME math_test___quaternion_quaternion_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../quaternion/quaternion_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-cm_test(NAME math_test___quaternion_quaternion_mult_incl_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../quaternion/quaternion_mult_incl_test.cpp ${CURRENT_TEST_SOURCES_DIR}/../quaternion/quaternion_mi1.cpp ${CURRENT_TEST_SOURCES_DIR}/../quaternion/quaternion_mi2.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME math_test___quaternion_quaternion_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/quaternion_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME math_test___quaternion_quaternion_mult_incl_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/quaternion_mult_incl_test.cpp ${CURRENT_TEST_SOURCES_DIR}/quaternion_mi1.cpp ${CURRENT_TEST_SOURCES_DIR}/quaternion_mi2.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 
 cm_test(NAME math_test_test_legacy_nonfinite SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_legacy_nonfinite.cpp )
 cm_test(NAME math_test_test_basic_nonfinite SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_basic_nonfinite.cpp )
@@ -601,7 +597,6 @@ set_target_properties(math_test_multiprc_concept_check_3 PROPERTIES CXX_EXCEPTIO
 cm_test(NAME math_test_multiprc_concept_check_4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/multiprc_concept_check_4.cpp COMPILE_ONLY )
 set_target_properties(math_test_multiprc_concept_check_4 PROPERTIES CXX_EXCEPTIONS off)
 
-# TODO: Check the dependencies of these tests
 if (HAS_NTL_RR)
     cm_test(NAME math_test_ntl_concept_check SOURCES ${CURRENT_TEST_SOURCES_DIR}/ntl_concept_check.cpp COMPILE_ONLY )
 endif()

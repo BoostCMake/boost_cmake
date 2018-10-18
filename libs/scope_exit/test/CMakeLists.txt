@@ -43,13 +43,12 @@ function(compile_fail_typeof native_target emulation_target)
     target_compile_definitions(scope_exit_test_${emulation_target} PUBLIC -DBOOST_TYPEOF_EMULATION)
 endfunction(compile_fail_typeof)
 
-
 run_vaseq(same_line)
 
-if(CMAKE_COMPILER_IS_GNUCXX AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+#if(CMAKE_COMPILER_IS_GNUCXX AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     run_vaseq(world)
     run_vaseq(world_checkpoint)
-endif()
+#endif()
 
 # TODO: fix test. Undefine defenition BOOST_NO_CXX11_LAMBDAS.
 #run_vaseq(world_checkpoint_all)

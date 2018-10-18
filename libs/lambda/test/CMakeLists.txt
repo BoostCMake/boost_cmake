@@ -27,11 +27,7 @@ cm_test(NAME lambda_test_algorithm_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/algo
 cm_test(NAME lambda_test_bind_tests_simple SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_tests_simple.cpp)
 cm_test(NAME lambda_test_bind_tests_advanced SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_tests_advanced.cpp)
 cm_test(NAME lambda_test_bind_tests_simple_f_refs SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_tests_simple_f_refs.cpp)
-
-#if(NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 cm_test(NAME lambda_test_bll_and_function SOURCES ${CURRENT_TEST_SOURCES_DIR}/bll_and_function.cpp)
-#endif()
-
 cm_test(NAME lambda_test_lambda_cast_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/cast_test.cpp)
 cm_test(NAME lambda_test_constructor_tests SOURCES ${CURRENT_TEST_SOURCES_DIR}/constructor_tests.cpp)
 cm_test(NAME lambda_test_control_structures SOURCES ${CURRENT_TEST_SOURCES_DIR}/control_structures.cpp)

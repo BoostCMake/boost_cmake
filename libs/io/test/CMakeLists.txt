@@ -26,4 +26,3 @@ cm_test(NAME io_test_ios_state_unit_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ios
 cm_test(NAME io_test_ios_state_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ios_state_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 
 cm_test(NAME io_test_quoted_manip_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/quoted_manip_test.cpp)
-
