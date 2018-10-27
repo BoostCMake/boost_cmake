@@ -21,8 +21,12 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_integer
 #test-suite integer
 cm_test(NAME integer_test_integer_traits_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/integer_traits_test.cpp)
 cm_test(NAME integer_test_integer_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/integer_test.cpp)
-# TODO: fix test. Error: error: left operand of shift expression ‘(-1 << 15ul)’ is negative [-fpermissive]
-#cm_test(NAME integer_test_integer_mask_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/integer_mask_test.cpp)
+
+if (NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") 
+    # TODO: fix test. Reason error: [-fpermissive]
+    cm_test(NAME integer_test_integer_mask_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/integer_mask_test.cpp)
+endif()
+
 cm_test(NAME integer_test_static_log2_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/static_log2_test.cpp)
 cm_test(NAME integer_test_static_min_max_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/static_min_max_test.cpp)
 cm_test(NAME integer_test_integer_traits_include_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/integer_traits_include_test.cpp COMPILE_ONLY)

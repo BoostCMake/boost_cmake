@@ -146,4 +146,4 @@ cm_shadow_notify(${CMAKE_WORKSPACE_NAME}::test)
 
 cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_prg_exec_monitor ${CMAKE_WORKSPACE_NAME}_test_exec_monitor ${CMAKE_WORKSPACE_NAME}_unit_test_framework INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
 
-#add_subdirectory(test)
+add_subdirectory(test)

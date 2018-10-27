@@ -11,7 +11,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_python
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 
-# TODO
+# TODO: add python testing module
 
 
 # A bug in the Win32 intel compilers causes compilation of one of our

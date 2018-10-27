@@ -17,14 +17,17 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_config
 
 include(CMProperties)
 
-find_package(Threads)
+find_package(Threads REQUIRED)
 add_library(config_threads INTERFACE)
 target_link_libraries(config_threads INTERFACE "${CMAKE_THREAD_LIBS_INIT}")
 set(LIBS_TO_CHECK atomic rt)
 foreach(lib ${LIBS_TO_CHECK})
     find_library(FIND_LIB${lib} ${lib})
+    string(TOUPPER ${lib} FIND_LIB)
+    set(HAS_${FIND_LIB}_LIB 0)
     if(FIND_LIB${lib})
         target_link_libraries(config_threads INTERFACE "${FIND_LIB${lib}}")
+        set(HAS_${FIND_LIB}_LIB 1)
     endif()
 endforeach()
 include_directories(${CURRENT_TEST_SOURCES_DIR})
@@ -76,18 +79,6 @@ foreach(TEST ${TESTS})
     endif()
 endforeach()
 
-# in root
-# TODO: implement finding lib
-#exe has_atomic_lib : config_info.cpp atomic ;
-#explicit has_atomic_lib ;
-#exe has_pthread_lib : config_info.cpp pthread ;
-#explicit has_pthread_lib ;
-#exe has_rt_lib : config_info.cpp rt ;
-#explicit has_rt_lib ;
-set(HAS_RT_LIB 0)
-set(HAS_PTHREAD_LIB 0)
-set(HAS_ATOMIC_LIB 0)
-
 
 cm_test(NAME config_test_config_test_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/config_test_c.c COMPILE_ONLY)
 
@@ -121,9 +112,13 @@ endforeach()
 
 cm_test(NAME config_test_math_info SOURCES ${CURRENT_TEST_SOURCES_DIR}/math_info.cpp)
 
-# TODO: fix test. Error: undefined reference to `int test_free_proc<int>(int)'
-#cm_test(NAME config_test_link_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/link/main.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-#target_compile_definitions(config_test_link_test PRIVATE -DBOOST_CONFIG_NO_LIB=1)
+add_library(config_test_link_test_lib SHARED ${CURRENT_TEST_SOURCES_DIR}/link/link_test.cpp)
+target_compile_definitions(config_test_link_test_lib PRIVATE -DBOOST_DYN_LINK=1)
+target_include_directories(config_test_link_test_lib PRIVATE ${CURRENT_TEST_SOURCES_DIR}/../include)
+
+cm_test(NAME config_test_link_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/link/main.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+target_compile_definitions(config_test_link_test PRIVATE -DBOOST_CONFIG_NO_LIB=1)
+target_link_libraries(config_test_link_test config_test_link_test_lib)
 
 cm_test(NAME config_test_test_thread_fail1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/threads/test_thread_fail1.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME config_test_test_thread_fail2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/threads/test_thread_fail2.cpp COMPILE_ONLY WILL_FAIL)
@@ -209,18 +204,18 @@ cm_test(NAME config_test_has_part_alloc_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}
 cm_test(NAME config_test_has_pthread_delay_np_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/has_pthread_delay_np_pass.cpp )
 cm_test(NAME config_test_has_pthread_delay_np_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/has_pthread_delay_np_fail.cpp COMPILE_ONLY WILL_FAIL)
 
-# TODO: fix test. Error: undefined reference to `pthread_mutexattr_init'
-#cm_test(NAME config_test_has_pthread_ma_st_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/has_pthread_ma_st_pass.cpp )
+cm_test(NAME config_test_has_pthread_ma_st_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/has_pthread_ma_st_pass.cpp )
+target_link_libraries(config_test_has_pthread_ma_st_pass Threads::Threads)
 
 cm_test(NAME config_test_has_pthread_ma_st_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/has_pthread_ma_st_fail COMPILE_ONLY WILL_FAIL)
 
-# TODO: fix test. Error: undefined reference to `pthread_yield'
-#cm_test(NAME config_test_has_pthread_yield_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/has_pthread_yield_pass.cpp )
+cm_test(NAME config_test_has_pthread_yield_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/has_pthread_yield_pass.cpp )
+target_link_libraries(config_test_has_pthread_yield_pass Threads::Threads)
 
 cm_test(NAME config_test_has_pthread_yield_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/has_pthread_yield_fail.cpp COMPILE_ONLY WILL_FAIL)
 
-# TODO: fix test. Error: undefined reference to `pthread_mutex_trylock'
-#cm_test(NAME config_test_has_pthreads_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/has_pthreads_pass.cpp )
+cm_test(NAME config_test_has_pthreads_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/has_pthreads_pass.cpp )
+target_link_libraries(config_test_has_pthreads_pass Threads::Threads)
 
 cm_test(NAME config_test_has_pthreads_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/has_pthreads_fail.cpp COMPILE_ONLY WILL_FAIL)
 

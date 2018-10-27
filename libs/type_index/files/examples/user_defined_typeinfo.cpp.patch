@@ -1,0 +1,4 @@
+17c17
+< #define BOOST_TYPE_INDEX_USER_TYPEINDEX <boost/../libs/type_index/examples/user_defined_typeinfo.hpp>
+---
+> #define BOOST_TYPE_INDEX_USER_TYPEINDEX <boost/../../examples/user_defined_typeinfo.hpp>

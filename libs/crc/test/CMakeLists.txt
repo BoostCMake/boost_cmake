@@ -16,5 +16,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_crc
 #~ Distributed under the Boost Software License, Version 1.0.
 #~ (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-# TODO: fix test. Error: error: left operand of shift expression ‘(-1 << 3ul)’ is negative [-fpermissive]
-#cm_test(NAME crc_test_crc_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/crc_test.cpp)
+if (NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    # TODO: fix test. Reason error: [-fpermissive]
+    cm_test(NAME crc_test_crc_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/crc_test.cpp)
+endif()

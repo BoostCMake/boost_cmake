@@ -5,12 +5,14 @@ patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${
 find_package(${CMAKE_WORKSPACE_NAME}_filesystem)
 find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
 find_package(${CMAKE_WORKSPACE_NAME}_math)
+find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization
                         ${CMAKE_WORKSPACE_NAME}_wserialization
                         ${CMAKE_WORKSPACE_NAME}::filesystem
                         ${CMAKE_WORKSPACE_NAME}::lexical_cast
                         ${CMAKE_WORKSPACE_NAME}::math
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # Boost serialization Library test Jamfile
@@ -19,11 +21,6 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization
 #  Use, modification, and distribution are subject to the
 #  Boost Software License, Version 1.0. (See accompanying file
 #  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-
-# import rules for testing conditional on config file variables
-
-# import rules from the boost serialization test
-# import ../util/test : test-bsl-run-no-lib ;
 
 add_library(serialization_test_dll_a_lib STATIC ${CURRENT_TEST_SOURCES_DIR}/dll_a.cpp)
 target_link_libraries(serialization_test_dll_a_lib ${CMAKE_WORKSPACE_NAME}_serialization)
@@ -41,7 +38,6 @@ add_library(serialization_test_dll_polymorphic_derived2_lib STATIC ${CURRENT_TES
 target_link_libraries(serialization_test_dll_polymorphic_derived2_lib ${CMAKE_WORKSPACE_NAME}_serialization)
 cm_mark_as_test(serialization_test_dll_polymorphic_derived2_lib)
 
-
 function(serialization_test test_name)
     set(arglist)
     foreach(a IN ITEMS ${ARGN})
@@ -55,7 +51,7 @@ function(serialization_archive_test)
     set(multiValueArgs ARGS)
     cmake_parse_arguments(PARSE "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
     set(arglist)
-    foreach(a IN ITEMS ${ARGS})
+    foreach(a IN ITEMS ${PARSE_ARGS})
         set(arglist ${arglist} ${CURRENT_TEST_SOURCES_DIR}/${a}.cpp)
     endforeach()
     foreach(
@@ -69,7 +65,13 @@ function(serialization_archive_test)
             cm_test(NAME serialization_test_${amended_test_name} SOURCES ${CURRENT_TEST_SOURCES_DIR}/${PARSE_NAME}.cpp ${arglist})
         endif()
         target_compile_definitions(serialization_test_${amended_test_name} PUBLIC BOOST_ARCHIVE_TEST=${archive-name}.hpp)
+        if ((${PARSE_NAME} STREQUAL test_map_unordered) OR (${PARSE_NAME} STREQUAL test_set_unordered))
+            target_compile_options(serialization_test_${amended_test_name} PRIVATE -std=c++11)
+        endif()
+        
     endforeach()
+    
+    
 endfunction(serialization_archive_test)
 
 function(serialization_polymorphic_archive_test test_name)
@@ -87,8 +89,10 @@ function(serialization_polymorphic_archive_test test_name)
     endforeach()
 endfunction(serialization_polymorphic_archive_test)
 
-serialization_test(test_dll_exported polymorphic_derived2)
-serialization_test(test_dll_simple dll_a)
+serialization_test(test_dll_exported)
+target_link_libraries(serialization_test_test_dll_exported serialization_test_dll_polymorphic_derived2_lib)
+serialization_test(test_dll_simple)
+target_link_libraries(serialization_test_test_dll_simple serialization_test_dll_a_lib)
 serialization_test(test_private_ctor)
 serialization_test(test_reset_object_address A)
 serialization_test(test_void_cast)
@@ -123,10 +127,11 @@ serialization_archive_test(NAME test_list ARGS A)
 serialization_archive_test(NAME test_list_ptrs ARGS A)
 serialization_archive_test(NAME test_map ARGS A)
 serialization_archive_test(NAME test_map_unordered ARGS A)
-serialization_archive_test(NAME test_map_boost_unordered)
+serialization_archive_test(NAME test_map_boost_unordered ARGS A)
 serialization_archive_test(NAME test_mi)
 serialization_archive_test(NAME test_multiple_ptrs ARGS A)
 serialization_archive_test(NAME test_multiple_inheritance)
+# TODO: fix test. error: polymorphic_derived1.hpp:27: undefined reference to `vtable for polymorphic_derived1'
 serialization_archive_test(NAME test_no_rtti polymorphic_base polymorphic_derived1)
 serialization_archive_test(NAME test_non_intrusive)
 serialization_archive_test(NAME test_non_default_ctor)
@@ -161,13 +166,6 @@ serialization_archive_test(NAME test_shared_ptr_132)
 serialization_polymorphic_archive_test(test_polymorphic test_polymorphic_A A)
 serialization_polymorphic_archive_test(test_polymorphic2 test_polymorphic2imp)
 serialization_polymorphic_archive_test(test_polymorphic_helper)
-
-
-serialization_archive_test(NAME test_dll_exported)
-target_link_libraries(serialization_test_test_dll_exported dll_polymorphic_derived2_lib)
-
-serialization_archive_test(NAME test_dll_simple SOURCES ${CMAKE_CURRENT_BINARY_DIR})
-target_link_libraries(serialization_test_test_dll_simple dll_a_lib)
         
 cm_test(NAME serialization_test_test_dll_plugin SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_dll_plugin.cpp COMPILE_ONLY)
 

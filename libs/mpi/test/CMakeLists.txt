@@ -42,9 +42,15 @@ cm_test(NAME mpi_test_gather_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/gather_tes
 cm_test(NAME mpi_test_is_mpi_op_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/is_mpi_op_test.cpp ARGS 1)
 cm_test(NAME mpi_test_mt_level_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/mt_level_test.cpp ARGS 1)
 cm_test(NAME mpi_test_mt_init_test_single SOURCES ${CURRENT_TEST_SOURCES_DIR}/mt_init_test.cpp ARGS "single" 1 4)
-cm_test(NAME mpi_test_mt_init_test_funneled SOURCES ${CMAKE_CURRENT_BINARY_DIR}/mt_init_test.cpp ARGS "funneled" 1 4 SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-cm_test(NAME mpi_test_mt_init_test_serialized SOURCES ${CMAKE_CURRENT_BINARY_DIR}/mt_init_test.cpp ARGS "serialized" 1 4 SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-cm_test(NAME mpi_test_mt_init_test_multiple SOURCES ${CMAKE_CURRENT_BINARY_DIR}/mt_init_test.cpp ARGS "multiple" 1 4 SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+
+cm_test(NAME mpi_test_mt_init_test_funneled SOURCES ${CURRENT_TEST_SOURCES_DIR}/mt_init_test.cpp ARGS "funneled" 1 4 SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME mpi_test_mt_init_test_serialized SOURCES ${CURRENT_TEST_SOURCES_DIR}/mt_init_test.cpp ARGS "serialized" 1 4 SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME mpi_test_mt_init_test_multiple SOURCES ${CURRENT_TEST_SOURCES_DIR}/mt_init_test.cpp ARGS "multiple" 1 4 SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+
+#cm_test(NAME mpi_test_mt_init_test_funneled SOURCES ${CMAKE_CURRENT_BINARY_DIR}/mt_init_test.cpp ARGS "funneled" 1 4 SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+#cm_test(NAME mpi_test_mt_init_test_serialized SOURCES ${CMAKE_CURRENT_BINARY_DIR}/mt_init_test.cpp ARGS "serialized" 1 4 SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+#cm_test(NAME mpi_test_mt_init_test_multiple SOURCES ${CMAKE_CURRENT_BINARY_DIR}/mt_init_test.cpp ARGS "multiple" 1 4 SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+
 # Note: Microsoft MPI fails nonblocking_test on 1 processor
 if (APPLE)
     cm_test(NAME mpi_test_nonblocking_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/nonblocking_test.cpp)

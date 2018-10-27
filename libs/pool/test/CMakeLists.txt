@@ -36,7 +36,8 @@ endif()
 cm_test(NAME pool_test_test_poisoned_macros SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_poisoned_macros.cpp COMPILE_ONLY)
 
 
-try_compile(HAS_VALGRIND ${CURRENT_TEST_SOURCES_DIR} ${CURRENT_TEST_SOURCES_DIR}/valgrind_config_check.cpp)
+try_compile(HAS_VALGRIND ${CURRENT_TEST_SOURCES_DIR} ${CURRENT_TEST_SOURCES_DIR}/valgrind_config_check.cpp CMAKE_FLAGS
+        "-DCMAKE_CXX_LINK_EXECUTABLE='echo not linking now...'")
 if(HAS_VALGRIND)
     cm_test(NAME pool_test_test_simple_seg_storage_valgrind SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_simple_seg_storage.cpp)
     target_compile_definitions(pool_test_test_simple_seg_storage_valgrind PUBLIC -DBOOST_POOL_VALGRIND=1)

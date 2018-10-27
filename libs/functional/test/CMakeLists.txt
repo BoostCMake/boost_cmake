@@ -21,11 +21,11 @@ target_compile_definitions(functional_test___factory_test_none_t_factory_with_no
 
 #test-suite functional/forward
 
-# TODO: fix test. Reason: error: no members matching ‘boost::detail::forward_adapter_impl<boost::forward_adapter<const test_func<> >, const tes
-#cm_test(NAME functional_test___forward_test_forward_adapter SOURCES ${CURRENT_TEST_SOURCES_DIR}/../forward/test/forward_adapter.cpp)
+cm_test(NAME functional_test___forward_test_forward_adapter SOURCES ${CURRENT_TEST_SOURCES_DIR}/../forward/test/forward_adapter.cpp)
+target_compile_options(functional_test___forward_test_forward_adapter PRIVATE -std=c++98)
 
-# TODO: fix test. Reason: error: no members matching ‘boost::detail::forward_adapter_impl<boost::forward_adapter<const test_func<> >, const tes
-#cm_test(NAME functional_test___forward_test_lightweight_forward_adapter SOURCES ${CURRENT_TEST_SOURCES_DIR}/../forward/test/lightweight_forward_adapter.cpp)
+cm_test(NAME functional_test___forward_test_lightweight_forward_adapter SOURCES ${CURRENT_TEST_SOURCES_DIR}/../forward/test/lightweight_forward_adapter.cpp)
+target_compile_options(functional_test___forward_test_lightweight_forward_adapter PRIVATE -std=c++98)
 
 #test-suite functional/hash/config
 cm_test(NAME functional_test___hash_test_extra_check_float_funcs SOURCES ${CURRENT_TEST_SOURCES_DIR}/../hash/test/extra/check_float_funcs.cpp)

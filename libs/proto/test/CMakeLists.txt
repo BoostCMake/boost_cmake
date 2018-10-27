@@ -27,7 +27,7 @@ cm_test(NAME proto_test_display_expr SOURCES ${CMAKE_CURRENT_BINARY_DIR}/display
 cm_test(NAME proto_test_deduce_domain SOURCES ${CMAKE_CURRENT_BINARY_DIR}/deduce_domain.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME proto_test_env_var SOURCES ${CMAKE_CURRENT_BINARY_DIR}/env_var.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 # TODO: fix test. error: no match for call to ‘(lambda_transform::LambdaEval) (const type, int, boost::fusion::tuple<int, int>&)’
-#cm_test(NAME proto_test_examples SOURCES ${CMAKE_CURRENT_BINARY_DIR}/examples.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+# cm_test(NAME proto_test_examples SOURCES ${CMAKE_CURRENT_BINARY_DIR}/examples.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME proto_test_external_transforms SOURCES ${CMAKE_CURRENT_BINARY_DIR}/external_transforms.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME proto_test_lambda SOURCES ${CMAKE_CURRENT_BINARY_DIR}/lambda.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME proto_test_make_expr SOURCES ${CMAKE_CURRENT_BINARY_DIR}/make_expr.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})

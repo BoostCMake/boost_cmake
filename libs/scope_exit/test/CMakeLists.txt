@@ -45,16 +45,9 @@ endfunction(compile_fail_typeof)
 
 run_vaseq(same_line)
 
-#if(CMAKE_COMPILER_IS_GNUCXX AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    run_vaseq(world)
-    run_vaseq(world_checkpoint)
-#endif()
-
-# TODO: fix test. Undefine defenition BOOST_NO_CXX11_LAMBDAS.
-#run_vaseq(world_checkpoint_all)
-#target_compile_definitions(scope_exit_test_world_checkpoint_all PRIVATE /UBOOST_NO_CXX11_LAMBDAS=0)
-#target_compile_definitions(scope_exit_test_world_checkpoint_all_seq PRIVATE /UBOOST_NO_CXX11_LAMBDAS=0)
-#target_compile_definitions(scope_exit_test_world_checkpoint_all_seq_nova PRIVATE /UBOOST_NO_CXX11_LAMBDAS)
+run_vaseq(world)
+run_vaseq(world_checkpoint)
+run_vaseq(world_checkpoint_all)
 
 run_vaseq(world_this)
 run_vaseq(world_tpl)
@@ -74,4 +67,3 @@ cm_test(NAME scope_exit_test_native_tu_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/
 target_compile_definitions(scope_exit_test_native_tu_test PUBLIC -DBOOST_TYPEOF_NATIVE)
 cm_test(NAME scope_exit_test_emulation_tu_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/native_tu_test.cpp ${CURRENT_TEST_SOURCES_DIR}/native_tu1.cpp ${CURRENT_TEST_SOURCES_DIR}/native_tu2.cpp)
 target_compile_definitions(scope_exit_test_emulation_tu_test PUBLIC -DBOOST_TYPEOF_EMULATION)
-

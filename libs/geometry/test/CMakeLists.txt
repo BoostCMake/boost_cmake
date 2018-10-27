@@ -1,6 +1,7 @@
 include(CMTest)
 
 patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
+patch_directory(${CURRENT_TEST_SOURCES_DIR}/.. ${CMAKE_CURRENT_SOURCE_DIR}/../files ${CMAKE_CURRENT_BINARY_DIR}/..)
 
 find_package(${CMAKE_WORKSPACE_NAME}_random)
 find_package(${CMAKE_WORKSPACE_NAME}_program_options)
@@ -12,6 +13,7 @@ find_package(${CMAKE_WORKSPACE_NAME}_timer)
 find_package(${CMAKE_WORKSPACE_NAME}_ptr_container)
 find_package(${CMAKE_WORKSPACE_NAME}_numeric_conversion)
 find_package(${CMAKE_WORKSPACE_NAME}_assign)
+find_package(${CMAKE_WORKSPACE_NAME}_interprocess)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_geometry
             ${CMAKE_WORKSPACE_NAME}::random
@@ -24,9 +26,67 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_geometry
             ${CMAKE_WORKSPACE_NAME}::ptr_container
             ${CMAKE_WORKSPACE_NAME}::numeric_conversion
             ${CMAKE_WORKSPACE_NAME}::assign
+            ${CMAKE_WORKSPACE_NAME}::interprocess
             )
 
-# TODO: add tests from Index folder.
+
+#test-suite boost-geometry-index-algorithms
+cm_test(NAME geometry_test___index_test_algorithms_content SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../index/test/algorithms/content.cpp)
+cm_test(NAME geometry_test___index_test_algorithms_intersection_content SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../index/test/algorithms/intersection_content.cpp)
+cm_test(NAME geometry_test___index_test_algorithms_is_valid SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../index/test/algorithms/is_valid.cpp)
+cm_test(NAME geometry_test___index_test_algorithms_margin SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../index/test/algorithms/margin.cpp)
+#[ run minmaxdist.cpp ]
+cm_test(NAME geometry_test___index_test_algorithms_union_content SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../index/test/algorithms/union_content.cpp)
+cm_test(NAME geometry_test___index_test_algorithms_segment_intersection SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../index/test/algorithms/segment_intersection.cpp)
+cm_test(NAME geometry_test___index_test_algorithms_path_intersection SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../index/test/algorithms/path_intersection.cpp)
+
+#test-suite boost-geometry-index-rtee-exceptrions
+set(FILES_WITH_PATCH "geometry_test___index_test_rtree_exceptions_rtree_exceptions_lin"
+        "geometry_test___index_test_rtree_exceptions_rtree_exceptions_qua"
+        "geometry_test___index_test_rtree_exceptions_rtree_exceptions_rst")
+file(GLOB TEST_FILES ${CURRENT_TEST_SOURCES_DIR}/../index/test/rtree/exceptions/*.cpp)
+foreach(FILEB ${TEST_FILES})
+    get_filename_component(NAME ${FILEB} NAME_WE)
+    list(FIND FILES_WITH_PATCH "geometry_test___index_test_rtree_exceptions_${NAME}" FIND_RESULT)
+    if (${FIND_RESULT} EQUAL -1)
+        cm_test(NAME geometry_test___index_test_rtree_exceptions_${NAME} SOURCES ${FILEB})
+    else()
+        cm_test(NAME geometry_test___index_test_rtree_exceptions_${NAME} SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../index/test/rtree/exceptions/${NAME}.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+    endif()
+endforeach()
+
+#test-suite boost-geometry-index-rtee-generated
+file(GLOB TEST_FILES ${CURRENT_TEST_SOURCES_DIR}/../index/test/rtree/generated/*.cpp)
+foreach(FILEB ${TEST_FILES})
+    get_filename_component(NAME ${FILEB} NAME_WE)
+    cm_test(NAME geometry_test___index_test_rtree_generated_${NAME} SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../index/test/rtree/generated/${NAME}.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+endforeach()
+
+#test-suite boost-geometry-index-rtee-interprocess
+set(FILES_WITH_PATCH "geometry_test___index_test_rtree_interprocess_rtree_interprocess_linear"
+        "geometry_test___index_test_rtree_interprocess_rtree_interprocess_linear_dyn"
+        "geometry_test___index_test_rtree_interprocess_rtree_interprocess_quadratic"
+        "geometry_test___index_test_rtree_interprocess_rtree_interprocess_quadratic_dyn"
+        "geometry_test___index_test_rtree_interprocess_rtree_interprocess_rstar"
+        "geometry_test___index_test_rtree_interprocess_rtree_interprocess_rstar_dyn")
+file(GLOB TEST_FILES ${CURRENT_TEST_SOURCES_DIR}/../index/test/rtree/interprocess/*.cpp)
+foreach(FILEB ${TEST_FILES})
+    get_filename_component(NAME ${FILEB} NAME_WE)
+    list(FIND FILES_WITH_PATCH "geometry_test___index_test_rtree_interprocess_${NAME}" FIND_RESULT)
+    if (${FIND_RESULT} EQUAL -1)
+        cm_test(NAME geometry_test___index_test_rtree_interprocess_${NAME} SOURCES ${FILEB})
+    else()
+        cm_test(NAME geometry_test___index_test_rtree_interprocess_${NAME} SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../index/test/rtree/interprocess/${NAME}.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+    endif()
+endforeach()
+
+#test-suite boost-geometry-index-rtree
+cm_test(NAME geometry_test___index_test_rtree_rtree_epsilon SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../index/test/rtree/rtree_epsilon.cpp)
+cm_test(NAME geometry_test___index_test_rtree_rtree_insert_remove SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../index/test/rtree/rtree_insert_remove.cpp)
+cm_test(NAME geometry_test___index_test_rtree_rtree_move_pack SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../index/test/rtree/rtree_move_pack.cpp)
+cm_test(NAME geometry_test___index_test_rtree_rtree_values SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../index/test/rtree/rtree_values.cpp)
+cm_test(NAME geometry_test___index_test_rtree_rtree_values_invalid SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../index/test/rtree/rtree_values_invalid.cpp COMPILE_ONLY WILL_FAIL)
+
 
 #test-suite boost-geometry-algorithms-buffer
 cm_test(NAME geometry_test_algorithms_buffer_buffer_with_strategies SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/buffer/buffer_with_strategies.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
@@ -353,6 +413,8 @@ cm_test(NAME geometry_test_views_box_view SOURCES ${CMAKE_CURRENT_BINARY_DIR}/vi
 cm_test(NAME geometry_test_views_reversible_view SOURCES ${CMAKE_CURRENT_BINARY_DIR}/views/reversible_view.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME geometry_test_views_closeable_view SOURCES ${CMAKE_CURRENT_BINARY_DIR}/views/closeable_view.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME geometry_test_views_reversible_closeable SOURCES ${CMAKE_CURRENT_BINARY_DIR}/views/reversible_closeable.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+
+include_directories(${CURRENT_TEST_SOURCES_DIR}/../index/test)
 
 include_directories(${CURRENT_TEST_SOURCES_DIR}/algorithms/buffer)
 include_directories(${CURRENT_TEST_SOURCES_DIR}/algorithms/detail)

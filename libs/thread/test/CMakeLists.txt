@@ -57,7 +57,7 @@ function(thread_run_h SOURCES)
     target_compile_definitions(thread_test_${NAME}_h PRIVATE -DBOOST_THREAD_DONT_PROVIDE_INTERRUPTIONS -DBOOST_THREAD_VERSION=3)
 endfunction(thread_run_h)
 
-#test-suite "system"
+#test-suite t_threads
 thread_run(SOURCES test_thread.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 thread_run(SOURCES test_thread_id.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 thread_run(SOURCES test_hardware_concurrency.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
@@ -99,7 +99,6 @@ thread_run(SOURCES test_shared_mutex_timed_locks_chrono.cpp SOURCES_PREFIX ${CUR
 #thread_run(SOURCES test_vhh_shared_mutex_part_2.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 #thread_run(SOURCES test_vhh_shared_mutex_timed_locks.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 
-
 #test-suite t_futures
 thread_run(SOURCES test_futures.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 
@@ -127,6 +126,7 @@ thread_run(SOURCES test_9856.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME thread_test_test_10963 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_10963.cpp COMPILE_ONLY SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 thread_run(SOURCES test_10964.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 thread_run(SOURCES test_11053.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+thread_run(SOURCES test_11266.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 
 #test-suite oth_tickets
 thread_run(SOURCES test_5351.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
@@ -636,6 +636,14 @@ thread_run(SOURCES ./experimental/parallel/v1/exception_list_pass.cpp SOURCES_PR
 #test-suite ts_task_region
 thread_run(SOURCES ./experimental/parallel/v2/task_region_pass.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 
-#test-suite ts_
+#test-suite ts_other
 thread_run(SOURCES ../example/this_executor.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 thread_run(SOURCES ../example/default_executor.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+
+#test-suite ts_
+#[ thread-run test_11256.cpp ] 
+#[ thread-run test_11256.cpp ]
+#[ thread-run test_11499.cpp ]
+#[ thread-run test_11611.cpp ]
+#[ thread-run test_11818.cpp ]
+thread_run(SOURCES test_11796 SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})

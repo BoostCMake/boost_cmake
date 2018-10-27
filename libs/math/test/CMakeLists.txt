@@ -10,6 +10,7 @@ find_package(${CMAKE_WORKSPACE_NAME}_typeof)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_serialization)
 find_package(${CMAKE_WORKSPACE_NAME}_numeric_ublas)
+find_package(${CMAKE_WORKSPACE_NAME}_static_assert)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_math
                         ${CMAKE_WORKSPACE_NAME}::regex
@@ -20,6 +21,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_math
                         ${CMAKE_WORKSPACE_NAME}::serialization
                         ${CMAKE_WORKSPACE_NAME}::numeric_ublas
                         ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::static_assert
                         )
 
 add_subdirectory(test_instances)
@@ -61,14 +63,22 @@ target_include_directories(${CMAKE_WORKSPACE_NAME}_math_test_options INTERFACE .
 
 #lib test_instances : float_test_instances.cpp double_test_instances.cpp ldouble_test_instances.cpp real_concept_test_instances.cpp pch
 #                   : <link>static ;
-try_compile(HAS_GMPXX ${CMAKE_CURRENT_BINARY_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_gmpxx.cpp)
+
+try_compile(HAS_GMPXX ${CMAKE_CURRENT_BINARY_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_gmpxx.cpp CMAKE_FLAGS
+        "-DCMAKE_CXX_LINK_EXECUTABLE='echo not linking now...'")
 try_compile(HAS_FLOAT128 ${CMAKE_CURRENT_BINARY_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_float128.cpp)
-try_compile(HAS_NTL_RR ${CMAKE_CURRENT_BINARY_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_ntl_rr.cpp)
-try_compile(HAS_MPFR_CLASS ${CMAKE_CURRENT_BINARY_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_mpfr_class.cpp)
-try_compile(HAS_MPREAL ${CMAKE_CURRENT_BINARY_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_mpreal.cpp)
-try_compile(HAS_E_FLOAT ${CMAKE_CURRENT_BINARY_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_e_float.cpp)
-try_compile(HAS_INTEL_QUAD ${CMAKE_CURRENT_BINARY_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_intel_quad.cpp)
-try_compile(HAS_128BIT_FLOATMAX_T ${CMAKE_CURRENT_BINARY_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_128bit_floatmax_t.cpp)
+try_compile(HAS_NTL_RR ${CMAKE_CURRENT_BINARY_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_ntl_rr.cpp CMAKE_FLAGS
+        "-DCMAKE_CXX_LINK_EXECUTABLE='echo not linking now...'")
+try_compile(HAS_MPFR_CLASS ${CMAKE_CURRENT_BINARY_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_mpfr_class.cpp CMAKE_FLAGS
+        "-DCMAKE_CXX_LINK_EXECUTABLE='echo not linking now...'")
+try_compile(HAS_MPREAL ${CMAKE_CURRENT_BINARY_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_mpreal.cpp CMAKE_FLAGS
+        "-DCMAKE_CXX_LINK_EXECUTABLE='echo not linking now...'")
+try_compile(HAS_E_FLOAT ${CMAKE_CURRENT_BINARY_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_e_float.cpp CMAKE_FLAGS
+        "-DCMAKE_CXX_LINK_EXECUTABLE='echo not linking now...'")
+try_compile(HAS_INTEL_QUAD ${CMAKE_CURRENT_BINARY_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_intel_quad.cpp CMAKE_FLAGS
+        "-DCMAKE_CXX_LINK_EXECUTABLE='echo not linking now...'")
+try_compile(HAS_128BIT_FLOATMAX_T ${CMAKE_CURRENT_BINARY_DIR}/../config ${CURRENT_TEST_SOURCES_DIR}/../config/has_128bit_floatmax_t.cpp CMAKE_FLAGS
+        "-DCMAKE_CXX_LINK_EXECUTABLE='echo not linking now...'" "-DINCLUDE_DIRECTORIES=${CURRENT_TEST_SOURCES_DIR}/../include/")
 
 
 cm_test(NAME math_test_hypot_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/hypot_test.cpp )
@@ -290,28 +300,27 @@ cm_test(NAME math_test_test_poisson_real_concept SOURCES ${CURRENT_TEST_SOURCES_
 target_compile_definitions(math_test_test_poisson_real_concept PUBLIC TEST_REAL_CONCEPT)
 cm_test(NAME math_test_test_rayleigh SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_rayleigh.cpp )
 
-# TODO: fix test.
-#cm_test(NAME math_test_test_rationals SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_rationals.cpp
-         #test_rational_instances/test_rational_double1.cpp
-         #test_rational_instances/test_rational_double2.cpp
-         #test_rational_instances/test_rational_double3.cpp
-         #test_rational_instances/test_rational_double4.cpp
-         #test_rational_instances/test_rational_double5.cpp
-         #test_rational_instances/test_rational_float1.cpp
-         #test_rational_instances/test_rational_float2.cpp
-         #test_rational_instances/test_rational_float3.cpp
-         #test_rational_instances/test_rational_float4.cpp
-         #test_rational_instances/test_rational_ldouble1.cpp
-         #test_rational_instances/test_rational_ldouble2.cpp
-         #test_rational_instances/test_rational_ldouble3.cpp
-         #test_rational_instances/test_rational_ldouble4.cpp
-         #test_rational_instances/test_rational_ldouble5.cpp
-         #test_rational_instances/test_rational_real_concept1.cpp
-         #test_rational_instances/test_rational_real_concept2.cpp
-         #test_rational_instances/test_rational_real_concept3.cpp
-         #test_rational_instances/test_rational_real_concept4.cpp
-         #test_rational_instances/test_rational_real_concept5.cpp
-         #)
+cm_test(NAME math_test_test_rationals SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_rationals.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_double1.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_double2.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_double3.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_double4.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_double5.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_float1.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_float2.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_float3.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_float4.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_ldouble1.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_ldouble2.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_ldouble3.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_ldouble4.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_ldouble5.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_real_concept1.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_real_concept2.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_real_concept3.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_real_concept4.cpp
+        ${CURRENT_TEST_SOURCES_DIR}/test_rational_instances/test_rational_real_concept5.cpp
+         )
 
 cm_test(NAME math_test_test_real_concept SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_real_concept.cpp )
 cm_test(NAME math_test_test_remez SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_remez.cpp )

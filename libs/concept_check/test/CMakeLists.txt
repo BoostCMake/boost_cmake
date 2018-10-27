@@ -9,7 +9,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_concept_check
 # http://www.boost.org/LICENSE_1_0.txt)
 
 #test-suite concept_check
-# TODO: fix test. Error: no match for ‘operator==’ (operand types are ‘boost::input_iterator_archetype<boost::equal_op_first_archetype<> >::reference’ and ‘const boost::equal_op_second_archetype<>’)
+# TODO: fix test. Reason error: no match for ‘operator==’ (operand types are ‘boost::input_iterator_archetype<boost::equal_op_first_archetype<> >::reference’ and ‘const boost::equal_op_second_archetype<>’)
 #cm_test(NAME concept_check_test_stl_concept_covering SOURCES ${CURRENT_TEST_SOURCES_DIR}/../stl_concept_covering.cpp)
 
 cm_test(NAME concept_check_test_stl_concept_check SOURCES ${CURRENT_TEST_SOURCES_DIR}/../stl_concept_check.cpp)

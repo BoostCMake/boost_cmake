@@ -13,7 +13,6 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_throw_exception
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-
 cm_test(NAME throw_exception_test_throw_exception_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/throw_exception_test.cpp)
 cm_test(NAME throw_exception_test_throw_exception_no_exceptions_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/throw_exception_no_exceptions_test.cpp)
 cm_test(NAME throw_exception_test_throw_exception_no_integration_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/throw_exception_no_integration_test.cpp)

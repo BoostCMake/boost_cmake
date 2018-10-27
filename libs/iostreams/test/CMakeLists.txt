@@ -86,8 +86,9 @@ if(BOOST_IOSTREAMS_LARGE_FILE_TEMP)
 endif()
 
 if(ZLIB_FOUND)
-    # TODO: fix test. error: no matching function for call to ‘std::__cxx11::basic_string<char, std::char_traits<char>, gzip_alloc>::_Alloc_hider::_Alloc_hider(std::__cxx11::basic_string<char, std::char_traits<char>, gzip_alloc>::pointer, std::remove_reference<std::allocator<char>&>::type)’
+    # TODO: fix test. Reason error: # pragma message("NOTE: Use of this header (template_arity_spec.hpp) is deprecated")
     #cm_test(NAME iostreams_test_gzip_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/gzip_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+
     cm_test(NAME iostreams_test_zlib_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/zlib_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 endif()
 
