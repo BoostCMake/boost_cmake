@@ -21,10 +21,10 @@ function(run_vaseq target)
     target_compile_definitions(scope_exit_test_${target} PUBLIC -DBOOST_TYPEOF_EMULATION)
 
     cm_test(NAME scope_exit_test_${target}_seq SOURCES ${CURRENT_TEST_SOURCES_DIR}/${target}_seq.cpp)
-    target_compile_definitions(scope_exit_test_${target} PUBLIC -DBOOST_TYPEOF_EMULATION)
+    target_compile_definitions(scope_exit_test_${target}_seq PUBLIC -DBOOST_TYPEOF_EMULATION)
 
     cm_test(NAME scope_exit_test_${target}_seq_nova SOURCES ${CURRENT_TEST_SOURCES_DIR}/${target}_seq_nova.cpp)
-    target_compile_definitions(scope_exit_test_${target} PUBLIC -DBOOST_TYPEOF_EMULATION)
+    target_compile_definitions(scope_exit_test_${target}_seq_nova PUBLIC -DBOOST_TYPEOF_EMULATION)
 endfunction(run_vaseq)
 
 function(run_typeof native_target emulation_target)
@@ -47,7 +47,10 @@ run_vaseq(same_line)
 
 run_vaseq(world)
 run_vaseq(world_checkpoint)
-run_vaseq(world_checkpoint_all)
+
+if (NOT (CMAKE_CXX_COMPILER_ID MATCHES "CLANG"))
+    run_vaseq(world_checkpoint_all)
+endif()
 
 run_vaseq(world_this)
 run_vaseq(world_tpl)

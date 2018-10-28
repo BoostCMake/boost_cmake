@@ -12,4 +12,6 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_coroutine2
                         ${CMAKE_WORKSPACE_NAME}::test
                         )
 
-cm_test(NAME coroutine2_test_test_coroutine SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_coroutine.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+if (NOT (CMAKE_CXX_COMPILER_ID STREQUAL "Clang"))
+    cm_test(NAME coroutine2_test_test_coroutine SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_coroutine.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+endif()

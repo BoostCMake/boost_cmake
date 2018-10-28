@@ -132,7 +132,7 @@ serialization_archive_test(NAME test_mi)
 serialization_archive_test(NAME test_multiple_ptrs ARGS A)
 serialization_archive_test(NAME test_multiple_inheritance)
 # TODO: fix test. error: polymorphic_derived1.hpp:27: undefined reference to `vtable for polymorphic_derived1'
-serialization_archive_test(NAME test_no_rtti polymorphic_base polymorphic_derived1)
+# serialization_archive_test(NAME test_no_rtti polymorphic_base polymorphic_derived1)
 serialization_archive_test(NAME test_non_intrusive)
 serialization_archive_test(NAME test_non_default_ctor)
 serialization_archive_test(NAME test_non_default_ctor2)

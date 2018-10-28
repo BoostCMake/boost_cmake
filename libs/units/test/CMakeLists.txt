@@ -64,7 +64,6 @@ cm_test(NAME units_test_test_trig SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_trig.
 if (NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU")
         # TODO: fix test. Reason error: [-fpermissive]
         cm_test(NAME units_test_test_information_units SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_information_units.cpp)
-        get_compile_options(units_test_test_information_units)
 endif()
 
 cm_test(NAME units_test_fail_implicit_conversion SOURCES ${CURRENT_TEST_SOURCES_DIR}/fail_implicit_conversion.cpp COMPILE_ONLY WILL_FAIL)

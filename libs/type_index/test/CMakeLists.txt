@@ -1,6 +1,6 @@
 include(CMTest)
 
-patch_directory(${CMAKE_WORKSPACE_SOURCES_DIR}/libs/type_index/ ${CMAKE_CURRENT_SOURCE_DIR}/../files ${CMAKE_CURRENT_BINARY_DIR}/../)
+patch_directory(${CMAKE_WORKSPACE_SOURCES_DIR}/libs/type_index/ ${CMAKE_WORKSPACE_DIR}/libs/type_index/files ${CMAKE_BINARY_DIR}/libs/type_index)
 
 find_package(${CMAKE_WORKSPACE_NAME}_functional)
 find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
