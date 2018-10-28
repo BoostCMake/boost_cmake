@@ -1,8 +1,9 @@
 include(CMTest)
 
+message(!!!!! ${CURRENT_SOURCES_DIR}/libs/geometry/ ${CMAKE_SOURCE_DIR}/libs/geometry/files ${CMAKE_BINARY_DIR}/libs/geometry)
 patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
-patch_directory(${CURRENT_SOURCES_DIR}/libs/geometry ${CMAKE_WORKSPACE_DIR}/libs/geometry/files ${CMAKE_BINARY_DIR}/libs/geometry)
-
+patch_directory(${CURRENT_SOURCES_DIR} ${CMAKE_SOURCE_DIR}/libs/geometry/files ${CMAKE_BINARY_DIR}/libs/geometry)
+#/home/alex/Projects/boost-1.60.0/libs/geometry/test/../home/alex/Projects/boost_cmake/libs/geometry/test/../files/home/alex/Projects/boost_cmake/cmake-build-debug/libs/geometry/test/..
 find_package(${CMAKE_WORKSPACE_NAME}_random)
 find_package(${CMAKE_WORKSPACE_NAME}_program_options)
 find_package(${CMAKE_WORKSPACE_NAME}_foreach)
