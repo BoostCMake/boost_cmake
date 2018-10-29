@@ -65,9 +65,11 @@ cm_mark_as_test(test_lib_rtti_compat)
 # MSVC sometimes overrides the /GR-, without `detect_missmatch` this test may link
 cm_test(NAME type_index_test_type_index_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/type_index_test.cpp)
 
-cm_test(NAME type_index_test_type_index_test_no_rtti SOURCES ${CURRENT_TEST_SOURCES_DIR}/type_index_test.cpp)
-set_target_properties(type_index_test_type_index_test_no_rtti PROPERTIES CXX_RTTI off)
-target_compile_definitions(type_index_test_type_index_test_no_rtti PRIVATE -DBOOST_NO_RTTI -DBOOST_NO_TYPEID)
+if (NOT (CMAKE_CXX_COMPILER_ID MATCHES "Clang"))
+    cm_test(NAME type_index_test_type_index_test_no_rtti SOURCES ${CURRENT_TEST_SOURCES_DIR}/type_index_test.cpp)
+    set_target_properties(type_index_test_type_index_test_no_rtti PROPERTIES CXX_RTTI off)
+    target_compile_definitions(type_index_test_type_index_test_no_rtti PRIVATE -DBOOST_NO_RTTI -DBOOST_NO_TYPEID)
+endif()
 
 cm_test(NAME type_index_test_ctti_print_name SOURCES ${CURRENT_TEST_SOURCES_DIR}/ctti_print_name.cpp)
 
@@ -112,10 +114,10 @@ foreach(FILEB ${TEST_FILES})
             
     cm_test(NAME type_index_test___examples_${NAME} SOURCES ${FILEB})
 
-    if (NOT (${NAME} STREQUAL table_of_names)) # #if defined(BOOST_NO_RTTI) && !defined(BOOST_MSVC)    
+    if ((NOT (${NAME} STREQUAL table_of_names)) AND  # #if defined(BOOST_NO_RTTI) && !defined(BOOST_MSVC)   
+        (NOT ((${NAME} STREQUAL inheritance) AND (CMAKE_CXX_COMPILER_ID MATCHES "Clang"))))
         cm_test(NAME type_index_test___examples_${NAME}_no_rtti SOURCES ${FILEB})
         set_target_properties(type_index_test___examples_${NAME}_no_rtti PROPERTIES CXX_RTTI off )
         target_compile_definitions(type_index_test___examples_${NAME}_no_rtti PRIVATE -DBOOST_NO_RTTI -DBOOST_NO_TYPEID)
     endif()
 endforeach()
-

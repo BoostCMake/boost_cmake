@@ -45,10 +45,9 @@ endfunction(compile_fail_typeof)
 
 run_vaseq(same_line)
 
-run_vaseq(world)
-run_vaseq(world_checkpoint)
-
-if (NOT (CMAKE_CXX_COMPILER_ID MATCHES "CLANG"))
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+    run_vaseq(world)
+    run_vaseq(world_checkpoint)
     run_vaseq(world_checkpoint_all)
 endif()
 
