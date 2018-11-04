@@ -28,10 +28,6 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi
                         ${CMAKE_WORKSPACE_NAME}::numeric_ublas
                         ${CMAKE_WORKSPACE_NAME}::test
                         )
-find_package(MPI)
-if(NOT MPI_CXX_FOUND)
-    return()
-endif()
 
 cm_test(NAME mpi_test_broadcast_stl_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/broadcast_stl_test.cpp ARGS 2)
 cm_test(NAME mpi_test_all_gather_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/all_gather_test.cpp)
