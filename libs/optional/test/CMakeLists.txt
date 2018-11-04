@@ -5,9 +5,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_bind)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_optional
-                        boost::tuple
-                        boost::bind
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::tuple
+                        ${CMAKE_WORKSPACE_NAME}::bind
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # Boost.Optional Library test Jamfile
@@ -67,4 +67,5 @@ cm_test(NAME optional_test_optional_test_fail_convert_from_null SOURCES ${CURREN
 cm_test(NAME optional_test_optional_test_fail_explicit_convert_in_value_or SOURCES ${CURRENT_TEST_SOURCES_DIR}/optional_test_fail_explicit_convert_in_value_or.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME optional_test_optional_test_fail_explicit_convert_in_value_or_call SOURCES ${CURRENT_TEST_SOURCES_DIR}/optional_test_fail_explicit_convert_in_value_or_call.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME optional_test_optional_test_fail_io_without_io SOURCES ${CURRENT_TEST_SOURCES_DIR}/optional_test_fail_io_without_io.cpp COMPILE_ONLY WILL_FAIL)
+cm_test(NAME optional_test_optional_test_fail_none_io_without_io SOURCES ${CURRENT_TEST_SOURCES_DIR}/optional_test_fail_none_io_without_io.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME optional_test_optional_test_fail_convert_assign_of_enums SOURCES ${CURRENT_TEST_SOURCES_DIR}/optional_test_fail_convert_assign_of_enums.cpp COMPILE_ONLY WILL_FAIL)

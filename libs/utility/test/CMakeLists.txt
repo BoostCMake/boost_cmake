@@ -6,8 +6,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_random)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_utility
-                        boost::test
-                        boost::random
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::random
                         )
 
 # Copyright David Abrahams 2003.
@@ -24,15 +24,13 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_utility
 #        [ compile-fail string_ref_from_rvalue.cpp ]
 #        [ compile-fail string_view_from_rvalue.cpp ]
 
-cm_test_link_libraries(boost::test_exec_monitor)
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}::test_exec_monitor)
 
 cm_test(NAME utility_test___base_from_member_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/../base_from_member_test.cpp)
 cm_test(NAME utility_test___base_from_member_ref_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/../base_from_member_ref_test.cpp)
 cm_test(NAME utility_test___binary_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/../binary_test.cpp)
 cm_test(NAME utility_test___call_traits_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/../call_traits_test.cpp ARGS -u SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-
 target_include_directories(utility_test___call_traits_test PRIVATE ${CURRENT_TEST_SOURCES_DIR})
-
 cm_test(NAME utility_test___compressed_pair_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/../compressed_pair_test.cpp)
 cm_test(NAME utility_test___iterators_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/../iterators_test.cpp)
 cm_test(NAME utility_test_next_prior_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/next_prior_test.cpp)
@@ -46,7 +44,6 @@ cm_test(NAME utility_test__string_ref_test_io SOURCES ${CURRENT_TEST_SOURCES_DIR
 cm_test(NAME utility_test___value_init_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/../value_init_test.cpp)
 cm_test(NAME utility_test___value_init_workaround_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/../value_init_workaround_test.cpp)
 cm_test(NAME utility_test___initialized_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/../initialized_test.cpp)
-
 cm_test(NAME utility_test___value_init_test_fail1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/../value_init_test_fail1.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME utility_test___value_init_test_fail2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/../value_init_test_fail2.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME utility_test___value_init_test_fail3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/../value_init_test_fail3.cpp COMPILE_ONLY WILL_FAIL)
@@ -54,5 +51,3 @@ cm_test(NAME utility_test___initialized_test_fail1 SOURCES ${CURRENT_TEST_SOURCE
 cm_test(NAME utility_test___initialized_test_fail2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/../initialized_test_fail2.cpp COMPILE_ONLY WILL_FAIL)
 
 cm_test(NAME utility_test___generator_iterator_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/../generator_iterator_test.cpp)
-
-

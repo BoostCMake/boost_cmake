@@ -8,10 +8,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
 find_package(${CMAKE_WORKSPACE_NAME}_regex)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_iostreams
-                        boost::filesystem
-                        boost::test
-                        boost::lexical_cast
-                        boost::regex
+                        ${CMAKE_WORKSPACE_NAME}::filesystem
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::lexical_cast
+                        ${CMAKE_WORKSPACE_NAME}::regex
                         )
 
 # Boost.Iostreams Library test Jamfile
@@ -27,7 +27,6 @@ cm_mark_as_test(test-iostreams-flags)
 cm_test_link_libraries(test-iostreams-flags)
 target_compile_definitions(test-iostreams-flags INTERFACE BOOST_IOSTREAMS_NO_LIB)
 
-
 cm_test(NAME iostreams_test_array_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/array_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME iostreams_test_auto_close_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/auto_close_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME iostreams_test_buffer_size_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/buffer_size_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
@@ -41,7 +40,9 @@ cm_test(NAME iostreams_test_combine_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/com
 cm_test(NAME iostreams_test_compose_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/compose_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME iostreams_test_component_access_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/component_access_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME iostreams_test_copy_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/copy_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-cm_test(NAME iostreams_test_counter_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/counter_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+if (NOT APPLE)
+    cm_test(NAME iostreams_test_counter_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/counter_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+endif()
 cm_test(NAME iostreams_test_direct_adapter_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/direct_adapter_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME iostreams_test_example_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/example_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME iostreams_test_execute_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/execute_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
@@ -87,8 +88,9 @@ if(BOOST_IOSTREAMS_LARGE_FILE_TEMP)
 endif()
 
 if(ZLIB_FOUND)
-    # TODO: fix test. error: no matching function for call to ‘std::__cxx11::basic_string<char, std::char_traits<char>, gzip_alloc>::_Alloc_hider::_Alloc_hider(std::__cxx11::basic_string<char, std::char_traits<char>, gzip_alloc>::pointer, std::remove_reference<std::allocator<char>&>::type)’
+    # TODO: fix test. Reason error: # pragma message("NOTE: Use of this header (template_arity_spec.hpp) is deprecated")
     #cm_test(NAME iostreams_test_gzip_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/gzip_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+
     cm_test(NAME iostreams_test_zlib_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/zlib_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 endif()
 

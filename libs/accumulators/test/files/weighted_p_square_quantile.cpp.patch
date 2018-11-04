@@ -1,24 +1,22 @@
-7c7
-< 
----
+7a8,9
 > #define BOOST_TEST_MAIN
-89,94c89
+> 
+89,96c91
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
 < test_suite* init_unit_test_suite( int argc, char* argv[] )
 < {
 <     test_suite *test = BOOST_TEST_SUITE("weighted_p_square_quantile test");
----
-> BOOST_AUTO_TEST_SUITE(weighted_p_square_quantile_test)
-96,98c91,93
-<     test->add(BOOST_TEST_CASE(&test_stat));
 < 
+<     test->add(BOOST_TEST_CASE(&test_stat));
+---
+> BOOST_AUTO_TEST_SUITE(accumulators_test_weighted_p_square_quantile)
+98c93,95
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-99a95,96
-> 
+100a98
 > BOOST_AUTO_TEST_SUITE_END()

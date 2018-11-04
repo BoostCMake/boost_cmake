@@ -4,9 +4,9 @@
 62a65
 > BOOST_AUTO_TEST_SUITE(pointer_container_test_suite_suite)
 64,68c67
-< #include <boost/test/included/unit_test_framework.hpp> 
+< #include <boost/test/included/unit_test.hpp> 
 < 
-< using boost::unit_test_framework::test_suite;
+< using boost::unit_test::test_suite;
 < 
 < test_suite* init_unit_test_suite( int argc, char* argv[] )
 ---

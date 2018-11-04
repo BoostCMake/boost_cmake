@@ -3,7 +3,7 @@ include(CMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_core)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_conversion
-                        boost::core
+                        ${CMAKE_WORKSPACE_NAME}::core
                         )
 
 # Copyright (C) 2001-2003 Douglas Gregor

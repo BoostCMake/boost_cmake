@@ -1,11 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
-find_package(MPI)
-if(NOT MPI_CXX_FOUND)
-    return()
-endif()
+
+find_package(MPI REQUIRED)
 
 cm_project(${CMAKE_WORKSPACE_NAME} mpi)
-
 
 find_package(CM)
 include(CMDeploy)
@@ -19,7 +16,7 @@ find_package(${CMAKE_WORKSPACE_NAME}_serialization)
 find_package(${CMAKE_WORKSPACE_NAME}_graph)
 find_package(${CMAKE_WORKSPACE_NAME}_python)
 
-cm_setup_version(VERSION 1.59.0)
+cm_setup_version(VERSION 1.60.0)
 
 add_library(${CMAKE_WORKSPACE_NAME}_mpi
         ${CURRENT_SOURCES_DIR}/src/broadcast.cpp
@@ -40,16 +37,18 @@ add_library(${CMAKE_WORKSPACE_NAME}_mpi
         ${CURRENT_SOURCES_DIR}/src/point_to_point.cpp
         ${CURRENT_SOURCES_DIR}/src/request.cpp
         ${CURRENT_SOURCES_DIR}/src/text_skeleton_oarchive.cpp
-        ${CURRENT_SOURCES_DIR}/src/timer.cpp)
-target_compile_definitions(${CMAKE_WORKSPACE_NAME}_mpi PRIVATE -DBOOST_MPI_DYN_LINK=1 -DBOOST_MPI_SOURCE=1)
+        ${CURRENT_SOURCES_DIR}/src/timer.cpp
+        ${CURRENT_SOURCES_DIR}/src/python/serialize.cpp)
+target_compile_definitions(${CMAKE_WORKSPACE_NAME}_mpi PRIVATE -DBOOST_MPI_DYN_LINK=1 -DBOOST_MPI_SOURCE=1
+                            -DBOOST_MPI_PYTHON_DYN_LINK=1 -DBOOST_PYTHON_DYN_LINK=1 -DBOOST_MPI_PYTHON_SOURCE=1)
 
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC boost::assert)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC boost::throw_exception)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC boost::optional)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC boost::smart_ptr)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC boost::serialization)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC boost::python)
-target_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC boost::graph)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC ${CMAKE_WORKSPACE_NAME}::assert)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC ${CMAKE_WORKSPACE_NAME}::throw_exception)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC ${CMAKE_WORKSPACE_NAME}::optional)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC ${CMAKE_WORKSPACE_NAME}::smart_ptr)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC ${CMAKE_WORKSPACE_NAME}::serialization)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC ${CMAKE_WORKSPACE_NAME}::python)
+target_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC ${CMAKE_WORKSPACE_NAME}::graph)
 
 set_property(TARGET ${CMAKE_WORKSPACE_NAME}_mpi PROPERTY EXPORT_NAME mpi)
 
@@ -59,20 +58,4 @@ cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_mpi INCLUDE ${CURRENT_SOURCES_DIR}/inc
 target_include_directories(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC ${MPI_CXX_INCLUDE_PATH})
 target_link_libraries(${CMAKE_WORKSPACE_NAME}_mpi PUBLIC ${MPI_CXX_LINK_FLAGS} ${MPI_CXX_LIBRARIES})
 
-find_package(PythonLibs)
-if(PythonLibs_FOUND)
-    cm_project(${CMAKE_WORKSPACE_NAME} mpi_python)
-    cm_setup_version(VERSION 1.59.0)
-
-    add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} SHARED  ${CURRENT_SOURCES_DIR}/src/python/serialize.cpp)
-    target_compile_definitions(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE -DBOOST_MPI_DYN_LINK=1 -DBOOST_MPI_PYTHON_DYN_LINK=1
-                               -DBOOST_PYTHON_DYN_LINK=1 -DBOOST_MPI_PYTHON_SOURCE=1)
-
-    target_link_libraries(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PRIVATE boost::mpi)
-
-    cm_deploy(TARGETS ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INCLUDE ${CURRENT_SOURCES_DIR}/include NAMESPACE ${CMAKE_WORKSPACE_NAME}::)
-
-endif()
-
 add_subdirectory(test)
-

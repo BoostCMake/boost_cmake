@@ -1,24 +1,23 @@
-5c5
-< 
----
+5a6,7
 > #define BOOST_TEST_MAIN
-40,45c40
+> 
+40,45d41
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
 < test_suite* init_unit_test_suite( int argc, char* argv[] )
 < {
 <     test_suite *test = BOOST_TEST_SUITE("rolling count test");
----
-> BOOST_AUTO_TEST_SUITE(rolling_count_test)
-47,49c42,44
+47c43
 <     test->add(BOOST_TEST_CASE(&test_stat));
-< 
+---
+> BOOST_AUTO_TEST_SUITE(accumulators_test_rolling_count)
+49c45,47
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-50a46,47
+50a49,50
 > 
 > BOOST_AUTO_TEST_SUITE_END()

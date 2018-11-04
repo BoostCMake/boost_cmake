@@ -1,37 +1,35 @@
-5c5
-< 
----
+5a6,7
 > #define BOOST_TEST_MAIN
-117,120c117,119
+> 
+117,120c119,121
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
 < test_suite* init_unit_test_suite( int argc, char* argv[] )
 ---
-> BOOST_AUTO_TEST_SUITE(external_accumulator_test)
+> BOOST_AUTO_TEST_SUITE(accumulators_test_external_accumulator)
 > 
-> BOOST_AUTO_TEST_CASE(test_stat_case)
-122c121,122
+> BOOST_AUTO_TEST_CASE(test_stat)
+122c123,124
 <     test_suite *test = BOOST_TEST_SUITE("external_accumulator test");
 ---
 >     test_stat();
 > }
-124,126c124,127
+124,126c126,129
 <     test->add(BOOST_TEST_CASE(&test_stat));
 <     test->add(BOOST_TEST_CASE(&test_reference));
 <     test->add(BOOST_TEST_CASE(&test_reference2));
 ---
-> BOOST_AUTO_TEST_CASE(test_reference_case)
+> BOOST_AUTO_TEST_CASE(test_reference)
 > {
 >     test_reference();
 > }
-128c129,131
+128c131,133
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_reference2_case)
+> BOOST_AUTO_TEST_CASE(test_reference2)
 > {
 >     test_reference2();
-129a133,134
+129a135,136
 > 
 > BOOST_AUTO_TEST_SUITE_END()
-\ No newline at end of file

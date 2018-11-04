@@ -1,8 +1,7 @@
-5c5
-< 
----
+5a6,7
 > #define BOOST_TEST_MAIN
-47,52c47
+> 
+47,52c49
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -10,16 +9,15 @@
 < {
 <     test_suite *test = BOOST_TEST_SUITE("mean test");
 ---
-> BOOST_AUTO_TEST_SUITE(mean_test)
-54,56c49,51
+> BOOST_AUTO_TEST_SUITE(accumulators_test_mean)
+54,56c51,53
 <     test->add(BOOST_TEST_CASE(&test_stat));
 < 
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-57a53,54
+57a55,56
 > 
 > BOOST_AUTO_TEST_SUITE_END()
-\ No newline at end of file

@@ -5,9 +5,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_assign)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_bimap
-                        boost::range
-                        boost::test
-                        boost::assign
+                        ${CMAKE_WORKSPACE_NAME}::range
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::assign
                         )
 
 # Boost.Bimap
@@ -18,9 +18,6 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_bimap
 # (See accompanying file LICENSE_1_0.txt or copy at
 # http://www.boost.org/LICENSE_1_0.txt)
 
-# bring in rules for testing
-
-# HACK: Workaround broken includes
 configure_file(${CURRENT_TEST_SOURCES_DIR}/test_bimap.hpp ${CMAKE_CURRENT_BINARY_DIR}/include/libs/bimap/test/test_bimap.hpp @ONLY)
 
 find_package(${CMAKE_WORKSPACE_NAME}_xpressive)
@@ -77,7 +74,7 @@ cm_test(NAME bimap_test_example_bimap_and_${CMAKE_WORKSPACE_NAME}_lambda SOURCES
 cm_test(NAME bimap_test_example_bimap_and_${CMAKE_WORKSPACE_NAME}_assign SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/bimap_and_boost/assign.cpp)
 if(${CMAKE_WORKSPACE_NAME}_xpressive_FOUND)
     cm_test(NAME bimap_test_example_bimap_and_${CMAKE_WORKSPACE_NAME}_xpressive SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/bimap_and_boost/xpressive.cpp)
-    target_link_libraries(bimap_test_example_bimap_and_${CMAKE_WORKSPACE_NAME}_xpressive boost::xpressive)
+    target_link_libraries(bimap_test_example_bimap_and_${CMAKE_WORKSPACE_NAME}_xpressive ${CMAKE_WORKSPACE_NAME}::xpressive)
 endif()
 cm_test(NAME bimap_test_example_bimap_and_${CMAKE_WORKSPACE_NAME}_typeof SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/bimap_and_boost/typeof.cpp)
 cm_test(NAME bimap_test_example_bimap_and_${CMAKE_WORKSPACE_NAME}_serialization SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/bimap_and_boost/serialization.cpp COMPILE_ONLY)

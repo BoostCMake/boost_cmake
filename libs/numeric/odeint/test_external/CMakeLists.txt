@@ -7,9 +7,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_multiprecision)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_numeric_odeint
-                        boost::numeric_ublas
-                        boost::test
-                        boost::multiprecision
+                        ${CMAKE_WORKSPACE_NAME}::numeric_ublas
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::multiprecision
                         )
 
 # Copyright 2012-2013 Karsten Ahnert

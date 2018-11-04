@@ -4,9 +4,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_mpl)
 find_package(${CMAKE_WORKSPACE_NAME}_typeof)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_static_assert
-                        boost::typeof
-                        boost::type_traits
-                        boost::mpl)
+                        ${CMAKE_WORKSPACE_NAME}::typeof
+                        ${CMAKE_WORKSPACE_NAME}::type_traits
+                        ${CMAKE_WORKSPACE_NAME}::mpl)
 
 # copyright John Maddock 2003
 # Use, modification and distribution are subject to the
@@ -14,7 +14,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_static_assert
 # LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
 
-cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_static_assert boost::type_traits)
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_static_assert ${CMAKE_WORKSPACE_NAME}::type_traits)
 
 #test-suite static_assert
 cm_test(NAME static_assert_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/../static_assert_test.cpp)

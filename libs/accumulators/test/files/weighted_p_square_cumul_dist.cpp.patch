@@ -1,9 +1,7 @@
-7c7,8
-< 
----
+7a8,9
 > #define BOOST_TEST_MAIN
-> #include <boost/test/unit_test.hpp>
-92,99c93
+> 
+92,99c94
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -13,12 +11,12 @@
 < 
 <     test->add(BOOST_TEST_CASE(&test_stat));
 ---
-> BOOST_AUTO_TEST_SUITE(weighted_p_square_cumulative_distribution_test)
-101c95,97
+> BOOST_AUTO_TEST_SUITE(accumulators_test_weighted_p_square_cumulative_distribution)
+101c96,98
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-103a100
+103a101
 > BOOST_AUTO_TEST_SUITE_END()

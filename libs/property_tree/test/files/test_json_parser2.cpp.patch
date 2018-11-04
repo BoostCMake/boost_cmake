@@ -1,0 +1,69 @@
+7c7
+< #define BOOST_TEST_NO_MAIN
+---
+> #define BOOST_TEST_MAIN
+883c883
+< using namespace boost::unit_test;
+---
+> BOOST_AUTO_TEST_SUITE(property_tree_test_test_json_parser_2)
+885c885
+< test_suite* init_unit_test_suite(int, char*[]) 
+---
+> BOOST_AUTO_TEST_CASE(test1)
+887,895c887,906
+<     master_test_suite_t& ts = boost::unit_test::framework::master_test_suite();
+<     ts.add(ARRAY_TEST_CASE(boolean_parse_result_is_input_n, booleans_n));
+<     ts.add(ARRAY_TEST_CASE(boolean_parse_result_is_input_w, booleans_w));
+<     ts.add(ARRAY_TEST_CASE(number_parse_result_is_input_n, numbers_n));
+<     ts.add(ARRAY_TEST_CASE(number_parse_result_is_input_w, numbers_w));
+<     ts.add(ARRAY_TEST_CASE(string_parsed_correctly_n, strings_n));
+<     ts.add(ARRAY_TEST_CASE(string_parsed_correctly_w, strings_w));
+<     ts.add(ARRAY_TEST_CASE(parse_error_thrown_with_message_n, errors_n));
+<     ts.add(ARRAY_TEST_CASE(parse_error_thrown_with_message_w, errors_w));
+---
+>     ARRAY_TEST_CASE(boolean_parse_result_is_input_n, booleans_n);
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test2)
+> {
+>     ARRAY_TEST_CASE(boolean_parse_result_is_input_w, booleans_w);
+> }
+> 
+> 
+> BOOST_AUTO_TEST_CASE(test3)
+> {
+>     ARRAY_TEST_CASE(number_parse_result_is_input_n, numbers_n);
+> }
+> 
+> 
+> BOOST_AUTO_TEST_CASE(test4)
+> {
+>     ARRAY_TEST_CASE(number_parse_result_is_input_w, numbers_w);
+> }
+> 
+897c908,927
+<     return 0;
+---
+> BOOST_AUTO_TEST_CASE(test5)
+> {
+>     ARRAY_TEST_CASE(string_parsed_correctly_n, strings_n);
+> }
+> 
+> 
+> BOOST_AUTO_TEST_CASE(test6)
+> {
+>     ARRAY_TEST_CASE(string_parsed_correctly_w, strings_w);
+> }
+> 
+> 
+> BOOST_AUTO_TEST_CASE(test7)
+> {
+>     ARRAY_TEST_CASE(parse_error_thrown_with_message_n, errors_n);
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test8)
+> {
+>     ARRAY_TEST_CASE(parse_error_thrown_with_message_w, errors_w);
+898a929,930
+>         
+> BOOST_AUTO_TEST_SUITE_END()

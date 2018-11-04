@@ -6,10 +6,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_timer)
 find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_endian
-                        boost::random
-                        boost::detail
-                        boost::timer
-                        boost::lexical_cast
+                        ${CMAKE_WORKSPACE_NAME}::random
+                        ${CMAKE_WORKSPACE_NAME}::detail
+                        ${CMAKE_WORKSPACE_NAME}::timer
+                        ${CMAKE_WORKSPACE_NAME}::lexical_cast
                         )
 
 # Boost Endian Library test Jamfile
@@ -28,4 +28,3 @@ cm_test(NAME endian_test_endian_operations_test SOURCES ${CURRENT_TEST_SOURCES_D
 cm_test(NAME endian_test_endian_in_union_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/endian_in_union_test.cpp)
 cm_test(NAME endian_test_conversion_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/conversion_test.cpp)
 #         [ run endian_test_floating_point_test.cpp : : : <test-info>always_show_run_output ]
-

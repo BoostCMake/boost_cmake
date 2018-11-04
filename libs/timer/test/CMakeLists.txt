@@ -3,7 +3,7 @@ include(CMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_detail)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_timer
-                        boost::detail
+                        ${CMAKE_WORKSPACE_NAME}::detail
                         )
 
 # Boost Timer Library test Jamfile

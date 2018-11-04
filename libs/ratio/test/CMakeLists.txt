@@ -3,7 +3,7 @@ include(CMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_typeof)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_ratio
-                        boost::typeof
+                        ${CMAKE_WORKSPACE_NAME}::typeof
                         )
 
 # Boost Ratio Library test Jamfile

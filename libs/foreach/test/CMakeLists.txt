@@ -3,7 +3,7 @@ include(CMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_foreach
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # (C) Copyright 2004: Eric Niebler

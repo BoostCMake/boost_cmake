@@ -9,12 +9,12 @@ find_package(${CMAKE_WORKSPACE_NAME}_thread)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_align)
 
-cm_test_link_libraries(boost::test
-        boost::multiprecision
-        boost::thread
-        boost::lexical_cast
-        boost::thread
-        boost::align
+cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}::test
+        ${CMAKE_WORKSPACE_NAME}::multiprecision
+        ${CMAKE_WORKSPACE_NAME}::thread
+        ${CMAKE_WORKSPACE_NAME}::lexical_cast
+        ${CMAKE_WORKSPACE_NAME}::thread
+        ${CMAKE_WORKSPACE_NAME}::align
         )
 
 
@@ -22,14 +22,17 @@ cm_test_link_libraries(boost::test
 cm_test(NAME test_test_utils-ts_algorithm-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/utils-ts/algorithm-test.cpp)
 cm_test(NAME test_test_utils-ts_basic_cstring-test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/utils-ts/basic_cstring-test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR}/utils-ts)
 cm_test(NAME test_test_utils-ts_class_properties-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/utils-ts/class_properties-test.cpp)
-cm_test(NAME test_test_utils-ts_fixed_mapping-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/utils-ts/fixed_mapping-test.cpp)
 cm_test(NAME test_test_utils-ts_foreach-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/utils-ts/foreach-test.cpp)
-cm_test(NAME test_test_utils-ts_ifstream_line_iterator-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/utils-ts/ifstream_line_iterator-test.cpp ARGS ${CURRENT_TEST_SOURCES_DIR}/inputs/ifstream_line_iterator.tst1)
+cm_test(NAME test_test_utils-ts_named_params-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/utils-ts/named_params-test.cpp)
+
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    cm_test(NAME test_test_utils-ts_runtime-param-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/utils-ts/runtime-param-test.cpp)
+endif()
+cm_test(NAME test_test_utils-ts_string_cast-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/utils-ts/string_cast-test.cpp)
 cm_test(NAME test_test_utils-ts_token_iterator-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/utils-ts/token_iterator-test.cpp)
 
 #test-suite "usage-variants-ts"
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    #reason: stl_tree.h:452:21: error: static assertion failed: comparison object must be invocable with two arguments of key type
     cm_test(NAME test_test_usage-variants-ts_single-header-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/usage-variants-ts/single-header-test.cpp)
     cm_test(NAME test_test_usage-variants-ts_single-header-custom-init-test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/usage-variants-ts/single-header-custom-init-test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR}/usage-variants-ts)
     cm_test(NAME test_test_usage-variants-ts_single-header-custom-main-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/usage-variants-ts/single-header-custom-main-test.cpp)
@@ -50,8 +53,7 @@ cm_test(NAME test_test_framework-ts_run-by-name-or-label-test SOURCES ${CURRENT_
 
 
 #test-suite "writing-test-ts"
-if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") AND (NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang"))
-    #reason: stl_tree.h:452:21: error: static assertion failed: comparison object must be invocable with two arguments of key type
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     cm_test(NAME test_test_writing-test-ts_assertion-construction-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/writing-test-ts/assertion-construction-test.cpp)
 endif()
 
@@ -72,15 +74,15 @@ endif()
 #test-suite "test-organization-ts"
 cm_test(NAME test_test_test-organization-ts_parameterized_test-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/test-organization-ts/parameterized_test-test.cpp)
 cm_test(NAME test_test_test-organization-ts_test_case_template-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/test-organization-ts/test_case_template-test.cpp)
-#file(GLOB TEST_FILES ${CURRENT_TEST_SOURCES_DIR}/test-organization-ts/datasets-test/*.cpp)
-foreach(FILEB ${TEST_FILES})
-    get_filename_component(NAME ${FILEB} NAME_WE)
-    cm_test(NAME test_test_test-organization-ts_datasets-test_${NAME} SOURCES ${FILEB})
-endforeach()
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    cm_test(NAME test_test_test-organization-ts_test_unit-order-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/test-organization-ts/test_unit-order-test.cpp)
+    file(GLOB TEST_FILES ${CURRENT_TEST_SOURCES_DIR}/test-organization-ts/datasets-test/*.cpp)
+    cm_test(NAME test_test_test-organization-ts_datasets-test SOURCES ${TEST_FILES})
 endif()
+
+#if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    cm_test(NAME test_test_test-organization-ts_test_unit-order-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/test-organization-ts/test_unit-order-test.cpp)
+#endif()
     
 cm_test(NAME test_test_test-organization-ts_test-tree-management-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/test-organization-ts/test-tree-management-test.cpp)
 
@@ -98,10 +100,3 @@ cm_test(NAME test_test_execution_monitor-ts_errors-handling-test SOURCES ${CURRE
         ${CURRENT_TEST_SOURCES_DIR}/baseline-outputs/errors-handling-test.pattern2)
 
 cm_test(NAME test_test_execution_monitor-ts_custom-exception-test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/execution_monitor-ts/custom-exception-test.cpp)
-
-#test-suite "doc-examples-ts"
-#file(GLOB TEST_FILES ${CURRENT_TEST_SOURCES_DIR}/../doc/examples/*.cpp)
-#foreach(FILEB ${TEST_FILES})
-    #get_filename_component(NAME ${FILEB} NAME_WE)
-    #cm_test(NAME test_test___doc_examples_${NAME} SOURCES ${FILEB})
-#endforeach()

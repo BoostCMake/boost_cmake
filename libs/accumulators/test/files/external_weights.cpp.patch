@@ -1,8 +1,7 @@
-5c5
-< 
----
+5a6,7
 > #define BOOST_TEST_MAIN
-44,49c44
+> 
+44,49c46
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -10,15 +9,15 @@
 < {
 <     test_suite *test = BOOST_TEST_SUITE("external_weights test");
 ---
-> BOOST_AUTO_TEST_SUITE(external_weights_test)
-51,53c46,48
+> BOOST_AUTO_TEST_SUITE(accumulators_test_external_weights)
+51,53c48,50
 <     test->add(BOOST_TEST_CASE(&test_stat));
 < 
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-54a50,51
+54a52,53
 > 
 > BOOST_AUTO_TEST_SUITE_END()

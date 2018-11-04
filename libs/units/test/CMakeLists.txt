@@ -1,5 +1,7 @@
 include(CMTest)
 
+patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
+
 find_package(${CMAKE_WORKSPACE_NAME}_regex)
 find_package(${CMAKE_WORKSPACE_NAME}_multiprecision)
 find_package(${CMAKE_WORKSPACE_NAME}_function)
@@ -7,11 +9,11 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_filesystem)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_units
-                        boost::regex
-                        boost::multiprecision
-                        boost::function
-                        boost::test
-                        boost::filesystem
+                        ${CMAKE_WORKSPACE_NAME}::regex
+                        ${CMAKE_WORKSPACE_NAME}::multiprecision
+                        ${CMAKE_WORKSPACE_NAME}::function
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::filesystem
                         )
 
 # Jamfile.v2
@@ -51,7 +53,7 @@ cm_test(NAME units_test_test_scaled_conversion SOURCES ${CURRENT_TEST_SOURCES_DI
 
 #if(NOT APPLE AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 #    if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang" AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 5.0 OR NOT ${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
-        cm_test(NAME units_test_test_lambda SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_lambda.cpp)
+cm_test(NAME units_test_test_lambda SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_lambda.cpp)
 #    endif()
 #endif()
 
@@ -59,9 +61,9 @@ cm_test(NAME units_test_test_scaled_unit SOURCES ${CURRENT_TEST_SOURCES_DIR}/tes
 cm_test(NAME units_test_test_output SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_output.cpp)
 cm_test(NAME units_test_test_trig SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_trig.cpp)
 
-if ((NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU") OR (PROJECT_VERSION GREATER 1.60.0))
-    # TODO: fix test. reason error: right operand of shift expression ‘(1u << 63u)’ is >= than the precision of the left operand [-fpermissive]
-    cm_test(NAME units_test_test_information_units SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_information_units.cpp)
+if (NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU")
+        # TODO: fix test. Reason error: [-fpermissive]
+        cm_test(NAME units_test_test_information_units SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_information_units.cpp)
 endif()
 
 cm_test(NAME units_test_fail_implicit_conversion SOURCES ${CURRENT_TEST_SOURCES_DIR}/fail_implicit_conversion.cpp COMPILE_ONLY WILL_FAIL)

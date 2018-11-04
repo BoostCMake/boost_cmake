@@ -5,9 +5,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_functional)
 find_package(${CMAKE_WORKSPACE_NAME}_atomic)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_smart_ptr
-                        boost::align
-                        boost::functional
-                        boost::atomic
+                        ${CMAKE_WORKSPACE_NAME}::align
+                        ${CMAKE_WORKSPACE_NAME}::functional
+                        ${CMAKE_WORKSPACE_NAME}::atomic
                         )
 
 #  Boost.SmartPtr Library test Jamfile

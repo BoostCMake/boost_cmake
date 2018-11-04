@@ -1,24 +1,24 @@
-7c7
-< 
----
+7a8,9
 > #define BOOST_TEST_MAIN
-59,64c59
+> 
+59,62c61,63
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
 < test_suite* init_unit_test_suite( int argc, char* argv[] )
-< {
+---
+> BOOST_AUTO_TEST_SUITE(accumulators_test_weighted_kurtosis)
+> 
+> BOOST_AUTO_TEST_CASE(test_stat)
+64c65,66
 <     test_suite *test = BOOST_TEST_SUITE("weighted_kurtosis test");
 ---
-> BOOST_AUTO_TEST_SUITE(weighted_kurtosis_suite)
-66,68c61,63
-<     test->add(BOOST_TEST_CASE(&test_stat));
-< 
-<     return test;
----
-> BOOST_AUTO_TEST_CASE(test_stat_case)
-> {
 >     test_stat();
-69a65,66
-> 
+> }
+66c68
+<     test->add(BOOST_TEST_CASE(&test_stat));
+---
 > BOOST_AUTO_TEST_SUITE_END()
+68,69d69
+<     return test;
+< }

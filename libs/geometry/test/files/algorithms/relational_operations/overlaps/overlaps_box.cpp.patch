@@ -2,7 +2,11 @@
 > #define BOOST_TEST_MAIN
 > #include <boost/test/unit_test.hpp>
 > 
-63a67,73
+63c66
+< 
+---
+>     
+64a68,74
 > }
 > 
 > BOOST_AUTO_TEST_CASE(current_test_case)

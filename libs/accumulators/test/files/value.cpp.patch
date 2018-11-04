@@ -1,8 +1,7 @@
-5c5
-< 
----
+5a6,7
 > #define BOOST_TEST_MAIN
-35,40c35
+> 
+35,40c37
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -10,15 +9,15 @@
 < {
 <     test_suite *test = BOOST_TEST_SUITE("value_accumulator test");
 ---
-> BOOST_AUTO_TEST_SUITE(value_accumulator_test)
-42,44c37,39
+> BOOST_AUTO_TEST_SUITE(accumulators_test_value_accumulator)
+42,44c39,41
 <     test->add(BOOST_TEST_CASE(&test_stat));
 < 
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-45a41,42
+45a43,44
 > 
 > BOOST_AUTO_TEST_SUITE_END()

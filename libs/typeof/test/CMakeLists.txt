@@ -3,7 +3,7 @@ include(CMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_static_assert)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_typeof
-                        boost::static_assert
+                        ${CMAKE_WORKSPACE_NAME}::static_assert
                         )
 
 # Copyright (C) 2006 Vladimir Prus

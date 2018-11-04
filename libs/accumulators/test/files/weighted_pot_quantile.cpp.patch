@@ -1,23 +1,20 @@
-11c11,12
-< 
----
+7a8
 > #define BOOST_TEST_MAIN
-> #include <boost/test/unit_test.hpp>
-94,101c95
+94,99c95
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
 < test_suite* init_unit_test_suite( int argc, char* argv[] )
 < {
 <     test_suite *test = BOOST_TEST_SUITE("weighted_pot_quantile test");
-< 
-<     test->add(BOOST_TEST_CASE(&test_stat));
 ---
-> BOOST_AUTO_TEST_SUITE(weighted_pot_quantile_test)
-103c97,99
+> BOOST_AUTO_TEST_SUITE(accumulators_test_weighted_pot_quantile)
+101,103c97,99
+<     test->add(BOOST_TEST_CASE(&test_stat));
+< 
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
 104a101,102

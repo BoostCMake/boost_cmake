@@ -5,8 +5,8 @@ patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_statechart
-                        boost::assign
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::assign
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 set(normal)
 set(native -DBOOST_STATECHART_USE_NATIVE_RTTI)
@@ -98,19 +98,19 @@ statechart_st_run_variants(NAME TriggeringEventTest SOURCES_PREFIX ${CMAKE_CURRE
 #fix it
 add_library(TuTestLibNormal STATIC ${CURRENT_TEST_SOURCES_DIR}/TuTest.cpp)
 target_compile_definitions(TuTestLibNormal PRIVATE ${normal})
-target_link_libraries(TuTestLibNormal PRIVATE boost::assign boost::statechart)
+target_link_libraries(TuTestLibNormal PRIVATE ${CMAKE_WORKSPACE_NAME}::assign ${CMAKE_WORKSPACE_NAME}::statechart)
 
 add_library(TuTestLibNative STATIC ${CURRENT_TEST_SOURCES_DIR}/TuTest.cpp)
 target_compile_definitions(TuTestLibNative PRIVATE ${native})
-target_link_libraries(TuTestLibNative PRIVATE boost::assign boost::statechart)
+target_link_libraries(TuTestLibNative PRIVATE ${CMAKE_WORKSPACE_NAME}::assign ${CMAKE_WORKSPACE_NAME}::statechart)
 
 add_library(TuTestDllNormal SHARED ${CURRENT_TEST_SOURCES_DIR}/TuTest.cpp)
 target_compile_definitions(TuTestDllNormal PRIVATE ${normal})
-target_link_libraries(TuTestDllNormal PRIVATE boost::assign boost::statechart)
+target_link_libraries(TuTestDllNormal PRIVATE ${CMAKE_WORKSPACE_NAME}::assign ${CMAKE_WORKSPACE_NAME}::statechart)
 
 add_library(TuTestDllNative SHARED ${CURRENT_TEST_SOURCES_DIR}/TuTest.cpp)
 target_compile_definitions(TuTestDllNative PRIVATE ${native})
-target_link_libraries(TuTestDllNative PRIVATE boost::assign boost::statechart)
+target_link_libraries(TuTestDllNative PRIVATE ${CMAKE_WORKSPACE_NAME}::assign ${CMAKE_WORKSPACE_NAME}::statechart)
 
 cm_test(NAME statechart_test_TuTestLibNormal SOURCES ${CMAKE_CURRENT_BINARY_DIR}/TuTestMain.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 target_link_libraries(statechart_test_TuTestLibNormal TuTestLibNormal)

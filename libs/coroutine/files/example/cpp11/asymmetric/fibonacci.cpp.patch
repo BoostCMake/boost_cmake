@@ -1,4 +1,0 @@
-10c10
-< #include <boost/coroutine/all.hpp>
----
-> #include <boost/coroutine/all_patched.hpp>

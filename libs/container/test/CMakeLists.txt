@@ -3,7 +3,7 @@ include(CMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_timer)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_container
-                        boost::timer
+                        ${CMAKE_WORKSPACE_NAME}::timer
                         )
 
 file(GLOB TEST_FILES ${CURRENT_TEST_SOURCES_DIR}/*.cpp)

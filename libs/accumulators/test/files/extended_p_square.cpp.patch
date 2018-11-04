@@ -1,11 +1,7 @@
-7c7,8
-< 
----
+7a8,9
 > #define BOOST_TEST_MAIN
-> #include <boost/test/unit_test.hpp>
-10d10
-< #include <boost/test/unit_test.hpp>
-64,71c64
+> 
+64,71c66
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -15,13 +11,12 @@
 < 
 <     test->add(BOOST_TEST_CASE(&test_stat));
 ---
-> BOOST_AUTO_TEST_SUITE(extended_p_square_test)
-73c66,68
+> BOOST_AUTO_TEST_SUITE(accumulators_test_extended_p_square)
+73c68,70
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-74a70,71
-> 
+75a73
 > BOOST_AUTO_TEST_SUITE_END()

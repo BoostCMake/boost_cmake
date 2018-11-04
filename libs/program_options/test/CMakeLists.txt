@@ -4,8 +4,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_timer)
 find_package(${CMAKE_WORKSPACE_NAME}_preprocessor)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_program_options
-                        boost::timer
-                        boost::preprocessor
+                        ${CMAKE_WORKSPACE_NAME}::timer
+                        ${CMAKE_WORKSPACE_NAME}::preprocessor
                         )
 
 #test-suite program_options

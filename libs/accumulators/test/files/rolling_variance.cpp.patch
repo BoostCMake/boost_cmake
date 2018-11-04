@@ -1,8 +1,7 @@
-5c5
-< 
----
+5a6,7
 > #define BOOST_TEST_MAIN
-135,140c135
+> 
+135,140c137
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -10,18 +9,17 @@
 < {
 <     test_suite *test = BOOST_TEST_SUITE("rolling variance test");
 ---
-> BOOST_AUTO_TEST_SUITE(rolling_variance_test)
-142c137,140
+> BOOST_AUTO_TEST_SUITE(accumulators_test_rolling_variance)
+142c139,142
 <     test->add(BOOST_TEST_CASE(&test_rolling_variance));
 ---
-> BOOST_AUTO_TEST_CASE(test_rolling_variance_case)
+> BOOST_AUTO_TEST_CASE(test_rolling_variance)
 > {
 >     test_rolling_variance();
 > }
-144,145c142
+144,145c144
 <     return test;
 < }
 \ No newline at end of file
 ---
 > BOOST_AUTO_TEST_SUITE_END()
-\ No newline at end of file

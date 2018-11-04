@@ -3,7 +3,7 @@ include(CMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_msm
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # test/Jamfile.v2 controls building of MSM Library unit tests

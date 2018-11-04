@@ -7,11 +7,11 @@ find_package(${CMAKE_WORKSPACE_NAME}_serialization)
 find_package(${CMAKE_WORKSPACE_NAME}_thread)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_pool
-                        boost::core
-                        boost::random
-                        boost::smart_ptr
-                        boost::serialization
-                        boost::thread
+                        ${CMAKE_WORKSPACE_NAME}::core
+                        ${CMAKE_WORKSPACE_NAME}::random
+                        ${CMAKE_WORKSPACE_NAME}::smart_ptr
+                        ${CMAKE_WORKSPACE_NAME}::serialization
+                        ${CMAKE_WORKSPACE_NAME}::thread
                         )
 
 #~ Copyright Rene Rivera 2008
@@ -36,7 +36,8 @@ endif()
 cm_test(NAME pool_test_test_poisoned_macros SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_poisoned_macros.cpp COMPILE_ONLY)
 
 
-try_compile(HAS_VALGRIND ${CURRENT_TEST_SOURCES_DIR} ${CURRENT_TEST_SOURCES_DIR}/valgrind_config_check.cpp)
+try_compile(HAS_VALGRIND ${CURRENT_TEST_SOURCES_DIR} ${CURRENT_TEST_SOURCES_DIR}/valgrind_config_check.cpp CMAKE_FLAGS
+        "-DCMAKE_CXX_LINK_EXECUTABLE='echo not linking now...'")
 if(HAS_VALGRIND)
     cm_test(NAME pool_test_test_simple_seg_storage_valgrind SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_simple_seg_storage.cpp)
     target_compile_definitions(pool_test_test_simple_seg_storage_valgrind PUBLIC -DBOOST_POOL_VALGRIND=1)
@@ -84,4 +85,3 @@ if(HAS_VALGRIND)
     cm_test(NAME pool_test_test_valgrind_fail_2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_valgrind_fail_2.cpp WILL_FAIL)
     target_compile_definitions(pool_test_test_valgrind_fail_2 PUBLIC -DBOOST_POOL_VALGRIND=1)
 endif()
-

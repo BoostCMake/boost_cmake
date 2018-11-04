@@ -1,8 +1,7 @@
-5c5
-< 
----
+5a6,7
 > #define BOOST_TEST_MAIN
-114,119c114
+> 
+114,119c116
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -10,20 +9,20 @@
 < {
 <     test_suite *test = BOOST_TEST_SUITE("tail test");
 ---
-> BOOST_AUTO_TEST_SUITE(tail_test)
-121,122c116,119
+> BOOST_AUTO_TEST_SUITE(accumulators_test_tail)
+121,122c118,121
 <     test->add(BOOST_TEST_CASE(&test_right_tail));
 <     test->add(BOOST_TEST_CASE(&test_left_tail));
 ---
-> BOOST_AUTO_TEST_CASE(test_right_tail_case)
+> BOOST_AUTO_TEST_CASE(test_right_tail)
 > {
 >     test_right_tail();
 > }
-124c121,123
+124c123,125
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_left_tail_case)
+> BOOST_AUTO_TEST_CASE(test_left_tail)
 > {
 >     test_left_tail();
-126a126
+126a128
 > BOOST_AUTO_TEST_SUITE_END()

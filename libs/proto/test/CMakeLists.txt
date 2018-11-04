@@ -8,10 +8,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_mpl)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_proto
-                        boost::assert
-                        boost::smart_ptr
-                        boost::test
-                        boost::mpl
+                        ${CMAKE_WORKSPACE_NAME}::assert
+                        ${CMAKE_WORKSPACE_NAME}::smart_ptr
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::mpl
                         )
 
 # (C) Copyright 2004: Eric Niebler
@@ -27,7 +27,7 @@ cm_test(NAME proto_test_display_expr SOURCES ${CMAKE_CURRENT_BINARY_DIR}/display
 cm_test(NAME proto_test_deduce_domain SOURCES ${CMAKE_CURRENT_BINARY_DIR}/deduce_domain.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME proto_test_env_var SOURCES ${CMAKE_CURRENT_BINARY_DIR}/env_var.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 # TODO: fix test. error: no match for call to ‘(lambda_transform::LambdaEval) (const type, int, boost::fusion::tuple<int, int>&)’
-#cm_test(NAME proto_test_examples SOURCES ${CMAKE_CURRENT_BINARY_DIR}/examples.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+# cm_test(NAME proto_test_examples SOURCES ${CMAKE_CURRENT_BINARY_DIR}/examples.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME proto_test_external_transforms SOURCES ${CMAKE_CURRENT_BINARY_DIR}/external_transforms.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME proto_test_lambda SOURCES ${CMAKE_CURRENT_BINARY_DIR}/lambda.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME proto_test_make_expr SOURCES ${CMAKE_CURRENT_BINARY_DIR}/make_expr.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})

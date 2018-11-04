@@ -1,8 +1,7 @@
-5c5
-< 
----
+5a6,7
 > #define BOOST_TEST_MAIN
-58,63c58
+> 
+58,63c60
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -10,16 +9,15 @@
 < {
 <     test_suite *test = BOOST_TEST_SUITE("variance test");
 ---
-> BOOST_AUTO_TEST_SUITE(variance_test)
-65,67c60,62
+> BOOST_AUTO_TEST_SUITE(accumulators_test_variance)
+65,67c62,64
 <     test->add(BOOST_TEST_CASE(&test_stat));
 < 
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-68a64,65
+68a66,67
 > 
 > BOOST_AUTO_TEST_SUITE_END()
-\ No newline at end of file

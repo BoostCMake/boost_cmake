@@ -5,9 +5,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_uuid
-                        boost::functional
-                        boost::test
-                        boost::lexical_cast
+                        ${CMAKE_WORKSPACE_NAME}::functional
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::lexical_cast
                         )
 
 # Copyright 2007 Andy Tompkins.
@@ -31,14 +31,6 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_uuid
 # test tagging an object
 
 # test use cases
-
-# test serializing uuids
-# TODO - This test fails to like with ${CMAKE_WORKSPACE_NAME}_wserialization
-#[ run test_wserialization.cpp
-#    ../../serialization/build//${CMAKE_WORKSPACE_NAME}_serialization
-#    ../../serialization/build//${CMAKE_WORKSPACE_NAME}_wserialization
-#    : : : <dependency>../../config/test/all//BOOST_NO_STD_WSTREAMBUF
-#]
 
 # test sha1 hash function
 
@@ -79,3 +71,6 @@ cm_test(NAME uuid_test_test_serialization SOURCES ${CURRENT_TEST_SOURCES_DIR}/te
 
 cm_test(NAME uuid_test_test_sha1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_sha1.cpp)
 
+if(MSVC)
+    cm_test(NAME uuid_test_test_msvc_simd_bug981648_main SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_msvc_simd_bug981648_main.cpp ${CURRENT_TEST_SOURCES_DIR}/test_msvc_simd_bug981648_foo.cpp)
+endif()
