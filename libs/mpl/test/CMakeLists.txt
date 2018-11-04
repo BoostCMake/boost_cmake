@@ -3,7 +3,7 @@ include(CMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_bind)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_mpl
-                        boost::bind
+                        ${CMAKE_WORKSPACE_NAME}::bind
                         )
 
 cm_test(NAME mpl_test_aux_increased_arity SOURCES ${CURRENT_TEST_SOURCES_DIR}/aux_/increased_arity.cpp COMPILE_ONLY)
@@ -101,4 +101,3 @@ cm_test(NAME mpl_test_vector SOURCES ${CURRENT_TEST_SOURCES_DIR}/vector.cpp COMP
 cm_test(NAME mpl_test_vector_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/vector_c.cpp COMPILE_ONLY)
 cm_test(NAME mpl_test_zip_view SOURCES ${CURRENT_TEST_SOURCES_DIR}/zip_view.cpp COMPILE_ONLY)
 cm_test(NAME mpl_test_string SOURCES ${CURRENT_TEST_SOURCES_DIR}/string.cpp)
-

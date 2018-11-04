@@ -4,29 +4,29 @@ find_package(${CMAKE_WORKSPACE_NAME}_rational)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_chrono
                         ${CMAKE_WORKSPACE_NAME}_system
-                        boost::rational
+                        ${CMAKE_WORKSPACE_NAME}::rational
                         )
 
 
 function(chrono_v1_v2_run_header path test_name)
 cm_test(NAME chrono_test_${test_name}_h SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp)
-target_compile_definitions(chrono_test_${test_name}_h PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
+target_compile_definitions(chrono_test_${test_name}_h PUBLIC -DBOOST_CHRONO_HEADER_ONLY -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_CHRONO_VERSION=2)
 
 cm_test(NAME chrono_test_v1_${test_name}_h SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp)
-target_compile_definitions(chrono_test_v1_${test_name}_h PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY)
+target_compile_definitions(chrono_test_v1_${test_name}_h PUBLIC -DBOOST_CHRONO_HEADER_ONLY -DBOOST_ERROR_CODE_HEADER_ONLY)
 endfunction(chrono_v1_v2_run_header)
 
 function(chrono_v1_v2_run path test_name)
     cm_test(NAME chrono_test_${test_name}_d SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp)
-    target_compile_definitions(chrono_test_${test_name}_d PUBLIC BOOST_CHRONO_VERSION=2)
+    target_compile_definitions(chrono_test_${test_name}_d PUBLIC -DBOOST_CHRONO_VERSION=2)
 
     cm_test(NAME chrono_test_v1_${test_name}_s SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp)
 
     cm_test(NAME chrono_test_${test_name}_h SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp)
-    target_compile_definitions(chrono_test_${test_name}_h PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
+    target_compile_definitions(chrono_test_${test_name}_h PUBLIC -DBOOST_CHRONO_HEADER_ONLY -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_CHRONO_VERSION=2)
 
     cm_test(NAME chrono_test_v1_${test_name}_h SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp)
-    target_compile_definitions(chrono_test_v1_${test_name}_h PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY)
+    target_compile_definitions(chrono_test_v1_${test_name}_h PUBLIC -DBOOST_CHRONO_HEADER_ONLY -DBOOST_ERROR_CODE_HEADER_ONLY)
 endfunction(chrono_v1_v2_run)
 
 function(chrono_run2_mt test_name)
@@ -35,61 +35,61 @@ function(chrono_run2_mt test_name)
         set(arglist ${arglist} ${CURRENT_TEST_SOURCES_DIR}/${a}.cpp)
     endforeach()
     cm_test(NAME chrono_test_${test_name}_d SOURCES${CURRENT_TEST_SOURCES_DIR}/ ${path}.cpp ${arglist})
-    target_compile_definitions(chrono_test_${test_name}_d PUBLIC BOOST_CHRONO_VERSION=2)
+    target_compile_definitions(chrono_test_${test_name}_d PUBLIC -DBOOST_CHRONO_VERSION=2)
 
     cm_test(NAME chrono_test_${test_name}_h SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp ${arglist})
     target_compile_definitions(chrono_test_${test_name}_h
-                               PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
+                               PUBLIC -DBOOST_CHRONO_HEADER_ONLY -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_CHRONO_VERSION=2)
 endfunction(chrono_run2_mt)
 
 function(chrono_compile2 path test_name)
     cm_test(NAME chrono_test_${test_name}_l SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp COMPILE_ONLY)
-    target_compile_definitions(chrono_test_${test_name}_l PUBLIC BOOST_CHRONO_VERSION=2)
+    target_compile_definitions(chrono_test_${test_name}_l PUBLIC -DBOOST_CHRONO_VERSION=2)
 
     cm_test(NAME chrono_test_${test_name}_h SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp COMPILE_ONLY)
     target_compile_definitions(chrono_test_${test_name}_h
-                                PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
+                                PUBLIC -DBOOST_CHRONO_HEADER_ONLY -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_CHRONO_VERSION=2)
 endfunction(chrono_compile2)
 
 function(chrono_run_mt path test_name)
     cm_test(NAME chrono_test_${test_name}_d SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp)
-    target_compile_definitions(chrono_test_${test_name}_d PUBLIC BOOST_CHRONO_VERSION=2)
+    target_compile_definitions(chrono_test_${test_name}_d PUBLIC -DBOOST_CHRONO_VERSION=2)
 
     cm_test(NAME chrono_test_${test_name}_h SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp)
     target_compile_definitions(chrono_test_${test_name}_h
-                               PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
+                               PUBLIC -DBOOST_CHRONO_HEADER_ONLY -DBOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
 endfunction(chrono_run_mt)
 
 function(chrono_run path test_name)
     cm_test(NAME chrono_test_${test_name}_d SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp)
-    target_compile_definitions(chrono_test_${test_name}_d PUBLIC BOOST_CHRONO_VERSION=2)
+    target_compile_definitions(chrono_test_${test_name}_d PUBLIC -DBOOST_CHRONO_VERSION=2)
 
     cm_test(NAME chrono_test_${test_name}_h SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp)
     target_compile_definitions(chrono_test_${test_name}_h
-                               PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY
-                               BOOST_CHRONO_DONT_PROVIDE_HYBRID_ERROR_HANDLING BOOST_CHRONO_VERSION=2)
+                               PUBLIC -DBOOST_CHRONO_HEADER_ONLY -DBOOST_ERROR_CODE_HEADER_ONLY
+            -DBOOST_CHRONO_DONT_PROVIDE_HYBRID_ERROR_HANDLING -DBOOST_CHRONO_VERSION=2)
 endfunction(chrono_run)
 
 function(chrono_run_header2 path test_name)
     cm_test(NAME chrono_test_${test_name}_h SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp)
     target_compile_definitions(chrono_test_${test_name}_h
-                               PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
+                               PUBLIC -DBOOST_CHRONO_HEADER_ONLY -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_CHRONO_VERSION=2)
 endfunction(chrono_run_header2)
 
 function(chrono_run_header path test_name)
     cm_test(NAME chrono_test_${test_name}_h SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp)
     target_compile_definitions(chrono_test_${test_name}_h
-            PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY
-            BOOST_CHRONO_DONT_PROVIDE_HYBRID_ERROR_HANDLING BOOST_CHRONO_VERSION=2)
+            PUBLIC -DBOOST_CHRONO_HEADER_ONLY -DBOOST_ERROR_CODE_HEADER_ONLY
+            -DBOOST_CHRONO_DONT_PROVIDE_HYBRID_ERROR_HANDLING -DBOOST_CHRONO_VERSION=2)
 endfunction(chrono_run_header)
 
 function(chrono_compile path test_name)
     cm_test(NAME chrono_test_${test_name}_l SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp COMPILE_ONLY)
-    target_compile_definitions(chrono_test_${test_name}_l PUBLIC BOOST_CHRONO_VERSION=2)
+    target_compile_definitions(chrono_test_${test_name}_l PUBLIC -DBOOST_CHRONO_VERSION=2)
 
     cm_test(NAME chrono_test_${test_name}_h SOURCES ${CURRENT_TEST_SOURCES_DIR}/${path}.cpp COMPILE_ONLY)
     target_compile_definitions(chrono_test_${test_name}_h
-                               PUBLIC BOOST_CHRONO_HEADER_ONLY BOOST_ERROR_CODE_HEADER_ONLY BOOST_CHRONO_VERSION=2)
+                               PUBLIC -DBOOST_CHRONO_HEADER_ONLY -DBOOST_ERROR_CODE_HEADER_ONLY -DBOOST_CHRONO_VERSION=2)
 endfunction(chrono_compile)
 
 #test-suite "examples"
@@ -160,10 +160,8 @@ cm_test(NAME chrono_test_time_point_non_implicit_convertible_duration_fail SOURC
 chrono_run_header2(time_point/min_max_pass time_point_min_max_p)
 
 #test-suite "clock"
-#chrono_run2_mt(clock_clock_p clock/clock_pass )
-cm_test(NAME clock_clock_p SOURCES ${CURRENT_TEST_SOURCES_DIR}/clock/clock_pass.cpp)
-#chrono_run2_mt(two_obj_p one_obj another_obj )
-cm_test(NAME two_obj_p SOURCES ${CURRENT_TEST_SOURCES_DIR}/another_obj.cpp ${CURRENT_TEST_SOURCES_DIR}/one_obj.cpp)
+cm_test(NAME clock_test_clock_clock_p SOURCES ${CURRENT_TEST_SOURCES_DIR}/clock/clock_pass.cpp)
+cm_test(NAME clock_test_two_obj_p SOURCES ${CURRENT_TEST_SOURCES_DIR}/another_obj.cpp ${CURRENT_TEST_SOURCES_DIR}/one_obj.cpp)
 
 #test-suite "io_ex"
 chrono_v1_v2_run(../example/io_ex1 example_io_ex1)
@@ -187,7 +185,7 @@ chrono_run(win32_test win32_test)
 
 #explicit ts_ ;
 #test-suite ts_
-
 #[ chrono-run test_7868.cpp  ]
 #[ chrono-run test_9337.cpp  ]
 #[ chrono-run test_10778.cpp  ]
+chrono_run(test_10631 test_10631)

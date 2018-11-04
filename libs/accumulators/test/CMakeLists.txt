@@ -7,18 +7,14 @@ find_package(${CMAKE_WORKSPACE_NAME}_foreach)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_accumulators
-                        boost::random
-                        boost::foreach
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::random
+                        ${CMAKE_WORKSPACE_NAME}::foreach
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # (C) Copyright 2005: Eric Niebler
 # Distributed under the Boost Software License, Version 1.0.
 # (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-
-# bring in rules for testing
-
-# TODO: Tests disabled because of problems in ublas
 cm_test(NAME accumulators_test_count SOURCES ${CMAKE_CURRENT_BINARY_DIR}/count.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME accumulators_test_covariance SOURCES ${CMAKE_CURRENT_BINARY_DIR}/covariance.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME accumulators_test_droppable SOURCES ${CMAKE_CURRENT_BINARY_DIR}/droppable.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
@@ -48,7 +44,7 @@ cm_test(NAME accumulators_test_tail_mean SOURCES ${CMAKE_CURRENT_BINARY_DIR}/tai
 cm_test(NAME accumulators_test_tail_quantile SOURCES ${CMAKE_CURRENT_BINARY_DIR}/tail_quantile.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME accumulators_test_tail_variate_means SOURCES ${CMAKE_CURRENT_BINARY_DIR}/tail_variate_means.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 
-if(NOT APPLE AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+if(NOT APPLE)
     cm_test(NAME accumulators_test_valarray SOURCES ${CMAKE_CURRENT_BINARY_DIR}/valarray.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 endif()
 

@@ -4,8 +4,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_function)
 find_package(${CMAKE_WORKSPACE_NAME}_smart_ptr)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_bind
-                        boost::function
-                        boost::smart_ptr
+                        ${CMAKE_WORKSPACE_NAME}::function
+                        ${CMAKE_WORKSPACE_NAME}::smart_ptr
                         )
 
 #  Boost.Bind Library test Jamfile
@@ -16,8 +16,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_bind
 #  accompanying file LICENSE_1_0.txt or copy at
 #  http://www.boost.org/LICENSE_1_0.txt)
 
-# bring in rules for testing
-
+#test-suite "bind"
 cm_test(NAME bind_test_bind_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_test.cpp)
 cm_test(NAME bind_test_bind_dm_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_dm_test.cpp)
 cm_test(NAME bind_test_bind_eq_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_eq_test.cpp)
@@ -58,12 +57,8 @@ cm_test(NAME bind_test_mem_fn_unary_addr_test SOURCES ${CURRENT_TEST_SOURCES_DIR
 cm_test(NAME bind_test_bind_function2_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_function2_test.cpp)
 cm_test(NAME bind_test_bind_fwd_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_fwd_test.cpp)
 cm_test(NAME bind_test_bind_fwd2_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_fwd2_test.cpp)
-# cm_test(NAME bind_test_bind_no_placeholders_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_no_placeholders_test.cpp)
-# cm_test(NAME bind_test_placeholder_const_ref_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/placeholder_const_ref_test.cpp)
-# cm_test(NAME bind_test_bind_function_ap_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_function_ap_test.cpp)
-# cm_test(NAME bind_test_bind_type_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_type_test.cpp)
-# cm_test(NAME bind_test_bind_unique_ptr_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_unique_ptr_test.cpp)
-# cm_test(NAME bind_test_bind_nested_rv_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_nested_rv_test.cpp)
-# cm_test(NAME bind_test_arg_copy_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/arg_copy_test.cpp COMPILE_ONLY)
-# cm_test(NAME bind_test_arg_copy_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/arg_copy_fail.cpp COMPILE_ONLY WILL_FAIL)
-# cm_test(NAME bind_test_placeholder_std_bind_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/placeholder_std_bind_test.cpp)
+cm_test(NAME bind_test_bind_no_placeholders_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_no_placeholders_test)
+cm_test(NAME bind_test_placeholder_const_ref_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/placeholder_const_ref_test)
+cm_test(NAME bind_test_bind_function_ap_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_function_ap_test)
+cm_test(NAME bind_test_bind_type_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_type_test)
+cm_test(NAME bind_test_ SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_unique_ptr_test)

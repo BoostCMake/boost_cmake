@@ -6,10 +6,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_any)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_lambda
-                        boost::function
-                        boost::smart_ptr
-                        boost::test
-                        boost::any
+                        ${CMAKE_WORKSPACE_NAME}::function
+                        ${CMAKE_WORKSPACE_NAME}::smart_ptr
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::any
                         )
 
 # Lambda library
@@ -22,16 +22,12 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_lambda
 
 # For more information, see http://www.boost.org/
 
-
+#test-suite lambda
 cm_test(NAME lambda_test_algorithm_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/algorithm_test.cpp)
 cm_test(NAME lambda_test_bind_tests_simple SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_tests_simple.cpp)
 cm_test(NAME lambda_test_bind_tests_advanced SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_tests_advanced.cpp)
 cm_test(NAME lambda_test_bind_tests_simple_f_refs SOURCES ${CURRENT_TEST_SOURCES_DIR}/bind_tests_simple_f_refs.cpp)
-
-if(NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    cm_test(NAME lambda_test_bll_and_function SOURCES ${CURRENT_TEST_SOURCES_DIR}/bll_and_function.cpp)
-endif()
-
+cm_test(NAME lambda_test_bll_and_function SOURCES ${CURRENT_TEST_SOURCES_DIR}/bll_and_function.cpp)
 cm_test(NAME lambda_test_lambda_cast_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/cast_test.cpp)
 cm_test(NAME lambda_test_constructor_tests SOURCES ${CURRENT_TEST_SOURCES_DIR}/constructor_tests.cpp)
 cm_test(NAME lambda_test_control_structures SOURCES ${CURRENT_TEST_SOURCES_DIR}/control_structures.cpp)
@@ -44,4 +40,3 @@ cm_test(NAME lambda_test_phoenix_control_structures SOURCES ${CURRENT_TEST_SOURC
 cm_test(NAME lambda_test_switch_construct SOURCES ${CURRENT_TEST_SOURCES_DIR}/switch_construct.cpp)
 cm_test(NAME lambda_test_result_of_tests SOURCES ${CURRENT_TEST_SOURCES_DIR}/result_of_tests.cpp)
 cm_test(NAME lambda_test_ret_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/ret_test.cpp)
-

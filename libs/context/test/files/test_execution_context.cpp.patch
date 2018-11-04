@@ -1,0 +1,29 @@
+6a7,8
+> #define BOOST_TEST_MAIN
+> 
+145,148d146
+< boost::unit_test::test_suite * init_unit_test_suite( int, char* [])
+< {
+<     boost::unit_test::test_suite * test =
+<         BOOST_TEST_SUITE("Boost.Context: execution_context test suite");
+150,158c148
+<     test->add( BOOST_TEST_CASE( & test_ectx) );
+< #if 0
+<     test->add( BOOST_TEST_CASE( & test_variadric) );
+<     test->add( BOOST_TEST_CASE( & test_memfn) );
+<     test->add( BOOST_TEST_CASE( & test_exception) );
+<     test->add( BOOST_TEST_CASE( & test_fp) );
+<     test->add( BOOST_TEST_CASE( & test_stacked) );
+<     test->add( BOOST_TEST_CASE( & test_prealloc) );
+< #endif
+---
+> BOOST_AUTO_TEST_SUITE(context_test_execution_context)
+160c150,152
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test_ectx)
+> {
+>         test_ectx();
+161a154,155
+> 
+> BOOST_AUTO_TEST_SUITE_END()

@@ -13,15 +13,15 @@ find_package(${CMAKE_WORKSPACE_NAME}_assign)
 find_package(${CMAKE_WORKSPACE_NAME}_numeric_conversion)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_ptr_container
-                        boost::tuple
-                        boost::bind
-                        boost::functional
-                        boost::timer
-                        boost::test
-                        boost::lexical_cast
-                        boost::lambda
-                        boost::assign
-                        boost::numeric_conversion
+                        ${CMAKE_WORKSPACE_NAME}::tuple
+                        ${CMAKE_WORKSPACE_NAME}::bind
+                        ${CMAKE_WORKSPACE_NAME}::functional
+                        ${CMAKE_WORKSPACE_NAME}::timer
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::lexical_cast
+                        ${CMAKE_WORKSPACE_NAME}::lambda
+                        ${CMAKE_WORKSPACE_NAME}::assign
+                        ${CMAKE_WORKSPACE_NAME}::numeric_conversion
                         )
 
 #//
@@ -35,10 +35,13 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_ptr_container
 #// For more information, see http://www.boost.org/libs/ptr_container/
 #//
 
-
+#test-suite ptr_container
 cm_test(NAME ptr_container_test_ptr_inserter SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_inserter.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME ptr_container_test_ptr_vector SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_vector.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+
+# TODO: fix test. error: no match for ‘operator+=’
 #cm_test(NAME ptr_container_test_ptr_list SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_list.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+
 cm_test(NAME ptr_container_test_ptr_deque SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_deque.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME ptr_container_test_ptr_set SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_set.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME ptr_container_test_ptr_map SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_map.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
@@ -56,3 +59,4 @@ cm_test(NAME ptr_container_test_no_exceptions SOURCES ${CMAKE_CURRENT_BINARY_DIR
 cm_test(NAME ptr_container_test_ptr_unordered_set SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_unordered_set.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME ptr_container_test_ptr_unordered_map SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_unordered_map.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME ptr_container_test_ptr_circular_buffer SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ptr_circular_buffer.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+#   [ sc-test null_filter_iterator ]

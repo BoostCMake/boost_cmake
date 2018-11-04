@@ -1,0 +1,104 @@
+14c14,15
+< 
+---
+> #define BOOST_TEST_MAIN
+> #include <boost/test/unit_test.hpp>
+463,464c464,503
+< utf::test_suite*
+< init_unit_test_suite( int /*argc*/, char* /*argv*/[] )
+---
+> 
+> BOOST_AUTO_TEST_SUITE(basic_cstring_test_suite)
+> 
+> BOOST_AUTO_TEST_CASE(constructors_test_char_types_case)
+> {
+>     BOOST_TEST_CASE_TEMPLATE( constructors_test, char_types );
+> }
+> 
+> 
+> BOOST_AUTO_TEST_CASE(constructors_std_string_test_base_const_char_types_case)
+> {
+>     BOOST_TEST_CASE_TEMPLATE( constructors_std_string_test, base_const_char_types );
+> }
+> 
+> BOOST_AUTO_TEST_CASE(asignment_std_string_test_base_const_char_types_case)
+> {
+>     BOOST_TEST_CASE_TEMPLATE( asignment_std_string_test, base_const_char_types );
+> }
+> 
+> BOOST_AUTO_TEST_CASE(comparison_std_string_test_base_const_char_types_case)
+> {
+>     BOOST_TEST_CASE_TEMPLATE( comparison_std_string_test, base_const_char_types );
+> }
+> 
+> BOOST_AUTO_TEST_CASE(array_construction_test_case)
+> {
+>     array_construction_test();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(data_access_test_char_types_case)
+> {
+>     BOOST_TEST_CASE_TEMPLATE( data_access_test, char_types );
+> }
+> 
+> BOOST_AUTO_TEST_CASE(size_test_char_types_case)
+> {
+>     BOOST_TEST_CASE_TEMPLATE( size_test, char_types );
+> }
+> 
+> BOOST_AUTO_TEST_CASE(asignment_test_char_types_case)
+466c505,506
+<     utf::test_suite* test= BOOST_TEST_SUITE("basic_cstring test");
+---
+>     BOOST_TEST_CASE_TEMPLATE( asignment_test, char_types );
+> }
+468,481c508,516
+<     test->add( BOOST_TEST_CASE_TEMPLATE( constructors_test, char_types ) );
+<     test->add( BOOST_TEST_CASE_TEMPLATE( constructors_std_string_test, base_const_char_types ) );
+<     test->add( BOOST_TEST_CASE_TEMPLATE( asignment_std_string_test, base_const_char_types ) );
+<     test->add( BOOST_TEST_CASE_TEMPLATE( comparison_std_string_test, base_const_char_types ) );
+<     test->add( BOOST_TEST_CASE( array_construction_test ) );
+<     test->add( BOOST_TEST_CASE_TEMPLATE( data_access_test, char_types ) );
+<     test->add( BOOST_TEST_CASE_TEMPLATE( size_test, char_types ) );
+<     test->add( BOOST_TEST_CASE_TEMPLATE( asignment_test, char_types ) );
+<     test->add( BOOST_TEST_CASE_TEMPLATE( comparison_test, char_types ) );
+<     test->add( BOOST_TEST_CASE_TEMPLATE( ordering_test, char_types ) );
+<     test->add( BOOST_TEST_CASE_TEMPLATE( trim_test, char_types ) );
+<     test->add( BOOST_TEST_CASE_TEMPLATE( io_test, io_test_types ) );
+<     test->add( BOOST_TEST_CASE_TEMPLATE( find_test, char_types ) );
+<     test->add( BOOST_TEST_CASE( &const_conversion ) );
+---
+> BOOST_AUTO_TEST_CASE(comparison_test_char_types_case)
+> {
+>     BOOST_TEST_CASE_TEMPLATE( comparison_test, char_types );
+> }
+> 
+> BOOST_AUTO_TEST_CASE(ordering_test_char_types_case)
+> {
+>     BOOST_TEST_CASE_TEMPLATE( ordering_test, char_types );
+> }
+483c518,535
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(trim_test_char_types_case)
+> {
+>     BOOST_TEST_CASE_TEMPLATE( trim_test, char_types );
+> }
+> 
+> BOOST_AUTO_TEST_CASE(io_test_io_test_types_case)
+> {
+>     BOOST_TEST_CASE_TEMPLATE( io_test, io_test_types );
+> }
+> 
+> BOOST_AUTO_TEST_CASE(find_test_char_types_case)
+> {
+>     BOOST_TEST_CASE_TEMPLATE( find_test, char_types );
+> }
+> 
+> BOOST_AUTO_TEST_CASE(const_conversion_case)
+> {
+>     const_conversion();
+486c538
+< // EOF
+---
+> BOOST_AUTO_TEST_SUITE_END()

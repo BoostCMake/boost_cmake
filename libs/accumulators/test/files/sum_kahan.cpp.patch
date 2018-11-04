@@ -1,40 +1,35 @@
-5c5
-< 
----
+5a6,7
 > #define BOOST_TEST_MAIN
-69,72c69,72
+> 
+69,72c71,73
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
 < test_suite* init_unit_test_suite( int argc, char* argv[] )
 ---
-> BOOST_AUTO_TEST_SUITE(sum_kahan_tests)
+> BOOST_AUTO_TEST_SUITE(accumulators_test_sum_kahan)
 > 
-> 
-> BOOST_AUTO_TEST_CASE(test_sum_kahan_case)
-74c74,75
+> BOOST_AUTO_TEST_CASE(test_sum_kahan)
+74c75,76
 <     test_suite *test = BOOST_TEST_SUITE("sum kahan tests");
 ---
 >     test_sum_kahan();
 > }
-76,78d76
+76,78c78,81
 <     test->add(BOOST_TEST_CASE(&test_sum_kahan));
 <     test->add(BOOST_TEST_CASE(&test_sum_of_weights_kahan));
 <     test->add(BOOST_TEST_CASE(&test_sum_of_variates_kahan));
-80c78,80
-<     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_sum_of_weights_kahan_case)
+> BOOST_AUTO_TEST_CASE(test_sum_of_weights_kahan)
 > {
 >     test_sum_of_weights_kahan();
-81a82,90
-> 
-> 
-> 
-> BOOST_AUTO_TEST_CASE(test_sum_of_variates_kahan_case)
+> }
+80c83,85
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test_sum_of_variates_kahan)
 > {
 >     test_sum_of_variates_kahan();
-> }
+81a87,88
 > 
 > BOOST_AUTO_TEST_SUITE_END()
-\ No newline at end of file

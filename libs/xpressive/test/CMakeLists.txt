@@ -5,7 +5,7 @@ patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_xpressive
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # (C) Copyright 2004: Eric Niebler
@@ -19,8 +19,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_xpressive
 #        <toolset>gcc:<cxxflags>-Wall
 #        <toolset>msvc:<cxxflags>-W4
 
-#         [ compile test_typeof.cpp ]
-#         [ compile test_typeof2.cpp ]
+
 cm_test(NAME xpressive_test_regress SOURCES ${CMAKE_CURRENT_BINARY_DIR}/regress.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME xpressive_test_regress_u SOURCES ${CMAKE_CURRENT_BINARY_DIR}/regress_u.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME xpressive_test_c_traits SOURCES ${CMAKE_CURRENT_BINARY_DIR}/c_traits.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
@@ -60,7 +59,7 @@ cm_test(NAME xpressive_test_test_symbols SOURCES ${CMAKE_CURRENT_BINARY_DIR}/tes
 cm_test(NAME xpressive_test_test_dynamic SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_dynamic.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME xpressive_test_test_dynamic_grammar SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_dynamic_grammar.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME xpressive_test_test_skip SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_skip.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-cm_test(NAME xpressive_test_multiple_defs SOURCES ${CURRENT_TEST_SOURCES_DIR}/multiple_defs1.cpp ${CURRENT_TEST_SOURCES_DIR}/multiple_defs2.cpp COMPILE_ONLY)
+cm_test(NAME xpressive_test_multiple_defs1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/multiple_defs1.cpp ${CURRENT_TEST_SOURCES_DIR}/multiple_defs2.cpp COMPILE_ONLY)
 cm_test(NAME xpressive_test_test_basic_regex SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_basic_regex.cpp COMPILE_ONLY)
 cm_test(NAME xpressive_test_test_match_results SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_match_results.cpp COMPILE_ONLY)
 cm_test(NAME xpressive_test_test_regex_algorithms SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_regex_algorithms.cpp COMPILE_ONLY)
@@ -72,3 +71,5 @@ cm_test(NAME xpressive_test_test_regex_primitives SOURCES ${CURRENT_TEST_SOURCES
 cm_test(NAME xpressive_test_test_regex_token_iterator SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_regex_token_iterator.cpp COMPILE_ONLY)
 cm_test(NAME xpressive_test_test_regex_traits SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_regex_traits.cpp COMPILE_ONLY)
 cm_test(NAME xpressive_test_test_sub_match SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_sub_match.cpp COMPILE_ONLY)
+#         [ compile test_typeof.cpp ]
+#         [ compile test_typeof2.cpp ]

@@ -10,11 +10,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_unit_test_framework)
 
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_circular_buffer
-                        boost::thread
-                        boost::bind
-                        boost::timer
-                        boost::test
-                        boost::unit_test_framework
+                        ${CMAKE_WORKSPACE_NAME}::thread
+                        ${CMAKE_WORKSPACE_NAME}::bind
+                        ${CMAKE_WORKSPACE_NAME}::timer
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # Boost circular_buffer test Jamfile.
@@ -27,8 +26,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_circular_buffer
 
 # Added warning suppression Paul A. Bristow 25 Nov 2008
 
-# Bring in rules for testing.
-
+#test-suite "circular_buffer"
 cm_test(NAME circular_buffer_base_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/base_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME circular_buffer_space_optimized_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/space_optimized_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME circular_buffer_soft_iterator_invalidation SOURCES ${CMAKE_CURRENT_BINARY_DIR}/soft_iterator_invalidation.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})

@@ -2,9 +2,6 @@ include(CMTest)
 
 patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
 
-
-
-
 find_package(${CMAKE_WORKSPACE_NAME}_detail)
 find_package(${CMAKE_WORKSPACE_NAME}_timer)
 find_package(${CMAKE_WORKSPACE_NAME}_numeric_interval)
@@ -12,11 +9,11 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_math)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_numeric_ublas
-boost::detail
-boost::timer
-boost::numeric_interval
-boost::test
-boost::math
+${CMAKE_WORKSPACE_NAME}::detail
+${CMAKE_WORKSPACE_NAME}::timer
+${CMAKE_WORKSPACE_NAME}::numeric_interval
+${CMAKE_WORKSPACE_NAME}::test
+${CMAKE_WORKSPACE_NAME}::math
 )
 
 # Copyright (c) 2004-2011 Michael Stevens, David Bellot
@@ -34,9 +31,9 @@ boost::math
 #  Matrix types: USE_MATRIX USE_BOUNDED_MATRIX USE_VECTOR_OF_VECTOR
 #  Adaptors: USE_ADAPTOR
 
-set(UBLAS_TESTSET "USE_DOUBLE;USE_STD_COMPLEX;USE_RANGE;USE_SLICE;USE_UNBOUNDED_ARRAY;USE_STD_VECTOR;USE_BOUNDED_VECTOR;USE_MATRIX" CACHE STRING "")
-set(UBLAS_TESTSET_SPARSE "USE_DOUBLE;USE_STD_COMPLEX;USE_UNBOUNDED_ARRAY;USE_MAP_ARRAY;USE_STD_MAP;USE_MAPPED_VECTOR;USE_COMPRESSED_VECTOR;USE_MAPPED_MATRIX;USE_COMPRESSED_MATRIX" CACHE STRING "")
-set(UBLAS_TESTSET_SPARSE_COO "USE_DOUBLE;USE_STD_COMPLEX;USE_UNBOUNDED_ARRAY;USE_COORDINATE_VECTOR;USE_COORDINATE_MATRIX" CACHE STRING "")
+set(UBLAS_TESTSET "-DUSE_DOUBLE -DUSE_STD_COMPLEX -DUSE_RANGE -DUSE_SLICE -DUSE_UNBOUNDED_ARRAY -DUSE_STD_VECTOR -DUSE_BOUNDED_VECTOR -DUSE_MATRIX")
+set(UBLAS_TESTSET_SPARSE "-DUSE_DOUBLE -DUSE_STD_COMPLEX -DUSE_UNBOUNDED_ARRAY -DUSE_MAP_ARRAY -DUSE_STD_MAP -DUSE_MAPPED_VECTOR -DUSE_COMPRESSED_VECTOR -DUSE_MAPPED_MATRIX -DUSE_COMPRESSED_MATRIX")
+set(UBLAS_TESTSET_SPARSE_COO "-DUSE_DOUBLE -DUSE_STD_COMPLEX -DUSE_UNBOUNDED_ARRAY -DUSE_COORDINATE_VECTOR -DUSE_COORDINATE_MATRIX")
 
 #  Sparse storage: USE_MAP_ARRAY USE_STD_MAP
 #  Sparse vectors: USE_MAPPED_VECTOR USE_COMPRESSED_VECTOR USE_COORDINATE_VECTOR
@@ -51,7 +48,7 @@ set(UBLAS_TESTSET_SPARSE_COO "USE_DOUBLE;USE_STD_COMPLEX;USE_UNBOUNDED_ARRAY;USE
 # Project settings
 
 
-# Test commented out because boost::interval does not behave like a scalar type
+# Test commented out because ${CMAKE_WORKSPACE_NAME}::interval does not behave like a scalar type
 #      [ run test7.cpp
 #            test71.cpp
 #            test72.cpp
@@ -63,53 +60,72 @@ set(UBLAS_TESTSET_SPARSE_COO "USE_DOUBLE;USE_STD_COMPLEX;USE_UNBOUNDED_ARRAY;USE
 
 #            <define>INTERAL
 #            <define>SKIP_BAD
-# TODO: Disable tests for now
-# cm_test(NAME test1 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test1.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# target_compile_definitions(test1 PUBLIC ${UBLAS_TESTSET})
-# cm_test(NAME test2 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test2.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# target_compile_definitions(test2 PUBLIC ${UBLAS_TESTSET})
-# cm_test(NAME test3 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test3.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# target_compile_definitions(test3 PUBLIC ${UBLAS_TESTSET_SPARSE})
-# cm_test(NAME test3_coo SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test3.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# target_compile_definitions(test3_coo PUBLIC ${UBLAS_TESTSET_SPARSE_COO})
-# cm_test(NAME test3_mvov SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test3.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# target_compile_definitions(test3_mvov PUBLIC USE_MAPPED_VECTOR_OF_MAPPED_VECTOR)
-# cm_test(NAME test4 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test4.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# target_compile_definitions(test4 PUBLIC ${UBLAS_TESTSET})
-# cm_test(NAME test5 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test5.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# target_compile_definitions(test5 PUBLIC ${UBLAS_TESTSET})
-# cm_test(NAME test6 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test6.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# target_compile_definitions(test6 PUBLIC ${UBLAS_TESTSET})
-# cm_test(NAME placement_new SOURCES ${CMAKE_CURRENT_BINARY_DIR}/placement_new.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME concepts SOURCES ${CMAKE_CURRENT_BINARY_DIR}/concepts.cpp COMPILE_ONLY SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# target_compile_definitions(concepts PUBLIC EXTERNAL)
-# cm_test(NAME test_lu SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_lu.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME triangular_access SOURCES ${CMAKE_CURRENT_BINARY_DIR}/triangular_access.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# target_compile_definitions(triangular_access PUBLIC NOMESSAGES)
-# cm_test(NAME triangular_layout SOURCES ${CMAKE_CURRENT_BINARY_DIR}/triangular_layout.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME comp_mat_erase SOURCES ${CMAKE_CURRENT_BINARY_DIR}/comp_mat_erase.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME sparse_view_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/sparse_view_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME begin_end SOURCES ${CMAKE_CURRENT_BINARY_DIR}/begin_end.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME num_columns SOURCES ${CMAKE_CURRENT_BINARY_DIR}/num_columns.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME num_rows SOURCES ${CMAKE_CURRENT_BINARY_DIR}/num_rows.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME ublas_size SOURCES ${CMAKE_CURRENT_BINARY_DIR}/size.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME test_coordinate_matrix_sort SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_coordinate_matrix_sort.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME test_coordinate_matrix_always_do_full_sort SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_coordinate_matrix_sort.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# target_compile_definitions(test_coordinate_matrix_always_do_full_sort PUBLIC BOOST_UBLAS_COO_ALWAYS_DO_FULL_SORT)
-# cm_test(NAME test_complex_norms SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_complex_norms.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME test_assignment SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_assignment.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# target_compile_definitions(test_assignment PUBLIC BOOST_UBLAS_COO_ALWAYS_DO_FULL_SORT)
-# cm_test(NAME ublas_test_triangular SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_triangular.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME test_ticket7296 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_ticket7296.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME test_inplace_solve_basic SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_inplace_solve.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# target_compile_definitions(test_inplace_solve_basic PUBLIC ${UBLAS_TESTSET})
-# cm_test(NAME test_inplace_solve_sparse SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_inplace_solve.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# target_compile_definitions(test_inplace_solve_sparse PUBLIC ${UBLAS_TESTSET_SPARSE_COO})
-# cm_test(NAME test_inplace_solve_mvov SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_inplace_solve.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# target_compile_definitions(test_inplace_solve_mvov PUBLIC USE_MAPPED_VECTOR_OF_MAPPED_VECTOR)
-# cm_test(NAME test_coordinate_vector_inplace_merge SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_coordinate_vector_inplace_merge.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME test_coordinate_matrix_inplace_merge SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_coordinate_matrix_inplace_merge.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME test_banded_storage_layout SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_banded_storage_layout.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME test_fixed_containers SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_fixed_containers.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME test_matrix_vector SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_matrix_vector.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 
+cm_test(NAME numeric_test_ublas_test1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test1.cpp  ${CURRENT_TEST_SOURCES_DIR}/test11.cpp  ${CURRENT_TEST_SOURCES_DIR}/test12.cpp  ${CURRENT_TEST_SOURCES_DIR}/test13.cpp)
+target_compile_definitions(numeric_test_ublas_test1 PUBLIC ${UBLAS_TESTSET})
+
+cm_test(NAME numeric_test_ublas_test2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test2.cpp  ${CURRENT_TEST_SOURCES_DIR}/test21.cpp  ${CURRENT_TEST_SOURCES_DIR}/test22.cpp  ${CURRENT_TEST_SOURCES_DIR}/test23.cpp)
+target_compile_definitions(numeric_test_ublas_test2 PUBLIC ${UBLAS_TESTSET})
+
+cm_test(NAME numeric_test_ublas_test3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test3.cpp  ${CURRENT_TEST_SOURCES_DIR}/test31.cpp  ${CURRENT_TEST_SOURCES_DIR}/test32.cpp  ${CURRENT_TEST_SOURCES_DIR}/test33.cpp)
+target_compile_definitions(numeric_test_ublas_test3 PUBLIC ${UBLAS_TESTSET_SPARSE})
+
+cm_test(NAME numeric_test_ublas_test3_coo SOURCES ${CURRENT_TEST_SOURCES_DIR}/test3.cpp  ${CURRENT_TEST_SOURCES_DIR}/test31.cpp  ${CURRENT_TEST_SOURCES_DIR}/test32.cpp  ${CURRENT_TEST_SOURCES_DIR}/test33.cpp)
+target_compile_definitions(numeric_test_ublas_test3_coo PUBLIC ${UBLAS_TESTSET_SPARSE_COO})
+
+cm_test(NAME numeric_test_ublas_test3_mvov SOURCES ${CURRENT_TEST_SOURCES_DIR}/test3.cpp  ${CURRENT_TEST_SOURCES_DIR}/test31.cpp  ${CURRENT_TEST_SOURCES_DIR}/test32.cpp  ${CURRENT_TEST_SOURCES_DIR}/test33.cpp)
+target_compile_definitions(numeric_test_ublas_test3_mvov PUBLIC -DUSE_FLOAT -DUSE_DOUBLE -DUSE_STD_COMPLEX -DUSE_STD_MAP -DUSE_MAPPED_VECTOR_OF_MAPPED_VECTOR)
+
+cm_test(NAME numeric_test_ublas_test4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test4.cpp  ${CURRENT_TEST_SOURCES_DIR}/test42.cpp ${CURRENT_TEST_SOURCES_DIR}/test43.cpp)
+target_compile_definitions(numeric_test_ublas_test4 PUBLIC ${UBLAS_TESTSET})
+
+cm_test(NAME numeric_test_ublas_test5 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test5.cpp  ${CURRENT_TEST_SOURCES_DIR}/test52.cpp ${CURRENT_TEST_SOURCES_DIR}/test53.cpp)
+target_compile_definitions(numeric_test_ublas_test5 PUBLIC ${UBLAS_TESTSET})
+
+cm_test(NAME numeric_test_ublas_test6 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test6.cpp  ${CURRENT_TEST_SOURCES_DIR}/test62.cpp ${CURRENT_TEST_SOURCES_DIR}/test63.cpp)
+target_compile_definitions(numeric_test_ublas_test6 PUBLIC ${UBLAS_TESTSET})
+
+cm_test(NAME numeric_test_ublas_placement_new SOURCES ${CURRENT_TEST_SOURCES_DIR}/placement_new.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+
+cm_test(NAME numeric_test_ublas_concepts SOURCES ${CURRENT_TEST_SOURCES_DIR}/concepts.cpp COMPILE_ONLY SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+target_compile_definitions(numeric_test_ublas_concepts PUBLIC -DEXTERNAL)
+
+cm_test(NAME numeric_test_ublas_test_lu SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_lu.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+
+cm_test(NAME numeric_test_ublas_triangular_access SOURCES ${CURRENT_TEST_SOURCES_DIR}/triangular_access.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+target_compile_definitions(numeric_test_ublas_triangular_access PUBLIC -DNOMESSAGES)
+
+cm_test(NAME numeric_test_ublas_triangular_layout SOURCES ${CURRENT_TEST_SOURCES_DIR}/triangular_layout.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME numeric_test_ublas_comp_mat_erase SOURCES ${CURRENT_TEST_SOURCES_DIR}/comp_mat_erase.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME numeric_test_ublas_sparse_view_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/sparse_view_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME numeric_test_ublas_begin_end SOURCES ${CURRENT_TEST_SOURCES_DIR}/begin_end.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME numeric_test_ublas_num_columns SOURCES ${CURRENT_TEST_SOURCES_DIR}/num_columns.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME numeric_test_ublas_num_rows SOURCES ${CURRENT_TEST_SOURCES_DIR}/num_rows.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME numeric_test_ublas_ublas_size SOURCES ${CURRENT_TEST_SOURCES_DIR}/size.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME numeric_test_ublas_test_coordinate_matrix_sort SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_coordinate_matrix_sort.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+
+cm_test(NAME numeric_test_ublas_test_coordinate_matrix_always_do_full_sort SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_coordinate_matrix_sort.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+target_compile_definitions(numeric_test_ublas_test_coordinate_matrix_always_do_full_sort PUBLIC -DBOOST_UBLAS_COO_ALWAYS_DO_FULL_SORT)
+
+cm_test(NAME numeric_test_ublas_test_complex_norms SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_complex_norms.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+
+cm_test(NAME numeric_test_ublas_test_assignment SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_assignment.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+target_compile_definitions(numeric_test_ublas_test_assignment PUBLIC -DBOOST_UBLAS_COO_ALWAYS_DO_FULL_SORT)
+
+cm_test(NAME numeric_test_ublas_ublas_test_triangular SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_triangular.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME numeric_test_ublas_test_ticket7296 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_ticket7296.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+
+cm_test(NAME numeric_test_ublas_test_inplace_solve_basic SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_inplace_solve.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+target_compile_definitions(numeric_test_ublas_test_inplace_solve_basic PUBLIC ${UBLAS_TESTSET})
+
+cm_test(NAME numeric_test_ublas_test_inplace_solve_sparse SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_inplace_solve.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+target_compile_definitions(numeric_test_ublas_test_inplace_solve_sparse PUBLIC ${UBLAS_TESTSET_SPARSE_COO})
+
+cm_test(NAME numeric_test_ublas_test_inplace_solve_mvov SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_inplace_solve.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+target_compile_definitions(numeric_test_ublas_test_inplace_solve_mvov PUBLIC -DUSE_MAPPED_VECTOR_OF_MAPPED_VECTOR)
+
+cm_test(NAME numeric_test_ublas_test_coordinate_vector_inplace_merge SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_coordinate_vector_inplace_merge.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME numeric_test_ublas_test_coordinate_matrix_inplace_merge SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_coordinate_matrix_inplace_merge.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME numeric_test_ublas_test_banded_storage_layout SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_banded_storage_layout.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME numeric_test_ublas_test_fixed_containers SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_fixed_containers.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME numeric_test_ublas_test_matrix_vector SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_matrix_vector.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})

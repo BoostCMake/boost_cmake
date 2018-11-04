@@ -1,15 +1,19 @@
-6c6
-< 
----
+6a7,8
 > #define BOOST_TEST_MAIN
-272,275c272
+> 
+225c227,229
 < boost::unit_test::test_suite * init_unit_test_suite( int, char* [])
-< {
+---
+> BOOST_AUTO_TEST_SUITE(context_test_test_context)
+> 
+> BOOST_AUTO_TEST_CASE(test_setup)
+227,228c231,232
 <     boost::unit_test::test_suite * test =
 <         BOOST_TEST_SUITE("Boost.Context: context test suite");
 ---
-> BOOST_AUTO_TEST_SUITE(boost_context_context_test_suite)
-277,285c274,317
+>     test_setup();
+> }
+230,238c234,237
 <     test->add( BOOST_TEST_CASE( & test_setup) );
 <     test->add( BOOST_TEST_CASE( & test_start) );
 <     test->add( BOOST_TEST_CASE( & test_jump) );
@@ -20,72 +24,46 @@
 <     test->add( BOOST_TEST_CASE( & test_fp) );
 <     test->add( BOOST_TEST_CASE( & test_stacked) );
 ---
-> BOOST_AUTO_TEST_CASE(test_setup_case)
->         {
->                 test_setup();
->         }
-> 
-> BOOST_AUTO_TEST_CASE(test_start_case)
->         {
->                 test_start();
->         }
-> 
-> BOOST_AUTO_TEST_CASE(test_jump_case)
->         {
->                 test_jump();
->         }
-> 
-> BOOST_AUTO_TEST_CASE(test_result_case)
->         {
->                 test_result();
->         }
-> 
-> BOOST_AUTO_TEST_CASE(test_arg_case)
->         {
->                 test_arg();
->         }
-> 
-> BOOST_AUTO_TEST_CASE(test_transfer_case)
->         {
->                 test_transfer();
->         }
-> 
-> BOOST_AUTO_TEST_CASE(test_exception_case)
->         {
->                 test_exception();
->         }
-> 
-> BOOST_AUTO_TEST_CASE(test_fp_case)
->         {
->                 test_fp();
->         }
-> 
-> BOOST_AUTO_TEST_CASE(test_stacked_case)
->         {
->                 test_stacked();
->         }
-288,290c320,333
-<     test->add( BOOST_TEST_CASE( & test_ectx) );
-<     test->add( BOOST_TEST_CASE( & test_variadric) );
-<     test->add( BOOST_TEST_CASE( & test_prealloc) );
----
-> BOOST_AUTO_TEST_CASE(test_ectx_case)
->         {
->                 test_ectx();
->         }
-> 
-> BOOST_AUTO_TEST_CASE(test_variadric_case)
->         {
->                 test_variadric();
->         }
-> 
-> BOOST_AUTO_TEST_CASE(test_prealloc_case)
->         {
->                 test_prealloc();
->         }
-293,294c336
+> BOOST_AUTO_TEST_CASE(test_start)
+> {
+>     test_start();
+> }
+240c239,241
 <     return test;
-< }
 ---
+> BOOST_AUTO_TEST_CASE(test_jump)
+> {
+>     test_jump();
+241a243,274
+> 
+> BOOST_AUTO_TEST_CASE(test_result)
+> {
+>     test_result();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_arg)
+> {
+>     test_arg();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_transfer)
+> {
+>     test_transfer();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_exception)
+> {
+>     test_exception();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_fp)
+> {
+>     test_fp();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_stacked)
+> {
+>     test_stacked();
+> }
+> 
 > BOOST_AUTO_TEST_SUITE_END()
-\ No newline at end of file

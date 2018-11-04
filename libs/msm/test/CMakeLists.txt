@@ -3,7 +3,7 @@ include(CMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_msm
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # test/Jamfile.v2 controls building of MSM Library unit tests
@@ -14,7 +14,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_msm
 # Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 # http://www.boost.org/LICENSE_1_0.txt)
 
-
+#test-suite msm-unit-tests
 cm_test(NAME msm_test_anonymous SOURCES ${CURRENT_TEST_SOURCES_DIR}/Anonymous.cpp)
 cm_test(NAME msm_test_anonymousEuml SOURCES ${CURRENT_TEST_SOURCES_DIR}/AnonymousEuml.cpp)
 cm_test(NAME msm_test_compositeEuml SOURCES ${CURRENT_TEST_SOURCES_DIR}/CompositeEuml.cpp)

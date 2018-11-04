@@ -2,11 +2,11 @@
 > #define BOOST_TEST_MAIN
 > #include <boost/test/unit_test.hpp>
 54c56
-< #include <boost/test/included/unit_test_framework.hpp> 
+< #include <boost/test/included/unit_test.hpp> 
 ---
 > BOOST_AUTO_TEST_SUITE(pointer_container_test_suite_suite)
 56,58c58
-< using boost::unit_test_framework::test_suite;
+< using boost::unit_test::test_suite;
 < 
 < test_suite* init_unit_test_suite( int argc, char* argv[] )
 ---

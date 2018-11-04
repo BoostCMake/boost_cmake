@@ -2,18 +2,15 @@ include(CMTest)
 
 patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
 
-
-
-
 find_package(${CMAKE_WORKSPACE_NAME}_date_time)
 find_package(${CMAKE_WORKSPACE_NAME}_filesystem)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_lexical_cast
-                        boost::numeric_conversion
-                        boost::date_time
-                        boost::filesystem
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::numeric_conversion
+                        ${CMAKE_WORKSPACE_NAME}::date_time
+                        ${CMAKE_WORKSPACE_NAME}::filesystem
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # Copyright (C) 2001-2003 Douglas Gregor
@@ -23,6 +20,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_lexical_cast
 # file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #
 
+#test-suite conversion
 include(CheckCXXCompilerFlag)
 
 add_library(test_lexical_cast_flags INTERFACE)
@@ -41,9 +39,6 @@ set_directory_properties(PROPERTIES CXX_WARNINGS ON)
 if(NOT MSVC)
     target_compile_options(test_lexical_cast_flags INTERFACE -Wextra -Wno-variadic-macros -Wno-c99-extensions)
 endif()
-
-# Thanks to Steven Watanabe for helping with <nowchar> feature
-# TODO: Check for wchar
 
 cm_test(NAME lexical_cast_test_lexical_cast_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/lexical_cast_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME lexical_cast_test_lexical_cast_loopback_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/lexical_cast_loopback_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
@@ -79,13 +74,10 @@ cm_test(NAME lexical_cast_test_lexical_cast_stream_traits_test SOURCES ${CMAKE_C
 cm_test(NAME lexical_cast_test_lexical_cast_to_pointer_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/lexical_cast_to_pointer_test.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME lexical_cast_test_lexical_cast_filesystem_test SOURCES ${CMAKE_CURRENT_BINARY_DIR}/lexical_cast_filesystem_test.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME lexical_cast_test_lexical_cast_try_lexical_convert SOURCES ${CMAKE_CURRENT_BINARY_DIR}/lexical_cast_try_lexical_convert.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME lexical_cast_test_lexical_cast_no_comp_time_prcision SOURCES ${CMAKE_CURRENT_BINARY_DIR}/lexical_cast_no_comp_time_prcision.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# target_compile_definitions(lexical_test_lexical_cast_no_comp_time_prcision PUBLIC )
 
 # Assuring that examples compile and run. Adding sources from `example` directory to the `conversion` test suite.
-file(GLOB BOOST_LEXICAL_CAST_EXAMPLES ../example/*.cpp)
+file(GLOB BOOST_LEXICAL_CAST_EXAMPLES ${CURRENT_TEST_SOURCES_DIR}/../example/*.cpp)
 foreach(EXAMPLE ${BOOST_LEXICAL_CAST_EXAMPLES})
     get_filename_component(NAME ${EXAMPLE} NAME_WE)
     cm_test(NAME lexical_cast_test_intrusive-${NAME} SOURCES ${EXAMPLE} SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 endforeach()
-

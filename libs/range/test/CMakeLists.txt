@@ -14,16 +14,16 @@ find_package(${CMAKE_WORKSPACE_NAME}_assign)
 find_package(${CMAKE_WORKSPACE_NAME}_lambda)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_range
-                        boost::algorithm
-                        boost::bind
-                        boost::variant
-                        boost::smart_ptr
-                        boost::unordered
-                        boost::foreach
-                        boost::test
-                        boost::phoenix
-                        boost::assign
-                        boost::lambda
+                        ${CMAKE_WORKSPACE_NAME}::algorithm
+                        ${CMAKE_WORKSPACE_NAME}::bind
+                        ${CMAKE_WORKSPACE_NAME}::variant
+                        ${CMAKE_WORKSPACE_NAME}::smart_ptr
+                        ${CMAKE_WORKSPACE_NAME}::unordered
+                        ${CMAKE_WORKSPACE_NAME}::foreach
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::phoenix
+                        ${CMAKE_WORKSPACE_NAME}::assign
+                        ${CMAKE_WORKSPACE_NAME}::lambda
                         )
 
 # Boost.Range library
@@ -42,8 +42,6 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_range
 
 # cm_test(NAME $(name) SOURCES $(name).cpp)
 
-#    [ range-test atl : <include>$(VC71_ROOT)/atlmfc/include ]
-#       [ range-test mfc : <include>$(VC71_ROOT)/atlmfc/include ]
 cm_test(NAME range_test_compile_fail_iterator_range1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_fail/iterator_range1.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME range_test_compile_fail_adaptor_adjacent_filtered_concept SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_fail/adaptor/adjacent_filtered_concept.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME range_test_compile_fail_adaptor_adjacent_filtered_concept2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_fail/adaptor/adjacent_filtered_concept2.cpp COMPILE_ONLY WILL_FAIL)
@@ -53,10 +51,6 @@ cm_test(NAME range_test_compile_fail_adaptor_copied_concept SOURCES ${CURRENT_TE
 cm_test(NAME range_test_compile_fail_adaptor_copied_concept2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_fail/adaptor/copied_concept2.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME range_test_compile_fail_adaptor_copied_concept3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_fail/adaptor/copied_concept3.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME range_test_compile_fail_adaptor_copied_concept4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_fail/adaptor/copied_concept4.cpp COMPILE_ONLY WILL_FAIL)
-cm_test(NAME range_test_compile_fail_adaptor_filtered_concept SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_fail/adaptor/filtered_concept.cpp COMPILE_ONLY WILL_FAIL)
-cm_test(NAME range_test_compile_fail_adaptor_filtered_concept2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_fail/adaptor/filtered_concept2.cpp COMPILE_ONLY WILL_FAIL)
-cm_test(NAME range_test_compile_fail_adaptor_filtered_concept3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_fail/adaptor/filtered_concept3.cpp COMPILE_ONLY WILL_FAIL)
-cm_test(NAME range_test_compile_fail_adaptor_filtered_concept4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_fail/adaptor/filtered_concept4.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME range_test_compile_fail_adaptor_reversed_concept SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_fail/adaptor/reversed_concept.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME range_test_compile_fail_adaptor_reversed_concept2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_fail/adaptor/reversed_concept2.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME range_test_compile_fail_adaptor_reversed_concept3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/compile_fail/adaptor/reversed_concept3.cpp COMPILE_ONLY WILL_FAIL)
@@ -185,6 +179,7 @@ cm_test(NAME range_test_adl_conformance_no_using SOURCES ${CURRENT_TEST_SOURCES_
 cm_test(NAME range_test_algorithm SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithm.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME range_test_algorithm_example SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithm_example.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME range_test_array SOURCES ${CMAKE_CURRENT_BINARY_DIR}/array.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+#    [ range-test atl : <include>$(VC71_ROOT)/atlmfc/include ]
 cm_test(NAME range_test_begin SOURCES ${CMAKE_CURRENT_BINARY_DIR}/begin.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME range_test_category SOURCES ${CMAKE_CURRENT_BINARY_DIR}/category.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME range_test_combine SOURCES ${CMAKE_CURRENT_BINARY_DIR}/combine.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
@@ -209,6 +204,7 @@ cm_test(NAME range_test_iterator_range_drop SOURCES ${CMAKE_CURRENT_BINARY_DIR}/
 cm_test(NAME range_test_iterator_range_equality_bug SOURCES ${CURRENT_TEST_SOURCES_DIR}/iterator_range_equality_bug.cpp)
 cm_test(NAME range_test_iterator_range_hash SOURCES ${CMAKE_CURRENT_BINARY_DIR}/iterator_range_hash.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME range_test_iterator_range_variant SOURCES ${CMAKE_CURRENT_BINARY_DIR}/iterator_range_variant.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+#       [ range-test mfc : <include>$(VC71_ROOT)/atlmfc/include ]
 cm_test(NAME range_test_join SOURCES ${CMAKE_CURRENT_BINARY_DIR}/join.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME range_test_mutable_iterator SOURCES ${CMAKE_CURRENT_BINARY_DIR}/mutable_iterator.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME range_test_partial_workaround SOURCES ${CMAKE_CURRENT_BINARY_DIR}/partial_workaround.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
@@ -230,7 +226,7 @@ cm_test(NAME range_test_ticket_5556_is_sorted_namespace SOURCES ${CMAKE_CURRENT_
 cm_test(NAME range_test_ticket_5811_indirected_optional SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ticket_5811_indirected_optional.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME range_test_ticket_6715_iterator_range_equality SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ticket_6715_iterator_range_equality.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME range_test_ticket_6944 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ticket_6944.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-# cm_test(NAME range_test_ticket_10336 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ticket_10336.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME range_test_ticket_10336 SOURCES ${CMAKE_CURRENT_BINARY_DIR}/ticket_10336.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME range_test_value_type SOURCES ${CMAKE_CURRENT_BINARY_DIR}/value_type.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 
 include_directories(${CURRENT_TEST_SOURCES_DIR})

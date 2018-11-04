@@ -1,8 +1,7 @@
-6c6
-< 
----
+6a7,8
 > #define BOOST_TEST_MAIN
-102,109c102
+> 
+102,109c104
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -12,14 +11,13 @@
 < 
 <     test->add(BOOST_TEST_CASE(&test_rolling_mean));
 ---
-> BOOST_AUTO_TEST_SUITE(rolling_mean_test)
-111c104,106
+> BOOST_AUTO_TEST_SUITE(accumulators_test_rolling_mean)
+111c106,108
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_rolling_mean_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_rolling_mean();
-112a108,109
+112a110,111
 > 
 > BOOST_AUTO_TEST_SUITE_END()
-\ No newline at end of file

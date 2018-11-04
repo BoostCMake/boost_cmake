@@ -4,8 +4,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_container)
 find_package(${CMAKE_WORKSPACE_NAME}_type_traits)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_intrusive
-                        boost::container
-                        boost::type_traits
+                        ${CMAKE_WORKSPACE_NAME}::container
+                        ${CMAKE_WORKSPACE_NAME}::type_traits
                         )
 
 # Boost Intrusive Library Test Jamfile
@@ -24,9 +24,8 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_intrusive
 # the run rule for each source, the result is a list of all
 # the run rules, which we can pass on to the test_suite rule:
 
-file(GLOB TEST_FILES *.cpp)
+file(GLOB TEST_FILES ${CURRENT_TEST_SOURCES_DIR}/*.cpp)
 foreach(FILEB ${TEST_FILES})
     get_filename_component(NAME ${FILEB} NAME_WE)
     cm_test(NAME intrusive_test_${NAME} SOURCES ${FILEB})
 endforeach()
-

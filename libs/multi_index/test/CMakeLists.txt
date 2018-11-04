@@ -3,8 +3,9 @@ include(CMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_serialization)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_multi_index
-                        boost::serialization)
+                        ${CMAKE_WORKSPACE_NAME}::serialization)
 
+#test-suite "multi_index"
 cm_test(NAME multi_index_test_test_basic SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_basic.cpp ${CURRENT_TEST_SOURCES_DIR}/test_basic_main.cpp)
 cm_test(NAME multi_index_test_test_capacity SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_capacity.cpp ${CURRENT_TEST_SOURCES_DIR}/test_capacity_main.cpp)
 cm_test(NAME multi_index_test_test_comparison SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_comparison.cpp ${CURRENT_TEST_SOURCES_DIR}/test_comparison_main.cpp)

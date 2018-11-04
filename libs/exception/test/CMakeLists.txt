@@ -6,10 +6,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_bind)
 find_package(${CMAKE_WORKSPACE_NAME}_align)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_exception
-                        boost::align
-                        boost::function
-                        boost::thread
-                        boost::bind
+                        ${CMAKE_WORKSPACE_NAME}::align
+                        ${CMAKE_WORKSPACE_NAME}::function
+                        ${CMAKE_WORKSPACE_NAME}::thread
+                        ${CMAKE_WORKSPACE_NAME}::bind
                         )
 
 # Boost Exception Library test Jamfile
@@ -21,7 +21,6 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_exception
 
 
 #to_string
-
 cm_test(NAME exception_test_is_output_streamable_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/is_output_streamable_test.cpp)
 cm_test(NAME exception_test_has_to_string_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/has_to_string_test.cpp)
 cm_test(NAME exception_test_to_string_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/to_string_test.cpp)
@@ -29,7 +28,6 @@ cm_test(NAME exception_test_to_string_stub_test SOURCES ${CURRENT_TEST_SOURCES_D
 cm_test(NAME exception_test_to_string_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/to_string_fail.cpp COMPILE_ONLY WILL_FAIL)
 
 #exception
-
 cm_test(NAME exception_test_1-throw_exception_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/1-throw_exception_test.cpp)
 cm_test(NAME exception_test_2-throw_exception_no_exceptions_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/2-throw_exception_no_exceptions_test.cpp)
 cm_test(NAME exception_test_3-throw_exception_no_integration_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/3-throw_exception_no_integration_test.cpp)
@@ -41,10 +39,7 @@ cm_test(NAME exception_test_exception_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/e
 cm_test(NAME exception_test_enable_error_info_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/enable_error_info_test.cpp ${CURRENT_TEST_SOURCES_DIR}/helper1.cpp)
 cm_test(NAME exception_test_throw_exception_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/throw_exception_test.cpp ${CURRENT_TEST_SOURCES_DIR}/helper2.cpp)
 cm_test(NAME exception_test_errno_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/errno_test.cpp)
-# cm_test(NAME exception_test_error_info_lv_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/error_info_lv_test.cpp)
-# cm_test(NAME exception_test_error_info_lv_const_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/error_info_lv_const_test.cpp)
-# cm_test(NAME exception_test_error_info_rv_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/error_info_rv_test.cpp)
-# cm_test(NAME exception_test_error_info_rv_const_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/error_info_rv_const_test.cpp)
+cm_test(NAME exception_test_error_info_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/error_info_test.cpp)
 cm_test(NAME exception_test_diagnostic_information_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/diagnostic_information_test.cpp)
 cm_test(NAME exception_test_refcount_ptr_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/refcount_ptr_test.cpp)
 cm_test(NAME exception_test_current_exception_cast_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/current_exception_cast_test.cpp)
@@ -61,7 +56,6 @@ cm_test(NAME exception_test_throw_exception_fail SOURCES ${CURRENT_TEST_SOURCES_
 cm_test(NAME exception_test_error_info_const_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/error_info_const_fail.cpp COMPILE_ONLY WILL_FAIL)
 
 #headers
-
 cm_test(NAME exception_test_exception_ptr_hpp_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/exception_ptr_hpp_test.cpp COMPILE_ONLY)
 cm_test(NAME exception_test_diagnostic_information_hpp_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/diagnostic_information_hpp_test.cpp COMPILE_ONLY)
 cm_test(NAME exception_test_error_info_hpp_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/error_info_hpp_test.cpp COMPILE_ONLY)
@@ -80,4 +74,3 @@ cm_test(NAME exception_test_errinfo_file_name_hpp_test SOURCES ${CURRENT_TEST_SO
 cm_test(NAME exception_test_errinfo_file_open_mode_hpp_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/errinfo_file_open_mode_hpp_test.cpp COMPILE_ONLY)
 cm_test(NAME exception_test_errinfo_nested_exception_hpp_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/errinfo_nested_exception_hpp_test.cpp COMPILE_ONLY)
 cm_test(NAME exception_test_errinfo_type_info_name_hpp_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/errinfo_type_info_name_hpp_test.cpp COMPILE_ONLY)
-

@@ -3,7 +3,7 @@ include(CMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_typeof)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_ratio
-                        boost::typeof
+                        ${CMAKE_WORKSPACE_NAME}::typeof
                         )
 
 # Boost Ratio Library test Jamfile
@@ -35,6 +35,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_ratio
 # remark #1418: external function definition with no prior declaration
 # remark #304: access control not specified ("public" by default)
 
+#test-suite "ratio_ratio"
 cm_test(NAME ratio_test_typedefs_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/typedefs_pass.cpp COMPILE_ONLY)
 cm_test(NAME ratio_test_ratio_ratio_ratio_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_ratio/ratio_pass.cpp COMPILE_ONLY)
 cm_test(NAME ratio_test_ratio_ratio_ratio1_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_ratio/ratio1_fail.cpp COMPILE_ONLY WILL_FAIL)
@@ -42,9 +43,11 @@ cm_test(NAME ratio_test_ratio_ratio_ratio2_fail SOURCES ${CURRENT_TEST_SOURCES_D
 cm_test(NAME ratio_test_ratio_ratio_ratio3_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_ratio/ratio3_fail.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME ratio_test_ratio_ratio_ratio4_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_ratio/ratio4_fail.cpp COMPILE_ONLY WILL_FAIL)
 
+#test-suite "ratio_io"
 cm_test(NAME ratio_test_ratio_io_ratio_io_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_io/ratio_io_fail.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME ratio_test_ratio_io_ratio_io_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_io/ratio_io_pass.cpp)
 
+#test-suite "ratio_arithmetic"
 cm_test(NAME ratio_test_ratio_arithmetic_ratio_add_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_arithmetic/ratio_add_pass.cpp COMPILE_ONLY)
 cm_test(NAME ratio_test_ratio_arithmetic_ratio_subtract_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_arithmetic/ratio_subtract_pass.cpp COMPILE_ONLY)
 cm_test(NAME ratio_test_ratio_arithmetic_ratio_multiply_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_arithmetic/ratio_multiply_pass.cpp COMPILE_ONLY)
@@ -60,6 +63,7 @@ cm_test(NAME ratio_test_ratio_arithmetic_ratio_sign_pass SOURCES ${CURRENT_TEST_
 cm_test(NAME ratio_test_ratio_arithmetic_ratio_abs_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_arithmetic/ratio_abs_pass.cpp COMPILE_ONLY)
 cm_test(NAME ratio_test_ratio_arithmetic_ratio_power_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_arithmetic/ratio_power_pass.cpp COMPILE_ONLY)
 
+#test-suite "ratio_comparison"
 cm_test(NAME ratio_test_ratio_comparison_ratio_equal_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_comparison/ratio_equal_pass.cpp COMPILE_ONLY)
 cm_test(NAME ratio_test_ratio_comparison_ratio_not_equal_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_comparison/ratio_not_equal_pass.cpp COMPILE_ONLY)
 cm_test(NAME ratio_test_ratio_comparison_ratio_less_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_comparison/ratio_less_pass.cpp COMPILE_ONLY)
@@ -67,10 +71,11 @@ cm_test(NAME ratio_test_ratio_comparison_ratio_less_equal_pass SOURCES ${CURRENT
 cm_test(NAME ratio_test_ratio_comparison_ratio_greater_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_comparison/ratio_greater_pass.cpp COMPILE_ONLY)
 cm_test(NAME ratio_test_ratio_comparison_ratio_greater_equal_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_comparison/ratio_greater_equal_pass.cpp COMPILE_ONLY)
 
+#test-suite "examples"
 cm_test(NAME ratio_test___example_si_physics SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/si_physics.cpp)
 cm_test(NAME ratio_test___example_display_ex SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/display_ex.cpp)
 
-
+#test-suite "ratio_ext"
 cm_test(NAME ratio_test_ratio_extensions_ratio_ext_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_extensions/ratio_ext_pass.cpp)
 cm_test(NAME ratio_test_ratio_extensions_mpl_plus_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_extensions/mpl_plus_pass.cpp COMPILE_ONLY)
 cm_test(NAME ratio_test_ratio_extensions_mpl_minus_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/ratio_extensions/mpl_minus_pass.cpp COMPILE_ONLY)

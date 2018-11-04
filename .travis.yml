@@ -1,23 +1,109 @@
 sudo: required
-before_install:
-  - sudo apt-get install -y zlib1g-dev libbz2-dev mpich
-  - sudo apt-get install -y python3-dev python3-pip python3-tk python3-lxml python3-six 
-  - sudo apt-get install -y libssl-dev #for OPpenSSl
-  - sudo apt-get install -y libicu-dev # for ICU  
-  - sudo apt-get install -y git
-  - sudo git clone --recurse-submodules https://github.com/boostorg/boost.git -b boost-1.58.0
-  
-# Enable C++ support
+dist: trusty
 language: cpp
 
-# Compiler selection
+git:
+  depth: false
+  quiet: true
+
+os:
+  - linux
+  - osx
+
 compiler:
   - gcc
-  
-install:
+  - clang
 
-# Build steps
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-6
+      - g++-6
+
+env:
+  - TEST_LIB1=accumulators TEST_LIB2=algorithm TEST_LIB3=align
+  - TEST_LIB1=any TEST_LIB2=array TEST_LIB3=asio
+  - TEST_LIB1=assert TEST_LIB2=assign TEST_LIB3=atomic
+  - TEST_LIB1=bimap TEST_LIB2=bind TEST_LIB3=chrono
+  - TEST_LIB1=circular_buffer TEST_LIB2=compatibility TEST_LIB3=concept_check
+  - TEST_LIB1=config TEST_LIB2=container TEST_LIB3=context
+  - TEST_LIB1=conversion TEST_LIB2=convert TEST_LIB3=core
+  - TEST_LIB1=coroutine TEST_LIB2=coroutine2 TEST_LIB3=crc
+  - TEST_LIB1=date_time TEST_LIB2=detail TEST_LIB3=disjoint_sets
+  - TEST_LIB1=dynamic_bitset TEST_LIB2=endian TEST_LIB3=exception
+  - TEST_LIB1=filesystem TEST_LIB2=flyweight TEST_LIB3=foreach
+  - TEST_LIB1=format TEST_LIB2=function TEST_LIB3=function_types
+  - TEST_LIB1=functional TEST_LIB2=fusion TEST_LIB3=None
+  - TEST_LIB1=geometry TEST_LIB2=None TEST_LIB3=None
+  - TEST_LIB1=gil TEST_LIB2=graph TEST_LIB3=heap
+  - TEST_LIB1=icl TEST_LIB2=integer TEST_LIB3=interprocess
+  - TEST_LIB1=intrusive TEST_LIB2=io TEST_LIB3=iostreams
+  - TEST_LIB1=iterator TEST_LIB2=lambda TEST_LIB3=lexical_cast
+  - TEST_LIB1=local_function TEST_LIB2=locale TEST_LIB3=lockfree
+  - TEST_LIB1=log TEST_LIB2=logic TEST_LIB3=math
+  - TEST_LIB1=move TEST_LIB2=mpi TEST_LIB3=mpl
+  - TEST_LIB1=msm TEST_LIB2=multi_array TEST_LIB3=multi_index
+  - TEST_LIB1=multiprecision TEST_LIB2=numeric_conversion TEST_LIB3=numeric_interval
+  - TEST_LIB1=numeric_odeint TEST_LIB2=numeric_ublas TEST_LIB3=optional
+  - TEST_LIB1=parameter TEST_LIB2=phoenix TEST_LIB3=polygon
+  - TEST_LIB1=pool TEST_LIB2=predef TEST_LIB3=preprocessor
+  - TEST_LIB1=program_options TEST_LIB2=property_map TEST_LIB3=property_tree
+  - TEST_LIB1=proto TEST_LIB2=ptr_container TEST_LIB3=python
+  - TEST_LIB1=random TEST_LIB2=range TEST_LIB3=ratio
+  - TEST_LIB1=rational TEST_LIB2=regex TEST_LIB3=scope_exit
+  - TEST_LIB1=serialization TEST_LIB2=signals TEST_LIB3=signals2
+  - TEST_LIB1=smart_ptr TEST_LIB2=sort TEST_LIB3=None
+  - TEST_LIB1=spirit TEST_LIB2=None TEST_LIB3=None
+  - TEST_LIB1=statechart TEST_LIB2=static_assert TEST_LIB3=system
+  - TEST_LIB1=test TEST_LIB2=thread TEST_LIB3=throw_exception
+  - TEST_LIB1=timer TEST_LIB2=tokenizer TEST_LIB3=tr1
+  - TEST_LIB1=tti TEST_LIB2=tuple TEST_LIB3=type_erasure
+  - TEST_LIB1=type_index TEST_LIB2=type_traits TEST_LIB3=typeof
+  - TEST_LIB1=units TEST_LIB2=unordered TEST_LIB3=utility
+  - TEST_LIB1=uuid TEST_LIB2=variant TEST_LIB3=wave
+  - TEST_LIB1=winapi TEST_LIB2=xpressive TEST_LIB3=xpressive
+
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      wget https://cmake.org/files/v3.10/cmake-3.10.0-Darwin-x86_64.tar.gz &&  tar xf cmake-3.10.0-Darwin-x86_64.tar.gz && export PATH="`pwd`/cmake-3.10.0-Darwin-x86_64/CMake.app/Contents/bin:$PATH";
+    fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      export CC=gcc-6;
+      export CXX=g++-6;
+      sudo apt-get install -y zlib1g-dev libbz2-dev mpich &&
+      sudo apt-get install -y python-dev python-pip python-tk python-lxml python-six &&
+      sudo apt-get install -y libssl-dev &&
+      sudo apt-get install -y libgmp-dev &&
+      sudo apt-get install -y libntl-dev &&
+      sudo apt-get install -y libgmp3-dev &&
+      sudo apt-get install -y libicu-dev libc6-dev  &&
+      sudo apt-get install -y bsdmainutils build-essential autotools-dev automake autoconf git &&
+      wget https://cmake.org/files/v3.11/cmake-3.11.0-Linux-x86_64.sh &&
+      sudo sh cmake-3.11.0-Linux-x86_64.sh --prefix=/usr/local --exclude-subdir &&
+      export PATH="/usr/local/bin:$PATH";
+    fi
+
+
+before_script:
+  - echo $(nproc)
+  - which $CXX
+  - which $CC
+  - which cmake
+  - $CXX --version
+  - $CC --version
+  - cmake --version
+  - git clone -q --recurse-submodules https://github.com/boostorg/boost.git -b boost-1.60.0
+
 script:
-  - mkdir build
-  - cd build
-  - cmake .. -DBUILD_WITH_SOURCES_DIR=../boost-1.58.0 && make Build All && make tests
+  - mkdir build && cd build && cmake .. -DBUILD_WITH_SOURCES_DIR=${TRAVIS_BUILD_DIR}/boost;
+  - if [[ "$TEST_LIB1" != "None" ]]; then
+      make -j$(nproc) tests-$TEST_LIB1;
+    fi
+  - if [[ "$TEST_LIB2" != "None" ]]; then
+      make -j$(nproc) tests-$TEST_LIB2;
+    fi
+  - if [[ "$TEST_LIB3" != "None" ]]; then
+      make -j$(nproc) tests-$TEST_LIB3;
+    fi

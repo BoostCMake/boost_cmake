@@ -1,14 +1,18 @@
 include(CMTest)
 
+patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
+
 find_package(${CMAKE_WORKSPACE_NAME}_filesystem)
 find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
 find_package(${CMAKE_WORKSPACE_NAME}_math)
+find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization
                         ${CMAKE_WORKSPACE_NAME}_wserialization
-                        boost::filesystem
-                        boost::lexical_cast
-                        boost::math
+                        ${CMAKE_WORKSPACE_NAME}::filesystem
+                        ${CMAKE_WORKSPACE_NAME}::lexical_cast
+                        ${CMAKE_WORKSPACE_NAME}::math
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # Boost serialization Library test Jamfile
@@ -17,18 +21,6 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_serialization
 #  Use, modification, and distribution are subject to the
 #  Boost Software License, Version 1.0. (See accompanying file
 #  LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
-#
-
-include(CheckIncludeFileCXX)
-# TODO: Deduce this value using Boost.Config
-# set(COMPILER_SUPPORTS_CXX11 On)
-CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
-
-# import rules for testing conditional on config file variables
-
-# import rules from the boost serialization test
-# import ../util/test : test-bsl-run-no-lib ;
-
 
 add_library(serialization_test_dll_a_lib STATIC ${CURRENT_TEST_SOURCES_DIR}/dll_a.cpp)
 target_link_libraries(serialization_test_dll_a_lib ${CMAKE_WORKSPACE_NAME}_serialization)
@@ -46,24 +38,6 @@ add_library(serialization_test_dll_polymorphic_derived2_lib STATIC ${CURRENT_TES
 target_link_libraries(serialization_test_dll_polymorphic_derived2_lib ${CMAKE_WORKSPACE_NAME}_serialization)
 cm_mark_as_test(serialization_test_dll_polymorphic_derived2_lib)
 
-
-# should compile
-# cm_test(NAME serialization_test_strong_typedef_compile SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_strong_typedef.cpp COMPILE_ONLY)
-
-# Running the following test requires that the test know the directory
-# in which the dll is stored. I don't know how to extract this from bjam
-# [ test-bsl-run test_dll_plugin : : dll_polymorphic_derived2_lib ]
-
-#[ test-bsl-run test_z ]
-
-# should fail compilation
-
-# should compile with a warning message
-# note - library unable to detect these errors for now
-#[ compile test_const_save_warn1_nvp.cpp ]
-#[ compile test_const_save_warn2_nvp.cpp ]
-#[ compile test_const_save_warn3_nvp.cpp ]
-
 function(serialization_test test_name)
     set(arglist)
     foreach(a IN ITEMS ${ARGN})
@@ -72,19 +46,32 @@ function(serialization_test test_name)
     cm_test(NAME serialization_test_${test_name} SOURCES ${CURRENT_TEST_SOURCES_DIR}/${test_name}.cpp ${arglist})
 endfunction(serialization_test)
 
-function(serialization_archive_test test_name)
+function(serialization_archive_test)
+    set(oneValueArgs NAME SOURCES)
+    set(multiValueArgs ARGS)
+    cmake_parse_arguments(PARSE "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
     set(arglist)
-    foreach(a IN ITEMS ${ARGN})
+    foreach(a IN ITEMS ${PARSE_ARGS})
         set(arglist ${arglist} ${CURRENT_TEST_SOURCES_DIR}/${a}.cpp)
     endforeach()
     foreach(
             archive-name
             IN ITEMS text_archive text_warchive binary_archive xml_archive xml_warchive
     )
-        set(amended_test_name ${test_name}_${archive-name})
-        cm_test(NAME serialization_test_${amended_test_name} SOURCES ${CURRENT_TEST_SOURCES_DIR}/${test_name}.cpp ${arglist})
+        set(amended_test_name ${PARSE_NAME}_${archive-name})
+        if (PARSE_SOURCES)
+            cm_test(NAME serialization_test_${amended_test_name} SOURCES ${PARSE_SOURCES}/${PARSE_NAME}.cpp ${arglist})
+        else()
+            cm_test(NAME serialization_test_${amended_test_name} SOURCES ${CURRENT_TEST_SOURCES_DIR}/${PARSE_NAME}.cpp ${arglist})
+        endif()
         target_compile_definitions(serialization_test_${amended_test_name} PUBLIC BOOST_ARCHIVE_TEST=${archive-name}.hpp)
+        if ((${PARSE_NAME} STREQUAL test_map_unordered) OR (${PARSE_NAME} STREQUAL test_set_unordered))
+            target_compile_options(serialization_test_${amended_test_name} PRIVATE -std=c++11)
+        endif()
+        
     endforeach()
+    
+    
 endfunction(serialization_archive_test)
 
 function(serialization_polymorphic_archive_test test_name)
@@ -102,8 +89,10 @@ function(serialization_polymorphic_archive_test test_name)
     endforeach()
 endfunction(serialization_polymorphic_archive_test)
 
-serialization_test(test_dll_exported polymorphic_derived2)
-# serialization_test(test_dll_simple polymorphic_derived2)
+serialization_test(test_dll_exported)
+target_link_libraries(serialization_test_test_dll_exported serialization_test_dll_polymorphic_derived2_lib)
+serialization_test(test_dll_simple)
+target_link_libraries(serialization_test_test_dll_simple serialization_test_dll_a_lib)
 serialization_test(test_private_ctor)
 serialization_test(test_reset_object_address A)
 serialization_test(test_void_cast)
@@ -114,102 +103,89 @@ serialization_test(test_inclusion)
 serialization_test(test_smart_cast)
 serialization_test(test_codecvt_null ../src/codecvt_null)
 serialization_test(test_utf8_codecvt ../src/utf8_codecvt_facet)
-serialization_test(test_z)
-# serialization_test(test_strong_typedef)
 
-# serialization_archive_test(test_native_array A)
-# serialization_archive_test(test_${CMAKE_WORKSPACE_NAME}_array A)
-if(COMPILER_SUPPORTS_CXX11)
-    serialization_archive_test(test_array A)
-endif()
-serialization_archive_test(test_binary)
-serialization_archive_test(test_bitset)
-serialization_archive_test(test_class_info_save)
-serialization_archive_test(test_class_info_load)
-serialization_archive_test(test_complex)
-serialization_archive_test(test_contained_class A)
-serialization_archive_test(test_cyclic_ptrs A)
-serialization_archive_test(test_delete_pointer)
-serialization_archive_test(test_deque A)
-serialization_archive_test(test_derived)
-serialization_archive_test(test_derived_class A)
-serialization_archive_test(test_derived_class_ptr A)
-serialization_archive_test(test_diamond)
-serialization_archive_test(test_diamond_complex)
-serialization_archive_test(test_exported polymorphic_base)
-# serialization_archive_test(test_forward_list A)
-# serialization_archive_test(test_forward_list_ptrs A)
-serialization_archive_test(test_helper_support)
-serialization_archive_test(test_interrupts)
-serialization_archive_test(test_list A)
-serialization_archive_test(test_list_ptrs A)
-serialization_archive_test(test_map A)
-# serialization_archive_test(test_map_${CMAKE_WORKSPACE_NAME}_unordered A)
-serialization_archive_test(test_mi)
-serialization_archive_test(test_multiple_ptrs A)
-serialization_archive_test(test_multiple_inheritance)
-serialization_archive_test(test_no_rtti polymorphic_base polymorphic_derived1)
-serialization_archive_test(test_new_operator A)
-serialization_archive_test(test_non_intrusive)
-serialization_archive_test(test_non_default_ctor)
-serialization_archive_test(test_non_default_ctor2)
-serialization_archive_test(test_null_ptr)
-serialization_archive_test(test_nvp A)
-serialization_archive_test(test_object)
-serialization_archive_test(test_optional)
-serialization_archive_test(test_primitive)
-serialization_archive_test(test_priority_queue A)
-# serialization_archive_test(test_private_base)
-# serialization_archive_test(test_private_base2)
-serialization_archive_test(test_queue A)
-serialization_archive_test(test_recursion A)
-serialization_archive_test(test_registered)
-serialization_archive_test(test_shared_ptr)
-serialization_archive_test(test_shared_ptr_multi_base)
-serialization_archive_test(test_shared_ptr_132)
-serialization_archive_test(test_simple_class A)
-serialization_archive_test(test_simple_class_ptr A)
-check_include_file_cxx(slist SLIST_FOUND)
-if(SLIST_FOUND)
-    message(STATUS "slist header found")
-    serialization_archive_test(test_slist A)
-    serialization_archive_test(test_slist_ptr A)
-else()
-    message(STATUS "slist header NOT found")
-endif()
-serialization_archive_test(test_stack A)
-serialization_archive_test(test_split)
-serialization_archive_test(test_tracking)
-serialization_archive_test(test_unregistered)
-serialization_archive_test(test_unique_ptr)
-serialization_archive_test(test_valarray)
-serialization_archive_test(test_variant A)
-serialization_archive_test(test_vector A)
-serialization_archive_test(test_set A)
-# serialization_archive_test(test_set_${CMAKE_WORKSPACE_NAME}_unordered A)
-if(COMPILER_SUPPORTS_CXX11)
-    # serialization_archive_test(test_set_unordered A)
-else()
-    check_include_file_cxx(hash_set HASH_SET_FOUND)
-    if(HASH_SET_FOUND)
-        serialization_archive_test(test_set_hashed A)
-    endif()
-endif()
-if(COMPILER_SUPPORTS_CXX11)
-    # serialization_archive_test(test_map_unordered A)
-else()
-    check_include_file_cxx(hash_map HASH_MAP_FOUND)
-    if(HASH_MAP_FOUND)
-        serialization_archive_test(test_map_hashed A)
-    endif()
-endif()
-
+#test-suite "serialization"
+serialization_archive_test(NAME test_array ARGS A)
+serialization_archive_test(NAME test_binary)
+serialization_archive_test(NAME test_bitset)
+serialization_archive_test(NAME test_class_info_save)
+serialization_archive_test(NAME test_class_info_load)
+serialization_archive_test(NAME test_complex)
+serialization_archive_test(NAME test_contained_class ARGS A)
+serialization_archive_test(NAME test_cyclic_ptrs ARGS A)
+serialization_archive_test(NAME test_delete_pointer)
+serialization_archive_test(NAME test_deque ARGS A)
+serialization_archive_test(NAME test_derived)
+serialization_archive_test(NAME test_derived_class ARGS A)
+serialization_archive_test(NAME test_derived_class_ptr ARGS A)
+serialization_archive_test(NAME test_diamond)
+serialization_archive_test(NAME test_diamond_complex)
+serialization_archive_test(NAME test_exported polymorphic_base)
+serialization_archive_test(NAME test_helper_support)
+serialization_archive_test(NAME test_interrupts)
+serialization_archive_test(NAME test_list ARGS A)
+serialization_archive_test(NAME test_list_ptrs ARGS A)
+serialization_archive_test(NAME test_map ARGS A)
+serialization_archive_test(NAME test_map_unordered ARGS A)
+serialization_archive_test(NAME test_map_boost_unordered ARGS A)
+serialization_archive_test(NAME test_mi)
+serialization_archive_test(NAME test_multiple_ptrs ARGS A)
+serialization_archive_test(NAME test_multiple_inheritance)
+# TODO: fix test. error: polymorphic_derived1.hpp:27: undefined reference to `vtable for polymorphic_derived1'
+# serialization_archive_test(NAME test_no_rtti polymorphic_base polymorphic_derived1)
+serialization_archive_test(NAME test_non_intrusive)
+serialization_archive_test(NAME test_non_default_ctor)
+serialization_archive_test(NAME test_non_default_ctor2)
+serialization_archive_test(NAME test_null_ptr)
+serialization_archive_test(NAME test_nvp ARGS A)
+serialization_archive_test(NAME test_object)
+serialization_archive_test(NAME test_primitive)
+serialization_archive_test(NAME test_priority_queue ARGS A)
+serialization_archive_test(NAME test_queue ARGS A)
+serialization_archive_test(NAME test_recursion ARGS A)
+serialization_archive_test(NAME test_registered)
+serialization_archive_test(NAME test_set ARGS A)
+serialization_archive_test(NAME test_set_hashed ARGS A)
+serialization_archive_test(NAME test_set_unordered ARGS A)
+serialization_archive_test(NAME test_set_boost_unordered ARGS A)
+serialization_archive_test(NAME test_simple_class ARGS A)
+serialization_archive_test(NAME test_simple_class_ptr ARGS A)
+serialization_archive_test(NAME test_split)
+serialization_archive_test(NAME test_stack ARGS A)
+serialization_archive_test(NAME test_tracking)
+serialization_archive_test(NAME test_unregistered)
+serialization_archive_test(NAME test_unique_ptr)
+serialization_archive_test(NAME test_valarray)
+serialization_archive_test(NAME test_variant ARGS A)
+serialization_archive_test(NAME test_vector ARGS A)
+serialization_archive_test(NAME test_new_operator ARGS A)
+serialization_archive_test(NAME test_optional)
+serialization_archive_test(NAME test_shared_ptr)
+serialization_archive_test(NAME test_shared_ptr_multi_base)
+serialization_archive_test(NAME test_shared_ptr_132)
 serialization_polymorphic_archive_test(test_polymorphic test_polymorphic_A A)
 serialization_polymorphic_archive_test(test_polymorphic2 test_polymorphic2imp)
-# serialization_polymorphic_archive_test(test_polymorphic_helper)
-
-# should compile
+serialization_polymorphic_archive_test(test_polymorphic_helper)
+        
 cm_test(NAME serialization_test_test_dll_plugin SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_dll_plugin.cpp COMPILE_ONLY)
+
+# Running the following test requires that the test know the directory 
+# in which the dll is stored. I don't know how to extract this from bjam
+# [ test-bsl-run test_dll_plugin : : dll_polymorphic_derived2_lib ]
+serialization_archive_test(NAME test_private_ctor)
+serialization_archive_test(NAME test_reset_object_address ARGS A)
+serialization_archive_test(NAME test_void_cast)
+serialization_archive_test(NAME test_mult_archive_types)
+
+serialization_archive_test(NAME test_iterators)
+serialization_archive_test(NAME test_iterators_base64)
+serialization_archive_test(NAME test_inclusion)
+serialization_archive_test(NAME test_smart_cast)
+
+serialization_archive_test(NAME test_utf8_codecvt)
+serialization_archive_test(NAME test_codecvt_null)
+
+#[ test-bsl-run-no-lib test_z ]
 cm_test(NAME serialization_test_test_not_serializable SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_not_serializable.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME serialization_test_test_traits_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_traits_fail.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME serialization_test_test_const_load_fail1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_const_load_fail1.cpp COMPILE_ONLY WILL_FAIL)
@@ -223,5 +199,10 @@ cm_test(NAME serialization_test_test_static_warning SOURCES ${CURRENT_TEST_SOURC
 cm_test(NAME serialization_test_test_const_save_warn1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_const_save_warn1.cpp COMPILE_ONLY)
 cm_test(NAME serialization_test_test_const_save_warn2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_const_save_warn2.cpp COMPILE_ONLY)
 cm_test(NAME serialization_test_test_const_save_warn3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_const_save_warn3.cpp COMPILE_ONLY)
+
+# note - library unable to detect these errors for now
+#[ compile test_const_save_warn1_nvp.cpp ]
+#[ compile test_const_save_warn2_nvp.cpp ]
+#[ compile test_const_save_warn3_nvp.cpp ]
 cm_test(NAME serialization_test_test_traits_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_traits_pass.cpp COMPILE_ONLY)
 cm_test(NAME serialization_test_test_const_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_const_pass.cpp COMPILE_ONLY)

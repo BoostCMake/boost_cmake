@@ -1,8 +1,6 @@
-11c11
-< 
----
+7a8
 > #define BOOST_TEST_MAIN
-66,71c66
+66,71c67
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -10,15 +8,14 @@
 < {
 <     test_suite *test = BOOST_TEST_SUITE("weighted_tail_mean test");
 ---
-> BOOST_AUTO_TEST_SUITE(weighted_tail_mean_test)
-73,75c68,70
+> BOOST_AUTO_TEST_SUITE(accumulators_test_weighted_tail_mean)
+73,75c69,71
 <     test->add(BOOST_TEST_CASE(&test_stat));
 < 
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-76a72,73
-> 
+77a74
 > BOOST_AUTO_TEST_SUITE_END()

@@ -4,8 +4,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_foreach)
 find_package(${CMAKE_WORKSPACE_NAME}_rational)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_scope_exit
-                        boost::foreach
-                        boost::rational
+                        ${CMAKE_WORKSPACE_NAME}::foreach
+                        ${CMAKE_WORKSPACE_NAME}::rational
                         )
 
 
@@ -21,10 +21,10 @@ function(run_vaseq target)
     target_compile_definitions(scope_exit_test_${target} PUBLIC -DBOOST_TYPEOF_EMULATION)
 
     cm_test(NAME scope_exit_test_${target}_seq SOURCES ${CURRENT_TEST_SOURCES_DIR}/${target}_seq.cpp)
-    target_compile_definitions(scope_exit_test_${target} PUBLIC -DBOOST_TYPEOF_EMULATION)
+    target_compile_definitions(scope_exit_test_${target}_seq PUBLIC -DBOOST_TYPEOF_EMULATION)
 
     cm_test(NAME scope_exit_test_${target}_seq_nova SOURCES ${CURRENT_TEST_SOURCES_DIR}/${target}_seq_nova.cpp)
-    target_compile_definitions(scope_exit_test_${target} PUBLIC -DBOOST_TYPEOF_EMULATION)
+    target_compile_definitions(scope_exit_test_${target}_seq_nova PUBLIC -DBOOST_TYPEOF_EMULATION)
 endfunction(run_vaseq)
 
 function(run_typeof native_target emulation_target)
@@ -43,18 +43,13 @@ function(compile_fail_typeof native_target emulation_target)
     target_compile_definitions(scope_exit_test_${emulation_target} PUBLIC -DBOOST_TYPEOF_EMULATION)
 endfunction(compile_fail_typeof)
 
-
 run_vaseq(same_line)
 
-if(CMAKE_COMPILER_IS_GNUCXX AND NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
     run_vaseq(world)
     run_vaseq(world_checkpoint)
+    run_vaseq(world_checkpoint_all)
 endif()
-
-#run_vaseq(world_checkpoint_all)
-#target_compile_definitions(scope_exit_test_world_checkpoint_all PRIVATE -U BOOST_NO_CXX11_LAMBDAS)
-#target_compile_definitions(scope_exit_test_world_checkpoint_all_seq PRIVATE -U BOOST_NO_CXX11_LAMBDAS)
-#target_compile_definitions(scope_exit_test_world_checkpoint_all_seq_nova PRIVATE -U BOOST_NO_CXX11_LAMBDAS)
 
 run_vaseq(world_this)
 run_vaseq(world_tpl)
@@ -74,5 +69,3 @@ cm_test(NAME scope_exit_test_native_tu_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/
 target_compile_definitions(scope_exit_test_native_tu_test PUBLIC -DBOOST_TYPEOF_NATIVE)
 cm_test(NAME scope_exit_test_emulation_tu_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/native_tu_test.cpp ${CURRENT_TEST_SOURCES_DIR}/native_tu1.cpp ${CURRENT_TEST_SOURCES_DIR}/native_tu2.cpp)
 target_compile_definitions(scope_exit_test_emulation_tu_test PUBLIC -DBOOST_TYPEOF_EMULATION)
-
-

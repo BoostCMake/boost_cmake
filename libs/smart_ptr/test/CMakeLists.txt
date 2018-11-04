@@ -5,9 +5,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_functional)
 find_package(${CMAKE_WORKSPACE_NAME}_atomic)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_smart_ptr
-                        boost::align
-                        boost::functional
-                        boost::atomic
+                        ${CMAKE_WORKSPACE_NAME}::align
+                        ${CMAKE_WORKSPACE_NAME}::functional
+                        ${CMAKE_WORKSPACE_NAME}::atomic
                         )
 
 #  Boost.SmartPtr Library test Jamfile
@@ -19,9 +19,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_smart_ptr
 #  accompanying file LICENSE_1_0.txt or copy at
 #  http://www.boost.org/LICENSE_1_0.txt)
 
-# bring in rules for testing
-
-
+#test-suite "smart_ptr"
 cm_test(NAME smart_ptr_test_smart_ptr_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/smart_ptr_test.cpp)
 cm_test(NAME smart_ptr_test_shared_ptr_basic_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_ptr_basic_test.cpp)
 cm_test(NAME smart_ptr_test_shared_ptr_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_ptr_test.cpp)
@@ -39,15 +37,11 @@ cm_test(NAME smart_ptr_test_shared_ptr_delete_fail SOURCES ${CURRENT_TEST_SOURCE
 cm_test(NAME smart_ptr_test_shared_ptr_compare_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_ptr_compare_fail.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_shared_ptr_alloc2_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_ptr_alloc2_test.cpp)
 cm_test(NAME smart_ptr_test_pointer_cast_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/pointer_cast_test.cpp)
-# cm_test(NAME smart_ptr_test_cpp11_pointer_cast_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/cpp11_pointer_cast_test.cpp)
 cm_test(NAME smart_ptr_test_pointer_to_other_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/pointer_to_other_test.cpp COMPILE_ONLY)
 cm_test(NAME smart_ptr_test_auto_ptr_rv_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/auto_ptr_rv_test.cpp)
 cm_test(NAME smart_ptr_test_shared_ptr_alias_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_ptr_alias_test.cpp)
 cm_test(NAME smart_ptr_test_shared_ptr_rv_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_ptr_rv_test.cpp)
-# cm_test(NAME smart_ptr_test_shared_ptr_rv_pointer_cast_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_ptr_rv_pointer_cast_test.cpp)
 cm_test(NAME smart_ptr_test_shared_ptr_move_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_ptr_move_test.cpp)
-# cm_test(NAME smart_ptr_test_shared_ptr_alias_move_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_ptr_alias_move_test.cpp)
-# cm_test(NAME smart_ptr_test_shared_ptr_reinterpret_pointer_cast_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_ptr_reinterpret_pointer_cast_test.cpp)
 cm_test(NAME smart_ptr_test_shared_ptr_pv_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_ptr_pv_fail.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_sp_unary_addr_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/sp_unary_addr_test.cpp)
 cm_test(NAME smart_ptr_test_scoped_ptr_eq_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/scoped_ptr_eq_fail.cpp COMPILE_ONLY WILL_FAIL)
@@ -60,7 +54,6 @@ cm_test(NAME smart_ptr_test_spinlock_try_test SOURCES ${CURRENT_TEST_SOURCES_DIR
 cm_test(NAME smart_ptr_test_spinlock_try_test.mt SOURCES ${CURRENT_TEST_SOURCES_DIR}/spinlock_try_test.cpp)
 cm_test(NAME smart_ptr_test_spinlock_pool_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/spinlock_pool_test.cpp)
 cm_test(NAME smart_ptr_test_make_shared_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/make_shared_test.cpp)
-# cm_test(NAME smart_ptr_test_make_shared_move_emulation_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/make_shared_move_emulation_test.cpp)
 cm_test(NAME smart_ptr_test_make_shared_perfect_forwarding_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/make_shared_perfect_forwarding_test.cpp)
 cm_test(NAME smart_ptr_test_shared_ptr_convertible_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_ptr_convertible_test.cpp)
 cm_test(NAME smart_ptr_test_wp_convertible_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/wp_convertible_test.cpp)
@@ -94,10 +87,10 @@ cm_test(NAME smart_ptr_test_sp_nullptr_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/
 cm_test(NAME smart_ptr_test_sa_nullptr_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/sa_nullptr_test.cpp)
 cm_test(NAME smart_ptr_test_shared_ptr_alloc3_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_ptr_alloc3_test.cpp)
 cm_test(NAME smart_ptr_test_shared_ptr_alloc11_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_ptr_alloc11_test.cpp)
-# cm_test(NAME smart_ptr_test_shared_ptr_alloc_construct11_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_ptr_alloc_construct11_test.cpp)
 cm_test(NAME smart_ptr_test_allocate_shared_alloc11_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/allocate_shared_alloc11_test.cpp)
 cm_test(NAME smart_ptr_test_allocate_shared_construct11_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/allocate_shared_construct11_test.cpp)
 cm_test(NAME smart_ptr_test_sp_interlocked_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/sp_interlocked_test.cpp)
+
 cm_test(NAME smart_ptr_test_array_fail_spa_sp_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_spa_sp_c.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_sp_spa_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_sp_spa_c.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_spa_spa_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_spa_spa_c.cpp COMPILE_ONLY WILL_FAIL)
@@ -110,6 +103,7 @@ cm_test(NAME smart_ptr_test_array_fail_wpa_wpa_c SOURCES ${CURRENT_TEST_SOURCES_
 cm_test(NAME smart_ptr_test_array_fail_ap_spa_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_ap_spa_c.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_upa_sp_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_upa_sp_c.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_up_spa_c SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_up_spa_c.cpp COMPILE_ONLY WILL_FAIL)
+
 cm_test(NAME smart_ptr_test_array_fail_spa_sp_mc SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_spa_sp_mc.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_sp_spa_mc SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_sp_spa_mc.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_spa_spa_mc SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_spa_spa_mc.cpp COMPILE_ONLY WILL_FAIL)
@@ -122,6 +116,7 @@ cm_test(NAME smart_ptr_test_array_fail_wpa_wpa_mc SOURCES ${CURRENT_TEST_SOURCES
 cm_test(NAME smart_ptr_test_array_fail_ap_spa_mc SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_ap_spa_mc.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_upa_sp_mc SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_upa_sp_mc.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_up_spa_mc SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_up_spa_mc.cpp COMPILE_ONLY WILL_FAIL)
+
 cm_test(NAME smart_ptr_test_array_fail_spa_sp_a SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_spa_sp_a.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_sp_spa_a SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_sp_spa_a.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_spa_spa_a SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_spa_spa_a.cpp COMPILE_ONLY WILL_FAIL)
@@ -134,6 +129,7 @@ cm_test(NAME smart_ptr_test_array_fail_wpa_wpa_a SOURCES ${CURRENT_TEST_SOURCES_
 cm_test(NAME smart_ptr_test_array_fail_ap_spa_a SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_ap_spa_a.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_upa_sp_a SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_upa_sp_a.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_up_spa_a SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_up_spa_a.cpp COMPILE_ONLY WILL_FAIL)
+
 cm_test(NAME smart_ptr_test_array_fail_spa_sp_ma SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_spa_sp_ma.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_sp_spa_ma SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_sp_spa_ma.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_spa_spa_ma SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_spa_spa_ma.cpp COMPILE_ONLY WILL_FAIL)
@@ -146,9 +142,11 @@ cm_test(NAME smart_ptr_test_array_fail_wpa_wpa_ma SOURCES ${CURRENT_TEST_SOURCES
 cm_test(NAME smart_ptr_test_array_fail_ap_spa_ma SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_ap_spa_ma.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_upa_sp_ma SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_upa_sp_ma.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_up_spa_ma SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_up_spa_ma.cpp COMPILE_ONLY WILL_FAIL)
+
 cm_test(NAME smart_ptr_test_array_fail_dereference SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_dereference.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_member_access SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_member_access.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME smart_ptr_test_array_fail_array_access SOURCES ${CURRENT_TEST_SOURCES_DIR}/array_fail_array_access.cpp COMPILE_ONLY WILL_FAIL)
+
 cm_test(NAME smart_ptr_test_make_shared_array_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/make_shared_array_test.cpp)
 cm_test(NAME smart_ptr_test_make_shared_arrays_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/make_shared_arrays_test.cpp)
 cm_test(NAME smart_ptr_test_make_shared_array_throws_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/make_shared_array_throws_test.cpp)
@@ -162,6 +160,7 @@ cm_test(NAME smart_ptr_test_allocate_shared_array_esft_test SOURCES ${CURRENT_TE
 cm_test(NAME smart_ptr_test_allocate_shared_array_noinit_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/allocate_shared_array_noinit_test.cpp)
 cm_test(NAME smart_ptr_test_allocate_shared_array_value_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/allocate_shared_array_value_test.cpp)
 cm_test(NAME smart_ptr_test_allocate_shared_array_construct_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/allocate_shared_array_construct_test.cpp)
+
 cm_test(NAME smart_ptr_test_make_unique_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/make_unique_test.cpp)
 cm_test(NAME smart_ptr_test_make_unique_args_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/make_unique_args_test.cpp)
 cm_test(NAME smart_ptr_test_make_unique_value_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/make_unique_value_test.cpp)
@@ -170,32 +169,23 @@ cm_test(NAME smart_ptr_test_make_unique_throws_test SOURCES ${CURRENT_TEST_SOURC
 cm_test(NAME smart_ptr_test_make_unique_array_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/make_unique_array_test.cpp)
 cm_test(NAME smart_ptr_test_make_unique_array_noinit_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/make_unique_array_noinit_test.cpp)
 cm_test(NAME smart_ptr_test_make_unique_array_throws_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/make_unique_array_throws_test.cpp)
+
 cm_test(NAME smart_ptr_test_shared_from_raw_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_from_raw_test.cpp)
 cm_test(NAME smart_ptr_test_shared_from_raw_test2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_from_raw_test2.cpp)
 cm_test(NAME smart_ptr_test_shared_from_raw_test3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_from_raw_test3.cpp)
 cm_test(NAME smart_ptr_test_shared_from_raw_test4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_from_raw_test4.cpp)
 cm_test(NAME smart_ptr_test_shared_from_raw_test5 SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_from_raw_test5.cpp)
 cm_test(NAME smart_ptr_test_shared_from_raw_test6 SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_from_raw_test6.cpp)
+
 cm_test(NAME smart_ptr_test_weak_from_raw_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/weak_from_raw_test.cpp)
 cm_test(NAME smart_ptr_test_weak_from_raw_test2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/weak_from_raw_test2.cpp)
 cm_test(NAME smart_ptr_test_weak_from_raw_test3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/weak_from_raw_test3.cpp)
 cm_test(NAME smart_ptr_test_weak_from_raw_test4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/weak_from_raw_test4.cpp)
 cm_test(NAME smart_ptr_test_weak_from_raw_test5 SOURCES ${CURRENT_TEST_SOURCES_DIR}/weak_from_raw_test5.cpp)
+
 cm_test(NAME smart_ptr_test_sp_explicit_inst_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/sp_explicit_inst_test.cpp COMPILE_ONLY)
+
 cm_test(NAME smart_ptr_test_weak_from_this_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/weak_from_this_test.cpp)
 cm_test(NAME smart_ptr_test_weak_from_this_test2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/weak_from_this_test2.cpp)
-# cm_test(NAME smart_ptr_test_sp_bml_unique_ptr_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/sp_bml_unique_ptr_test.cpp)
-# cm_test(NAME smart_ptr_test_sp_hash_test2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/sp_hash_test2.cpp)
-# cm_test(NAME smart_ptr_test_sp_hash_test3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/sp_hash_test3.cpp)
-# cm_test(NAME smart_ptr_test_pointer_cast_test2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/pointer_cast_test2.cpp)
-# cm_test(NAME smart_ptr_test_pointer_cast_st_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/pointer_cast_st_fail.cpp COMPILE_ONLY WILL_FAIL)
-# cm_test(NAME smart_ptr_test_pointer_cast_st_fail2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/pointer_cast_st_fail2.cpp COMPILE_ONLY WILL_FAIL)
-# cm_test(NAME smart_ptr_test_pointer_cast_st_fail3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/pointer_cast_st_fail3.cpp COMPILE_ONLY WILL_FAIL)
-# cm_test(NAME smart_ptr_test_pointer_cast_co_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/pointer_cast_co_fail.cpp COMPILE_ONLY WILL_FAIL)
-# cm_test(NAME smart_ptr_test_pointer_cast_co_fail2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/pointer_cast_co_fail2.cpp COMPILE_ONLY WILL_FAIL)
-# cm_test(NAME smart_ptr_test_pointer_cast_co_fail3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/pointer_cast_co_fail3.cpp COMPILE_ONLY WILL_FAIL)
-# cm_test(NAME smart_ptr_test_pointer_cast_dy_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/pointer_cast_dy_fail.cpp COMPILE_ONLY WILL_FAIL)
-# cm_test(NAME smart_ptr_test_pointer_cast_dy_fail2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/pointer_cast_dy_fail2.cpp COMPILE_ONLY WILL_FAIL)
-# cm_test(NAME smart_ptr_test_pointer_cast_dy_fail3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/pointer_cast_dy_fail3.cpp COMPILE_ONLY WILL_FAIL)
-# cm_test(NAME smart_ptr_test_sp_nothrow_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/sp_nothrow_test.cpp)
-# cm_test(NAME smart_ptr_test_make_shared_msvc_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/make_shared_msvc_test.cpp COMPILE_ONLY)
+
+cm_test(NAME smart_ptr_test_sp_bml_unique_ptr_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/sp_bml_unique_ptr_test.cpp)

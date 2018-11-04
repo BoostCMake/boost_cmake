@@ -1,8 +1,7 @@
-5c5
-< 
----
+5a6,7
 > #define BOOST_TEST_MAIN
-71,76c71
+> 
+71,76c73
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -10,15 +9,15 @@
 < {
 <     test_suite *test = BOOST_TEST_SUITE("weighted_variance test");
 ---
-> BOOST_AUTO_TEST_SUITE(weighted_variance_test)
-78,80c73,75
+> BOOST_AUTO_TEST_SUITE(accumulators_test_weighted_variance)
+78,80c75,77
 <     test->add(BOOST_TEST_CASE(&test_stat));
 < 
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-81a77,78
+81a79,80
 > 
 > BOOST_AUTO_TEST_SUITE_END()

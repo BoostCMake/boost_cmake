@@ -1,8 +1,6 @@
-7c7
-< 
----
+5a6
 > #define BOOST_TEST_MAIN
-91,96c91
+91,96c92
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
@@ -10,15 +8,15 @@
 < {
 <     test_suite *test = BOOST_TEST_SUITE("covariance test");
 ---
-> BOOST_AUTO_TEST_SUITE(covariance_test)
-98,100c93,95
+> BOOST_AUTO_TEST_SUITE(accumulators_test_covariance)
+98,100c94,96
 <     test->add(BOOST_TEST_CASE(&test_stat));
 < 
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-101a97,98
+101a98,99
 > 
 > BOOST_AUTO_TEST_SUITE_END()

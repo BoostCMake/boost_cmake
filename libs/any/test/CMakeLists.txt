@@ -4,8 +4,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_move)
 find_package(${CMAKE_WORKSPACE_NAME}_functional)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_any
-                        boost::move
-                        boost::functional
+                        ${CMAKE_WORKSPACE_NAME}::move
+                        ${CMAKE_WORKSPACE_NAME}::functional
                         )
 
 cm_test(NAME any_test_any_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/any_test.cpp)

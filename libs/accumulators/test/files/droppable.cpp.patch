@@ -1,37 +1,35 @@
-5c5
-< 
----
+5a6,7
 > #define BOOST_TEST_MAIN
-130,133c130,132
+> 
+130,133c132,134
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
 < test_suite* init_unit_test_suite( int argc, char* argv[] )
 ---
-> BOOST_AUTO_TEST_SUITE(droppable_test)
+> BOOST_AUTO_TEST_SUITE(accumulators_test_droppable)
 > 
-> BOOST_AUTO_TEST_CASE(test_stat_case)
-135c134,135
+> BOOST_AUTO_TEST_CASE(test_stat)
+135c136,137
 <     test_suite *test = BOOST_TEST_SUITE("droppable test");
 ---
 >     test_stat();
 > }
-137,139c137,140
+137,139c139,142
 <     test->add(BOOST_TEST_CASE(&test_stat));
 <     test->add(BOOST_TEST_CASE(&test_stat2));
 <     test->add(BOOST_TEST_CASE(&test_stat3));
 ---
-> BOOST_AUTO_TEST_CASE(test_stat2_case)
+> BOOST_AUTO_TEST_CASE(test_stat2)
 > {
 >     test_stat2();
 > }
-141c142,144
+141c144,146
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat3_case)
+> BOOST_AUTO_TEST_CASE(test_stat3)
 > {
 >     test_stat3();
-142a146,147
+142a148,149
 > 
 > BOOST_AUTO_TEST_SUITE_END()
-\ No newline at end of file

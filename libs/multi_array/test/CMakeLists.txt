@@ -4,8 +4,8 @@ find_package(${CMAKE_WORKSPACE_NAME}_detail)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_multi_array
-                        boost::detail
-                        boost::test
+                        ${CMAKE_WORKSPACE_NAME}::detail
+                        ${CMAKE_WORKSPACE_NAME}::test
                         )
 
 # Copyright David Abrahams 2003. Permission to copy, use,
@@ -14,7 +14,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_multi_array
 # "as is" without express or implied warranty, and with no claim as
 # to its suitability for any purpose.
 
-
+#test-suite multi_array
 cm_test(NAME multi_array_test_fail_cbracket SOURCES ${CURRENT_TEST_SOURCES_DIR}/fail_cbracket.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME multi_array_test_fail_cdata SOURCES ${CURRENT_TEST_SOURCES_DIR}/fail_cdata.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME multi_array_test_fail_citerator SOURCES ${CURRENT_TEST_SOURCES_DIR}/fail_citerator.cpp COMPILE_ONLY WILL_FAIL)
@@ -37,6 +37,7 @@ cm_test(NAME multi_array_test_fail_ref_csubarray3 SOURCES ${CURRENT_TEST_SOURCES
 cm_test(NAME multi_array_test_fail_ref_cview SOURCES ${CURRENT_TEST_SOURCES_DIR}/fail_ref_cview.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME multi_array_test_fail_ref_cview2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/fail_ref_cview2.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME multi_array_test_fail_ref_cview3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/fail_ref_cview3.cpp COMPILE_ONLY WILL_FAIL)
+
 cm_test(NAME multi_array_test_constructors SOURCES ${CURRENT_TEST_SOURCES_DIR}/constructors.cpp)
 cm_test(NAME multi_array_test_access SOURCES ${CURRENT_TEST_SOURCES_DIR}/access.cpp)
 cm_test(NAME multi_array_test_compare SOURCES ${CURRENT_TEST_SOURCES_DIR}/compare.cpp)
@@ -54,5 +55,5 @@ cm_test(NAME multi_array_test_stl_interaction SOURCES ${CURRENT_TEST_SOURCES_DIR
 cm_test(NAME multi_array_test_resize SOURCES ${CURRENT_TEST_SOURCES_DIR}/resize.cpp)
 cm_test(NAME multi_array_test_assert SOURCES ${CURRENT_TEST_SOURCES_DIR}/assert.cpp)
 cm_test(NAME multi_array_test_reverse_view SOURCES ${CURRENT_TEST_SOURCES_DIR}/reverse_view.cpp)
-cm_test(NAME multi_array_test_concept_checks SOURCES ${CURRENT_TEST_SOURCES_DIR}/concept_checks.cpp COMPILE_ONLY)
 
+cm_test(NAME multi_array_test_concept_checks SOURCES ${CURRENT_TEST_SOURCES_DIR}/concept_checks.cpp COMPILE_ONLY)

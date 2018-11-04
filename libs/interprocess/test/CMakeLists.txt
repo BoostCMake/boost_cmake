@@ -5,9 +5,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_multi_index)
 find_package(${CMAKE_WORKSPACE_NAME}_timer)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_interprocess
-                        boost::functional
-                        boost::multi_index
-                        boost::timer
+                        ${CMAKE_WORKSPACE_NAME}::functional
+                        ${CMAKE_WORKSPACE_NAME}::multi_index
+                        ${CMAKE_WORKSPACE_NAME}::timer
                         )
 
 # Boost Interprocess Library Test Jamfile
@@ -27,9 +27,8 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_interprocess
 # the run rule for each source, the result is a list of all
 # the run rules, which we can pass on to the test_suite rule:
 
-file(GLOB TEST_FILES *.cpp)
+file(GLOB TEST_FILES ${CURRENT_TEST_SOURCES_DIR}/*.cpp)
 foreach(FILEB ${TEST_FILES})
     get_filename_component(NAME ${FILEB} NAME_WE)
     cm_test(NAME interprocess_test_${NAME} SOURCES ${FILEB})
 endforeach()
-

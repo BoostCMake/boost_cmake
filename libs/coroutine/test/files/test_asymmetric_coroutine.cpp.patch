@@ -2,10 +2,6 @@
 < 
 ---
 > #define BOOST_TEST_MAIN
-26c26
-< #include <boost/coroutine/asymmetric_coroutine.hpp>
----
-> #include <boost/coroutine/asymmetric_coroutine_patched.hpp>
 52c52
 <         state( false)
 ---
@@ -70,7 +66,7 @@
 >         catched = true;
 544a545
 > 
-579c580,612
+600c601,668
 < boost::unit_test::test_suite * init_unit_test_suite( int, char* [])
 ---
 > BOOST_AUTO_TEST_SUITE(boost_coroutine_asymmetric_coroutine_test_suite)
@@ -106,40 +102,15 @@
 > }
 > 
 > BOOST_AUTO_TEST_CASE(test_arg_string_case)
-581,582c614,615
-<     boost::unit_test::test_suite * test =
-<         BOOST_TEST_SUITE("Boost.coroutine: asymmetric coroutine test suite");
----
+> {
 >     test_arg_string();
 > }
-584,602c617,620
-<     test->add( BOOST_TEST_CASE( & test_move) );
-<     test->add( BOOST_TEST_CASE( & test_complete) );
-<     test->add( BOOST_TEST_CASE( & test_jump) );
-<     test->add( BOOST_TEST_CASE( & test_result_int) );
-<     test->add( BOOST_TEST_CASE( & test_result_string) );
-<     test->add( BOOST_TEST_CASE( & test_arg_int) );
-<     test->add( BOOST_TEST_CASE( & test_arg_string) );
-<     test->add( BOOST_TEST_CASE( & test_fp) );
-<     test->add( BOOST_TEST_CASE( & test_ptr) );
-<     test->add( BOOST_TEST_CASE( & test_const_ptr) );
-<     test->add( BOOST_TEST_CASE( & test_invalid_result) );
-<     test->add( BOOST_TEST_CASE( & test_ref) );
-<     test->add( BOOST_TEST_CASE( & test_const_ref) );
-<     test->add( BOOST_TEST_CASE( & test_tuple) );
-<     test->add( BOOST_TEST_CASE( & test_unwind) );
-<     test->add( BOOST_TEST_CASE( & test_no_unwind) );
-<     test->add( BOOST_TEST_CASE( & test_exceptions) );
-<     test->add( BOOST_TEST_CASE( & test_input_iterator) );
-<     test->add( BOOST_TEST_CASE( & test_output_iterator) );
----
+> 
 > BOOST_AUTO_TEST_CASE(test_fp_case)
 > {
 >     test_fp();
 > }
-604c622,674
-<     return test;
----
+> 
 > BOOST_AUTO_TEST_CASE(test_ptr_case)
 > {
 >     test_ptr();
@@ -166,7 +137,10 @@
 > }
 > 
 > BOOST_AUTO_TEST_CASE(test_tuple_case)
-> {
+602,603c670,681
+<     boost::unit_test::test_suite * test =
+<         BOOST_TEST_SUITE("Boost.coroutine: asymmetric coroutine test suite");
+---
 >     test_tuple();
 > }
 > 
@@ -179,20 +153,43 @@
 > {
 >     test_no_unwind();
 > }
-> 
+605,624c683,686
+<     test->add( BOOST_TEST_CASE( & test_move) );
+<     test->add( BOOST_TEST_CASE( & test_complete) );
+<     test->add( BOOST_TEST_CASE( & test_jump) );
+<     test->add( BOOST_TEST_CASE( & test_result_int) );
+<     test->add( BOOST_TEST_CASE( & test_result_string) );
+<     test->add( BOOST_TEST_CASE( & test_arg_int) );
+<     test->add( BOOST_TEST_CASE( & test_arg_string) );
+<     test->add( BOOST_TEST_CASE( & test_fp) );
+<     test->add( BOOST_TEST_CASE( & test_ptr) );
+<     test->add( BOOST_TEST_CASE( & test_const_ptr) );
+<     test->add( BOOST_TEST_CASE( & test_invalid_result) );
+<     test->add( BOOST_TEST_CASE( & test_ref) );
+<     test->add( BOOST_TEST_CASE( & test_const_ref) );
+<     test->add( BOOST_TEST_CASE( & test_tuple) );
+<     test->add( BOOST_TEST_CASE( & test_unwind) );
+<     test->add( BOOST_TEST_CASE( & test_no_unwind) );
+<     test->add( BOOST_TEST_CASE( & test_exceptions) );
+<     test->add( BOOST_TEST_CASE( & test_input_iterator) );
+<     test->add( BOOST_TEST_CASE( & test_output_iterator) );
+<     test->add( BOOST_TEST_CASE( & test_range) );
+---
 > BOOST_AUTO_TEST_CASE(test_exceptions_case)
 > {
 >     test_exceptions();
 > }
-> 
+626c688,690
+<     return test;
+---
 > BOOST_AUTO_TEST_CASE(test_input_iterator_case)
 > {
 >     test_input_iterator();
-> }
+627a692,698
 > 
 > BOOST_AUTO_TEST_CASE(test_output_iterator_case)
 > {
 >     test_output_iterator();
-605a676
+> }
+> 
 > BOOST_AUTO_TEST_SUITE_END()
-\ No newline at end of file

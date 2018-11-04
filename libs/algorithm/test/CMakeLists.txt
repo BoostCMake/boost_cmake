@@ -3,8 +3,8 @@ include(CMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_test)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_algorithm
-boost::test
-)
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        )
 
 #  Boost algorithm library test suite Jamfile  ----------------------------
 #
@@ -61,10 +61,3 @@ cm_test(NAME algorithm_test_hex_fail1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/hex_fa
 # Gather tests
 cm_test(NAME algorithm_test_gather_test1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/gather_test1.cpp)
 cm_test(NAME algorithm_test_gather_fail1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/gather_fail1.cpp COMPILE_ONLY WILL_FAIL)
-
-# SortSubrange tests
-# cm_test(NAME algorithm_test_sort_subrange_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/sort_subrange_test.cpp)
-# cm_test(NAME algorithm_test_partition_subrange_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/partition_subrange_test.cpp)
-
-# Is_palindrome tests
-# cm_test(NAME algorithm_test_is_palindrome_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/is_palindrome_test.cpp)

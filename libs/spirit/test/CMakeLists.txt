@@ -8,12 +8,12 @@ find_package(${CMAKE_WORKSPACE_NAME}_assign)
 find_package(${CMAKE_WORKSPACE_NAME}_lambda)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_spirit
-                        boost::random
-                        boost::functional
-                        boost::dynamic_bitset
-                        boost::bind
-                        boost::assign
-                        boost::lambda
+                        ${CMAKE_WORKSPACE_NAME}::random
+                        ${CMAKE_WORKSPACE_NAME}::functional
+                        ${CMAKE_WORKSPACE_NAME}::dynamic_bitset
+                        ${CMAKE_WORKSPACE_NAME}::bind
+                        ${CMAKE_WORKSPACE_NAME}::assign
+                        ${CMAKE_WORKSPACE_NAME}::lambda
                         )
 
 #==============================================================================
@@ -26,20 +26,11 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_spirit
 #   http://www.boost.org/LICENSE_1_0.txt)
 #==============================================================================
 
-# bring in rules for testing
-
-###############################################################################
-
 add_library(test_spirit_flags INTERFACE)
 target_include_directories(test_spirit_flags INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
 cm_test_link_libraries(test_spirit_flags)
 
-
-###############################################################################
-
-###########################################################################
-
-
+#test-suite spirit_v2/qi
 cm_test(NAME spirit_test_qi_actions SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/actions.cpp)
 cm_test(NAME spirit_test_qi_actions2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/actions2.cpp)
 cm_test(NAME spirit_test_qi_alternative SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/alternative.cpp)
@@ -114,10 +105,7 @@ cm_test(NAME spirit_test_qi_utree2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/utree2
 cm_test(NAME spirit_test_qi_utree3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/utree3.cpp)
 cm_test(NAME spirit_test_qi_utree4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/utree4.cpp)
 
-###########################################################################
-
-
-#[ run qi/regression_float_fraction.cpp                      : : : : qi_regression_float_fraction ]
+#test-suite spirit_v2/qi_regressions
 cm_test(NAME spirit_test_qi_pass_container3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/pass_container3.cpp COMPILE_ONLY)
 cm_test(NAME spirit_test_qi_regression_attr_with_action SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_attr_with_action.cpp COMPILE_ONLY)
 cm_test(NAME spirit_test_qi_regression_container_attribute SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_container_attribute.cpp COMPILE_ONLY)
@@ -127,6 +115,7 @@ cm_test(NAME spirit_test_qi_regression_one_element_fusion_sequence SOURCES ${CUR
 cm_test(NAME spirit_test_qi_regression_one_element_sequence_attribute SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_one_element_sequence_attribute.cpp COMPILE_ONLY)
 cm_test(NAME spirit_test_qi_regression_adapt_adt SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_adapt_adt.cpp)
 cm_test(NAME spirit_test_qi_regression_clear SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_clear.cpp)
+#[ run qi/regression_float_fraction.cpp                      : : : : qi_regression_float_fraction ]
 cm_test(NAME spirit_test_qi_regression_lazy_repeat SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_lazy_repeat.cpp)
 cm_test(NAME spirit_test_qi_regression_numeric_alternatives SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_numeric_alternatives.cpp)
 cm_test(NAME spirit_test_qi_regression_reorder SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_reorder.cpp)
@@ -135,9 +124,7 @@ cm_test(NAME spirit_test_qi_regression_transform_assignment SOURCES ${CURRENT_TE
 cm_test(NAME spirit_test_qi_regression_binary_action SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_binary_action.cpp)
 cm_test(NAME spirit_test_qi_regression_stream_eof SOURCES ${CURRENT_TEST_SOURCES_DIR}/qi/regression_stream_eof.cpp)
 
-###########################################################################
-
-
+#test-suite spirit_v2/karma
 cm_test(NAME spirit_test_karma_grammar_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/grammar_fail.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME spirit_test_karma_rule_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/rule_fail.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME spirit_test_karma_actions SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/actions.cpp)
@@ -209,9 +196,7 @@ cm_test(NAME spirit_test_karma_utree2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/
 cm_test(NAME spirit_test_karma_utree3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/utree3.cpp)
 cm_test(NAME spirit_test_karma_wstream SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/wstream.cpp)
 
-###########################################################################
-
-
+#test-suite spirit_v2/karma_regressions
 cm_test(NAME spirit_test_regression_const_real_policies SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/regression_const_real_policies.cpp COMPILE_ONLY)
 cm_test(NAME spirit_test_karma_regression_adapt_adt SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/regression_adapt_adt.cpp)
 cm_test(NAME spirit_test_karma_regression_optional_double SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/regression_optional_double.cpp)
@@ -223,9 +208,7 @@ cm_test(NAME spirit_test_karma_regression_real_0 SOURCES ${CURRENT_TEST_SOURCES_
 cm_test(NAME spirit_test_karma_regression_unicode_char SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/regression_unicode_char.cpp)
 cm_test(NAME spirit_test_karma_regression_iterator SOURCES ${CURRENT_TEST_SOURCES_DIR}/karma/regression_iterator.cpp)
 
-###########################################################################
-
-
+#test-suite spirit_v2/lex
 cm_test(NAME spirit_test_lex_auto_switch_lexerstate SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/auto_switch_lexerstate.cpp)
 cm_test(NAME spirit_test_lex_dedent_handling_phoenix SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/dedent_handling_phoenix.cpp)
 cm_test(NAME spirit_test_lex_id_type_enum SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/id_type_enum.cpp)
@@ -245,8 +228,10 @@ cm_test(NAME spirit_test_lex_token_moretypes SOURCES ${CURRENT_TEST_SOURCES_DIR}
 cm_test(NAME spirit_test_lex_token_omit SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/token_omit.cpp)
 cm_test(NAME spirit_test_lex_token_onetype SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/token_onetype.cpp)
 
-###########################################################################
-
+#test-suite spirit_v2/lex_regressions
+cm_test(NAME spirit_test_lex_regression_basic_lexer SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_basic_lexer.cpp)
+cm_test(NAME spirit_test_lex_regression_matlib_dynamic SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_matlib_dynamic.cpp)
+cm_test(NAME spirit_test_lex_regression_matlib_generate SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_matlib_generate.cpp)
 #     [ run lex/regression_matlib_static.cpp : : :
 #       <phoenix_v3>on:<dependency>.//lex_regression_matlib_generate-p3
 #       <phoenix_v3>off:<dependency>.//lex_regression_matlib_generate-p2
@@ -255,10 +240,6 @@ cm_test(NAME spirit_test_lex_token_onetype SOURCES ${CURRENT_TEST_SOURCES_DIR}/l
 #       <phoenix_v3>on:<dependency>.//lex_regression_matlib_generate_switch-p3
 #       <phoenix_v3>off:<dependency>.//lex_regression_matlib_generate_switch-p2
 #         : lex_regression_matlib_switch ]
-
-cm_test(NAME spirit_test_lex_regression_basic_lexer SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_basic_lexer.cpp)
-cm_test(NAME spirit_test_lex_regression_matlib_dynamic SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_matlib_dynamic.cpp)
-cm_test(NAME spirit_test_lex_regression_matlib_generate SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_matlib_generate.cpp)
 cm_test(NAME spirit_test_lex_regression_matlib_generate_switch SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_matlib_generate_switch.cpp)
 cm_test(NAME spirit_test_lex_regression_word_count SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_word_count.cpp)
 cm_test(NAME spirit_test_lex_regression_syntax_error SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_syntax_error.cpp)
@@ -270,15 +251,11 @@ cm_test(NAME spirit_test_lex_regression_file_iterator4 SOURCES ${CURRENT_TEST_SO
 cm_test(NAME spirit_test_regression_static_wide_6253 SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_static_wide_6253.cpp)
 cm_test(NAME spirit_test_regression_less_8563 SOURCES ${CURRENT_TEST_SOURCES_DIR}/lex/regression_less_8563.cpp)
 
-###########################################################################
-
-
+#test-suite spirit_v2/support
 cm_test(NAME spirit_test_support_utree SOURCES ${CURRENT_TEST_SOURCES_DIR}/support/utree.cpp)
 cm_test(NAME spirit_test_support_utree_debug SOURCES ${CURRENT_TEST_SOURCES_DIR}/support/utree_debug.cpp)
 
-###########################################################################
-
-
+#test-suite spirit_v2/support_regressions
 cm_test(NAME spirit_test_support_regression_multi_pass_position_iterator SOURCES ${CURRENT_TEST_SOURCES_DIR}/support/regression_multi_pass_position_iterator.cpp COMPILE_ONLY)
 cm_test(NAME spirit_test_support_regression_multi_pass_functor SOURCES ${CURRENT_TEST_SOURCES_DIR}/support/regression_multi_pass_functor.cpp COMPILE_ONLY)
 cm_test(NAME spirit_test_support_regression_multi_pass_parse SOURCES ${CURRENT_TEST_SOURCES_DIR}/support/regression_multi_pass_parse.cpp COMPILE_ONLY)

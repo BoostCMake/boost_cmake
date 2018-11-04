@@ -5,9 +5,9 @@ find_package(${CMAKE_WORKSPACE_NAME}_test)
 find_package(${CMAKE_WORKSPACE_NAME}_chrono)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_log
-                        boost::detail
-                        boost::test
-                        boost::chrono
+                        ${CMAKE_WORKSPACE_NAME}::detail
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::chrono
                         )
 
 #
@@ -46,15 +46,18 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_log_test_common ${CMAKE_WORKSPACE
 # this rule enumerates through all the sources and invokes
 # the run rule for each source, the result is a list of all
 # the run rules, which we can pass on to the test_suite rule:
-file(GLOB_RECURSE HEADERS RELATIVE ../include ../include/*.hpp)
+file(GLOB_RECURSE HEADERS RELATIVE ${CURRENT_TEST_SOURCES_DIR}/../include/boost/log ${CURRENT_TEST_SOURCES_DIR}/../include/boost/log/*.hpp)
 foreach(HEADER ${HEADERS})
     if(NOT "${HEADER}" MATCHES "detail")
-        get_filename_component(NAME ${HEADER} NAME_WE)
-        cm_test_header(NAME log_test_header_${NAME} HEADER ${HEADER} STATIC)
+        get_filename_component(PATH ${HEADER} DIRECTORY)
+        string(REPLACE "/" "_" NAME ${HEADER})
+        string(REPLACE ".hpp" "" NAME ${NAME})
+        cm_test_header(NAME log_test_header_${NAME} HEADER ${CURRENT_TEST_SOURCES_DIR}/../include/boost/log/${HEADER} STATIC)
+        target_include_directories(log_test_header_${NAME} PRIVATE ${CURRENT_TEST_SOURCES_DIR}/../include/boost/log/${PATH})
     endif()
 endforeach()
 
-file(GLOB COMPILE_TEST_FILES compile/*.cpp)
+file(GLOB COMPILE_TEST_FILES ${CURRENT_TEST_SOURCES_DIR}/compile/*.cpp)
 foreach(FILEB ${COMPILE_TEST_FILES})
     get_filename_component(NAME ${FILEB} NAME_WE)
     if(NOT "${NAME}" MATCHES "self_contained_header")
@@ -63,7 +66,7 @@ foreach(FILEB ${COMPILE_TEST_FILES})
 endforeach()
 
 
-file(GLOB COMPILE_TEST_FILES compile_fail/*.cpp)
+file(GLOB COMPILE_TEST_FILES ${CURRENT_TEST_SOURCES_DIR}/compile_fail/*.cpp)
 foreach(FILEB ${COMPILE_TEST_FILES})
     get_filename_component(NAME ${FILEB} NAME_WE)
     if(NOT "${NAME}" MATCHES "self_contained_header")
@@ -71,9 +74,9 @@ foreach(FILEB ${COMPILE_TEST_FILES})
     endif()
 endforeach()
 
-file(GLOB COMPILE_TEST_FILES run/*.cpp)
+file(GLOB COMPILE_TEST_FILES ${CURRENT_TEST_SOURCES_DIR}/run/*.cpp)
 foreach(FILEB ${COMPILE_TEST_FILES})
     get_filename_component(NAME ${FILEB} NAME_WE)
     cm_test(NAME log_test_run_${NAME} SOURCES ${FILEB})
+    target_include_directories(log_test_run_${NAME} PRIVATE ${CURRENT_TEST_SOURCES_DIR}/common)
 endforeach()
-

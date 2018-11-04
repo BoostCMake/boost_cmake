@@ -1,25 +1,23 @@
-5c5,6
-< 
----
+5a6,7
 > #define BOOST_TEST_MAIN
-> #include <boost/test/unit_test.hpp>
-170,177c171
+> 
+170,175c172
 < ///////////////////////////////////////////////////////////////////////////////
 < // init_unit_test_suite
 < //
 < test_suite* init_unit_test_suite( int argc, char* argv[] )
 < {
 <     test_suite *test = BOOST_TEST_SUITE("valarray test");
-< 
-<     test->add(BOOST_TEST_CASE(&test_stat));
 ---
-> BOOST_AUTO_TEST_SUITE(valarray_test)
-179c173,175
+> BOOST_AUTO_TEST_SUITE(accumulators_test_valarray)
+177,179c174,176
+<     test->add(BOOST_TEST_CASE(&test_stat));
+< 
 <     return test;
 ---
-> BOOST_AUTO_TEST_CASE(test_stat_case)
+> BOOST_AUTO_TEST_CASE(test_stat)
 > {
 >     test_stat();
-180a177,178
+180a178,179
 > 
 > BOOST_AUTO_TEST_SUITE_END()

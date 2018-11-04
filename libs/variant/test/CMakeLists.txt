@@ -6,10 +6,10 @@ find_package(${CMAKE_WORKSPACE_NAME}_lexical_cast)
 find_package(${CMAKE_WORKSPACE_NAME}_array)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_variant
-                        boost::fusion
-                        boost::test
-                        boost::lexical_cast
-                        boost::array
+                        ${CMAKE_WORKSPACE_NAME}::fusion
+                        ${CMAKE_WORKSPACE_NAME}::test
+                        ${CMAKE_WORKSPACE_NAME}::lexical_cast
+                        ${CMAKE_WORKSPACE_NAME}::array
                         )
 
 #  Boost.Variant Library test Jamfile
@@ -34,7 +34,6 @@ cm_test(NAME variant_test_test5 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test5.cpp)
 cm_test(NAME variant_test_test6 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test6.cpp)
 cm_test(NAME variant_test_test7 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test7.cpp)
 cm_test(NAME variant_test_test8 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test8.cpp)
-# cm_test(NAME variant_test_test9 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test9.cpp)
 cm_test(NAME recursive_variant_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/recursive_variant_test.cpp)
 cm_test(NAME variant_test_variant_reference_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/variant_reference_test.cpp)
 cm_test(NAME variant_test_variant_comparison_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/variant_comparison_test.cpp)
@@ -50,8 +49,5 @@ target_compile_definitions(variant_test_ecursive_variant_test PUBLIC BOOST_NO_EX
 cm_test(NAME variant_test_ecursive_variant_test_no_rtti SOURCES ${CURRENT_TEST_SOURCES_DIR}/recursive_variant_test.cpp)
 set_target_properties(variant_test_ecursive_variant_test_no_rtti PROPERTIES CXX_RTTI off)
 target_compile_definitions(variant_test_ecursive_variant_test_no_rtti PUBLIC BOOST_NO_TYPEID)
-# cm_test(NAME hash_recursive_variant_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/hash_recursive_variant_test.cpp)
 cm_test(NAME variant_test_variant_swap_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/variant_swap_test.cpp)
 cm_test(NAME variant_test_auto_visitors SOURCES ${CURRENT_TEST_SOURCES_DIR}/auto_visitors.cpp)
-# cm_test(NAME overload_selection SOURCES ${CURRENT_TEST_SOURCES_DIR}/overload_selection.cpp)
-# cm_test(NAME recursive_wrapper_move_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/recursive_wrapper_move_test.cpp)

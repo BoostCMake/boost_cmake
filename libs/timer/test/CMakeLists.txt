@@ -3,7 +3,7 @@ include(CMTest)
 find_package(${CMAKE_WORKSPACE_NAME}_detail)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_timer
-                        boost::detail
+                        ${CMAKE_WORKSPACE_NAME}::detail
                         )
 
 # Boost Timer Library test Jamfile
@@ -30,4 +30,3 @@ cm_test(NAME timer_test_cpu_timer_info SOURCES ${CURRENT_TEST_SOURCES_DIR}/cpu_t
 cm_test(NAME timer_test_cpu_timer_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/cpu_timer_test.cpp)
 cm_test(NAME timer_test___example_timex SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/timex.cpp ARGS echo "Hello, world")
 cm_test(NAME timer_test_original_timer_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/original_timer_test.cpp COMPILE_ONLY)
-
