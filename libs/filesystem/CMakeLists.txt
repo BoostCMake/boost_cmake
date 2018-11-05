@@ -19,7 +19,7 @@ find_package(${CMAKE_WORKSPACE_NAME}_smart_ptr)
 find_package(${CMAKE_WORKSPACE_NAME}_io)
 find_package(${CMAKE_WORKSPACE_NAME}_config)
 
-cm_setup_version(VERSION 1.60.0)
+cm_setup_version(VERSION 1.61.0)
 
 add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
         ${CURRENT_SOURCES_DIR}/src/path_traits.cpp

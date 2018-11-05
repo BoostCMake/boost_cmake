@@ -89,27 +89,15 @@ function(serialization_polymorphic_archive_test test_name)
     endforeach()
 endfunction(serialization_polymorphic_archive_test)
 
-serialization_test(test_dll_exported)
-target_link_libraries(serialization_test_test_dll_exported serialization_test_dll_polymorphic_derived2_lib)
-serialization_test(test_dll_simple)
-target_link_libraries(serialization_test_test_dll_simple serialization_test_dll_a_lib)
-serialization_test(test_private_ctor)
-serialization_test(test_reset_object_address A)
-serialization_test(test_void_cast)
-serialization_test(test_mult_archive_types)
-serialization_test(test_iterators)
-serialization_test(test_iterators_base64)
-serialization_test(test_inclusion)
-serialization_test(test_smart_cast)
-serialization_test(test_codecvt_null ../src/codecvt_null)
-serialization_test(test_utf8_codecvt ../src/utf8_codecvt_facet)
 
 #test-suite "serialization"
 serialization_archive_test(NAME test_array ARGS A)
+serialization_archive_test(NAME test_boost_array ARGS A)
+serialization_archive_test(NAME test_native_array ARGS A)
 serialization_archive_test(NAME test_binary)
-serialization_archive_test(NAME test_bitset)
 serialization_archive_test(NAME test_class_info_save)
 serialization_archive_test(NAME test_class_info_load)
+serialization_archive_test(NAME test_bitset)
 serialization_archive_test(NAME test_complex)
 serialization_archive_test(NAME test_contained_class ARGS A)
 serialization_archive_test(NAME test_cyclic_ptrs ARGS A)
@@ -121,6 +109,8 @@ serialization_archive_test(NAME test_derived_class_ptr ARGS A)
 serialization_archive_test(NAME test_diamond)
 serialization_archive_test(NAME test_diamond_complex)
 serialization_archive_test(NAME test_exported polymorphic_base)
+serialization_archive_test(NAME test_forward_list ARGS A)
+serialization_archive_test(NAME test_forward_list_ptrs ARGS A)
 serialization_archive_test(NAME test_helper_support)
 serialization_archive_test(NAME test_interrupts)
 serialization_archive_test(NAME test_list ARGS A)
@@ -166,25 +156,24 @@ serialization_archive_test(NAME test_shared_ptr_132)
 serialization_polymorphic_archive_test(test_polymorphic test_polymorphic_A A)
 serialization_polymorphic_archive_test(test_polymorphic2 test_polymorphic2imp)
 serialization_polymorphic_archive_test(test_polymorphic_helper)
-        
+
+#test-suite "serialization2"
+serialization_test(test_inclusion)
+serialization_test(test_dll_exported)
+target_link_libraries(serialization_test_test_dll_exported serialization_test_dll_polymorphic_derived2_lib)
+serialization_test(test_dll_simple)
+target_link_libraries(serialization_test_test_dll_simple serialization_test_dll_a_lib)
 cm_test(NAME serialization_test_test_dll_plugin SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_dll_plugin.cpp COMPILE_ONLY)
-
-# Running the following test requires that the test know the directory 
-# in which the dll is stored. I don't know how to extract this from bjam
 # [ test-bsl-run test_dll_plugin : : dll_polymorphic_derived2_lib ]
-serialization_archive_test(NAME test_private_ctor)
-serialization_archive_test(NAME test_reset_object_address ARGS A)
-serialization_archive_test(NAME test_void_cast)
-serialization_archive_test(NAME test_mult_archive_types)
-
-serialization_archive_test(NAME test_iterators)
-serialization_archive_test(NAME test_iterators_base64)
-serialization_archive_test(NAME test_inclusion)
-serialization_archive_test(NAME test_smart_cast)
-
-serialization_archive_test(NAME test_utf8_codecvt)
-serialization_archive_test(NAME test_codecvt_null)
-
+serialization_test(test_private_ctor)
+serialization_test(test_reset_object_address A)
+serialization_test(test_void_cast)
+serialization_test(test_mult_archive_types)
+serialization_test(test_iterators)
+serialization_test(test_iterators_base64)
+serialization_test(test_smart_cast)
+serialization_test(test_utf8_codecvt ../src/utf8_codecvt_facet)
+serialization_test(test_codecvt_null ../src/codecvt_null)
 #[ test-bsl-run-no-lib test_z ]
 cm_test(NAME serialization_test_test_not_serializable SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_not_serializable.cpp COMPILE_ONLY WILL_FAIL)
 cm_test(NAME serialization_test_test_traits_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_traits_fail.cpp COMPILE_ONLY WILL_FAIL)
@@ -199,7 +188,6 @@ cm_test(NAME serialization_test_test_static_warning SOURCES ${CURRENT_TEST_SOURC
 cm_test(NAME serialization_test_test_const_save_warn1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_const_save_warn1.cpp COMPILE_ONLY)
 cm_test(NAME serialization_test_test_const_save_warn2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_const_save_warn2.cpp COMPILE_ONLY)
 cm_test(NAME serialization_test_test_const_save_warn3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_const_save_warn3.cpp COMPILE_ONLY)
-
 # note - library unable to detect these errors for now
 #[ compile test_const_save_warn1_nvp.cpp ]
 #[ compile test_const_save_warn2_nvp.cpp ]

@@ -203,6 +203,7 @@ cm_test(NAME config_test_has_nanosleep_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/
 if (NOT (CMAKE_CXX_COMPILER_ID MATCHES "Clang")) # TODO: fix test. Reason error: boost_has_nl_types_h.ipp:20:11: error: ordered comparison between pointer and zero ('nl_catd' (aka 'void *') and 'int') 
     cm_test(NAME config_test_has_nl_types_h_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/has_nl_types_h_pass.cpp )
 endif()
+
 cm_test(NAME config_test_has_nl_types_h_fail SOURCES ${CURRENT_TEST_SOURCES_DIR}/has_nl_types_h_fail.cpp COMPILE_ONLY WILL_FAIL)
 
 cm_test(NAME config_test_has_nrvo_pass SOURCES ${CURRENT_TEST_SOURCES_DIR}/has_nrvo_pass.cpp )

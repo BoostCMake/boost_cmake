@@ -189,3 +189,6 @@ cm_test(NAME smart_ptr_test_weak_from_this_test SOURCES ${CURRENT_TEST_SOURCES_D
 cm_test(NAME smart_ptr_test_weak_from_this_test2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/weak_from_this_test2.cpp)
 
 cm_test(NAME smart_ptr_test_sp_bml_unique_ptr_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/sp_bml_unique_ptr_test.cpp)
+
+cm_test(NAME smart_ptr_test_sp_hash_test2 SOURCES ${CURRENT_TEST_SOURCES_DIR}/sp_hash_test2.cpp)
+cm_test(NAME smart_ptr_test_sp_hash_test3 SOURCES ${CURRENT_TEST_SOURCES_DIR}/sp_hash_test3.cpp)

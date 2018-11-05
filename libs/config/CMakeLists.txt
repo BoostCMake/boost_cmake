@@ -6,7 +6,7 @@ include(CMSetupVersion)
 
 cm_project(${CMAKE_WORKSPACE_NAME} config)
 
-cm_setup_version(VERSION 1.60.0)
+cm_setup_version(VERSION 1.61.0)
 
 add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE)
 set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME config)

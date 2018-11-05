@@ -28,7 +28,7 @@ find_package(${CMAKE_WORKSPACE_NAME}_integer)
 find_package(${CMAKE_WORKSPACE_NAME}_optional)
 find_package(${CMAKE_WORKSPACE_NAME}_spirit)
 
-cm_setup_version(VERSION 1.60.0)
+cm_setup_version(VERSION 1.61.0)
 
 #
 # Compiler settings
@@ -104,6 +104,9 @@ add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
         ${CURRENT_SOURCES_DIR}/src/xml_iarchive.cpp
         ${CURRENT_SOURCES_DIR}/src/xml_oarchive.cpp
         ${CURRENT_SOURCES_DIR}/src/xml_archive_exception.cpp
+        ${CURRENT_SOURCES_DIR}/src/codecvt_null
+        ${CURRENT_SOURCES_DIR}/src/utf8_codecvt_facet
+        ${CURRENT_SOURCES_DIR}/src/singleton
             # src/basic_xml_grammar.ipp # doesn't show up in "Source Files" in Xcode"'
             )
 
@@ -112,11 +115,8 @@ add_library(${CMAKE_WORKSPACE_NAME}_wserialization
         ${CURRENT_SOURCES_DIR}/src/basic_text_woprimitive.cpp
         ${CURRENT_SOURCES_DIR}/src/text_wiarchive.cpp
         ${CURRENT_SOURCES_DIR}/src/text_woarchive.cpp
-        ${CURRENT_SOURCES_DIR}/src/utf8_codecvt_facet.cpp
-        ${CURRENT_SOURCES_DIR}/src/xml_wgrammar.cpp
         ${CURRENT_SOURCES_DIR}/src/xml_wiarchive.cpp
         ${CURRENT_SOURCES_DIR}/src/xml_woarchive.cpp
-        ${CURRENT_SOURCES_DIR}/src/codecvt_null.cpp
             )
 
 if(BUILD_SHARED_LIBS)

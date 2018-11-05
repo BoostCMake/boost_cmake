@@ -27,7 +27,7 @@ else()
     set(BOOST_LOCALE_WITH_STD On CACHE BOOL "")
 endif()
 
-cm_setup_version(VERSION 1.60.0)
+cm_setup_version(VERSION 1.61.0)
 
 add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME}
         ${CURRENT_SOURCES_DIR}/src/encoding/codepage.cpp

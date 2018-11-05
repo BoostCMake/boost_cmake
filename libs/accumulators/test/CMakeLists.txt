@@ -15,6 +15,7 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_accumulators
 # (C) Copyright 2005: Eric Niebler
 # Distributed under the Boost Software License, Version 1.0.
 # (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+
 cm_test(NAME accumulators_test_count SOURCES ${CMAKE_CURRENT_BINARY_DIR}/count.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME accumulators_test_covariance SOURCES ${CMAKE_CURRENT_BINARY_DIR}/covariance.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME accumulators_test_droppable SOURCES ${CMAKE_CURRENT_BINARY_DIR}/droppable.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
@@ -45,6 +46,7 @@ cm_test(NAME accumulators_test_tail_quantile SOURCES ${CMAKE_CURRENT_BINARY_DIR}
 cm_test(NAME accumulators_test_tail_variate_means SOURCES ${CMAKE_CURRENT_BINARY_DIR}/tail_variate_means.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 
 if(NOT APPLE)
+    # TODO: fix test 1.61
     cm_test(NAME accumulators_test_valarray SOURCES ${CMAKE_CURRENT_BINARY_DIR}/valarray.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 endif()
 

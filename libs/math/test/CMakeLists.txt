@@ -596,6 +596,8 @@ set_target_properties(math_test_test_nonfinite_trap PROPERTIES CXX_EXCEPTIONS of
 cm_test(NAME math_test_test_signed_zero SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_signed_zero.cpp )
 
 cm_test(NAME math_test_complex_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/complex_test.cpp )
+cm_test(NAME math_test_test_polynomial SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_polynomial.cpp )
+cm_test(NAME math_test_test_gcd SOURCES ${CURRENT_TEST_SOURCES_DIR}/test_gcd.cpp )
 
 cm_test(NAME math_test_multiprc_concept_check_1 SOURCES ${CURRENT_TEST_SOURCES_DIR}/multiprc_concept_check_1.cpp COMPILE_ONLY )
 set_target_properties(math_test_multiprc_concept_check_1 PROPERTIES CXX_EXCEPTIONS off)

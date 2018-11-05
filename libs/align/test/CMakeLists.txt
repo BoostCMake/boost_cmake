@@ -9,6 +9,8 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_align)
 # (http://www.boost.org/LICENSE_1_0.txt)
 
 cm_test(NAME align_test_align_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/align_test.cpp)
+cm_test(NAME align_test_align_down_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/align_down_test.cpp)
+cm_test(NAME align_test_align_up_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/align_up_test.cpp)
 cm_test(NAME align_test_aligned_alloc_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/aligned_alloc_test.cpp)
 cm_test(NAME align_test_aligned_allocator_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/aligned_allocator_test.cpp)
 cm_test(NAME align_test_aligned_allocator_adaptor_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/aligned_allocator_adaptor_test.cpp)

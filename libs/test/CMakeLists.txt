@@ -27,7 +27,7 @@ find_package(${CMAKE_WORKSPACE_NAME}_config)
 find_package(${CMAKE_WORKSPACE_NAME}_numeric_conversion)
 find_package(${CMAKE_WORKSPACE_NAME}_preprocessor)
 
-cm_setup_version(VERSION 1.60.0)
+cm_setup_version(VERSION 1.61.0)
 
 add_library(${CMAKE_WORKSPACE_NAME}_prg_exec_monitor
         ${CURRENT_SOURCES_DIR}/src/execution_monitor.cpp
@@ -112,10 +112,6 @@ add_library(${CMAKE_WORKSPACE_NAME}_unit_test_framework
         ${CURRENT_SOURCES_DIR}/src/unit_test_parameters.cpp
         ${CURRENT_SOURCES_DIR}/src/xml_log_formatter.cpp
         ${CURRENT_SOURCES_DIR}/src/xml_report_formatter.cpp
-
-            #            src/decorator.cpp
-            #            src/test_tree.cpp
-            #            src/junit_log_formatter.cpp
             )
 
 if(BUILD_SHARED_LIBS)

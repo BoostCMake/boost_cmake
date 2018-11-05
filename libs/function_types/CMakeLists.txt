@@ -13,7 +13,7 @@ find_package(${CMAKE_WORKSPACE_NAME}_type_traits)
 find_package(${CMAKE_WORKSPACE_NAME}_preprocessor)
 find_package(${CMAKE_WORKSPACE_NAME}_config)
 
-cm_setup_version(VERSION 1.60.0)
+cm_setup_version(VERSION 1.61.0)
 
 add_library(${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} INTERFACE)
 set_property(TARGET ${CMAKE_WORKSPACE_NAME}_${CURRENT_PROJECT_NAME} PROPERTY EXPORT_NAME function_types)

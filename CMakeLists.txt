@@ -15,7 +15,7 @@ else()
     cm_workspace(boost)
 endif()
 
-cm_setup_version(VERSION 1.60.0)
+cm_setup_version(VERSION 1.61.0)
 
 execute_process(COMMAND grep ${PROJECT_VERSION_MAJOR}_${PROJECT_VERSION_MINOR} ${CMAKE_WORKSPACE_SOURCES_DIR}/libs/config/include/boost/version.hpp
         RESULT_VARIABLE BAD_EXECUTE_RESULT OUTPUT_QUIET
