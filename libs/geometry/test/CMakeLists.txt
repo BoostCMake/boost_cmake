@@ -135,7 +135,7 @@ cm_test(NAME geometry_test_algorithms_overlay_get_turns SOURCES ${CMAKE_CURRENT_
 cm_test(NAME geometry_test_algorithms_overlay_get_turns_areal_areal SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/overlay/get_turns_areal_areal.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME geometry_test_algorithms_overlay_get_turns_linear_areal SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/overlay/get_turns_linear_areal.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME geometry_test_algorithms_overlay_get_turns_linear_linear SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/overlay/get_turns_linear_linear.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-cm_test(NAME geometry_test_algorithms_overlay_overlay SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/overlay/overlay.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME geometry_test_algorithms_overlay_overlay SOURCES ${CURRENT_TEST_SOURCES_DIR}/algorithms/overlay/overlay.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 #[ run handle_touch.cpp             : : : : algorithms_handle_touch ]
 cm_test(NAME geometry_test_algorithms_overlay_relative_order SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/overlay/relative_order.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME geometry_test_algorithms_overlay_select_rings SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/overlay/select_rings.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})

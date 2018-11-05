@@ -16,7 +16,7 @@ set_target_properties(any_test_any_test_no_rtti PROPERTIES CXX_RTTI off)
 cm_test(NAME any_test_any_test_rv SOURCES ${CURRENT_TEST_SOURCES_DIR}/any_test_rv.cpp)
 
 cm_test(NAME any_test_any_test_rv_no_rtti SOURCES ${CURRENT_TEST_SOURCES_DIR}/any_test.cpp)
-target_compile_definitons(any_test_any_test_rv_no_rtti PRIVATE -DBOOST_NO_TYPEID)
+target_compile_definitions(any_test_any_test_rv_no_rtti PRIVATE -DBOOST_NO_TYPEID)
 set_target_properties(any_test_any_test_rv_no_rtti PROPERTIES CXX_RTTI off)
 
 cm_test(NAME any_test_any_cast_cv_failed SOURCES ${CURRENT_TEST_SOURCES_DIR}/any_cast_cv_failed.cpp COMPILE_ONLY WILL_FAIL)
