@@ -94,7 +94,7 @@ before_script:
   - $CXX --version
   - $CC --version
   - cmake --version
-  - git clone -q --recurse-submodules https://github.com/boostorg/boost.git -b boost-1.60.0
+  - git clone -q --recurse-submodules https://github.com/boostorg/boost.git -b boost-1.61.0
 
 script:
   - mkdir build && cd build && cmake .. -DBUILD_WITH_SOURCES_DIR=${TRAVIS_BUILD_DIR}/boost;
