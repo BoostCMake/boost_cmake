@@ -115,6 +115,7 @@ add_library(${CMAKE_WORKSPACE_NAME}_wserialization
         ${CURRENT_SOURCES_DIR}/src/basic_text_woprimitive.cpp
         ${CURRENT_SOURCES_DIR}/src/text_wiarchive.cpp
         ${CURRENT_SOURCES_DIR}/src/text_woarchive.cpp
+        ${CURRENT_SOURCES_DIR}/src/xml_wgrammar.cpp
         ${CURRENT_SOURCES_DIR}/src/xml_wiarchive.cpp
         ${CURRENT_SOURCES_DIR}/src/xml_woarchive.cpp
             )

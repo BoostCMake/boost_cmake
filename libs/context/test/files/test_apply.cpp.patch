@@ -1,0 +1,57 @@
+6a7,8
+> #define  BOOST_TEST_MAIN
+> 
+195c197,204
+< boost::unit_test::test_suite * init_unit_test_suite( int, char* [])
+---
+> BOOST_AUTO_TEST_SUITE(context_test_test_apply)
+> 
+> BOOST_AUTO_TEST_CASE(test_test1)
+> {
+>     test1();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_test2)
+197,198c206,207
+<     boost::unit_test::test_suite * test =
+<         BOOST_TEST_SUITE("Boost.Context: apply test suite");
+---
+>     test2();
+> }
+200,206c209,212
+<     test->add( BOOST_TEST_CASE( & test1) );
+<     test->add( BOOST_TEST_CASE( & test2) );
+<     test->add( BOOST_TEST_CASE( & test3) );
+<     test->add( BOOST_TEST_CASE( & test4) );
+<     test->add( BOOST_TEST_CASE( & test5) );
+<     test->add( BOOST_TEST_CASE( & test6) );
+<     test->add( BOOST_TEST_CASE( & test7) );
+---
+> BOOST_AUTO_TEST_CASE(test_test3)
+> {
+>     test3();
+> }
+208c214,216
+<     return test;
+---
+> BOOST_AUTO_TEST_CASE(test_test4)
+> {
+>     test4();
+209a218,234
+> 
+> BOOST_AUTO_TEST_CASE(test_test5)
+> {
+>     test5();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_test6)
+> {
+>     test6();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_test7)
+> {
+>     test7();
+> }
+> 
+> BOOST_AUTO_TEST_SUITE_END()

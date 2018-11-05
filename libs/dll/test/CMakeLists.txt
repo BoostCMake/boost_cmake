@@ -1,9 +1,9 @@
 include(CMTest)
 
-#find_package(${CMAKE_WORKSPACE_NAME}_random)
+find_package(${CMAKE_WORKSPACE_NAME}_thread)
 
 cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_dll
-                        #${CMAKE_WORKSPACE_NAME}::random
+                        ${CMAKE_WORKSPACE_NAME}::thread
                         )
 
 # Boost Endian Library test Jamfile
@@ -14,6 +14,9 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_dll
 # See http://www.boost.org/LICENSE_1_0.txt
 
 # See library home page at http://www.boost.org/libs/endian
+add_library(dll_test_static_refcounting_plugin STATIC ${CURRENT_TEST_SOURCES_DIR}/../example/tutorial8/refcounting_plugin.cpp)
+target_link_libraries(dll_test_static_refcounting_plugin ${CMAKE_WORKSPACE_NAME}_dll)
+target_compile_definitions(dll_test_static_refcounting_plugin PRIVATE -DBOOST_SYSTEM_NO_DEPRECATED)
 
 add_library(dll_test_test_library SHARED ${CURRENT_TEST_SOURCES_DIR}/test_library.cpp)
 target_link_libraries(dll_test_test_library ${CMAKE_WORKSPACE_NAME}_dll)
@@ -28,7 +31,7 @@ add_library(dll_test_my_plugin_aggregator SHARED ${CURRENT_TEST_SOURCES_DIR}/../
 target_link_libraries(dll_test_my_plugin_aggregator ${CMAKE_WORKSPACE_NAME}_dll)
 
 add_library(dll_test_on_unload_lib SHARED ${CURRENT_TEST_SOURCES_DIR}/../example/tutorial6/on_unload_lib.cpp)
-target_link_libraries(dll_test_test_library ${CMAKE_WORKSPACE_NAME}_dll)
+target_link_libraries(dll_test_on_unload_lib ${CMAKE_WORKSPACE_NAME}_dll)
 
 add_library(dll_test_library1 SHARED ${CURRENT_TEST_SOURCES_DIR}/../example/tutorial7/library1.cpp)
 target_link_libraries(dll_test_library1 ${CMAKE_WORKSPACE_NAME}_dll)
@@ -87,12 +90,13 @@ cm_test(NAME dll_test___example_tutorial6_tutorial6 SOURCES ${CURRENT_TEST_SOURC
 target_link_libraries(dll_test___example_tutorial6_tutorial6 dll_test_on_unload_lib)
 
 cm_test(NAME dll_test___example_tutorial7_tutorial7 SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/tutorial7/tutorial7.cpp)
-target_link_libraries(dll_test___example_tutorial7_tutorial7 dll_test_test_library1 dll_test_test_library2)
+target_link_libraries(dll_test___example_tutorial7_tutorial7 dll_test_library1 dll_test_library2)
 
 cm_test(NAME dll_test___example_tutorial8_tutorial8 SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/tutorial8/tutorial8.cpp)
 target_link_libraries(dll_test___example_tutorial8_tutorial8 dll_test_refcounting_plugin)
 
 cm_test(NAME dll_test___example_tutorial8_tutorial8_static SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/tutorial8/tutorial8_static.cpp)
+target_link_libraries(dll_test___example_tutorial8_tutorial8_static dll_test_static_refcounting_plugin)
 
 cm_test(NAME dll_test___example_tutorial9_tutorial9 SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/tutorial9/tutorial9.cpp)
 
@@ -100,7 +104,7 @@ cm_test(NAME dll_test___example_tutorial9_tutorial9 SOURCES ${CURRENT_TEST_SOURC
 cm_test(NAME dll_test_section_name_too_big SOURCES ${CURRENT_TEST_SOURCES_DIR}/section_name_too_big.cpp COMPILE_ONLY WILL_FAIL)
 
 cm_test(NAME dll_test_shared_library_concurrent_load_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_library_concurrent_load_test.cpp)
-target_link_libraries(dll_test_shared_library_concurrent_load_test dll_test_test_library1 dll_test_test_library2 dll_test_my_plugin_aggregator dll_test_refcounting_plugin)
+target_link_libraries(dll_test_shared_library_concurrent_load_test dll_test_library1 dll_test_library2 dll_test_my_plugin_aggregator dll_test_refcounting_plugin)
 
 if(MSVC)
     cm_test(NAME dll_test_cpp_mangle_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/cpp_mangle_test.cpp)
