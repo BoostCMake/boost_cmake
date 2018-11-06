@@ -1,10 +1,10 @@
 6a7,8
 > #define BOOST_TEST_MAIN
 > 
-617c619,631
+613c615,637
 < boost::unit_test::test_suite * init_unit_test_suite( int, char* [])
 ---
-> BOOST_AUTO_TEST_SUITE(context_test_test_context)
+> BOOST_AUTO_TEST_SUITE(coroutine2_test_test_coroutine)
 > 
 > BOOST_AUTO_TEST_CASE(test_move)
 > {
@@ -17,13 +17,33 @@
 > }
 > 
 > BOOST_AUTO_TEST_CASE(test_jump)
-619,620c633,634
-<     boost::unit_test::test_suite * test =
-<         BOOST_TEST_SUITE("Boost.coroutine: coroutine test suite");
----
+> {
 >     test_jump();
 > }
-622,640c636,644
+> 
+> BOOST_AUTO_TEST_CASE(test_result_int)
+> {
+>     test_result_int();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_result_string)
+615,616c639,650
+<     boost::unit_test::test_suite * test =
+<         BOOST_TEST_SUITE("Boost.Coroutine2: coroutine test suite");
+---
+>     test_result_string();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_arg_int)
+> {
+>     test_arg_int();
+> }
+> 
+> BOOST_AUTO_TEST_CASE(test_arg_string)
+> {
+>     test_arg_string();
+> }
+618,636c652,655
 <     test->add( BOOST_TEST_CASE( & test_move) );
 <     test->add( BOOST_TEST_CASE( & test_complete) );
 <     test->add( BOOST_TEST_CASE( & test_jump) );
@@ -44,42 +64,22 @@
 <     test->add( BOOST_TEST_CASE( & test_output_iterator) );
 <     test->add( BOOST_TEST_CASE( & test_chaining) );
 ---
-> BOOST_AUTO_TEST_CASE(test_result_int)
-> {
->     test_result_int();
-> }
-> 
-> BOOST_AUTO_TEST_CASE(test_result_string)
-> {
->     test_result_string();
-> }
-642c646,668
-<     return test;
----
-> BOOST_AUTO_TEST_CASE(test_arg_int)
-> {
->     test_arg_int();
-> }
-> 
-> BOOST_AUTO_TEST_CASE(test_arg_string)
-> {
->     test_arg_string();
-> }
-> 
 > BOOST_AUTO_TEST_CASE(test_fp)
 > {
 >     test_fp();
 > }
-> 
+638c657,659
+<     return test;
+---
 > BOOST_AUTO_TEST_CASE(test_ptr)
 > {
 >     test_ptr();
-> }
+639a661,712
 > 
 > BOOST_AUTO_TEST_CASE(test_const_ptr)
 > {
 >     test_const_ptr();
-643a670,716
+> }
 > 
 > BOOST_AUTO_TEST_CASE(test_no_result)
 > {
@@ -122,8 +122,8 @@
 > }
 > 
 > BOOST_AUTO_TEST_CASE(test_chaining)
->         {
->                 test_chaining();
->         }
->         
+> {
+>      test_chaining();
+> }
+> 
 > BOOST_AUTO_TEST_SUITE_END()

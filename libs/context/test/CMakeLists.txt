@@ -24,7 +24,8 @@ cm_test_link_libraries(${CMAKE_WORKSPACE_NAME}_context
 #          http://www.boost.org/LICENSE_1_0.txt)
 
 cm_test(NAME context_test_test_invoke SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_invoke.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+target_compile_options(context_test_test_invoke PRIVATE -std=c++11)
 cm_test(NAME context_test_test_apply SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_apply.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-
+target_compile_options(context_test_test_apply PRIVATE -std=c++11)
 # TODO: fix test boost-1.61.0
 #cm_test(NAME context_test_test_execution_context SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_execution_context.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
