@@ -1,6 +1,5 @@
 include(CMTest)
 
-message(!!!!! ${CURRENT_SOURCES_DIR}/libs/geometry/ ${CMAKE_SOURCE_DIR}/libs/geometry/files ${CMAKE_BINARY_DIR}/libs/geometry)
 patch_directory(${CURRENT_TEST_SOURCES_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/files ${CMAKE_CURRENT_BINARY_DIR})
 patch_directory(${CURRENT_SOURCES_DIR} ${CMAKE_SOURCE_DIR}/libs/geometry/files ${CMAKE_BINARY_DIR}/libs/geometry)
 #/home/alex/Projects/boost-1.60.0/libs/geometry/test/../home/alex/Projects/boost_cmake/libs/geometry/test/../files/home/alex/Projects/boost_cmake/cmake-build-debug/libs/geometry/test/..
@@ -135,7 +134,7 @@ cm_test(NAME geometry_test_algorithms_overlay_get_turns SOURCES ${CMAKE_CURRENT_
 cm_test(NAME geometry_test_algorithms_overlay_get_turns_areal_areal SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/overlay/get_turns_areal_areal.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME geometry_test_algorithms_overlay_get_turns_linear_areal SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/overlay/get_turns_linear_areal.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME geometry_test_algorithms_overlay_get_turns_linear_linear SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/overlay/get_turns_linear_linear.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-cm_test(NAME geometry_test_algorithms_overlay_overlay SOURCES ${CURRENT_TEST_SOURCES_DIR}/algorithms/overlay/overlay.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
+cm_test(NAME geometry_test_algorithms_overlay_overlay SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/overlay/overlay.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 #[ run handle_touch.cpp             : : : : algorithms_handle_touch ]
 cm_test(NAME geometry_test_algorithms_overlay_relative_order SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/overlay/relative_order.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME geometry_test_algorithms_overlay_select_rings SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/overlay/select_rings.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
@@ -160,7 +159,7 @@ cm_test(NAME geometry_test_algorithms_relational_operations_intersects_intersect
 cm_test(NAME geometry_test_algorithms_relational_operations_intersects_intersects_box_geometry SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/relational_operations/intersects/intersects_box_geometry.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR}/algorithms/relational_operations/intersects)
 cm_test(NAME geometry_test_algorithms_relational_operations_intersects_intersects_multi SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/relational_operations/intersects/intersects_multi.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR}/algorithms/relational_operations/intersects)
 cm_test(NAME geometry_test_algorithms_relational_operations_intersects_intersects_self SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/relational_operations/intersects/intersects_self.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR}/algorithms/relational_operations/intersects)
-cm_test(NAME geometry_test_algorithms_relational_operations_intersects_intersects_sph_geo SOURCES ${CURRENT_TEST_SOURCES_DIR}/algorithms/relational_operations/intersects/intersects_sph_geo.cpp)
+cm_test(NAME geometry_test_algorithms_relational_operations_intersects_intersects_sph_geo SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/relational_operations/intersects/intersects_sph_geo.cpp ${CURRENT_TEST_SOURCES_DIR}/algorithms/relational_operations/intersects)
 
 #test-suite boost-geometry-algorithms-relational-overlaps
 cm_test(NAME geometry_test_algorithms_relational_operations_overlaps_overlaps SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/relational_operations/overlaps/overlaps.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR}/algorithms/relational_operations/overlaps)
@@ -186,12 +185,12 @@ cm_test(NAME geometry_test_algorithms_relational_operations_within_within_linear
 cm_test(NAME geometry_test_algorithms_relational_operations_within_within_linear_linear SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/relational_operations/within/within_linear_linear.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME geometry_test_algorithms_relational_operations_within_within_multi SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/relational_operations/within/within_multi.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME geometry_test_algorithms_relational_operations_within_within_pointlike_geometry SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/relational_operations/within/within_pointlike_geometry.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
-cm_test(NAME geometry_test_algorithms_relational_operations_within_within_sph_geo SOURCES ${CURRENT_TEST_SOURCES_DIR}/algorithms/relational_operations/within/within_sph_geo.cpp)
+cm_test(NAME geometry_test_algorithms_relational_operations_within_within_sph_geo SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/relational_operations/within/within_sph_geo.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 
 #test-suite boost-geometry-algorithms-relational
 cm_test(NAME geometry_test_algorithms_relational_operations_covered_by SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/relational_operations/covered_by.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME geometry_test_algorithms_relational_operations_covered_by_multi SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/relational_operations/covered_by_multi.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR}/algorithms/relational_operations)
-cm_test(NAME geometry_test_algorithms_relational_operations_covered_by_sph_geo SOURCES ${CURRENT_TEST_SOURCES_DIR}/algorithms/relational_operations/covered_by_sph_geo.cpp)
+cm_test(NAME geometry_test_algorithms_relational_operations_covered_by_sph_geo SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/relational_operations/covered_by_sph_geo.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME geometry_test_algorithms_relational_operations_crosses SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/relational_operations/crosses.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME geometry_test_algorithms_relational_operations_equals SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/relational_operations/equals.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR})
 cm_test(NAME geometry_test_algorithms_relational_operations_equals_multi SOURCES ${CMAKE_CURRENT_BINARY_DIR}/algorithms/relational_operations/equals_multi.cpp SOURCES_PREFIX ${CURRENT_TEST_SOURCES_DIR}/algorithms/relational_operations)
@@ -432,6 +431,7 @@ include_directories(${CURRENT_TEST_SOURCES_DIR}/algorithms)
 include_directories(${CURRENT_TEST_SOURCES_DIR}/algorithms/relational_operations/disjoint)
 include_directories(${CURRENT_TEST_SOURCES_DIR}/algorithms/relational_operations/relate)
 include_directories(${CURRENT_TEST_SOURCES_DIR}/algorithms/relational_operations/within)
+include_directories(${CURRENT_TEST_SOURCES_DIR}/algorithms/relational_operations/intersects)
 include_directories(${CURRENT_TEST_SOURCES_DIR}/algorithms/relational_operations)
 
 include_directories(${CURRENT_TEST_SOURCES_DIR}/algorithms/set_operations/difference)

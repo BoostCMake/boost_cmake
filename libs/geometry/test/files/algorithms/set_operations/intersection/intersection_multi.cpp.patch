@@ -1,11 +1,12 @@
-9a10,11
+9a10,12
 > #define BOOST_TEST_MAIN
 > #include <boost/test/unit_test.hpp>
-239a242,248
-> }
+> 
+381a385,391
 > 
 > BOOST_AUTO_TEST_CASE(current_test_case)
 > {
 >     int argc = boost::unit_test::framework::master_test_suite().argc;
 >     char **argv = boost::unit_test::framework::master_test_suite().argv;
 >     test_main(argc, argv);
+> }

@@ -1,7 +1,9 @@
-13a14,15
+9a10,12
 > #define BOOST_TEST_MAIN
 > #include <boost/test/unit_test.hpp>
-218a221,227
+> 
+129a133,140
+> 
 > 
 > BOOST_AUTO_TEST_CASE(current_test_case)
 > {
