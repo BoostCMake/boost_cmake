@@ -81,6 +81,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 endif()
 
 cm_test(NAME test_test_test-organization-ts_dataset-variadic_and_move_semantic-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/test-organization-ts/dataset-variadic_and_move_semantic-test.cpp)
+target_compile_options(test_test_test-organization-ts_dataset-variadic_and_move_semantic-test PRIVATE -std=c++11)
 cm_test(NAME test_test_test-organization-ts_test_unit-order-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/test-organization-ts/test_unit-order-test.cpp)
 cm_test(NAME test_test_test-organization-ts_test_unit-order-shuffled-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/test-organization-ts/test_unit-order-shuffled-test.cpp)
 cm_test(NAME test_test_test-organization-ts_test-tree-management-test SOURCES ${CURRENT_TEST_SOURCES_DIR}/test-organization-ts/test-tree-management-test.cpp)

@@ -32,6 +32,7 @@ env:
   - TEST_LIB1=conversion TEST_LIB2=convert TEST_LIB3=core
   - TEST_LIB1=coroutine TEST_LIB2=coroutine2 TEST_LIB3=crc
   - TEST_LIB1=date_time TEST_LIB2=detail TEST_LIB3=disjoint_sets
+  - TEST_LIB1=dll TEST_LIB2=None TEST_LIB3=None
   - TEST_LIB1=dynamic_bitset TEST_LIB2=endian TEST_LIB3=exception
   - TEST_LIB1=filesystem TEST_LIB2=flyweight TEST_LIB3=foreach
   - TEST_LIB1=format TEST_LIB2=function TEST_LIB3=function_types
