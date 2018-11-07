@@ -46,13 +46,25 @@ target_compile_definitions(dll_test_refcounting_plugin PRIVATE -DBOOST_DLL_FORCE
 add_library(dll_test_cpp_plugin SHARED ${CURRENT_TEST_SOURCES_DIR}/cpp_test_library.cpp)
 target_link_libraries(dll_test_cpp_plugin ${CMAKE_WORKSPACE_NAME}_dll)
 
+if (NOT APPLE)
+    target_link_libraries(dll_test_static_refcounting_plugin ${CMAKE_WORKSPACE_NAME}_dll ${CMAKE_DL_LIBS})
+    target_link_libraries(dll_test_test_library ${CMAKE_WORKSPACE_NAME}_dll ${CMAKE_DL_LIBS})
+    target_link_libraries(dll_test_getting_started_library ${CMAKE_WORKSPACE_NAME}_dll ${CMAKE_DL_LIBS})
+    target_link_libraries(dll_test_my_plugin_sum ${CMAKE_WORKSPACE_NAME}_dll ${CMAKE_DL_LIBS})
+    target_link_libraries(dll_test_my_plugin_aggregator ${CMAKE_WORKSPACE_NAME}_dll ${CMAKE_DL_LIBS})
+    target_link_libraries(dll_test_on_unload_lib ${CMAKE_WORKSPACE_NAME}_dll ${CMAKE_DL_LIBS})
+    target_link_libraries(dll_test_library1 ${CMAKE_WORKSPACE_NAME}_dll ${CMAKE_DL_LIBS})
+    target_link_libraries(dll_test_library2 ${CMAKE_WORKSPACE_NAME}_dll ${CMAKE_DL_LIBS})
+    target_link_libraries(dll_test_refcounting_plugin ${CMAKE_WORKSPACE_NAME}_dll ${CMAKE_DL_LIBS})
+    target_link_libraries(dll_test_cpp_plugin ${CMAKE_WORKSPACE_NAME}_dll ${CMAKE_DL_LIBS})
+endif()
 #test-suite boostdll
 cm_test(NAME dll_test_shared_library_load_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_library_load_test.cpp)
 target_link_libraries(dll_test_shared_library_load_test dll_test_library1 dll_test_test_library)
 cm_test(NAME dll_test_shared_library_search_symbol_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_library_search_symbol_test.cpp)
 target_link_libraries(dll_test_shared_library_search_symbol_test dll_test_test_library)
 cm_test(NAME dll_test_shared_library_get_symbol_test SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_library_get_symbol_test.cpp)
-target_link_libraries(dll_test_shared_library_load_test dll_test_test_library)
+target_link_libraries(dll_test_shared_library_get_symbol_test dll_test_test_library)
 
 if(WIN32)
     cm_test(NAME dll_test_shared_library_get_symbol_test_win SOURCES ${CURRENT_TEST_SOURCES_DIR}/shared_library_get_symbol_test.cpp)
@@ -82,6 +94,9 @@ cm_test(NAME dll_test___example_tutorial3_tutorial3 SOURCES ${CURRENT_TEST_SOURC
 target_link_libraries(dll_test___example_tutorial3_tutorial3 dll_test_my_plugin_sum dll_test_my_plugin_aggregator)
 
 cm_test(NAME dll_test___example_tutorial4_tutorial4 SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/tutorial4/load_self.cpp ${CURRENT_TEST_SOURCES_DIR}/../example/tutorial4/static_plugin.cpp)
+if (NOT APPLE)
+    target_link_libraries(dll_test___example_tutorial4_tutorial4 ${CMAKE_WORKSPACE_NAME}_dll ${CMAKE_DL_LIBS})
+endif()
 
 cm_test(NAME dll_test___example_tutorial5_tutorial5 SOURCES ${CURRENT_TEST_SOURCES_DIR}/../example/tutorial5/load_all.cpp ${CURRENT_TEST_SOURCES_DIR}/../example/tutorial4/static_plugin.cpp)
 target_link_libraries(dll_test___example_tutorial5_tutorial5 dll_test_getting_started_library dll_test_my_plugin_sum dll_test_my_plugin_aggregator)
