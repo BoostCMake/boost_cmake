@@ -37,18 +37,19 @@ env:
   - TEST_LIB1=filesystem TEST_LIB2=flyweight TEST_LIB3=foreach
   - TEST_LIB1=format TEST_LIB2=function TEST_LIB3=function_types
   - TEST_LIB1=functional TEST_LIB2=fusion TEST_LIB3=None
-  - TEST_LIB1=geometry TEST_LIB2=None TEST_LIB3=None
+  - TEST_LIB1=geometry TEST_LIB2=None TEST_LIB3=None NEED_FILTER_OUTPUT=true
   - TEST_LIB1=gil TEST_LIB2=graph TEST_LIB3=heap
   - TEST_LIB1=icl TEST_LIB2=integer TEST_LIB3=interprocess
   - TEST_LIB1=intrusive TEST_LIB2=io TEST_LIB3=iostreams
   - TEST_LIB1=iterator TEST_LIB2=lambda TEST_LIB3=lexical_cast
   - TEST_LIB1=local_function TEST_LIB2=locale TEST_LIB3=lockfree
-  - TEST_LIB1=log TEST_LIB2=logic TEST_LIB3=math
+  - TEST_LIB1=log TEST_LIB2=logic TEST_LIB3=None
+  - TEST_LIB1=math TEST_LIB2=None TEST_LIB3=None
   - TEST_LIB1=move TEST_LIB2=mpi TEST_LIB3=mpl
   - TEST_LIB1=msm TEST_LIB2=multi_array TEST_LIB3=multi_index
-  - TEST_LIB1=multiprecision TEST_LIB2=numeric_conversion TEST_LIB3=numeric_interval
+  - TEST_LIB1=multiprecision TEST_LIB2=numeric_conversion TEST_LIB3=numeric_interval NEED_FILTER_OUTPUT=true
   - TEST_LIB1=numeric_odeint TEST_LIB2=numeric_ublas TEST_LIB3=optional
-  - TEST_LIB1=parameter TEST_LIB2=phoenix TEST_LIB3=polygon
+  - TEST_LIB1=parameter TEST_LIB2=phoenix TEST_LIB3=polygon NEED_FILTER_OUTPUT=true
   - TEST_LIB1=pool TEST_LIB2=predef TEST_LIB3=preprocessor
   - TEST_LIB1=program_options TEST_LIB2=property_map TEST_LIB3=property_tree
   - TEST_LIB1=proto TEST_LIB2=ptr_container TEST_LIB3=python
@@ -56,7 +57,7 @@ env:
   - TEST_LIB1=rational TEST_LIB2=regex TEST_LIB3=scope_exit
   - TEST_LIB1=serialization TEST_LIB2=signals TEST_LIB3=signals2
   - TEST_LIB1=smart_ptr TEST_LIB2=sort TEST_LIB3=None
-  - TEST_LIB1=spirit TEST_LIB2=None TEST_LIB3=None
+  - TEST_LIB1=spirit TEST_LIB2=None TEST_LIB3=None NEED_FILTER_OUTPUT=true
   - TEST_LIB1=statechart TEST_LIB2=static_assert TEST_LIB3=system
   - TEST_LIB1=test TEST_LIB2=thread TEST_LIB3=throw_exception
   - TEST_LIB1=timer TEST_LIB2=tokenizer TEST_LIB3=tr1
@@ -88,7 +89,6 @@ before_install:
 
 
 before_script:
-  - echo $(nproc)
   - which $CXX
   - which $CC
   - which cmake
@@ -100,11 +100,28 @@ before_script:
 script:
   - mkdir build && cd build && cmake .. -DBUILD_WITH_SOURCES_DIR=${TRAVIS_BUILD_DIR}/boost;
   - if [[ "$TEST_LIB1" != "None" ]]; then
-      make -j$(nproc) tests-$TEST_LIB1;
+      if [[ "$NEED_FILTER_OUTPUT" == true ]]; then
+        make tests-$TEST_LIB1 | ./.travis_filter_log.sh;
+      fi
+      if [[ "$NEED_FILTER_OUTPUT" != true ]]; then
+        make tests-$TEST_LIB1 | ./.travis_filter_log.sh;
+      fi
     fi
   - if [[ "$TEST_LIB2" != "None" ]]; then
-      make -j$(nproc) tests-$TEST_LIB2;
+      make tests-$TEST_LIB2;
+      if [[ "$NEED_FILTER_OUTPUT" == true ]]; then
+        make tests-$TEST_LIB2 | ./.travis_filter_log.sh;
+      fi
+      if [[ "$NEED_FILTER_OUTPUT" != true ]]; then
+        make tests-$TEST_LIB2 | ./.travis_filter_log.sh;
+      fi
     fi
   - if [[ "$TEST_LIB3" != "None" ]]; then
-      make -j$(nproc) tests-$TEST_LIB3;
+      make tests-$TEST_LIB3;
+    if [[ "$NEED_FILTER_OUTPUT" == true ]]; then
+        make tests-$TEST_LIB3 | ./.travis_filter_log.sh;
+      fi
+      if [[ "$NEED_FILTER_OUTPUT" != true ]]; then
+        make tests-$TEST_LIB3 | ./.travis_filter_log.sh;
+      fi
     fi
