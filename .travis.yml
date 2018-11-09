@@ -101,21 +101,21 @@ script:
   - mkdir build && cd build && cmake .. -DBUILD_WITH_SOURCES_DIR=${TRAVIS_BUILD_DIR}/boost;
   - if [[ "$TEST_LIB1" != "None" ]]; then
       if [[ "$NEED_FILTER_OUTPUT" == true ]]; then
-        make tests-$TEST_LIB1 | ./.travis_filter_log.sh;
+        make tests-$TEST_LIB1 | ../boost_cmake/.travis_filter_log.sh;
       else
         make tests-$TEST_LIB1;
       fi
     fi
   - if [[ "$TEST_LIB2" != "None" ]]; then
       if [[ "$NEED_FILTER_OUTPUT" == true ]]; then
-        make tests-$TEST_LIB2 | ./.travis_filter_log.sh;
+        make tests-$TEST_LIB2 | ../boost_cmake/.travis_filter_log.sh;
       else
         make tests-$TEST_LIB2;
       fi
     fi
   - if [[ "$TEST_LIB3" != "None" ]]; then
       if [[ "$NEED_FILTER_OUTPUT" == true ]]; then
-        make tests-$TEST_LIB3 | ./.travis_filter_log.sh;
+        make tests-$TEST_LIB3 | ../boost_cmake/.travis_filter_log.sh;
       else
         make tests-$TEST_LIB3;
       fi
