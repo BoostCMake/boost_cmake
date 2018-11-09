@@ -1,6 +1,6 @@
 #!/bin/bash
 TIME_START=$(date +%s)
-STEP=5
+STEP=100
 WAS_OUTPUT_STEP=false
 WAS_OUTPUT_300=false
 echo ${START}

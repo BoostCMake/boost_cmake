@@ -99,6 +99,7 @@ before_script:
 
 script:
   - mkdir build && cd build && cmake .. -DBUILD_WITH_SOURCES_DIR=${TRAVIS_BUILD_DIR}/boost;
+  - make tests-geometry | ../.travis_filter_log.sh;
   - if [[ "$TEST_LIB1" != "None" ]]; then
       if [[ "$NEED_FILTER_OUTPUT" == true ]]; then
         make tests-$TEST_LIB1 | ../.travis_filter_log.sh;
