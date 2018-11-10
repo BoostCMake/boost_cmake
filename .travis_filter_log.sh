@@ -10,7 +10,7 @@ while read line; do
   #echo $(((${TIME_CURRENT} - ${TIME_START}) % ${STEP}))
   if [ "$WAS_OUTPUT_STEP" = false ] ; then
       echo "${line}"
-      echo ${TIME_CURRENT}
+      echo "TIME: ${TIME_CURRENT}"
       WAS_OUTPUT_STEP=true
   fi
   if [ "WAS_OUTPUT_300" = false ] ; then
@@ -20,7 +20,7 @@ while read line; do
   if [ $(((${TIME_CURRENT} - ${TIME_START}) % ${STEP})) == 0 ] ; then
      WAS_OUTPUT_STEP=false
   fi 
-  if [ $(((${TIME_CURRENT} - ${TIME_START}) % ${STEP})) == 300 ] ; then
+  if [ $(((${TIME_CURRENT} - ${TIME_START}) % 300) == 0 ] ; then
      WAS_OUTPUT_300=false
   fi 
 done < /dev/stdin
