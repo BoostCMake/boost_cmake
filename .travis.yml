@@ -44,7 +44,7 @@ env:
   - TEST_LIB1=iterator TEST_LIB2=lambda TEST_LIB3=lexical_cast
   - TEST_LIB1=local_function TEST_LIB2=locale TEST_LIB3=lockfree
   - TEST_LIB1=log TEST_LIB2=logic TEST_LIB3=None
-  - TEST_LIB1=math TEST_LIB2=None TEST_LIB3=None
+  - TEST_LIB1=math TEST_LIB2=metaparse TEST_LIB3=None
   - TEST_LIB1=move TEST_LIB2=mpi TEST_LIB3=mpl
   - TEST_LIB1=msm TEST_LIB2=multi_array TEST_LIB3=multi_index
   - TEST_LIB1=multiprecision TEST_LIB2=numeric_conversion TEST_LIB3=numeric_interval NEED_FILTER_OUTPUT=true
@@ -99,6 +99,10 @@ before_script:
 
 script:
   - mkdir build && cd build && cmake .. -DBUILD_WITH_SOURCES_DIR=${TRAVIS_BUILD_DIR}/boost;
+  - make tests-geometry | ../.travis_filter_log.sh;
+  - TEST_LIB1=None
+  - TEST_LIB2=None
+  - TEST_LIB3=None
   - if [[ "$TEST_LIB1" != "None" ]]; then
       if [[ "$NEED_FILTER_OUTPUT" == true ]]; then
         make tests-$TEST_LIB1 | ../.travis_filter_log.sh;
