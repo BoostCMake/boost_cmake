@@ -99,7 +99,7 @@ before_script:
   - $CXX --version
   - $CC --version
   - cmake --version
-  - if [ -d ${TRAVIS_BUILD_DIR}/boost ]; then
+  - if ! [ -d ${TRAVIS_BUILD_DIR}/boost ]; then
       git clone -q --recurse-submodules https://github.com/boostorg/boost.git -b boost-1.61.0;
     fi
 
