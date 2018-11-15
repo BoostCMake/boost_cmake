@@ -104,10 +104,7 @@ before_script:
     fi
 
 script:
-  - mkdir build && cd build && cmake .. -DBUILD_WITH_SOURCES_DIR=${TRAVIS_BUILD_DIR}/boost
-  - while sleep 1m; do echo "=====[ $SECONDS seconds still running ]====="; done &
-  - make tests-geometry | grep "No output"
-  - kill %1
+  - mkdir build && cd build && cmake .. -DBUILD_WITH_SOURCES_DIR=${TRAVIS_BUILD_DIR}/boost;
   - if [[ "$TEST_LIB1" != "None" ]]; then
       if [[ "$NEED_FILTER_OUTPUT" == true ]]; then
         make tests-$TEST_LIB1 | ../.travis_filter_log.sh;
