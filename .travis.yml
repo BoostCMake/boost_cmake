@@ -6,9 +6,9 @@ git:
   depth: false
   quiet: true
 
-cache:
-  directories:
-  - ${TRAVIS_BUILD_DIR}/boost
+#cache:
+  #directories:
+  #- ${TRAVIS_BUILD_DIR}/boost
 
 os:
   - linux
