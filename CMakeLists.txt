@@ -7,7 +7,7 @@ list(APPEND CMAKE_MODULE_PATH
 include(CMConfig)
 include(CMSetupVersion)
 
-set(BUILD_WITH_SOURCES_DIR "Sources directory" CACHE string "")
+set(BUILD_WITH_SOURCES_DIR "Sources directory" CACHE STRING "")
 
 if(BUILD_WITH_SOURCES_DIR)
     cm_workspace(boost SOURCES_DIR ${BUILD_WITH_SOURCES_DIR})
