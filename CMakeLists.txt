@@ -38,7 +38,7 @@ set(EXCLUDE_LIBS)
 option(BUILD_SHARED_LIBS "Build shared libraries" TRUE)
 option(BUILD_MULTITHREADED_LIBRARIES "Build multithreaded libraries" TRUE)
 
-set(BUILD_WITH_TARGET_ARCHITECTURE "" CACHE string "Target build architecture")
+set(BUILD_WITH_TARGET_ARCHITECTURE "" CACHE STRING "Target build architecture")
 set(APPLE_CODE_SIGN_IDENTITY "iPhone Developer: nemo1369@gmail.com (S686GL5RJ6)" CACHE STRING "Sign identity name")
 
 #if(BUILD_WITH_TARGET_ARCHITECTURE)
