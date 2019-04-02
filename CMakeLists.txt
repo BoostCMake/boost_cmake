@@ -61,3 +61,7 @@ if(NOT MPI_FOUND)
 endif()
 
 find_subdirectories(libs "project\\(")
+
+#SET(CPACK_SOURCE_PACKAGE_FILE_NAME "my_out")
+SET(CPACK_GENERATOR "DEB")
+INCLUDE(CPack)
