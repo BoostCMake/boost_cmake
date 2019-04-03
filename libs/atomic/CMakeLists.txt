@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 find_package(CM)
 include(CMDeploy)
 include(CMSetupVersion)
-include(CMCpack)
+#include(CMCpack)
 
 cm_project(${CMAKE_WORKSPACE_NAME} atomic)
 
